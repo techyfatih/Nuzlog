@@ -23,17 +23,15 @@ var exports = {};
 		$("#log a").click(deleteLastEntry);
 		
 		$("#addPokemonButton").click(addPokemonPopup);
-		$("#pokemon").change(addPokemonChanged);
 		$("#addPokemonForm").submit(addPokemon);
 		
 		//Populate data lists
-		combobox("#game", data.games, "Pokemon Ruby", true);
-		combobox("#pokemon", data.pokemon, "Bulbasaur", true);
-		combobox("#ability", data.abilities, "Overgrow", true);
-		combobox("#move1", data.moves, "", true);
-		combobox("#move2", data.moves, "", false);
-		combobox("#move3", data.moves, "", false);
-		combobox("#move4", data.moves, "", false);
+		combobox($("#game"), data.games, true, "Pokemon Ruby");
+		combobox($("#pokemon"), data.pokemon, true, "Bulbasaur");
+		$("#pokemon").scombobox("change", addPokemonChanged);
+		combobox($("#ability"), data.abilities, true, "Overgrow");
+		combobox($("#moves select"), data.moves, false, "");
+		$("#requiredMove").scombobox({required: true});
 		
 		$(document).foundation(); //When everything is ready, load Foundation plugins
 	});
@@ -53,25 +51,18 @@ var exports = {};
 		return text.replace(/[&<>"']/g, function(m) { return map[m]; }).trim();
 	}
 
-	function combobox(box, options, placeholder, required) {
-		var cbox = $(box);
+	function combobox(jquery, options, required, placeholder) {
+		var data = [];
 		for (var i = 0; i < options.length; i++) {
-			cbox.append("<option>" + options[i] + "</option>");
+			data.push({value: options[i], text: options[i]});
 		}
-		cbox.scombobox({fullMatch: true});
-		var input = $(box + " .scombobox-display");
-		if (placeholder != "") {
-			input.attr("placeholder", placeholder);
-		}
-		if (required) {
-			input.attr("required", "");
-		}
+		jquery.scombobox({data: data, empty: true, required: required, sort: false, fullMatch: true, invalidAsValue: true, maxHeight: "350%", placeholder: placeholder});
 	}
 	
 	function getValue(jqstring) {
 		var jquery = $(jqstring);
 		if (jquery.hasClass("scombobox")) {
-			return escapeHtml($(jqstring + " .scombobox-display").val());
+			return escapeHtml(jquery.scombobox("val"));
 		} else {
 			return escapeHtml(jquery.val());
 		}
@@ -79,6 +70,11 @@ var exports = {};
 	
 	function closePopup() {
 		$(".popup").find("input[type=text], textarea").val("");
+		$(".popup select").each(function(i) {
+			$(this)[0].selectedIndex = 0;
+		});
+		$("#animate img").attr("src", "img/question.png");
+		$("#level").val(5);
 		$(".popup").hide();
 		$("#full").hide();
 		if (!currentGame)
@@ -97,7 +93,7 @@ var exports = {};
 		}
 		$("#gender").prop('disabled', disableGenders);
 		$("#nature").prop('disabled', disableNatures);
-		$("#ability .scombobox-display").prop('disabled', disableAbilities);
+		$("#ability").scombobox("disabled", disableAbilities);
 	}
 
 	
@@ -277,10 +273,17 @@ var exports = {};
 	}
 	
 	function addPokemonChanged() {
-		var name = $("#pokemon option:selected").text().toLowerCase();
+		var name = getValue("#pokemon");
+		var exist = $("#pokemon select option").filter(function() {
+			return $(this).text() == name;
+		}).length;
+		if (exist) {
+			$("#animate img").attr("src", "http://www.pokestadium.com/sprites/xy/" + name.toLowerCase() + ".gif");
+		} else {
+			$("#animate img").attr("src", "img/question.png");
+		}
 		//var pokemon = exports.BattlePokedex[name];
 		
-		//$("#addPokemonForm img").attr("src", "http://www.pkparaiso.com/imagenes/xy/sprites/animados/" + name + ".gif")
 		
 		/*$("#gender").find("option").remove();
 		if (pokemon.gender == undefined) {
