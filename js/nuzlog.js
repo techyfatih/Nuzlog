@@ -1,17 +1,17 @@
-var exports = {};
-(function() {
-	"use strict"
+(function () {
+	"use strict";
 	
 	//Global variables
 	var currentGame = false;
 	var party = [];
-	var pc = []
+	var pc = [];
 	var cemetery = [];
 	
 	//Run when doc is ready
 	$(document).ready(function() {
 		//Event handlers
 		$(".popup .close").click(closePopup);
+		$("#full").click(closePopup);
 		
 		$("#newGameButton").click(createNewGame);
 		$("#newGame").submit(newGame);
@@ -23,7 +23,9 @@ var exports = {};
 		$("#log a").click(deleteLastEntry);
 		
 		$("#addPokemonButton").click(addPokemonPopup);
-		$("#addPokemonForm").submit(addPokemon);
+		$("#addPokemon").submit(addPokemon);
+		
+		$("#party .button").click(pokemonPopup);
 		
 		//Populate data lists
 		combobox($("#game"), data.games, true, "Pokemon Ruby");
@@ -31,10 +33,18 @@ var exports = {};
 		$("#pokemon").scombobox("change", addPokemonChanged);
 		combobox($("#ability"), data.abilities, true, "Overgrow");
 		combobox($("#moves select"), data.moves, false, "");
-		$("#requiredMove").scombobox({required: true});
+		$("#requiredMove .scombobox-display").attr("required", "");
 		
 		$(document).foundation(); //When everything is ready, load Foundation plugins
 	});
+	
+	window.onkeyup = function(e) {
+		var key = e.keyCode ? e.keyCode : e.which;
+		
+		if (key == 27) {
+			closePopup();
+		}
+	};
 	
 	
 	//General functions
@@ -48,7 +58,7 @@ var exports = {};
 			"'": '&#039;'
 		};
 
-		return text.replace(/[&<>"']/g, function(m) { return map[m]; }).trim();
+		return text.replace(/[&<>"']/g, function (m) { return map[m]; }).trim();
 	}
 
 	function combobox(jquery, options, required, placeholder) {
@@ -68,12 +78,12 @@ var exports = {};
 		}
 	}
 	
-	function closePopup() {
+	function closePopup(e) {
 		$(".popup").find("input[type=text], textarea").val("");
 		$(".popup select").each(function(i) {
 			$(this)[0].selectedIndex = 0;
 		});
-		$("#animate img").attr("src", "img/question.png");
+		$(".animate img").attr("src", "img/question.png");
 		$("#level").val(5);
 		$(".popup").hide();
 		$("#full").hide();
@@ -106,7 +116,7 @@ var exports = {};
 		if (confirmNewGame) {
 			$("#main").hide();
 			$("#full").show();
-			$("#createNewGame").show();
+			$("#newGamePopup").show();
 		}
 	}
 
@@ -269,59 +279,40 @@ var exports = {};
 	
 	function addPokemonPopup() {
 		$("#full").show();
-		$("#addPokemon").show();
+		$("#addPokemonPopup").show();
 	}
+    
+    function pokemonExists(pokemon) {
+		return $("#pokemon select option").filter(function() {
+			return $(this).text() == pokemon;
+		}).length;
+    }
 	
 	function addPokemonChanged() {
-		var name = getValue("#pokemon");
-		var exist = $("#pokemon select option").filter(function() {
-			return $(this).text() == name;
-		}).length;
-		if (exist) {
-			$("#animate img").attr("src", "http://www.pokestadium.com/sprites/xy/" + name.toLowerCase() + ".gif");
+		pokemonAnimation(getValue("#pokemon"));
+	}
+	
+	function pokemonAnimation(pokemon) {
+		if (pokemonExists(pokemon)) {
+			$(".animate img").attr("src", "http://www.pokestadium.com/sprites/xy/" + pokemon.toLowerCase() + ".gif");
 		} else {
-			$("#animate img").attr("src", "img/question.png");
+			$(".animate img").attr("src", "img/question.png");
 		}
-		//var pokemon = exports.BattlePokedex[name];
-		
-		
-		/*$("#gender").find("option").remove();
-		if (pokemon.gender == undefined) {
-			$("#gender").append("<option value=\"M\">Male</option>");
-			$("#gender").append("<option value=\"F\">Female</option>");
-		} else {
-			switch (pokemon.gender) {
-				case "M":
-					$("#gender").append("<option value=\"M\">Male</option>");
-					break;
-				case "F":
-					$("#gender").append("<option value=\"M\">Female</option>");
-					break;
-				case "N":
-					$("#gender").append("<option value=\"G\">Genderless</option>");
-					break;
-			}
-		}
-		
-		$("#ability").find("option").remove();
-		for (ability in pokemon.abilities)
-			$("#ability").append("<option>" + pokemon.abilities[ability] + "</option>");
-		
-		$(".move").find("option").remove();
-		$(".move").each(function(index) {
-			if (index != 0) $(this).append("<option></option>");
-		});
-		for (move in exports.BattleLearnsets[name].learnset) {
-			$(".move").append("<option>" + exports.BattleMovedex[move].name + "</option>");
-		}*/
 	}
 	
 	function addPokemon() {
+		var pokemon = "";
+        
 		var name = getValue("#pokemon");
-		var pokemon = name;
 		var nickname = getValue("#nickname");
-		if (nickname != "" && nickname != name)
-			pokemon = nickname + " (" + name + ")";
+        var fullName = name;
+		if (nickname != "" && nickname != name) {
+			fullName = nickname + " (" + name + ")";
+        } else {
+            nickname = name;
+        }
+        
+        pokemon = fullName;
 
 		var gender;
 		if ($("#gender").is(":enabled")) {
@@ -351,14 +342,14 @@ var exports = {};
 		var moves = [];
 		$("#moves .scombobox-display").each(function() {
 			var move = getValue(this);
-			moves.push(move);
-			pokemon += "<br>-" + move;
+			if (move != "") {
+				moves.push(move);
+				pokemon += "<br>- " + move;
+			}
 		});
 		
-		var loc = getValue("#method") + getValue("#location");
+		var loc = getValue("#method") + " " + getValue("#location");
 		pokemon += "<br>" + loc;
-		
-		log("Pokemon", pokemon);
 		
 		var poke = {};
 		poke.name = name;
@@ -371,10 +362,43 @@ var exports = {};
 		poke.moves = moves;
 		poke.loc = loc;
 		
-		party.push(poke);
+		if (party.length < 6) {
+            var slot = $("#party .button").eq(party.length);
+            if (pokemonExists(poke.name)) {
+                slot.children().first().attr("src", "http://www.pokestadium.com/assets/img/sprites/misc/icons/" + name.toLowerCase() + ".png");
+            }
+            slot.children().eq(1).html(fullName + "<br>Lv " + poke.level);
+            slot.removeAttr("disabled")
+            party.push(poke);
+            pokemon = poke.nickname + " has been added to the party!<br><br>" + pokemon;
+        } else {
+            pc.push(poke);
+            pokemon = poke.nickname + " was sent to the PC.<br><br>" + pokemon;
+        }
+		
+		log("Pokemon", pokemon);
 		
 		closePopup();
-		console.log(party);
 		return false;
+	}
+	
+	function pokemonPopup(e) {
+		var poke = party[parseInt($(e.currentTarget).attr("data-num")-1)];
+		pokemonAnimation(poke.name);
+		$("#pokeLevel").text("Level " + poke.level);
+		$("#pokeGender").text("Gender: " + poke.gender);
+		$("#pokeNature").text("Nature: " + poke.nature);
+		$("#pokeAbility").text("Ability: " + poke.ability);
+		$("#pokeMoves h5").each(function(i) {
+			var move = poke.moves[i];
+			if (move != undefined) {
+				$(this).text("- " + move);
+			}
+		});
+		$("#pokeItem").text("Item: " + poke.item);
+		$("#pokeLocation").text(poke.loc);
+		
+		$("#full").show();
+		$("#pokemonPopup").show();
 	}
 })();

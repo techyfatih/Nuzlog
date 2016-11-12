@@ -36,7 +36,7 @@
 
 #journal {
 	border: 1px solid gray;
-	height: 200px;
+	height: 250px;
 	overflow-y: auto;
 }
 
@@ -51,16 +51,20 @@
 
 .pokemon {
 	text-align: center;
+    width: 100%;
+    height: 125px;
+    overflow: hidden;
 }
 
-#animate {
+.animate {
 	text-align: center;
 	height: 200px;
 	width: 200px;
 	border: 1px solid black;
+	margin: auto;
 }
 
-#animate img {
+.animate img {
 	position: relative;
 	top: 100px;
 	transform: translate(0, -50%);

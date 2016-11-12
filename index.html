@@ -16,10 +16,6 @@
 		<script src="js/jquery.scombobox.min.js"></script>
 		<script src="js/data.js"></script>
 		<script src="js/nuzlog.js"></script>
-		
-		<!--<script src="https://rawgit.com/Zarel/Pokemon-Showdown/master/data/pokedex.js"></script>
-		<script src="https://rawgit.com/Zarel/Pokemon-Showdown/master/data/learnsets.js"></script>
-		<script src="https://rawgit.com/Zarel/Pokemon-Showdown/master/data/moves.js"></script>-->
 	</head>
 	<body>
 		<div style="position: relative">
@@ -72,39 +68,39 @@
 					<div class="medium-6 columns">
 						<div class="callout" data-equalizer-watch="main">
 							<h3>Party</h3>
-							<div class="row">
+							<div id="party" class="row">
 								<div class="large-4 medium-6 columns">
-									<div class="callout pokemon">
+									<div class="secondary hollow button pokemon" data-num="1" disabled>
 										<img src="img/icon.png">
 										<p>No Pokemon</p>
 									</div>
 								</div>
-								<div class="large-4 medium-6 columns">
-									<div class="callout pokemon">
+								<div class="large-4 medium-6 columns" data-num="2">
+									<div class="secondary hollow button pokemon" data-num="2" disabled>
 										<img src="img/icon.png">
 										<p>No Pokemon</p>
 									</div>
 								</div>
-								<div class="large-4 medium-6 columns">
-									<div class="callout pokemon">
+								<div class="large-4 medium-6 columns" data-num="3">
+									<div class="secondary hollow button pokemon" data-num="3" disabled>
 										<img src="img/icon.png">
 										<p>No Pokemon</p>
 									</div>
 								</div>
-								<div class="large-4 medium-6 columns">
-									<div class="callout pokemon">
+								<div class="large-4 medium-6 columns" data-num="4">
+									<div class="secondary hollow button pokemon" data-num="4" disabled>
 										<img src="img/icon.png">
 										<p>No Pokemon</p>
 									</div>
 								</div>
-								<div class="large-4 medium-6 columns">
-									<div class="callout pokemon">
+								<div class="large-4 medium-6 columns" data-num="5">
+									<div class="secondary hollow button pokemon" data-num="5" disabled>
 										<img src="img/icon.png">
 										<p>No Pokemon</p>
 									</div>
 								</div>
-								<div class="large-4 medium-6 columns">
-									<div class="callout pokemon">
+								<div class="large-4 medium-6 columns" data-num="6">
+									<div class="secondary hollow button pokemon" data-num="6" disabled>
 										<img src="img/icon.png">
 										<p>No Pokemon</p>
 									</div>
@@ -115,25 +111,26 @@
 				</div>
 				
 				<div class="column expanded row">
-						<div class="callout expanded row" data-equalizer="buttons">
-							<div class="medium-3 columns">
-								<a id="addPokemonButton" class="large expanded success button" data-equalizer-watch="buttons">Add Pokemon</a>
-							</div>
-							<div class="medium-3 columns">
-								<a id="pcButton" class="large expanded warning button" data-equalizer-watch="buttons">Check PC</a>
-							</div>
-							<div class="medium-3 columns">
-								<a id="deathButton" class="large expanded alert button" data-equalizer-watch="buttons">Record Death</a>
-							</div>
-							<div class="medium-3 columns">
-								<a id="cemeteryButton" class="large expanded secondary button" data-equalizer-watch="buttons">Cemetery</a>
-							</div>
+					<div class="callout expanded row" data-equalizer="buttons">
+						<div class="medium-3 columns">
+							<a id="addPokemonButton" class="large expanded success button" data-equalizer-watch="buttons">Add Pokemon</a>
 						</div>
+						<div class="medium-3 columns">
+							<a id="pcButton" class="large expanded warning button" data-equalizer-watch="buttons">Check PC</a>
+						</div>
+						<div class="medium-3 columns">
+							<a id="deathButton" class="large expanded alert button" data-equalizer-watch="buttons">Record Death</a>
+						</div>
+						<div class="medium-3 columns">
+							<a id="cemeteryButton" class="large expanded secondary button" data-equalizer-watch="buttons">Cemetery</a>
+						</div>
+					</div>
 				</div>
 			</div>
+			<p style="text-align:center;">Copyright &copy; 2016 Fatih Ridha (TechForce)</p>
 			
 			<!--Popups-->
-			<div id="createNewGame" class="callout popup">
+			<div id="newGamePopup" class="callout popup">
 				<h3>Create New Game</h3>
 				<form id="newGame">
 					<label>Title*
@@ -157,11 +154,20 @@
 				</form>
 			</div>
 			
-			<div id="addPokemon" class="callout popup">
+			<div id="saveLoadGame" class="callout popup">
+				<label>
+					Here is the current save of your game. Copy-paste this somewhere so you can load it later. To load a game, simply copy-paste the save here and press "Load Game".
+					<textarea id="saveGame" rows="15"></textarea>
+				</label>
+				<a id="loadGame" class="button">Load Game</a>
+				<a class="button close">Close</a>
+			</div>
+			
+			<div id="addPokemonPopup" class="callout popup">
 				<h3>Add New Pokemon</h3>
-				<form id="addPokemonForm">
-					<div id="animate" class="row">
-							<img src="img/question.png">
+				<form id="addPokemon">
+					<div class="row animate">
+						<img src="img/question.png">
 					</div>
 					<div class="row">
 						<label class="medium-6 columns">Pokemon*
@@ -173,17 +179,17 @@
 						</label>
 					</div>
 					<div class="row">
-						<label class="large-3 medium-6 columns">Level
+						<label class="large-3 medium-6 columns">Level*
 							<input id="level" type="number" value="5">
 						</label>
-						<label class="large-3 medium-6 columns">Gender
+						<label class="large-3 medium-6 columns">Gender*
 							<select id="gender">
 								<option value="M">Male</option>
 								<option value="F">Female</option>
 								<option value="G">Genderless</option>
 							</select>
 						</label>
-						<label class="large-3 medium-6 columns">Nature
+						<label class="large-3 medium-6 columns">Nature*
 							<select id="nature">
 								<option>Adamant</option>
 								<option>Bashful</option>
@@ -212,13 +218,13 @@
 								<option>Timid</option>
 							</select>
 						</label>
-						<label class="large-3 medium-6 columns">Ability
+						<label class="large-3 medium-6 columns">Ability*
 							<select id="ability">
 							</select>
 						</label>
 					</div>
 					<div id="moves" class="row">
-						<label class="large-3 medium-6 columns">Move 1
+						<label class="large-3 medium-6 columns">Move 1*
 							<select id="requiredMove">
 							</select>
 						</label>
@@ -242,8 +248,8 @@
 						<label class="large-6 columns">Location*
 							<div id="row">
 								<select id="method" class="medium-6 columns">
-									<option value="Received at: ">Received at: </option>
-									<option value="Caught at: ">Caught at: </option>
+									<option>Received at:</option>
+									<option>Caught at:</option>
 								</select>
 								<div class="medium-6 columns">
 									<input id="location" type="text" placeholder="Pallet Town" required>
@@ -257,12 +263,30 @@
 				</form>
 			</div>
 			
-			<div id="saveLoadGame" class="callout popup">
-				<label>
-					Here is the current save of your game. Copy-paste this somewhere so you can load it later. To load a game, simply copy-paste the save here and press "Load Game".
-					<textarea id="saveGame" rows="15"></textarea>
-				</label>
-				<a id="loadGame" class="button">Load Game</a>
+			<div id="pokemonPopup" class="callout popup">
+				<h3>Pokemon</h3>
+				<div class="row">
+					<div class="large-4 medium-6 columns">
+						<div class="animate">
+							<img src="img/question.png">
+						</div>
+					</div>
+					<div class="large-8 medium-6 columns">
+						<h5 id="pokeLevel">Level </h5>
+						<h5 id="pokeGender">Gender: </h5>
+						<h5 id="pokeNature">Nature: </h5>
+						<h5 id="pokeAbility">Ability: </h5>
+						<h5>Moves:</h5>
+						<div id="pokeMoves">
+							<h5>- </h5>
+							<h5>- </h5>
+							<h5>- </h5>
+							<h5>- </h5>
+						</div>
+						<h5 id="pokeItem">Item: </h5>
+						<h5 id="pokeLocation">Received at: </h5>
+					</div>
+				</div>
 				<a class="button close">Close</a>
 			</div>
 		</div>
