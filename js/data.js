@@ -1445,7 +1445,7 @@ data.moves = [
 			"Mud Sport",
 			"Mud-Slap",
 			"Muddy Water",
-			"Multi-Attack"
+			"Multi-Attack",
 			"Mystical Fire",
 			"Nasty Plot",
 			"Natural Gift",

@@ -503,20 +503,27 @@
 	}
 	
 	function getPokemonImage(pokemon) {
-		if (pokemonExists(pokemon)) {
+		var result = pokemonExists(pokemon);
+		console.log(result);
+		if (result == "alola") return "img/alola/" + pokemon.toLowerCase() + ".png";
+		else if (result) {
 			return "http://www.pokestadium.com/sprites/xy/" + pokemon.toLowerCase() + ".gif";
 		} else return "img/question.png";
 	}
 	
 	function getPokemonIcon(pokemon) {
-		if (pokemonExists(pokemon)) {
+		var result = pokemonExists(pokemon);
+		if (result != "alola" && result) {
 			return "http://www.pokestadium.com/assets/img/sprites/misc/icons/" + pokemon.toLowerCase() + ".png";
 		} else return "img/icon.png";
 	}
 	
 	function pokemonExists(pokemon) {
 		for (var i = 0; i < data.pokemon.length; i++) {
-			if (pokemon.toLowerCase() == data.pokemon[i].toLowerCase()) return true;
+			if (pokemon.toLowerCase() == data.pokemon[i].toLowerCase()) {
+				if (i > 720) return "alola";
+				else return true;
+			}
 		}
 		return false;
 	}
@@ -604,9 +611,7 @@
 	function updateParty(poke) {
 		party.push(poke);
 		var slot = $("#party-tabs a").eq(party.length - 1).children();
-		if (pokemonExists(poke.name)) {
-			slot.first().attr("src", getPokemonIcon(poke.name));
-		}
+		slot.first().attr("src", getPokemonIcon(poke.name));
 		slot.eq(1).html(poke.fullname);
 		slot.eq(2).html("Lv " + poke.level);
 		slot.eq(2).css("visibility", "visible");
