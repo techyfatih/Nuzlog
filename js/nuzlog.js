@@ -505,7 +505,7 @@
 	function getPokemonImage(pokemon) {
 		var result = pokemonExists(pokemon);
 		console.log(result);
-		if (result == "alola") return "img/alola/" + pokemon.toLowerCase() + ".png";
+		if (result == "alola") return "img/alola/" + pokemon.replace(":","").toLowerCase() + ".png"; //I'M LOOKING AT YOU TYPE:NULL
 		else if (result) {
 			return "http://www.pokestadium.com/sprites/xy/" + pokemon.toLowerCase() + ".gif";
 		} else return "img/question.png";
