@@ -2,10 +2,13 @@
 <html>
 	<!--Credits:
 		Ilya Kremer (https://github.com/ivkremer) and contributors for JQuery combobox plugin
-		pokestadium.com and Pkparaiso for animated Pokemon sprites and icons
+			pokestadium.com and Pkparaiso for animated Pokemon sprites and icons
 		-->
 	<head>
 		<title>Nuzlog</title>
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<link rel="stylesheet" href="css/foundation.css"/>
 		<link rel="stylesheet" href="css/jquery.scombobox.min.css"/>
@@ -18,277 +21,389 @@
 		<script src="js/nuzlog.js"></script>
 	</head>
 	<body>
-		<div style="position: relative">
-			<div id="full" class="fade"></div>
-			
-			<div class="expanded row">
-				<div class="callout large secondary">
-					<h1>Nuzlog</h1>
-					<div class="row">
-						<div class="medium-6 columns">
-							<a id="newGameButton" class="large expanded button">New Game</a>
-						</div>
-						<div class="medium-6 columns">
-							<a id="saveLoadGameButton" class="large expanded button">Save/Load Game</a>
-						</div>
-					</div>
+		<div class="callout secondary" id="header">
+			<div class="row">
+				<h1 class="float-left">Nuzlog</h1>
+				<p class="text-right float-right">For all your Nuzlocking needs.<br>(NOTE: Make sure JavaScript is enabled to use this tool!)</p>
+			</div>
+			<div class="row">
+				<div class="medium-6 columns">
+					<button class="large expanded button" type="button" id="newGameButton" data-open="newGamePopup">New Game</a>
+				</div>
+				<div class="medium-6 columns">
+					<button class="large expanded button" type="button" id="saveLoadGameButton">Save/Load Game</a>
 				</div>
 			</div>
-			
-			<div style="position: relative">
-				<div id="main" class="fade"></div>
-				
-				<div class="row">
-					<div class="callout" style="text-align: center">
-						<h3 id="titleLabel">Title</h3>
-						<h5 id="gameLabel">Game</h5>
-						<h5 id="nameLabel">Trainer Name</h5>
-						<p id="disabled">All Enabled</p>
-					</div>
+		</div>
+		
+		<div class="expanded row" id="main">
+			<div id="cover"></div>
+			<div class="large-6 columns">
+				<div class="row callout" id="info">
+					<h3 id="titleLabel">Title</h3>
+					<h5 id="gameLabel">Game</h5>
+					<h5 id="nameLabel">Trainer Name</h5>
+					<p id="disabled">All Enabled</p>
 				</div>
-				
-				<div class="expanded row" data-equalizer="main" data-equalize-on="medium">
-					<div class="medium-6 columns">
-						<div class="callout" data-equalizer-watch="main">
-							<h3>Journal</h3>
-							
-							<div id="journal">
+				<div class="row callout">
+					<h3>Journal</h3>
+					
+					<div id="journal">
+						<div class="row" id="journalHeader">
+							<div class="small-3 columns">
+								<b>Time</b>
 							</div>
-							
-							<form id="log" class="input-group">
-								<input class="input-group-field" type="text" placeholder="Write journal entry here" required>
-								<div class="input-group-button">
-									<input type="submit" class="button" value="Log">
-								</div>
-								<a class="input-group-button tiny secondary button">Delete Last</a>
-							</form>
+							<div class="small-3 columns">
+								<b>Type</b>
+							</div>
+							<div class="small-6 columns">
+								<b>Entry</b>
+							</div>
+						</div>
+						<div id="entries">
 						</div>
 					</div>
 					
-					<div class="medium-6 columns">
-						<div class="callout" data-equalizer-watch="main">
-							<h3>Party</h3>
-							<div id="party" class="row">
-								<div class="large-4 medium-6 columns">
-									<div class="secondary hollow button pokemon" data-num="1" disabled>
-										<img src="img/icon.png">
-										<p>No Pokemon</p>
+					<form id="log" class="input-group">
+						<input class="input-group-field" type="text" placeholder="Write journal entry here" required>
+						<div class="input-group-button">
+							<input type="submit" class="button" value="Log">
+						</div>
+						<!--<div class="input-group-button">
+							<input type="button" class="secondary button" id="deleteLast" value="Delete Last">
+						</div>-->
+					</form>
+				</div>
+			</div>
+			
+			<div class="large-6 columns">
+				<div class="callout">
+					<div class="row">
+					<ul class="tabs" data-tabs id="pokemon-tabs">
+						<li class="tabs-title is-active"><a href="#partyPanel"><h4>Party</h4></a></li>
+						<li class="tabs-title"><a href="#pcPanel"><h4>PC</h4></a></li>
+						<li class="tabs-title"><a href="#cemeteryPanel"><h4>Cemetery</h4></a></li>
+					</ul>
+					<div class="tabs-content" data-tabs-content="pokemon-tabs" data-equalizer>
+						<div class="tabs-panel is-active" id="partyPanel" data-equalizer-watch>
+							<ul class="tabs" data-tabs id="party-tabs">
+								<li class="tabs-title"><a><img src="img/icon.png"><p>No Pokemon</p><p>Lv</p></a></li>	
+								<li class="tabs-title"><a><img src="img/icon.png"><p>No Pokemon</p><p>Lv</p></a></li>	
+								<li class="tabs-title"><a><img src="img/icon.png"><p>No Pokemon</p><p>Lv</p></a></li>	
+								<li class="tabs-title"><a><img src="img/icon.png"><p>No Pokemon</p><p>Lv</p></a></li>	
+								<li class="tabs-title"><a><img src="img/icon.png"><p>No Pokemon</p><p>Lv</p></a></li>	
+								<li class="tabs-title"><a><img src="img/icon.png"><p>No Pokemon</p><p>Lv</p></a></li>	
+							</ul>
+							<div class="tabs-content" data-tabs-content="party-tabs">
+								<div class="tabs-panel is-active">
+									<h4 id="partyPokemon">No Pokemon selected</h4>
+									<div class="media-object" id="party">
+										<div class="media-object-section">
+											<div class="thumbnail animate">
+												<img class="float-center" src="img/question.png">
+											</div>
+											<div class="row">
+												<button class="warning dropdown button" type="button" data-toggle="partyOptions">Options</button>
+												<div class="dropdown-pane" id="partyOptions" data-dropdown data-hover="true" data-hover-pane="true">
+													<button class="small warning button" type="button" id="levelUp">Level Up</button>
+													<button class="small warning button" type="button" id="changeMovesButton" data-open="changeMovesPopup">Change Moves</button>
+													<div class="large reveal" id="changeMovesPopup" data-reveal>
+														<h3><span id="changeMovesPokemon"></span>'s Moves</h3>
+														<form id="changeMoves">
+															<label class="large-3 medium-6 columns">Move 1*
+																<input type="text" placeholder="Razor Leaf" required pattern="\S+.*\S+">
+															</label>
+															<label class="large-3 medium-6 columns">Move 2
+																<input type="text" pattern="\S+.*\S+">
+															</label>
+															<label class="large-3 medium-6 columns">Move 3
+																<input type="text" pattern="\S+.*\S+">
+															</label>
+															<label class="large-3 medium-6 columns">Move 4
+																<input type="text" pattern="\S+.*\S+">
+															</label>
+															<input type="submit" value="Change Moves" class="button">
+														</form>
+														<button class="close-button" data-close aria-label="Close modal" type="button">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<button class="small warning button" type="button" id="itemButton" data-open="itemPopup">Item</button>
+													<div class="reveal" id="itemPopup" data-reveal>
+														<h3><span id="itemPokemon"></span>'s Item</h3>
+														<form id="changeItem">
+															<label>Item
+																<input type="text" placeholder="Oran Berry" pattern="\S+.*\S+">
+															</label>
+															<input type="submit" value="Change Item" class="button">
+														</form>
+														<button class="close-button" data-close aria-label="Close modal" type="button">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<button class="small warning button" type="button" id="evolveButton" data-open="evolvePopup">Evolve</button>
+													<div class="reveal" id="evolvePopup" data-reveal>
+														<h3>Evolving <span id="evolvePokemon"></span></h3>
+														<form id="evolve">
+															<label>New Pokemon*
+																<input type="text" id="newPokemon" placeholder="Venusaur" required pattern="\S+.*\S+">
+															</label>
+															<label>New Ability*
+																<input type="text" id="newAbility" placeholder="Chlorophyll" required pattern="\S+.*\S+">
+															</label>
+															<input type="submit" value="Evolve" class="button">
+														</form>
+														<button class="close-button" data-close aria-label="Close modal" type="button">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<button class="small secondary button" type="button" id="deposit">Deposit to PC</button>
+													<button class="small alert button" type="button" id="deathButton" data-open="deathPopup">Death</button>
+													<div class="reveal" id="deathPopup" data-reveal>
+														<h3><span id="deathPokemon"></span>'s Death</h3>
+														<form id="death">
+															<label>Cause of Death*
+																<input type="text" id="deathCause" placeholder="Frickin' crit" required pattern="\S+.*\S+">
+															</label>
+															<input type="submit" value="Bury" class="button">
+														</form>
+														<button class="close-button" data-close aria-label="Close modal" type="button">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="media-object-section">
+											<p>Level <span class="pokeLevel"></span></p>
+											<p>Gender: <span class="pokeGender"></span></p>
+											<p>Nature: <span class="pokeNature"></span></p>
+											<p>Ability: <span class="pokeAbility"></span></p>
+											<p>Moves:</p>
+											<p>- <span class="pokeMove"></span></p>
+											<p>- <span class="pokeMove"></span></p>
+											<p>- <span class="pokeMove"></span></p>
+											<p>- <span class="pokeMove"></span></p>
+											<p>Item: <span class="pokeItem"></span></p>
+											<p class="pokeLocation">Received at: </p>
+										</div>
 									</div>
 								</div>
-								<div class="large-4 medium-6 columns" data-num="2">
-									<div class="secondary hollow button pokemon" data-num="2" disabled>
-										<img src="img/icon.png">
-										<p>No Pokemon</p>
+							</div>
+						</div>
+						<div class="tabs-panel" id="pcPanel" data-equalizer-watch>
+							<div class="row">
+								<div class="large-6 columns">
+									<select id="pcList" disabled>
+										<option></option>
+									</select>
+								</div>
+								<div class="large-6 columns">
+									<button class="disabled expanded secondary button" type="button" id="withdraw">Withdraw to Party</button>
+								</div>
+							</div>
+							<div class="callout">
+								<h4 id="pcPokemon">No Pokemon selected</h4>
+								<div class="media-object" id="pc">
+									<div class="media-object-section middle">
+										<div class="thumbnail animate">
+											<img class="float-center" src="img/question.png">
+										</div>
+									</div>
+									<div class="media-object-section">
+										<p>Level <span class="pokeLevel"></span></p>
+										<p>Gender: <span class="pokeGender"></span></p>
+										<p>Nature: <span class="pokeNature"></span></p>
+										<p>Ability: <span class="pokeAbility"></span></p>
+										<p>Moves:</p>
+										<p>- <span class="pokeMove"></span></p>
+										<p>- <span class="pokeMove"></span></p>
+										<p>- <span class="pokeMove"></span></p>
+										<p>- <span class="pokeMove"></span></p>
+										<p>Item: <span class="pokeItem"></span></p>
+										<p class="pokeLocation">Received at: </p>
 									</div>
 								</div>
-								<div class="large-4 medium-6 columns" data-num="3">
-									<div class="secondary hollow button pokemon" data-num="3" disabled>
-										<img src="img/icon.png">
-										<p>No Pokemon</p>
+							</div>
+						</div>
+						<div class="tabs-panel" id="cemeteryPanel" data-equalizer-watch>
+							<div class="row">
+								<select id="cemeteryList" disabled>
+									<option></option>
+								</select>
+							</div>
+							<div class="callout">
+								<h4 id="cemeteryPokemon">No Pokemon selected</h4>
+								<div class="media-object" id="cemetery">
+									<div class="media-object-section middle">
+										<div class="thumbnail animate">
+											<img class="float-center" src="img/question.png">
+										</div>
 									</div>
-								</div>
-								<div class="large-4 medium-6 columns" data-num="4">
-									<div class="secondary hollow button pokemon" data-num="4" disabled>
-										<img src="img/icon.png">
-										<p>No Pokemon</p>
-									</div>
-								</div>
-								<div class="large-4 medium-6 columns" data-num="5">
-									<div class="secondary hollow button pokemon" data-num="5" disabled>
-										<img src="img/icon.png">
-										<p>No Pokemon</p>
-									</div>
-								</div>
-								<div class="large-4 medium-6 columns" data-num="6">
-									<div class="secondary hollow button pokemon" data-num="6" disabled>
-										<img src="img/icon.png">
-										<p>No Pokemon</p>
+									<div class="media-object-section">
+										<p>Level <span class="pokeLevel"></span></p>
+										<p>Gender: <span class="pokeGender"></span></p>
+										<p>Nature: <span class="pokeNature"></span></p>
+										<p>Ability: <span class="pokeAbility"></span></p>
+										<p>Moves:</p>
+										<p>- <span class="pokeMove"></span></p>
+										<p>- <span class="pokeMove"></span></p>
+										<p>- <span class="pokeMove"></span></p>
+										<p>- <span class="pokeMove"></span></p>
+										<p>Item: <span class="pokeItem"></span></p>
+										<p class="pokeLocation">Received at: </p>
+										<p>Cause of Death: <span id="pokeDeath"></span></p>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				
-				<div class="column expanded row">
-					<div class="callout expanded row" data-equalizer="buttons">
-						<div class="medium-3 columns">
-							<a id="addPokemonButton" class="large expanded success button" data-equalizer-watch="buttons">Add Pokemon</a>
-						</div>
-						<div class="medium-3 columns">
-							<a id="pcButton" class="large expanded warning button" data-equalizer-watch="buttons">Check PC</a>
-						</div>
-						<div class="medium-3 columns">
-							<a id="deathButton" class="large expanded alert button" data-equalizer-watch="buttons">Record Death</a>
-						</div>
-						<div class="medium-3 columns">
-							<a id="cemeteryButton" class="large expanded secondary button" data-equalizer-watch="buttons">Cemetery</a>
-						</div>
+					</div>
+					<div class="row">
+					<button class="large expanded success button" type="button" id="addPokemonButton" data-open="addPokemonPopup">Add Pokemon</button>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="callout secondary" id="footer">
 			<p style="text-align:center;">Copyright &copy; 2016 Fatih Ridha (TechForce)</p>
-			
-			<!--Popups-->
-			<div id="newGamePopup" class="callout popup">
-				<h3>Create New Game</h3>
-				<form id="newGame">
-					<label>Title*
-						<input id="title" type="text" placeholder="The Great Nuzlocke Challenge" required>
+		</div>
+		
+		<!-----------
+		----Popups---
+		------------>
+		
+		<div class="small reveal" id="newGamePopup" data-reveal>
+			<h3>Create New Game</h3>
+			<form id="newGame">
+				<label>Title*
+					<input id="title" type="text" placeholder="The Great Nuzlocke Challenge" required pattern="\S+.*\S+">
+				</label>
+				<label>Game*
+					<input id="game" type="text" placeholder="Pokemon Ruby" required pattern="\S+.*\S+">
+				</label>
+				<label>Name*
+					<input id="name" type="text" placeholder="Ruby" required pattern="\S+.*\S+">
+				</label>
+				<fieldset class="large-12 columns">
+					<input id="disableGenders" type="checkbox"><label for="enableGenders">Disable Genders</label>
+					<input id="disableNatures" type="checkbox"><label for="enableNatures">Disable Natures</label>
+					<input id="disableAbilities" type="checkbox"><label for="enableAbilities">Disable Abilities</label>
+				</fieldset>
+				
+				<input type="submit" value="Start" class="button">
+				<button class="close-button" data-close aria-label="Close modal" type="button">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</form>
+		</div>
+		
+		<div class="small reveal" id="saveLoadGamePopup" data-reveal>
+			<div class="row">
+			<label>
+				Here is the current save of your game. Copy-paste this somewhere so you can load it later. To load a game, simply copy-paste the save here and press "Load Game".
+				<textarea id="saveGame" rows="15"></textarea>
+			</label>
+			<button class="close-button" data-close aria-label="Close modal" type="button">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<button class="button" type="button" id="loadGame">Load Game</a>
+		</div>
+		
+		<div class="large reveal" id="addPokemonPopup" data-reveal>
+			<h3>Add New Pokemon</h3>
+			<form id="addPokemon">
+				<div class="row thumbnail animate float-center">
+					<img class="float-center" src="img/question.png">
+				</div>
+				<div class="row">
+					<label class="medium-6 columns">Pokemon*
+						<input id="pokemon" type="text" placeholder="Bulbasaur" required pattern="\S+.*\S+">
 					</label>
-					<label>Game*
-						<select id="game">
+					<label class="medium-6 columns">Nickname
+						<input id="nickname" type="text" pattern="\S+.*\S+">
+					</label>
+				</div>
+				<div class="row">
+					<label class="large-3 medium-6 columns">Level*
+						<input id="level" type="number" value="5">
+					</label>
+					<label class="large-3 medium-6 columns">Gender*
+						<select id="gender">
+							<option>Male</option>
+							<option>Female</option>
+							<option>Genderless</option>
 						</select>
 					</label>
-					<label>Name*
-						<input id="name" type="text" placeholder="Ruby" required>
+					<label class="large-3 medium-6 columns">Nature*
+						<select id="nature">
+							<option>Adamant</option>
+							<option>Bashful</option>
+							<option>Bold</option>
+							<option>Brave</option>
+							<option>Calm</option>
+							<option>Careful</option>
+							<option>Docile</option>
+							<option>Gentle</option>
+							<option>Hardy</option>
+							<option>Hasty</option>
+							<option>Impish</option>
+							<option>Jolly</option>
+							<option>Lax</option>
+							<option>Lonely</option>
+							<option>Mild</option>
+							<option>Modest</option>
+							<option>Naive</option>
+							<option>Naughty</option>
+							<option>Quiet</option>
+							<option>Quirky</option>
+							<option>Rash</option>
+							<option>Relaxed</option>
+							<option>Sassy</option>
+							<option>Serious</option>
+							<option>Timid</option>
+						</select>
 					</label>
-					<fieldset class="large-12 columns">
-						<input id="disableGenders" type="checkbox"><label for="enableGenders">Disable Genders</label>
-						<input id="disableNatures" type="checkbox"><label for="enableNatures">Disable Natures</label>
-						<input id="disableAbilities" type="checkbox"><label for="enableAbilities">Disable Abilities</label>
-					</fieldset>
-					
-					<input type="submit" value="Start" class="button">
-					<a class="button close">Close</a>
-				</form>
-			</div>
-			
-			<div id="saveLoadGame" class="callout popup">
-				<label>
-					Here is the current save of your game. Copy-paste this somewhere so you can load it later. To load a game, simply copy-paste the save here and press "Load Game".
-					<textarea id="saveGame" rows="15"></textarea>
-				</label>
-				<a id="loadGame" class="button">Load Game</a>
-				<a class="button close">Close</a>
-			</div>
-			
-			<div id="addPokemonPopup" class="callout popup">
-				<h3>Add New Pokemon</h3>
-				<form id="addPokemon">
-					<div class="row animate">
-						<img src="img/question.png">
-					</div>
-					<div class="row">
-						<label class="medium-6 columns">Pokemon*
-							<select id="pokemon">
-							</select>
-						</label>
-						<label class="medium-6 columns">Nickname
-							<input id="nickname" type="text">
-						</label>
-					</div>
-					<div class="row">
-						<label class="large-3 medium-6 columns">Level*
-							<input id="level" type="number" value="5">
-						</label>
-						<label class="large-3 medium-6 columns">Gender*
-							<select id="gender">
-								<option value="M">Male</option>
-								<option value="F">Female</option>
-								<option value="G">Genderless</option>
-							</select>
-						</label>
-						<label class="large-3 medium-6 columns">Nature*
-							<select id="nature">
-								<option>Adamant</option>
-								<option>Bashful</option>
-								<option>Bold</option>
-								<option>Brave</option>
-								<option>Calm</option>
-								<option>Careful</option>
-								<option>Docile</option>
-								<option>Gentle</option>
-								<option>Hardy</option>
-								<option>Hasty</option>
-								<option>Impish</option>
-								<option>Jolly</option>
-								<option>Lax</option>
-								<option>Lonely</option>
-								<option>Mild</option>
-								<option>Modest</option>
-								<option>Naive</option>
-								<option>Naughty</option>
-								<option>Quiet</option>
-								<option>Quirky</option>
-								<option>Rash</option>
-								<option>Relaxed</option>
-								<option>Sassy</option>
-								<option>Serious</option>
-								<option>Timid</option>
-							</select>
-						</label>
-						<label class="large-3 medium-6 columns">Ability*
-							<select id="ability">
-							</select>
-						</label>
-					</div>
-					<div id="moves" class="row">
-						<label class="large-3 medium-6 columns">Move 1*
-							<select id="requiredMove">
-							</select>
-						</label>
-						<label class="large-3 medium-6 columns">Move 2
-							<select>
-							</select>
-						</label>
-						<label class="large-3 medium-6 columns">Move 3
-							<select>
-							</select>
-						</label>
-						<label class="large-3 medium-6 columns">Move 4
-							<select>
-							</select>
-						</label>
-					</div>
-					<div class="row">
-						<label class="large-6 columns">Item
-							<input id="item" type="text" placeholder="Life Orb">
-						</label>
-						<label class="large-6 columns">Location*
-							<div id="row">
-								<select id="method" class="medium-6 columns">
-									<option>Received at:</option>
-									<option>Caught at:</option>
-								</select>
-								<div class="medium-6 columns">
-									<input id="location" type="text" placeholder="Pallet Town" required>
-								</div>
-							</div>
-						</label>
-					</div>
-					
-					<input type="submit" value="Add Pokemon" class="button">
-					<a class="button close">Close</a>
-				</form>
-			</div>
-			
-			<div id="pokemonPopup" class="callout popup">
-				<h3>Pokemon</h3>
-				<div class="row">
-					<div class="large-4 medium-6 columns">
-						<div class="animate">
-							<img src="img/question.png">
-						</div>
-					</div>
-					<div class="large-8 medium-6 columns">
-						<h5 id="pokeLevel">Level </h5>
-						<h5 id="pokeGender">Gender: </h5>
-						<h5 id="pokeNature">Nature: </h5>
-						<h5 id="pokeAbility">Ability: </h5>
-						<h5>Moves:</h5>
-						<div id="pokeMoves">
-							<h5>- </h5>
-							<h5>- </h5>
-							<h5>- </h5>
-							<h5>- </h5>
-						</div>
-						<h5 id="pokeItem">Item: </h5>
-						<h5 id="pokeLocation">Received at: </h5>
-					</div>
+					<label class="large-3 medium-6 columns">Ability*
+						<input id="ability" type="text" placeholder="Overgrow" required pattern="\S+.*\S+">
+					</label>
 				</div>
-				<a class="button close">Close</a>
-			</div>
+				<div id="moves" class="row">
+					<label class="large-3 medium-6 columns">Move 1*
+						<input type="text" placeholder="Razor Leaf" required pattern="\S+.*\S+">
+					</label>
+					<label class="large-3 medium-6 columns">Move 2
+						<input type="text" pattern="\S+.*\S+">
+					</label>
+					<label class="large-3 medium-6 columns">Move 3
+						<input type="text" pattern="\S+.*\S+">
+					</label>
+					<label class="large-3 medium-6 columns">Move 4
+						<input type="text" pattern="\S+.*\S+">
+					</label>
+				</div>
+				<div class="row">
+					<label class="large-6 columns">Item
+						<input id="item" type="text" placeholder="Oran Berry" pattern="\S+.*\S+">
+					</label>
+					<label class="large-6 columns">Location*
+						<div class="row">
+							<select id="method" class="medium-6 columns">
+								<option>Received at:</option>
+								<option>Caught at:</option>
+							</select>
+							<div class="medium-6 columns">
+								<input id="location" type="text" placeholder="Pallet Town" required pattern="\S+.*\S+">
+							</div>
+						</div>
+					</label>
+				</div>
+				
+				<input type="submit" value="Add Pokemon" class="button">
+			</form>
+			<button class="close-button" data-close aria-label="Close modal" type="button">
+				<span aria-hidden="true">&times;</span>
+			</button>
 		</div>
 	</body>
 </html>

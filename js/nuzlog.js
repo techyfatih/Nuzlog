@@ -4,15 +4,13 @@
 	//Global variables
 	var currentGame = false;
 	var party = [];
+	var partyIndex = 0;
 	var pc = [];
 	var cemetery = [];
 	
 	//Run when doc is ready
 	$(document).ready(function() {
 		//Event handlers
-		$(".popup .close").click(closePopup);
-		$("#full").click(closePopup);
-		
 		$("#newGameButton").click(createNewGame);
 		$("#newGame").submit(newGame);
 		
@@ -20,32 +18,42 @@
 		$("#loadGame").click(loadGame);
 		
 		$("#log").submit(logMessage);
-		$("#log a").click(deleteLastEntry);
+		//$("#deleteLast").click(deleteLastEntry);
 		
-		$("#addPokemonButton").click(addPokemonPopup);
+		$("#addPokemonButton").click(clearAddPokemonForm);
+		$("#pokemon").change(addPokemonChanged);
 		$("#addPokemon").submit(addPokemon);
 		
-		$("#party .button").click(pokemonPopup);
+		$("#party-tabs").on("change.zf.tabs", partyChange);
+		
+		$("#levelUp").click(levelUp);
+		$("#changeMovesButton").click(changeMovesPopup);
+		$("#changeMoves").submit(changeMoves);
+		$("#itemButton").click(itemPopup);
+		$("#changeItem").submit(changeItem);
+		$("#evolveButton").click(evolvePopup);
+		$("#evolve").submit(evolve);
+		$("#deposit").click(deposit);
+		$("#deathButton").click(deathPopup);
+		$("#death").submit(death);
+		
+		$("#withdraw").click(withdraw);
+		$("#pcList").change(pcChange);
+		$("#cemeteryList").change(cemeteryChange);
 		
 		//Populate data lists
-		combobox($("#game"), data.games, true, "Pokemon Ruby");
-		combobox($("#pokemon"), data.pokemon, true, "Bulbasaur");
-		$("#pokemon").scombobox("change", addPokemonChanged);
-		combobox($("#ability"), data.abilities, true, "Overgrow");
-		combobox($("#moves select"), data.moves, false, "");
-		$("#requiredMove .scombobox-display").attr("required", "");
+		//combobox($("#game"), data.games, true, "Pokemon Ruby");
+		//$("#game").combobox({data: data.games, required: true, placeholder: "Pokemon Ruby"});
+		//combobox($("#pokemon"), data.pokemon, true, "Bulbasaur");
+		//$("#pokemon").combobox({data: data.pokemon, required: true, placeholder: "Bulbasaur"});
+		//$("#pokemon").scombobox("change", addPokemonChanged);
+		//combobox($("#ability"), data.abilities, true, "Overgrow");
+		//$("#ability").combobox({data: data.abilities, required: true, placeholder: "Overgrow"});
+		//combobox($("#moves select"), data.moves, false, "");
+		//$("#requiredMove .scombobox-display").attr("required", "");
 		
 		$(document).foundation(); //When everything is ready, load Foundation plugins
 	});
-	
-	window.onkeyup = function(e) {
-		var key = e.keyCode ? e.keyCode : e.which;
-		
-		if (key == 27) {
-			closePopup();
-		}
-	};
-	
 	
 	//General functions
 
@@ -61,34 +69,21 @@
 		return text.replace(/[&<>"']/g, function (m) { return map[m]; }).trim();
 	}
 
-	function combobox(jquery, options, required, placeholder) {
+	/*function combobox(jquery, options, required, placeholder) {
 		var data = [];
 		for (var i = 0; i < options.length; i++) {
 			data.push({value: options[i], text: options[i]});
 		}
 		jquery.scombobox({data: data, empty: true, required: required, sort: false, fullMatch: true, invalidAsValue: true, maxHeight: "350%", placeholder: placeholder});
-	}
+	}*/
 	
 	function getValue(jqstring) {
 		var jquery = $(jqstring);
 		if (jquery.hasClass("scombobox")) {
 			return escapeHtml(jquery.scombobox("val"));
 		} else {
-			return escapeHtml(jquery.val());
+			return escapeHtml(jquery.val()).trim();
 		}
-	}
-	
-	function closePopup(e) {
-		$(".popup").find("input[type=text], textarea").val("");
-		$(".popup select").each(function(i) {
-			$(this)[0].selectedIndex = 0;
-		});
-		$(".animate img").attr("src", "img/question.png");
-		$("#level").val(5);
-		$(".popup").hide();
-		$("#full").hide();
-		if (!currentGame)
-			$("#main").show();
 	}
 	
 	function disableProperties(disableGenders, disableNatures, disableAbilities) {
@@ -103,23 +98,18 @@
 		}
 		$("#gender").prop('disabled', disableGenders);
 		$("#nature").prop('disabled', disableNatures);
-		$("#ability").scombobox("disabled", disableAbilities);
+		$("#ability, #newAbility").prop("disabled", disableAbilities);
 	}
 
 	
 	//New game functions
-	
-	function createNewGame() {
-		var confirmNewGame = true;
-		if (currentGame)
-			confirmNewGame = confirm("Are you sure you want to create a new game? All unsaved changes will be lost.");
-		if (confirmNewGame) {
-			$("#main").hide();
-			$("#full").show();
-			$("#newGamePopup").show();
-		}
-	}
 
+	function createNewGame() {
+		$("#title").val("");
+		$("#game").val("");
+		$("#name").val("");
+	}
+	
 	function newGame() {
 		var title = getValue("#title");
 		var game = getValue("#game");
@@ -128,18 +118,54 @@
 		if (title == "" || game == "" || name == "")
 			alert("Please make sure all fields are entered.");
 		else {
-			$("#titleLabel").text(title);
-			$("#gameLabel").text(game);
-			$("#nameLabel").text(name);
-			disableProperties($("#disableGenders").prop('checked'), $("#disableNatures").prop('checked'), $("#disableAbilities").prop('checked'));
+			var confirmNewGame = true;
+			if (currentGame)
+				confirmNewGame = confirm("Are you sure you want to create a new game? All unsaved changes will be lost.");
+			
+			if (confirmNewGame) {
+				$("#titleLabel").text(title);
+				$("#gameLabel").text(game);
+				$("#nameLabel").text(name);
+				disableProperties($("#disableGenders").prop('checked'), $("#disableNatures").prop('checked'), $("#disableAbilities").prop('checked'));
+				
+				party = [];
+				var partyTabs = $("#party-tabs li");
+				for (var i = 0; i < 6; i++) {
+					var tab = partyTabs.eq(i);
+					tab.removeClass("is-active");
+					var a = tab.children().first();
+					a.attr("aria-selected", false);
+					var content = a.children();
+					content.eq(0).attr("src", "img/icon.png");
+					content.eq(1).attr("No Pokemon");
+					content.eq(2).css("visibility", "hidden");
+				}
+				$("#partyPokemon").text("No Pokemon selected");
+				$("#party").css("visibility", "hidden");
+				
+				pc = [];
+				var pcList = $("#pcList");
+				pcList.empty().append($("<option>"));
+				pcList.prop("disabled", true);
+				$("#withdraw").addClass("disabled");
+				$("#pcPokemon").text("No Pokemon selected");
+				$("#pc").css("visibility", "hidden");
+				
+				cemetery = [];
+				var cemeteryList = $("#cemeteryList");
+				cemeteryList.empty().append($("<option>"));
+				cemeteryList.prop("disabled", true);
+				$("#cemeteryPokemon").text("No Pokemon selected");
+				$("#cemetery").css("visibility", "hidden");
 
-			currentGame = true;
-			$("#journal").empty();
-			closePopup();
-			return false;
+				$("#entries").empty();
+				$("#cover").remove();
+				$("#newGamePopup").foundation("close");
+				currentGame = true;
+				return false;
+			}
 		}
 	}
-	
 	
 	//Saving and loading functions
 	
@@ -153,23 +179,27 @@
 				save += "\n"  + disabled;
 			}
 			save += "\n";
-			$("#journal").children().each(function(i) {
+			$("#entries").children().each(function(i) {
 				save += "\n";
 				var log = $(this).children();
-				save += "[" + log.first().text() + "] " + log.first().next().text() + ": " + log.last().html().replace(/<br>/g, "\t");
+				var time = "[" + log.eq(0).text() + "]";
+				var type = log.eq(1).text();
+				var entry = log.eq(2).html();
+				if (type == "Pokemon") entry = entry.replace(/<br>/g, "\n");
+				else entry = entry.replace(/<br>/g, "\t");
+				save += time + " " + type + ": " + entry;
 			});
-			$("#saveGame").val(save);
+			$("#saveGame").val(save.replace("\n\n", "\n"));
 		}
 		
-		$("#main").hide();
-		$("#full").show();
-		$("#saveLoadGame").show();
+		$("#saveLoadGamePopup").foundation("open");
 	}
 	
 	function loadGame() {
 		var confirmLoadGame = true;
 		if (currentGame)
 			confirmLoadGame = confirm("Are you sure you want to load another game? All unsaved changes will be lost.");
+		
 		if (confirmLoadGame) {
 			var load = $("#saveGame").val();
 			if (load == "") {
@@ -203,33 +233,214 @@
 						} else if (disabled != "") throw "improper format with disabled features";
 					}
 					
-					// Journal
+					// Parse load file into journal array
 					var journal = [];
-					lines.forEach(function(log) {
-						var time = log.substring(0, log.indexOf("]")).trim();
-						if (time == "" || !(time.startsWith("["))) throw "improper format with log timestamp";
-						var type = log.substring(log.indexOf("]") + 1, log.indexOf(":", 16)).trim();
-						if (type == "") throw "improper format with log type";
-						var entry = log.substring(log.indexOf(":", 16) + 1).trim();
-						if (entry == "") throw "improper format with log entry";
-						journal.push([time.substring(1), type, entry.replace(/\t/g, "<br>")]);
-					});
+					var pokemon = 0;
+					var pokemonTime = "";
+					var pokemonEntry = "";
+					var poke = {};
+					var tempParty = [];
+					var tempPC = [];
+					var tempCemetery = [];
+					for (var i = 0; i < lines.length; i++) {
+						var log = lines[i];
+						if (log.length == 0) continue;
+						if (!pokemon) {
+							var time = log.substring(0, log.indexOf("]")).trim();
+							if (time == "" || !(time.startsWith("["))) throw "improper format with log timestamp";
+							var type = log.substring(log.indexOf("]") + 1, log.indexOf(":", 16)).trim();
+							if (type == "") throw "improper format with log type";
+							var entry = log.substring(log.indexOf(":", 16) + 1).trim();
+							if (entry == "") throw "improper format with log entry";
+							if (type == "Pokemon") {
+								pokemon = 1;
+								pokemonTime = time.substring(1);
+								pokemonEntry = entry;
+								poke = {};
+							} else {
+								if (type.match(/Level\[\d\]/g)) {
+									var index = type[type.indexOf("[") + 1];
+									if (index >= tempParty.length) throw "invalid index for party at line " + i;
+									tempParty[index].level++;
+								} else if (type.match(/Move\[\d\]/g)) {
+									var index = type[type.indexOf("[") + 1];
+									if (index >= tempParty.length) throw "invalid index for party at line " + i;
+									var movesEntry = entry.split("\t");
+									var moves = [];
+									for (var j = 1; j < movesEntry.length; j++)
+										if (movesEntry[j].length > 2) moves.push(movesEntry[j].substring(2));
+									if (moves.length == 0) throw "insufficient Pokemon moves at line " + i;
+									tempParty[index].moves = moves;
+								} else if (type.match(/Item\[\d\]/g)) {
+									var index = type[type.indexOf("[") + 1];
+									if (index >= tempParty.length) throw "invalid index for party at line " + i;
+									tempParty[index].item = entry.substring(entry.indexOf(". Gave ") + 7, entry.lastIndexOf(" to "));
+								} else if (type.match(/Evolve\[\d\]/g)) {
+									var index = type[type.indexOf("[") + 1];
+									if (index >= tempParty.length) throw "invalid index for party at line " + i;
+									var exclamation = entry.lastIndexOf("!");
+									tempParty[index].name = entry.substring(entry.indexOf(" evolved into ") + 14, exclamation);
+									var ability = entry.substring(exclamation + 15);
+									if (ability.length > 0) tempParty[index].ability = ability;
+								} else if (type.match(/Deposit\[\d\]/g)) {
+									var index = type[type.indexOf("[") + 1];
+									if (index >= tempParty.length) throw "invalid index for party at line " + i;
+									tempPC.push(tempParty.splice(index, 1)[0]);
+								} else if (type.match(/Withdraw\[\d\]/g)) {
+									var index = type[type.indexOf("[") + 1];
+									if (index >= tempPC.length) throw "invalid index for PC at line " + i;
+									tempParty.push(tempPC.splice(index, 1)[0]);
+								} else if (type.match(/Death\[\d\]/g)) {
+									var index = type[type.indexOf("[") + 1];
+									if (index >= tempParty.length) throw "invalid index for party at line " + i;
+									tempCemetery.push(tempParty.splice(index, 1)[0]);
+								}
+								journal.push([time, type, entry]);
+							}
+						} else {
+							if (pokemon == 1) {
+								var atIndex = log.indexOf("@");
+								if (atIndex != log.lastIndexOf("@")) throw "additional @ symbols in Pokemon name and/or item at line " + i;
+								
+								var fullname = log.substring(0, atIndex - 1 - 4 * !disableGenders);
+								if (fullname.length == 0) throw "invalid Pokemon name at line " + i;
+								var nameIndex = fullname.lastIndexOf(" (");
+								var name = fullname.substring(nameIndex, fullname.lastIndexOf(")"));
+								var nickname = fullname;
+								if (name.length == 0) nickname = fullname.substring(0, nameIndex);
+								else name = fullname;
+								
+								var gender = "N/A";
+								if (!disableGenders) {
+									gender = log.substring(fullname.length + 2, atIndex - 2);
+									if (gender.length == 0) throw "invalid Pokemon gender at line " + i;
+									switch (gender) {
+										case "M": gender = "Male"; break;
+										case "F": gender = "Female"; break;
+										case "G": gender = "Genderless"; break;
+										default: throw "invalid Pokemon gender at line " + i;
+									}
+								}
+								
+								var item = log.substring(atIndex + 1);
+								if (item.length == 0) throw "invalid Pokemon item at line " + i;
+								
+								poke.name = name;
+								poke.nickname = nickname;
+								poke.fullname = fullname;
+								poke.gender = gender;
+								poke.item = item;
+							} else if (pokemon == 2) {
+								var ability = "N/A";
+								if (!disableAbilities) {
+									ability = log.substring(9);
+									if (ability.length == 0) throw "invalid Pokemon ability at line " + i;
+									poke.ability = ability;
+								} else pokemon++;
+							}
+							if (pokemon == 3) {
+								var level = log.substring(7);
+								if (level.length == 0) throw "invalid Pokemon level at line " + i;
+								poke.level = level;
+							} else if (pokemon == 4) {
+								var nature = "N/A";
+								if (!disableNatures) {
+									nature = log.substring(0, log.lastIndexOf(" Nature"));
+									if (nature.length == 0) throw "invalid Pokemon nature at line " + i;
+									poke.nature = nature;
+								} else pokemon++;
+							}
+							if (pokemon >= 5) {
+								if (log.startsWith("- ")) {
+									var move = log.substring(2);
+									if (move.length > 0) {
+										if (poke.moves == undefined) poke.moves = [];
+										poke.moves.push(move);
+									}
+								} else {
+									if (poke.moves.length == 0) throw "insufficient Pokemon moves at line " + i;
+									if (log.startsWith("Received at: ") || log.startsWith("Caught at: ")) {
+										poke.location = log;
+										pokemon = -1;
+										if (tempParty.length < 6) tempParty.push(poke);
+										else tempPC.push(poke);
+										journal.push([pokemonTime, "Pokemon", pokemonEntry]);
+									}
+								}
+							}
+							pokemonEntry += "<br>" + log;
+							pokemon++;
+						}
+					}
 					
 					// Apply changes
 					$("#titleLabel").text(title);
 					$("#gameLabel").text(game);
 					$("#nameLabel").text(name);
 					disableProperties(disableGenders, disableNatures, disableAbilities);
-					$("#journal").empty();
-					party = [];
-					pc = [];
-					cemetery = [];
-					journal.forEach(function(log) {
+					
+					$("#entries").empty();
+					for (var i = 0; i < journal.length; i++) {
+						var log = journal[i];
 						insertLog(log[0], log[1], log[2]);
-					});
+					}
+					
+					party = tempParty;
+					var partyTabs = $("#party-tabs li");
+					var i = 0;
+					for (i; i < party.length; i++) {
+						var li = partyTabs.eq(i);
+						li.removeClass("is-active");
+						var a = li.children().first();
+						a.attr("aria-selected", false);
+						var content = a.children();
+						content.first().attr("src", getPokemonIcon(party[i].name));
+						content.eq(1).text(party[i].fullname);
+						content.eq(2).css("visibility", "visible");
+						content.eq(2).text("Lv " + party[i].level);
+					}
+					for (i; i < 6; i++) {
+						var li = partyTabs.eq(i);
+						li.removeClass("is-active");
+						var a = li.children().first();
+						a.attr("aria-selected", false);
+						var content = a.children();
+						content.first().attr("src", "img/icon.png");
+						content.eq(1).text("No Pokemon");
+						content.eq(2).css("visibility", "hidden");
+					}
+					$("#partyPokemon").text("No Pokemon selected");
+					$("#party").css("visibility", "hidden");
+					
+					pc = tempPC;
+					var pcList = $("#pcList")
+					pcList.empty().append($("<option>"));
+					for (var i = 0; i < pc.length; i++) pcList.append("<option>" + pc[i].fullname + "</option>");
+					pcList.prop("disabled", true);
+					var withdraw = $("#withdraw").addClass("disabled");
+					if (pc.length > 0) {
+						pcList.prop("disabled", false);
+						if (party.length < 6) withdraw.removeClass("disabled");
+					}
+					$("#pcPokemon").text("No Pokemon selected");
+					$("#pc").css("visibility", "hidden");
+					
+					cemetery = tempCemetery;
+					var cemeteryList = $("#cemeteryList");
+					cemeteryList.empty().append($("<option>"));
+					for (var i = 0; i < cemetery.length; i++) cemeteryList.append("<option>" + cemetery[i].fullname + "</option>");
+					cemeteryList.prop("disabled", true);
+					if (cemetery.length > 0) cemeteryList.prop("disabled", false);
+					$("#cemeteryPokemon").text("No Pokemon selected");
+					$("#cemetery").css("visibility", "hidden");
+					
+					console.log(party);
+					console.log(pc);
+					console.log(cemetery);
 					
 					currentGame = true;
-					closePopup();
+					$("#cover").remove();
+					$("#saveLoadGamePopup").foundation("close");	
 				} catch(err) {
 					alert("There was an error in loading the game: " + err);
 				}
@@ -258,46 +469,56 @@
 	
 	function insertLog(time, type, entry) {
 		var $row = $("<div/>", {class: "row"});
-		var $timeCol = $("<div/>", {class: "large-4 small-3 columns", text: time});		
-		var $typeCol = $("<div/>", {class: "large-2 small-3 columns", text: type});
+		var $timeCol = $("<div/>", {class: "small-3 columns", text: time});		
+		var $typeCol = $("<div/>", {class: "small-3 columns", text: type});
 		var $entryCol = $("<div/>", {class: "small-6 columns", html: entry});
 		
 		$row.append($timeCol);
 		$row.append($typeCol);
 		$row.append($entryCol);
-		$("#journal").append($row);
+		$("#entries").append($row);
+		$("#journal").animate({
+			scrollTop: $("#journal").scrollTop() + $row.offset().top
+		}, 100);
 	}
 
-	function deleteLastEntry() {
+	/*function deleteLastEntry() {
 		if ($("#journal").children().length) {
 			if (confirm("Delete last entry?"))
 				$("#journal div[class=row]:last-child").remove();
 		} else alert("No entries in the journal to delete!");
-	}
+	}*/
 	
 	//Add Pokemon functions
 	
-	function addPokemonPopup() {
-		$("#full").show();
-		$("#addPokemonPopup").show();
+	function clearAddPokemonForm() {
+		$("#addPokemon").find("input[type=text]").val("");
+		$("#addPokemon select").each(function() {$(this).selectedIndex = 0;});
+		$("#addPokemon img").attr("src", "img/question.png");
+		$("#level").val(5);
 	}
-    
-    function pokemonExists(pokemon) {
-		return $("#pokemon select option").filter(function() {
-			return $(this).text() == pokemon;
-		}).length;
-    }
 	
 	function addPokemonChanged() {
-		pokemonAnimation(getValue("#pokemon"));
+		$("#addPokemon img").attr("src", getPokemonImage(getValue(this)));
 	}
 	
-	function pokemonAnimation(pokemon) {
+	function getPokemonImage(pokemon) {
 		if (pokemonExists(pokemon)) {
-			$(".animate img").attr("src", "http://www.pokestadium.com/sprites/xy/" + pokemon.toLowerCase() + ".gif");
-		} else {
-			$(".animate img").attr("src", "img/question.png");
+			return "http://www.pokestadium.com/sprites/xy/" + pokemon.toLowerCase() + ".gif";
+		} else return "img/question.png";
+	}
+	
+	function getPokemonIcon(pokemon) {
+		if (pokemonExists(pokemon)) {
+			return "http://www.pokestadium.com/assets/img/sprites/misc/icons/" + pokemon.toLowerCase() + ".png";
+		} else return "img/icon.png";
+	}
+	
+	function pokemonExists(pokemon) {
+		for (var i = 0; i < data.pokemon.length; i++) {
+			if (pokemon.toLowerCase() == data.pokemon[i].toLowerCase()) return true;
 		}
+		return false;
 	}
 	
 	function addPokemon() {
@@ -305,30 +526,30 @@
         
 		var name = getValue("#pokemon");
 		var nickname = getValue("#nickname");
-        var fullName = name;
+        var fullname = name;
 		if (nickname != "" && nickname != name) {
-			fullName = nickname + " (" + name + ")";
+			fullname = nickname + " (" + name + ")";
         } else {
             nickname = name;
         }
         
-        pokemon = fullName;
+        pokemon = fullname;
 
 		var gender;
 		if ($("#gender").is(":enabled")) {
 			gender = getValue("#gender");
-			pokemon += " (" + gender + ")";
-		}
+			pokemon += " (" + gender[0] + ")";
+		} else gender = "N/A"
 			
 		var item = getValue("#item");
 		if (item != "")
 			pokemon += " @ " + item;
 		
 		var ability;
-		if ($("#ability .scombobox-display").is(":enabled")) {
+		if ($("#ability").is(":enabled")) {
 			ability = getValue("#ability");
 			pokemon += "<br>Ability: " + ability;
-		}
+		} else ability = "N/A";
 		
 		var level = getValue("#level");
 		pokemon += "<br>Level: " + level;
@@ -337,10 +558,10 @@
 		if ($("#nature").is(":enabled")) {
 			nature = getValue("#nature");
 			pokemon += "<br>" + nature + " Nature";
-		}
+		} else nature = "N/A";
 		
 		var moves = [];
-		$("#moves .scombobox-display").each(function() {
+		$("#moves input").each(function() {
 			var move = getValue(this);
 			if (move != "") {
 				moves.push(move);
@@ -354,51 +575,305 @@
 		var poke = {};
 		poke.name = name;
 		poke.nickname = nickname;
+		poke.fullname = fullname;
 		poke.gender = gender;
 		poke.item = item;
 		poke.ability = ability;
 		poke.level = level;
 		poke.nature = nature;
 		poke.moves = moves;
-		poke.loc = loc;
+		poke.location = loc;
 		
 		if (party.length < 6) {
-            var slot = $("#party .button").eq(party.length);
-            if (pokemonExists(poke.name)) {
-                slot.children().first().attr("src", "http://www.pokestadium.com/assets/img/sprites/misc/icons/" + name.toLowerCase() + ".png");
-            }
-            slot.children().eq(1).html(fullName + "<br>Lv " + poke.level);
-            slot.removeAttr("disabled")
-            party.push(poke);
-            pokemon = poke.nickname + " has been added to the party!<br><br>" + pokemon;
-        } else {
-            pc.push(poke);
-            pokemon = poke.nickname + " was sent to the PC.<br><br>" + pokemon;
-        }
+			updateParty(poke);
+			pokemon = poke.nickname + " has been added to the party!<br>" + pokemon;
+		} else {
+			updatePC(poke);
+			pokemon = poke.nickname + " was sent to the PC.<br>" + pokemon;
+		}
 		
 		log("Pokemon", pokemon);
 		
-		closePopup();
+		$("#addPokemonPopup").foundation("close");
+		
 		return false;
 	}
 	
-	function pokemonPopup(e) {
-		var poke = party[parseInt($(e.currentTarget).attr("data-num")-1)];
-		pokemonAnimation(poke.name);
-		$("#pokeLevel").text("Level " + poke.level);
-		$("#pokeGender").text("Gender: " + poke.gender);
-		$("#pokeNature").text("Nature: " + poke.nature);
-		$("#pokeAbility").text("Ability: " + poke.ability);
-		$("#pokeMoves h5").each(function(i) {
-			var move = poke.moves[i];
-			if (move != undefined) {
-				$(this).text("- " + move);
+	//Party functions
+	
+	function updateParty(poke) {
+		party.push(poke);
+		var slot = $("#party-tabs a").eq(party.length - 1).children();
+		if (pokemonExists(poke.name)) {
+			slot.first().attr("src", getPokemonIcon(poke.name));
+		}
+		slot.eq(1).html(poke.fullname);
+		slot.eq(2).html("Lv " + poke.level);
+		slot.eq(2).css("visibility", "visible");
+	}
+	
+	function partyChange() {
+		partyIndex = $(this).find(".is-active").index();
+		if (party[partyIndex] == undefined) {
+			$("#partyPokemon").text("No Pokémon selected");
+			$("#party").css("visibility", "hidden");
+		} else {
+			var poke = party[partyIndex];
+			$("#party img").attr("src", getPokemonImage(poke.name));
+			$("#partyPokemon").text(poke.fullname);
+			$("#party .pokeLevel").text(poke.level);
+			$("#party .pokeGender").text(poke.gender);
+			$("#party .pokeNature").text(poke.nature);
+			$("#party .pokeAbility").text(poke.ability);
+			var moves = $("#party .pokeMove");
+			for (var i = 0; i < poke.moves.length; i++) {
+				moves.eq(i).text(poke.moves[i]);
 			}
+			$("#party .pokeItem").text(poke.item);
+			$("#party .pokeLocation").text(poke.location);
+			$("#party").css("visibility", "visible");
+		}
+	}
+	
+	function levelUp() {
+		var poke = party[partyIndex];
+		poke.level++;
+		$("#party .pokeLevel").text(poke.level);
+		log("Level[" + partyIndex + "]", poke.nickname + " grew to level " + poke.level + "!");
+	}
+	
+	function changeMovesPopup() {
+		var poke = party[partyIndex];
+		$("#changeMovesPokemon").text(poke.nickname);
+		var moves = $("#changeMoves input");
+		var i;
+		for (i = 0; i < poke.moves.length; i++)
+			moves.eq(i).val(poke.moves[i]);
+		for (i; i < 4; i++)
+			moves.eq(i).val("");
+	}
+	
+	function changeMoves() {
+		var poke = party[partyIndex];
+		var moves = [];
+		$("#changeMoves label input").each(function() {
+			var move = getValue(this);
+			if (move != "") moves.push(move);
 		});
-		$("#pokeItem").text("Item: " + poke.item);
-		$("#pokeLocation").text(poke.loc);
 		
-		$("#full").show();
-		$("#pokemonPopup").show();
+		if (moves.length == poke.moves.length) {
+			var equal = true;
+			for (var i = 0; i < moves.length; i++) {
+				if (moves[i] != poke.moves[i]) {
+					equal = false;
+					break;
+				}
+			}
+			if (equal) return false;
+		}
+		
+		var pokeMoves = $("#party .pokeMove");
+		var i;
+		var logEntry = poke.nickname + "'s moves:";
+		for (i = 0; i < moves.length; i++) {
+			pokeMoves.eq(i).text(moves[i]);
+			logEntry += "<br>- " + moves[i];
+		}
+		for (i; i < 4; i++)
+			pokeMoves.eq(i).text("");
+		poke.moves = moves;
+		
+		log("Move[" + partyIndex + "]", logEntry);
+		
+		$("#changeMovesPopup").foundation("close");
+		return false;
+	}
+	
+	function itemPopup() {
+		var poke = party[partyIndex];
+		$("#itemPokemon").text(poke.nickname);
+		$("#changeItem label input").val(poke.item);
+	}
+	
+	function changeItem() {
+		var poke = party[partyIndex];
+		var item = getValue("#changeItem label input");
+		var prevItem = poke.item;
+		if (item != prevItem) {
+			poke.item = item;
+			$("#party .pokeItem").text(item);
+			var logEntry = "";
+			if (prevItem != "") logEntry = "Took " + poke.nickname + "'s " + prevItem + ". ";
+			if (item != "") logEntry += "Gave " + item + " to " + poke.nickname + ".";
+			else logEntry.trim();
+			log("Item[" + partyIndex + "]", logEntry);
+		}
+		$("#itemPopup").foundation("close");
+		return false;
+	}
+	
+	function evolvePopup() {
+		var poke = party[partyIndex];
+		$("#evolvePokemon").text(poke.nicknam);
+		$("#newPokemon").val("");
+		$("#newAbility").val(poke.ability);
+	}
+	
+	function evolve() {
+		var poke = party[partyIndex];
+		var newPoke = getValue("#newPokemon");
+		if (poke.name.toLowerCase() != newPoke.toLowerCase()) {
+			var nickname = poke.nickname;
+			poke.fullname = newPoke;
+			if (poke.nickname != poke.name) {
+				poke.fullname = poke.nickname + " (" + poke.fullname + ")";
+			} else poke.nickname = newPoke;
+			poke.name = newPoke;
+			
+			$("#partyPokemon").text(poke.fullname);
+			$("#party img").attr("src", getPokemonImage(poke.name));
+			
+			var logEntry = nickname + " evolved into " + poke.name + "!";
+			
+			var abilityText = $("#newAbility");
+			if (abilityText.is(":enabled")) {
+				var ability = getValue(abilityText);
+				if (ability.toLowerCase() != poke.ability.toLowerCase()) {
+					poke.ability = ability;
+					$("#party .pokeAbility").text(poke.ability);
+					logEntry += " New ability: " + poke.ability;
+				}
+			}
+			log("Evolve[" + partyIndex + "]", logEntry);
+			$("#evolvePopup").foundation("close");
+		}
+		return false;
+	}
+	
+	function deposit() {
+		var poke = party.splice(partyIndex, 1)[0];
+		
+		var tab = $("#party-tabs li").eq(partyIndex);
+		tab.appendTo("#party-tabs").removeClass("is-active");
+		tab.children().first().attr("aria-selected", false);
+		tab.find("img").attr("src", "img/icon.png");
+		var p = tab.find("p");
+		p.first().text("No Pokémon");
+		p.eq(1).css("visibility", "hidden");
+		$("#partyPokemon").text("No Pokémon selected");
+		$("#party").css("visibility", "hidden");
+		
+		updatePC(poke);
+		log("Deposit[" + partyIndex + "]", "Deposited " + poke.nickname + " to the PC.");
+	}
+	
+	function deathPopup() {
+		var poke = party[partyIndex];
+		$("#deathPokemon").text(poke.nickname);
+		$("#deathCause").val("");
+	}
+	
+	function death() {
+		var poke = party.splice(partyIndex, 1)[0];
+		poke.death = getValue($("#deathCause"));
+		
+		var tab = $("#party-tabs li").eq(partyIndex);
+		tab.appendTo("#party-tabs").removeClass("is-active");
+		tab.children().first().attr("aria-selected", false);
+		tab.find("img").attr("src", "img/icon.png");
+		var p = tab.find("p");
+		p.first().text("No Pokémon");
+		p.eq(1).css("visibility", "hidden");
+		$("#partyPokemon").text("No Pokemon selected");
+		$("#party").css("visibility", "hidden");
+		
+		cemetery.push(poke);
+		var dropdown = $("#cemeteryList");
+		dropdown.append($("<option>", {value: cemetery.length - 1, text: poke.fullname}));
+		if (cemetery.length == 1)
+			dropdown.prop('disabled', false);
+		
+		log("Death[" + partyIndex + "]", "RIP " + poke.nickname + ". Cause of death: " + poke.death);
+		$("#deathPopup").foundation("close");
+		return false;
+	}
+	
+	//PC functions
+	
+	function updatePC(poke) {
+		pc.push(poke);
+		var dropdown = $("#pcList");
+		dropdown.append($("<option>", {text: poke.fullname}));
+		if (pc.length == 1) {
+			dropdown.prop('disabled', false);
+			$("#withdraw").removeClass('disabled');
+		}
+	}
+	
+	function pcChange() {
+		var index = $(this).prop("selectedIndex");
+		if (index == 0) {
+			$("#pcPokemon").text("No Pokémon selected");
+			$("#pc").css("visibility", "hidden");
+		} else {
+			var poke = pc[index - 1];
+			$("#pc").css("visibility", "visible");
+			$("#pc img").attr("src", getPokemonImage(poke.name));
+			$("#pcPokemon").text(poke.fullname);
+			$("#pc .pokeLevel").text(poke.level);
+			$("#pc .pokeGender").text(poke.gender);
+			$("#pc .pokeNature").text(poke.nature);
+			$("#pc .pokeAbility").text(poke.ability);
+			var moves = $("#pc .pokeMove");
+			for (var i = 0; i < poke.moves.length; i++) {
+				moves.eq(i).text(poke.moves[i]);
+			}
+			$("#pc .pokeItem").text(poke.item);
+			$("#pc .pokeLocation").text(poke.location);
+		}
+	}
+	
+	function withdraw() {
+		var list = $("#pcList");
+		var index = list.prop("selectedIndex");
+		if (index != 0) {
+			var poke = pc.splice(index - 1, 1)[0];
+			updateParty(poke);
+			list.children().eq(index).remove();
+			list.children().first().prop("selected", true);
+			list.trigger("change");
+			
+			if (pc.length == 0 || party.length == 6) {
+				$("#pcList").attr("disabled", "");
+				$(this).addClass("disabled");
+			}
+			log("Withdraw[" + (index - 1) + "]", "Withdrew " + poke.nickname + " from the PC.");
+		}
+	}
+	
+	//Cemetery change function
+	
+	function cemeteryChange() {
+		var index = $(this).prop("selectedIndex");
+		if (index == 0) {
+			$("#cemeteryPokemon").text("No Pokémon selected");
+			$("#cemetery").css("visibility", "hidden");
+		} else {
+			var poke = cemetery[index - 1];
+			$("#cemetery").css("visibility", "visible");
+			$("#cemetery img").attr("src", getPokemonImage(poke.name));
+			$("#cemeteryPokemon").text(poke.fullname);
+			$("#cemetery .pokeLevel").text(poke.level);
+			$("#cemetery .pokeGender").text(poke.gender);
+			$("#cemetery .pokeNature").text(poke.nature);
+			$("#cemetery .pokeAbility").text(poke.ability);
+			var moves = $("#cemetery .pokeMove");
+			for (var i = 0; i < poke.moves.length; i++) {
+				moves.eq(i).text(poke.moves[i]);
+			}
+			$("#cemetery .pokeItem").text(poke.item);
+			$("#cemetery .pokeLocation").text(poke.location);
+			$("#pokeDeath").text(poke.death);
+		}
 	}
 })();

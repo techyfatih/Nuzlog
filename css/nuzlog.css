@@ -1,42 +1,32 @@
-.fade {
-	background-color: black;
-	filter: alpha(opacity=80);
-	-moz-opacity: 0.8;
-	opacity: 0.8;
+#footer, .reveal .button {
+	margin: 0;
+}
+
+#main {
+	position: relative;
+}
+
+#cover {
 	position: absolute;
-	top: 0%;
-	left: 0%;
+	top: -16px;
+	bottom: 0px;
 	width: 100%;
-	height: 100%;
+	background-color: black;
+	opacity: 0.5;
 	z-index: 1001;
 }
 
-#full {
-	display: none;
-	position: fixed;
+#info {
+	text-align: center;
 }
 
-.popup {
-	display: none;
-	position: fixed;
-	z-index: 1002;
-	overflow: hidden;
-	top: 50%;
-	left: 50%;
-	width: 60%;
-	max-height: 90%;
-	overflow-y: auto;
-	transform: translate(-50%, -50%);
-}
-
-.close {
-	float: right;
-	
+#buttons button, #party button {
+	margin: 8px 0 8px 0;
 }
 
 #journal {
 	border: 1px solid gray;
-	height: 250px;
+	height: 375px;
 	overflow-y: auto;
 }
 
@@ -49,19 +39,38 @@
 	word-wrap: break-word;
 }
 
-.pokemon {
+#journalHeader {
+	background-color: whitesmoke;
+}
+
+.tabs-title {
+	border: 1px solid whitesmoke;
+}
+
+#pokemon-tabs a {
+	padding: 10px;
+}
+
+.tabs *, #party, #party p, #pc p, #cemetery p {
+	margin: 0;
+}
+
+#party-tabs p:nth-child(3), #party, #pc, #cemetery {
+	visibility: hidden;
+}
+
+#party-tabs li {
+	width: 33%;
 	text-align: center;
-    width: 100%;
-    height: 125px;
-    overflow: hidden;
+}
+
+#party-tabs a {
+	padding: 5px;
 }
 
 .animate {
-	text-align: center;
 	height: 200px;
 	width: 200px;
-	border: 1px solid black;
-	margin: auto;
 }
 
 .animate img {
@@ -70,8 +79,12 @@
 	transform: translate(0, -50%);
 }
 
+#partyOptions {
+	width: 350px;
+}
+
 /*scombobox style overrides*/
-.scombobox {
+/*.scombobox {
 	position: relative;
 	margin: 0px;
 }
@@ -98,4 +111,4 @@
     border-left: 1px solid #CCC;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-}
+}*/
