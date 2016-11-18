@@ -1,4 +1,4 @@
-#footer, .reveal .button {
+.reveal .button, .tabs *, #party, #addPokemonButton, #footer{
 	margin: 0;
 }
 
@@ -20,7 +20,7 @@
 	text-align: center;
 }
 
-#buttons button, #party button {
+#party button {
 	margin: 8px 0 8px 0;
 }
 
@@ -51,11 +51,7 @@
 	padding: 10px;
 }
 
-.tabs *, #party, #party p, #pc p, #cemetery p {
-	margin: 0;
-}
-
-#party-tabs p:nth-child(3), #party, #pc, #cemetery {
+.partySlotLv, #party, #pc, #cemetery {
 	visibility: hidden;
 }
 
