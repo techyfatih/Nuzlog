@@ -1,11 +1,15 @@
 Changelist:
 
-v. 1.0.1
+v. 1.0.2 (11/18/2016)
+-Fixed evolution not working
+-Limited text inputs to prevent overflowing content messing up layout
+
+v. 1.0.1 (11/18/2016)
 -Fixed certain characters not showing (e.g. apostrophes)
 -Fixed Nidorans, Farfetch'd, Mr. Mime, and Mime. Jr not showing
 -Fixed party to update upon leveling or evolving
 -Fixed bugs with loading games
 -Removed some code redundancies
 
-v. 1.0.0
+v. 1.0.0 (11/17/2016)
 -Release!

@@ -18,6 +18,8 @@
 
 #info {
 	text-align: center;
+	white-space: nowrap;
+	overflow-x: auto;
 }
 
 #party button {
@@ -26,7 +28,7 @@
 
 #journal {
 	border: 1px solid gray;
-	height: 375px;
+	height: 376px;
 	overflow-y: auto;
 }
 
@@ -51,10 +53,6 @@
 	padding: 10px;
 }
 
-.partySlotLv, #party, #pc, #cemetery {
-	visibility: hidden;
-}
-
 #party-tabs li {
 	width: 33%;
 	text-align: center;
@@ -62,6 +60,10 @@
 
 #party-tabs a {
 	padding: 5px;
+}
+
+.partySlotLv, #party, #pc, #cemetery {
+	visibility: hidden;
 }
 
 .animate {

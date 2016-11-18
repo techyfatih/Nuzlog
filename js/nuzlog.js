@@ -124,6 +124,10 @@
 			$("#gameLabel").text(game);
 			$("#nameLabel").text(name);
 			disableProperties($("#disableGenders").prop('checked'), $("#disableNatures").prop('checked'), $("#disableAbilities").prop('checked'));
+			var info = $("#info");
+			if (info.innerWidth() != info.prop("scrollWidth"))
+				$("#journal").height(359);
+			else $("#journal").height(376);
 			
 			party = [];
 			pc = [];
@@ -353,6 +357,9 @@
 				$("#gameLabel").text(game);
 				$("#nameLabel").text(name);
 				disableProperties(disableGenders, disableNatures, disableAbilities);
+				if (info.innerWidth() != info.prop("scrollWidth"))
+					$("#journal").height(359);
+				else $("#journal").height(376);
 				
 				$("#entries").empty();
 				for (var i = 0; i < journal.length; i++) {
@@ -468,7 +475,7 @@
 	}
 	
 	function getFullname(name, nickname) {
-		if (nickname != "" && nickname != name)
+		if (nickname != name)
 			return nickname + " (" + name + ")";
 		else return name;
 	}
@@ -478,6 +485,8 @@
         
 		var name = $("#addPokemonName").val().trim();
 		var nickname = $("#addPokemonNickname").val().trim();
+		if (nickname == "")
+			nickname = name;
         var fullname = getFullname(name, nickname);
         
         pokemon = fullname;
@@ -682,6 +691,8 @@
 		var poke = party[partyIndex];
 		var newPoke = $("#evolveNewPokemon").val().trim();
 		if (poke.name.toLowerCase() != newPoke.toLowerCase()) {
+			if (poke.nickname == poke.name)
+				poke.nickname = newPoke;
 			poke.name = newPoke;
 			poke.fullname = getFullname(poke.name, poke.nickname);
 			
@@ -690,11 +701,11 @@
 			$("#partyPokemon").text(poke.fullname);
 			$("#party img").attr("src", getPokemonImage(poke.name));
 			
-			var logEntry = nickname + " evolved into " + poke.name + "!";
+			var logEntry = poke.nickname + " evolved into " + poke.name + "!";
 			
 			var abilityText = $("#evolveNewAbility");
 			if (abilityText.is(":enabled")) {
-				var ability = $(abilityText).val().trim();
+				var ability = abilityText.val().trim();
 				if (ability.toLowerCase() != poke.ability.toLowerCase()) {
 					poke.ability = ability;
 					$("#party .pokeAbility").text(poke.ability);

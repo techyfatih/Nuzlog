@@ -315,10 +315,10 @@
 								</div>
 								<div class="row">
 									<label class="medium-6 columns">Pokemon*
-										<input id="addPokemonName" type="text" placeholder="Bulbasaur" required pattern="(\s*\S+.*\S+\s*|\S)">
+										<input id="addPokemonName" type="text" placeholder="Bulbasaur" required maxLength="11" pattern="(\s*\S+.*\S+\s*|\S)">
 									</label>
 									<label class="medium-6 columns">Nickname
-										<input id="addPokemonNickname" type="text" placeholder="Bulby" pattern="(\s*\S+.*\S+\s*|\S)">
+										<input id="addPokemonNickname" type="text" placeholder="Bulby" maxlength="12" pattern="(\s*\S+.*\S+\s*|\S)">
 									</label>
 								</div>
 								<div class="row">
@@ -362,21 +362,21 @@
 										</select>
 									</label>
 									<label class="large-3 medium-6 columns">Ability*
-										<input id="addPokemonAbility" type="text" placeholder="Overgrow" required pattern="(\s*\S+.*\S+\s*|\S)">
+										<input id="addPokemonAbility" type="text" placeholder="Overgrow" required maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
 									</label>
 								</div>
 								<div id="addPokemonMoves" class="row">
 									<label class="large-3 medium-6 columns">Move 1*
-										<input type="text" placeholder="Razor Leaf" required pattern="(\s*\S+.*\S+\s*|\S)">
+										<input type="text" placeholder="Razor Leaf" required maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
 									</label>
 									<label class="large-3 medium-6 columns">Move 2
-										<input type="text" pattern="(\s*\S+.*\S+\s*|\S)">
+										<input type="text" maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
 									</label>
 									<label class="large-3 medium-6 columns">Move 3
-										<input type="text" pattern="(\s*\S+.*\S+\s*|\S)">
+										<input type="text" maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
 									</label>
 									<label class="large-3 medium-6 columns">Move 4
-										<input type="text" pattern="(\s*\S+.*\S+\s*|\S)">
+										<input type="text" maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
 									</label>
 								</div>
 								<div class="row">
