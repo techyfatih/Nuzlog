@@ -220,18 +220,19 @@
 				var tempPC = [];
 				var tempCemetery = [];
 				for (i; i <= lines.length; i++) {
-					var log = lines[i - 1];
+					var log = lines[i - 1].trim();
 					if (log.length == 0) continue;
 					if (!pokemon) {
 						var time = log.substring(0, log.indexOf("]")).trim();
 						if (time == "" || !(time.startsWith("["))) throw "improper log timestamp format at line " + i;
+						time = time.substring(1);
 						var type = log.substring(log.indexOf("]") + 1, log.indexOf(":", 16)).trim();
 						if (type == "") throw "improper log type format at line " + i;
 						var entry = log.substring(log.indexOf(":", 16) + 1).trim();
 						if (entry == "") throw "improper log entry format at line " + i;
 						if (type == "Pokemon") {
 							pokemon = 1;
-							pokemonTime = time.substring(1);
+							pokemonTime = time;
 							pokemonEntry = entry;
 							poke = {};
 						} else {
@@ -304,6 +305,8 @@
 							var nickname = fullname;
 							if (species.length == 0) species = fullname;
 							else nickname = fullname.substring(0, nameIndex);
+							if (species.length > 11) throw "Pokemon name too long at line " + i;
+							if (nickname.length > 12) throw "Pokemon nickname too long at line " + i;
 							
 							poke.name = species;
 							poke.nickname = nickname;
@@ -315,6 +318,7 @@
 							if (!disableAbilities) {
 								ability = log.substring(9);
 								if (ability.length == 0) throw "invalid Pokemon ability at line " + i;
+								if (ability.length > 16) throw "Pokemon ability too long at line " + i;
 								poke.ability = ability;
 							} else pokemon++;
 						}
@@ -332,8 +336,9 @@
 						}
 						if (pokemon >= 5) {
 							if (log.startsWith("- ")) {
-								var move = log.substring(2);
+								var move = log.substring(2).trim();
 								if (move.length > 0) {
+									if (move.length > 16) throw "Pokemon move too long at line " + i;
 									if (poke.moves == undefined) poke.moves = [];
 									poke.moves.push(move);
 								}
@@ -357,6 +362,7 @@
 				$("#gameLabel").text(game);
 				$("#nameLabel").text(name);
 				disableProperties(disableGenders, disableNatures, disableAbilities);
+				var info = $("#info");
 				if (info.innerWidth() != info.prop("scrollWidth"))
 					$("#journal").height(359);
 				else $("#journal").height(376);

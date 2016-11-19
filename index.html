@@ -150,16 +150,16 @@
 															<h3><span id="changeMovesPokemon"></span>'s Moves</h3>
 															<form id="changeMoves">
 																<label class="large-3 medium-6 columns">Move 1*
-																	<input type="text" placeholder="Razor Leaf" required pattern="(\s*\S+.*\S+\s*|\S)">
+																	<input type="text" placeholder="Razor Leaf" required maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
 																</label>
 																<label class="large-3 medium-6 columns">Move 2
-																	<input type="text" pattern="(\s*\S+.*\S+\s*|\S)">
+																	<input type="text" maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
 																</label>
 																<label class="large-3 medium-6 columns">Move 3
-																	<input type="text" pattern="(\s*\S+.*\S+\s*|\S)">
+																	<input type="text" maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
 																</label>
 																<label class="large-3 medium-6 columns">Move 4
-																	<input type="text" pattern="(\s*\S+.*\S+\s*|\S)">
+																	<input type="text" maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
 																</label>
 																<input type="submit" value="Change Moves" class="button">
 															</form>
@@ -190,7 +190,7 @@
 																	<input type="text" id="evolveNewPokemon" placeholder="Venusaur" required pattern="(\s*\S+.*\S+\s*|\S)">
 																</label>
 																<label>New Ability*
-																	<input type="text" id="evolveNewAbility" placeholder="Chlorophyll" required pattern="(\s*\S+.*\S+\s*|\S)">
+																	<input type="text" id="evolveNewAbility" placeholder="Chlorophyll" required maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
 																</label>
 																<input type="submit" value="Evolve" class="button">
 															</form>
