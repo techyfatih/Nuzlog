@@ -236,7 +236,8 @@
 							pokemonEntry = entry;
 							poke = {};
 						} else {
-							var index = type[type.indexOf("[") + 1];
+							var index = parseInt(type.substring(type.indexOf("[") + 1, type.indexOf("]")));
+							if (index == NaN || index < 0) throw "invalid index number at line " + i;
 							if (type.match(/Level\[\d\]/g)) {
 								if (index >= tempParty.length) throw "invalid index for party at line " + i;
 								tempParty[index].level++;
@@ -250,7 +251,8 @@
 								tempParty[index].moves = moves;
 							} else if (type.match(/Item\[\d\]/g)) {
 								if (index >= tempParty.length) throw "invalid index for party at line " + i;
-								tempParty[index].item = entry.substring(entry.indexOf(". Gave ") + 7, entry.lastIndexOf(" to "));
+								var tempIndex = entry.indexOf("Gave \"") + 6;
+								tempParty[index].item = entry.substring(entry.indexOf("Gave \"") + 6, entry.indexOf("\"", tempIndex + 1));
 							} else if (type.match(/Evolve\[\d\]/g)) {
 								if (index >= tempParty.length) throw "invalid index for party at line " + i;
 								var tempPoke = tempParty[index];
@@ -262,7 +264,7 @@
 							} else if (type.match(/Deposit\[\d\]/g)) {
 								if (index >= tempParty.length) throw "invalid index for party at line " + i;
 								tempPC.push(tempParty.splice(index, 1)[0]);
-							} else if (type.match(/Withdraw\[\d\]/g)) {
+							} else if (type.match(/Withdraw\[\d+\]/g)) {
 								if (index >= tempPC.length) throw "invalid index for PC at line " + i;
 								tempParty.push(tempPC.splice(index, 1)[0]);
 							} else if (type.match(/Death\[\d\]/g)) {
@@ -434,7 +436,7 @@
 		$("#entries").append($row);
 		$("#journal").animate({
 			scrollTop: $("#journal").scrollTop() + $row.offset().top
-		}, 100);
+		}, 0);
 	}
 
 	/*function deleteLastEntry() {
@@ -577,7 +579,7 @@
 	}
 	
 	function deselectParty() {
-		$("#party-tabs li").removeClass("is-selected");
+		$("#party-tabs li").removeClass("is-active");
 		$("#party-tabs a").attr("aria-selected", false);
 		$("#partyPokemon").text("No Pokemon selected");
 		$("#party").css("visibility", "hidden");
@@ -597,9 +599,11 @@
 			$("#party .pokeNature").text(poke.nature);
 			$("#party .pokeAbility").text(poke.ability);
 			var moves = $("#party .pokeMove");
-			for (var i = 0; i < poke.moves.length; i++) {
+			var i = 0;
+			for (i; i < poke.moves.length; i++)
 				moves.eq(i).text(poke.moves[i]);
-			}
+			for (i; i < 4; i++)
+				moves.eq(i).text("");
 			$("#party .pokeItem").text(poke.item);
 			$("#party .pokeLocation").text(poke.location);
 			$("#party").css("visibility", "visible");
@@ -677,9 +681,9 @@
 			poke.item = item;
 			$("#party .pokeItem").text(item);
 			var logEntry = "";
-			if (prevItem != "") logEntry = "Took " + poke.nickname + "'s " + prevItem + ". ";
-			if (item != "") logEntry += "Gave " + item + " to " + poke.nickname + ".";
-			else logEntry.trim();
+			if (prevItem != "") logEntry = "Took " + poke.nickname + "'s \"" + prevItem + "\". ";
+			if (item != "") logEntry += "Gave \"" + item + "\" to " + poke.nickname + ".";
+			logEntry.trim();
 			log("Item[" + partyIndex + "]", logEntry);
 		}
 		$("#itemPopup").foundation("close");
@@ -744,6 +748,8 @@
 	
 	function death() {
 		var poke = party.splice(partyIndex, 1)[0];
+		var item = poke.item;
+		poke.item = "";
 		poke.death = $("#death input[type=text]").val().trim();
 		
 		deselectParty();
@@ -767,9 +773,10 @@
 	function updatePC(poke) {
 		pc.push(poke);
 		var list = $("#pcList").append("<option>" + poke.fullname + "</option>");
-		if (pc.length == 1) {
+		if (pc.length >= 1) {
 			list.prop('disabled', false);
-			$("#withdrawButton").removeClass("disabled");
+			if (party.length < 6)
+				$("#withdrawButton").removeClass("disabled");
 		}
 	}
 	
@@ -787,9 +794,11 @@
 			$("#pc .pokeNature").text(poke.nature);
 			$("#pc .pokeAbility").text(poke.ability);
 			var moves = $("#pc .pokeMove");
-			for (var i = 0; i < poke.moves.length; i++) {
+			var i = 0;
+			for (i; i < poke.moves.length; i++)
 				moves.eq(i).text(poke.moves[i]);
-			}
+			for (i; i < 4; i++)
+				moves.eq(i).text("");
 			$("#pc .pokeItem").text(poke.item);
 			$("#pc .pokeLocation").text(poke.location);
 		}
@@ -820,8 +829,10 @@
 	function updateCemetery(poke) {
 		cemetery.push(poke);
 		var list = $("#cemeteryList").append("<option>" + poke.fullname + "</option>");
-		if (cemetery.length == 1)
+		if (cemetery.length >= 1)
 			list.prop("disabled", false);
+		if (pc.length >= 1 && party.length < 6)
+			$("#withdrawButton").removeClass("disabled");
 	}
 	
 	function cemeteryChange() {
@@ -839,9 +850,11 @@
 			$("#cemetery .pokeNature").text(poke.nature);
 			$("#cemetery .pokeAbility").text(poke.ability);
 			var moves = $("#cemetery .pokeMove");
-			for (var i = 0; i < poke.moves.length; i++)
+			var i = 0;
+			for (i; i < poke.moves.length; i++)
 				moves.eq(i).text(poke.moves[i]);
-			$("#cemetery .pokeItem").text(poke.item);
+			for (i; i < 4; i++)
+				moves.eq(i).text("");
 			$("#cemetery .pokeLocation").text(poke.location);
 			$("#pokeDeath").text(poke.death);
 		}

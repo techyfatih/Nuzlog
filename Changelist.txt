@@ -1,5 +1,12 @@
 Changelist:
 
+v. 1.0.4 (11/25/2016)
+-Fixed major bug with giving/taking items, however this is not backwards-compatible so you may need to modify your logfiles.
+	-To fix them, simply add quotes around item names (e.g. change 'Gave Oran Berry to Bulbasaur' to 'Gave "Oran Berry" to Bulbasaur')
+-Fixed moves display when switching party members
+-Fixed PC Withdraw button not enabling sometimes
+-Pokemon that die now have their items removed
+
 v. 1.0.3 (11/18/2016)
 -Fixed loading bug
 
