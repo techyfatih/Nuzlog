@@ -198,7 +198,7 @@
 				if (disabled != undefined) {
 					disabled = disabled.toLowerCase().trim();
 					if (disabled.startsWith("disabled:")) {
-						disabled = disabled.substring(disabled.indexOf(":"));
+						disabled = disabled.substring(disabled.indexOf(":") + 1);
 						var disabledProperties = disabled.split(",");
 						for (var j = 0; j < disabledProperties.length; j++) {
 							var property = disabledProperties[j].trim().toLowerCase();
@@ -223,12 +223,14 @@
 					var log = lines[i - 1].trim();
 					if (log.length == 0) continue;
 					if (!pokemon) {
-						var time = log.substring(0, log.indexOf("]")).trim();
+						var rb = log.indexOf("]");
+						var time = log.substring(0, rb).trim();
 						if (time == "" || !(time.startsWith("["))) throw "improper log timestamp format at line " + i;
 						time = time.substring(1);
-						var type = log.substring(log.indexOf("]") + 1, log.indexOf(":", 16)).trim();
+						var colon = log.indexOf(":", rb);
+						var type = log.substring(rb + 1, colon).trim();
 						if (type == "") throw "improper log type format at line " + i;
-						var entry = log.substring(log.indexOf(":", 16) + 1).trim();
+						var entry = log.substring(colon + 1).trim();
 						if (entry == "") throw "improper log entry format at line " + i;
 						if (type == "Pokemon") {
 							pokemon = 1;

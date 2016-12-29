@@ -1,5 +1,8 @@
 Changelist:
 
+v. 1.0.5 (12/29/2016)
+-Fixed minor bug with loading files with different timestamp format
+
 v. 1.0.4 (11/25/2016)
 -Fixed major bug with giving/taking items, however this is not backwards-compatible so you may need to modify your logfiles.
 	-To fix them, simply add quotes around item names (e.g. change 'Gave Oran Berry to Bulbasaur' to 'Gave "Oran Berry" to Bulbasaur')
