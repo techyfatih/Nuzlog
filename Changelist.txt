@@ -1,5 +1,9 @@
 Changelist:
 
+v. 1.0.6 (5/12/2017)
+-Fixed bug with evolving after loading a game
+-Fixed compatibility issues with using Internet Explorer
+
 v. 1.0.5 (12/29/2016)
 -Fixed minor bug with loading files with different timestamp format
 

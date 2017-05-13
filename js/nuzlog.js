@@ -56,7 +56,15 @@
 	});
 	
 	//General functions
-
+	
+	// for internet explorer
+	if (!String.prototype.startsWith) {
+	  String.prototype.startsWith = function(searchString, position) {
+		position = position || 0;
+		return this.indexOf(searchString, position) === position;
+	  };
+	}
+	
 	function escapeHtml(text) {
 		var map = {
 			'&': '&amp;',
@@ -305,13 +313,20 @@
 							
 							if (fullname.length == 0) throw "invalid Pokemon name at line " + i;
 							var nameIndex = fullname.lastIndexOf(" (");
+							console.log(nameIndex);
+							console.log(fullname);
 							var species = fullname.substring(nameIndex + 2, fullname.lastIndexOf(")"));
 							var nickname = fullname;
-							if (species.length == 0) species = fullname;
+							if (species.length == 0 || nameIndex == -1) {
+								species = fullname;
+								nickname = species;
+							}
 							else nickname = fullname.substring(0, nameIndex);
 							if (species.length > 11) throw "Pokemon name too long at line " + i;
 							if (nickname.length > 12) throw "Pokemon nickname too long at line " + i;
 							
+							console.log(species);
+							console.log(nickname);
 							poke.name = species;
 							poke.nickname = nickname;
 							poke.fullname = fullname;
@@ -355,6 +370,7 @@
 									else tempPC.push(poke);
 									journal.push([pokemonTime, "Pokemon", pokemonEntry]);
 								} else throw "no location listed at line " + i;
+								console.log(poke);
 							}
 						}
 						pokemon++;
@@ -562,7 +578,7 @@
 		log("Pokemon", pokemon);
 		
 		$("#addPokemonPopup").foundation("close");
-		
+		console.log(poke);
 		return false;
 	}
 	
@@ -703,6 +719,8 @@
 		var poke = party[partyIndex];
 		var newPoke = $("#evolveNewPokemon").val().trim();
 		if (poke.name.toLowerCase() != newPoke.toLowerCase()) {
+			var logEntry = poke.nickname + " evolved into " + newPoke + "!";
+			
 			if (poke.nickname == poke.name)
 				poke.nickname = newPoke;
 			poke.name = newPoke;
@@ -712,8 +730,6 @@
 			$(".partySlotName").eq(partyIndex).text(poke.fullname);
 			$("#partyPokemon").text(poke.fullname);
 			$("#party img").attr("src", getPokemonImage(poke.name));
-			
-			var logEntry = poke.nickname + " evolved into " + poke.name + "!";
 			
 			var abilityText = $("#evolveNewAbility");
 			if (abilityText.is(":enabled")) {
@@ -727,7 +743,7 @@
 			
 			log("Evolve[" + partyIndex + "]", logEntry);
 			$("#evolvePopup").foundation("close");
-		}
+		} else alert("Cannot evolve into the same Pokémon! Change the Pokémon to evolve into.");
 		return false;
 	}
 	
