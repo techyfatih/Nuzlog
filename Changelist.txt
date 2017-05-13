@@ -1,5 +1,12 @@
 Changelist:
 
+v. 1.1.0
+-Added New Location button to record current location
+-Added Battle button to record battles
+-Save/Load game now supports downloading/uploading files
+-Added Pokémon forms (shiny, gender, alternate, alola, etc.)
+
+
 v. 1.0.6 (5/12/2017)
 -Fixed bug with evolving after loading a game
 -Fixed compatibility issues with using Internet Explorer

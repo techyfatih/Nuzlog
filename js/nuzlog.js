@@ -1,30 +1,39 @@
 (function () {
 	"use strict";
 	
-	//Global variables
+	// Global variables
 	var currentGame = false;
 	var party = [];
-	var partyIndex = 0;
+	var currentPartyIndex = 0;
 	var pc = [];
 	var cemetery = [];
 	
-	//Run when doc is ready
+	// Run when doc is ready
 	$(document).ready(function() {
-		//Event handlers
+		// Event handlers
 		$("#newGameButton").click(createNewGame);
 		$("#newGame").submit(newGame);
 		
 		$("#saveLoadGameButton").click(createSaveLoadGame);
+		$("#saveFileButton").click(saveFile);
+		$("#uploadFileButton").click(uploadFile);
+		$("#loadFile").change(loadFile);
 		$("#loadGame").submit(loadGame);
+		
+		$("#newLocationButton").click(moveToNewLocation);
+		$("#newLocation").submit(newLocation);
+		$("#battleButton").click(battle);
 		
 		$("#log").submit(logMessage);
 		//$("#deleteLast").click(deleteLastEntry);
 		
 		$("#addPokemonButton").click(clearAddPokemonForm);
 		$("#addPokemonName").change(addPokemonChanged);
+		$("#addPokemonShiny").change(addPokemonChanged);
+		$("#addPokemonForms").change(addPokemonChanged);
 		$("#addPokemon").submit(addPokemon);
 		
-		$("#party-tabs").on("change.zf.tabs", partyChange);
+		$("#party-tabs").on("change.zf.tabs", clickPartyMember);
 		
 		$("#levelUpButton").click(levelUp);
 		$("#changeMovesButton").click(changeMovesPopup);
@@ -41,30 +50,32 @@
 		$("#pcList").change(pcChange);
 		$("#cemeteryList").change(cemeteryChange);
 		
-		//Populate data lists
-		//combobox($("#game"), data.games, true, "Pokemon Ruby");
-		//$("#game").combobox({data: data.games, required: true, placeholder: "Pokemon Ruby"});
-		//combobox($("#pokemon"), data.pokemon, true, "Bulbasaur");
-		//$("#pokemon").combobox({data: data.pokemon, required: true, placeholder: "Bulbasaur"});
-		//$("#pokemon").scombobox("change", addPokemonChanged);
-		//combobox($("#ability"), data.abilities, true, "Overgrow");
-		//$("#ability").combobox({data: data.abilities, required: true, placeholder: "Overgrow"});
-		//combobox($("#moves select"), data.moves, false, "");
+		$(".animate img").load(loadImage);
+		
+		// Populate data lists
+		$("#game").combobox({data: data.games});
+		$("#addPokemonName").combobox({data: data.pokemon, minLength: 2});
+		$("#addPokemonAbility").combobox({data: data.abilities});
+		$("#addPokemonMoves input").combobox({data: data.moves, minLength: 1});
 		//$("#requiredMove .scombobox-display").attr("required", "");
+		
 		
 		$(document).foundation(); //When everything is ready, load Foundation plugins
 	});
 	
-	//General functions
+	// -----------------------------
+	// ---------- General ----------
+	// -----------------------------
 	
-	// for internet explorer
+	// For internet explorer
 	if (!String.prototype.startsWith) {
 	  String.prototype.startsWith = function(searchString, position) {
 		position = position || 0;
 		return this.indexOf(searchString, position) === position;
 	  };
 	}
-	
+
+	// Escapes HTML of text
 	function escapeHtml(text) {
 		var map = {
 			'&': '&amp;',
@@ -77,23 +88,7 @@
 		return text.replace(/[&<>"']/g, function (m) { return map[m]; }).trim();
 	}
 
-	/*function combobox(jquery, options, required, placeholder) {
-		var data = [];
-		for (var i = 0; i < options.length; i++) {
-			data.push({value: options[i], text: options[i]});
-		}
-		jquery.scombobox({data: data, empty: true, required: required, sort: false, fullMatch: true, invalidAsValue: true, maxHeight: "350%", placeholder: placeholder});
-	}*/
-	
-	/*function getValue(jqstring) {
-		var jquery = $(jqstring);
-		if (jquery.hasClass("scombobox")) {
-			return escapeHtml(jquery.scombobox("val"));
-		} else {
-			return escapeHtml(jquery.val()).trim();
-		}
-	}*/
-	
+	// Disables properties accordingly and sets text (new game/load game)
 	function disableProperties(disableGenders, disableNatures, disableAbilities) {
 		var disabled = [];
 		if (disableGenders) disabled.push("Genders");
@@ -110,18 +105,25 @@
 	}
 
 	
-	//New game functions
+	// ------------------------------
+	// ---------- New Game ----------
+	// ------------------------------
 
+	// New Game click event
 	function createNewGame() {
 		$("#title").val("");
 		$("#game").val("");
 		$("#name").val("");
+		$("#location").val("");
 	}
 	
+	// New game form submit event
 	function newGame() {
 		var title = $("#title").val().trim();
 		var game = $("#game").val().trim();
 		var name = $("#name").val().trim();
+		var loc = $("#location").val().trim();
+		if (loc == "") loc = "N/A";
 		
 		var confirmNewGame = true;
 		if (currentGame)
@@ -133,9 +135,9 @@
 			$("#nameLabel").text(name);
 			disableProperties($("#disableGenders").prop('checked'), $("#disableNatures").prop('checked'), $("#disableAbilities").prop('checked'));
 			var info = $("#info");
-			if (info.innerWidth() != info.prop("scrollWidth"))
-				$("#journal").height(359);
-			else $("#journal").height(376);
+//			if (info.innerWidth() != info.prop("scrollWidth"))
+	//			$("#journal").height(363);
+			/*else*/ $("#journal").height(363);
 			
 			party = [];
 			pc = [];
@@ -148,14 +150,21 @@
 			
 			$("#entries").empty();
 			$("#cover").remove();
+			
+			if (loc != "N/A") logNewLocation(loc);
+			else $("#currentLocation").text("N/A");
+			
 			$("#newGamePopup").foundation("close");
 			currentGame = true;
 		}
 		return false;
 	}
 	
-	//Saving and loading functions
+	// ------------------------------------
+	// ---------- Save/Load Game ----------
+	// ------------------------------------
 	
+	// Save/Load Game click event
 	function createSaveLoadGame() {
 		var save = "";
 		if (currentGame) {
@@ -163,7 +172,7 @@
 			save += "\n" + $("#gameLabel").text();
 			save += "\n" + $("#nameLabel").text();
 			var disabled = $("#disabledLabel").text();
-			if (disabled.startsWith("Disabled: ")) {
+			if (disabled.indexOf("Disabled: ") == 0) {
 				save += "\n"  + disabled;
 			}
 			save += "\n";
@@ -181,6 +190,38 @@
 		$("#saveGame").val(save);
 	}
 	
+	// credit for saveFile and loadFile:  https://thiscouldbebetter.wordpress.com/2012/12/18/loading-editing-and-saving-a-text-file-in-html5-using-javascrip/
+	// Save File click event
+	function saveFile() {
+		var saveFile = $("#saveGame").val();
+		var blob = new Blob([saveFile], {type:"text/plain"});
+		var url = window.URL.createObjectURL(blob);
+		var fileName = $("#titleLabel").text();
+		
+		var downloadLink = document.getElementById("saveFile");
+		downloadLink.download = fileName;
+		downloadLink.href = url;
+		downloadLink.click();
+	}
+	
+	// Upload File click event
+	function uploadFile() {
+		$("#loadFile").click();
+	}
+	
+	// Load File upload event
+	function loadFile() {
+		var fileToLoad = document.getElementById("loadFile").files[0];
+		
+		var fileReader = new FileReader();
+		fileReader.onload = function(fileLoadedEvent) {
+			var textFromFileLoaded = fileLoadedEvent.target.result;
+			document.getElementById("saveGame").value = textFromFileLoaded;
+		};
+		fileReader.readAsText(fileToLoad, "UTF-8");
+	}
+	
+	// Load game click event
 	function loadGame() {
 		var confirmLoadGame = true;
 		if (currentGame) confirmLoadGame = confirm("Are you sure you want to load another game? All unsaved changes will be lost.");
@@ -205,7 +246,7 @@
 				var i = 5;
 				if (disabled != undefined) {
 					disabled = disabled.toLowerCase().trim();
-					if (disabled.startsWith("disabled:")) {
+					if (disabled.indexOf("disabled:") == 0) {
 						disabled = disabled.substring(disabled.indexOf(":") + 1);
 						var disabledProperties = disabled.split(",");
 						for (var j = 0; j < disabledProperties.length; j++) {
@@ -233,7 +274,7 @@
 					if (!pokemon) {
 						var rb = log.indexOf("]");
 						var time = log.substring(0, rb).trim();
-						if (time == "" || !(time.startsWith("["))) throw "improper log timestamp format at line " + i;
+						if (time == "" || !(time.indexOf("[") == 0)) throw "improper log timestamp format at line " + i;
 						time = time.substring(1);
 						var colon = log.indexOf(":", rb);
 						var type = log.substring(rb + 1, colon).trim();
@@ -354,7 +395,7 @@
 							} else pokemon++;
 						}
 						if (pokemon >= 5) {
-							if (log.startsWith("- ")) {
+							if (log.indexOf("- ") == 0) {
 								var move = log.substring(2).trim();
 								if (move.length > 0) {
 									if (move.length > 16) throw "Pokemon move too long at line " + i;
@@ -363,7 +404,7 @@
 								}
 							} else {
 								if (poke.moves.length == 0) throw "no Pokemon moves listed at line " + i;
-								if (log.startsWith("Received at: ") || log.startsWith("Caught at: ")) {
+								if (log.indexOf("Received at: ") == 0 || log.indexOf("Caught at: ") == 0) {
 									poke.location = log;
 									pokemon = -1;
 									if (tempParty.length < 6) tempParty.push(poke);
@@ -383,9 +424,9 @@
 				$("#nameLabel").text(name);
 				disableProperties(disableGenders, disableNatures, disableAbilities);
 				var info = $("#info");
-				if (info.innerWidth() != info.prop("scrollWidth"))
-					$("#journal").height(359);
-				else $("#journal").height(376);
+				//if (info.innerWidth() != info.prop("scrollWidth"))
+				//	$("#journal").height(359);
+				/*else*/ $("#journal").height(363);
 				
 				$("#entries").empty();
 				for (var i = 0; i < journal.length; i++) {
@@ -424,8 +465,45 @@
 		}
 	}
 	
-	//Journal functions
 	
+	// ------------------------------
+	// ---------- Location ----------
+	// ------------------------------
+	
+	// New Location click event
+	function moveToNewLocation() {
+		$("#oldLocationText").val($("#currentLocation").text());
+		$("#newLocationText").val("");
+	}
+
+	// New Location form submit event
+	function newLocation() {
+		logNewLocation($("#newLocationText").val());
+		$("#newLocationPopup").foundation("close");
+		return false;
+	}
+	
+	// Logs new location to journal (new game/load game/new location)
+	function logNewLocation(newLocation) {
+		$("#currentLocation").text(newLocation);
+		log("Location", newLocation);
+	}
+	
+	
+	// ----------------------------
+	// ---------- Battle ----------
+	// ----------------------------
+	
+	function battle() {
+		
+	}
+
+	
+	// -----------------------------
+	// ---------- Journal ----------
+	// -----------------------------
+	
+	// Log form submit event
 	function logMessage() {
 		var message = $("#log input[type=text]");
 		if (message.val() == "") alert("Please make sure there is an entry to be logged.");
@@ -436,12 +514,14 @@
 		return false;
 	}
 	
+	// Call this when you want to log something (adds time)
 	function log(type, entry) {
 		var time = new Date().toLocaleString();
 		time = time.substring(0, time.length-6) + time.substring(time.length-3);
 		insertLog(time, type, entry);
 	}
 	
+	// Inserts log into journal (ONLY USED BY log())
 	function insertLog(time, type, entry) {
 		var $row = $("<div/>", {class: "row"});
 		var $timeCol = $("<div/>", {class: "small-3 columns", text: time});		
@@ -464,50 +544,174 @@
 		} else alert("No entries in the journal to delete!");
 	}*/
 	
-	//Add Pokemon functions
+	// -----------------------------------
+	// ---------- Pokemon Image ----------
+	// -----------------------------------
 	
-	function clearAddPokemonForm() {
-		$("#addPokemon").find("input[type=text]").val("");
-		$("#addPokemon select").prop("selectedIndex", 0);
-		$("#addPokemon img").attr("src", "img/question.png");
-		$("#level").val(5);
-	}
-	
-	function addPokemonChanged() {
-		$("#addPokemon img").attr("src", getPokemonImage($(this).val().trim()));
-	}
-	
-	function getPokemonImage(pokemon) {
-		var result = pokemonExists(pokemon);
-		if (result == "alola") return "img/alola/" + pokemon.replace(":","").toLowerCase() + ".png"; //I'M LOOKING AT YOU TYPE:NULL
-		else if (result) return "http://www.pokestadium.com/sprites/xy/" + pokemon.toLowerCase() + ".gif";
-		else return "img/question.png";
-	}
-	
-	function getPokemonIcon(pokemon) {
-		var result = pokemonExists(pokemon);
-		if (result != "alola" && result) return "http://www.pokestadium.com/assets/img/sprites/misc/icons/" + pokemon.toLowerCase() + ".png";
-		else return "img/icon.png";
-	}
-	
+	// Return number of pokemon, false otherwise
 	function pokemonExists(pokemon) {
-		for (var i = 0; i < data.pokemon.length; i++) {
-			if (pokemon.toLowerCase() == data.pokemon[i].toLowerCase()) {
-				if (i > 720) return "alola";
-				else return true;
-			}
-		}
+		for (var i = 0; i < data.pokemon.length; i++)
+			if (pokemon == data.pokemon[i])
+				return i + 1;
 		return false;
 	}
 	
+	// Return URL of Pokemon image
+	function getPokemonImage(pokemon, shiny, pokeForm) {
+		var result = pokemonExists(pokemon);
+		if (!result) return "img/question.png";
+		pokemon = pokemon.replace(":","").replace(/é/g, "e").toLowerCase()
+		
+		var url = "https://www.pkparaiso.com/imagenes/xy/sprites/animados"
+		if (result >= 722) url = url.replace("xy", "sol-luna");
+		
+		if (pokeForm != null) {
+			pokeForm = pokeForm.replace(/[\s%-']/g, "").replace("é", "e").toLowerCase().replace("originalcap", "kantocap");
+			var pikachu = {
+				"belle": "-b",
+				"libre": "-l",
+				"ph.d": "-phd",
+				"popstar": "-ps",
+				"rockstar": "-r"
+			};
+			if (pokemon == "pikachu" && pikachu.hasOwnProperty(pokeForm))
+				return "http://www.serebii.net/xy/pokemon/025" + pikachu[pokeForm] + ".png";
+			else if (pokemon == "pichu" && pokeForm == "spiky-eared") {
+				if (!shiny) return "http://www.serebii.net/heartgoldsoulsilver/pokemon/172-ne.png";
+				else return "http://www.serebii.net/Shiny/HGSS/172-ne.png";
+			}
+			else if (pokemon == "unown") { //screw unown
+				if (!shiny) {
+					var unown = {
+						"a": "",
+						"b": "-bravo",
+						"c": "-charlie",
+						"d": "-delta",
+						"e": "-echo",
+						"!": "-exclamation",
+						"f": "-foxtrot",
+						"g": "-golf",
+						"h": "-hotel",
+						"i": "-india",
+						"?": "-interrogation",
+						"j": "-juliet",
+						"k": "-kilo",
+						"l": "-lima",
+						"m": "-mike",
+						"n": "-november",
+						"o": "-oscar",
+						"p": "-papa",
+						"q": "-quebec",
+						"r": "-romeo",
+						"s": "-sierra",
+						"t": "-tango",
+						"u": "-uniform",
+						"v": "-victor",
+						"w": "-whiskey",
+						"x": "-xray",
+						"y": "-yankee",
+						"z": "-zulu"
+					};
+					pokemon += unown[pokeForm];
+				} else if (pokeForm != "x") {
+					if (pokeForm == "!") pokeForm = "em";
+					else if (pokeForm == "?") pokeForm = "qm";
+					return "https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/shiny/unown-" + pokeForm + ".png"
+				}
+			} else {
+				var oras = ["cosplay", "unbound"];
+				var sm = ["alola", "kantocap", "hoenncap", "sinnohcap", "unovacap", "kaloscap", "alolacap", "10", "complete"];
+				if (oras.indexOf(pokeForm) != -1) url = url.replace("xy", "rubi-omega-zafiro-alfa");
+				else if (sm.indexOf(pokeForm) != -1) url = url.replace("xy", "sol-luna");
+				if (sm.indexOf(pokeForm) > 0) shiny = false;
+				
+				var defaultForms = ["normal", "a", "plant", "sunshine", "west", "altered", "land", "red", "standard", "spring", "incarnate", "ordinary", "aria", "icysnow", "shield", "average", "neutral", "50", "confined", "baile", "midday", "solo", "meteor"];
+				if (defaultForms.indexOf(pokeForm) == -1) {
+					pokeForm = pokeForm.replace("core", "");
+					
+					pokemon += "-" + pokeForm;
+				}
+			}
+		}
+
+		if (shiny) url += "-shiny";
+		return url + "/" + pokemon + ".gif";
+	}
+	
+	// Return URL of Pokemon icon
+	function getPokemonIcon(pokemon, pokeForm) {
+		var result = pokemonExists(pokemon);
+		if (!result) return "img/icon.png";
+		
+		if (pokeForm != null) {
+			pokeForm = pokeForm.replace("?", "Question"); //unown
+			pokemon += "-" + pokeForm;
+		}
+		
+		return "img/icons/" + pokemon + ".png";
+	}
+	
+	// Change Pokemon image for JQuery <img>
+	function changePokemonImage(jquery, pokemon, shiny, pokeForm) {
+		jquery.attr("src", "");
+		jquery.siblings().show(); // "Loading..."
+		jquery.attr("src", getPokemonImage(pokemon, shiny, pokeForm));
+	}
+	
+	// .animate img load event
+	function loadImage() {
+		$(this).siblings().hide(); // hides "Loading..."
+	}
+	
+	// Change Pokemon icon for JQuery <img>
+	function changePokemonIcon(jquery, pokemon, pokemonForm) {
+		jquery.attr("src", getPokemonIcon(pokemon, pokemonForm));
+	}
+	
+	
+	// --------------------------------
+	// ---------- AddPokemon ----------
+	// --------------------------------
+	
+	// Add Pokemon click event
+	function clearAddPokemonForm() {
+		$("#addPokemon").find("input[type=text]").val("");
+		$("#addPokemon select").prop("selectedIndex", 0);
+		$("#addPokemonImage").attr("src", "img/question.png");
+		$("#addPokemonIcon").attr("src", "img/icon.png");
+		$("#addPokemonLocation").val($("#currentLocation").text());
+		$("#level").val(5);
+	}
+	
+	// New Pokemon text, shiny check, form change events
+	function addPokemonChanged() {
+		var pokemon = $("#addPokemonName").val().trim();
+		
+		var pokeForms = $("#addPokemonForms");
+		if ($(this).attr("id") == "addPokemonName") {
+			pokeForms.empty();
+			if (data.pokeForms.hasOwnProperty(pokemon)) {
+				for (var i = 0; i < data.pokeForms[pokemon].length; i++)
+					pokeForms.append("<option>" + data.pokeForms[pokemon][i] + "</option>");
+				pokeForms.prop("disabled", false);
+			} else pokeForms.prop("disabled", true);
+		}
+		var pokeForm = pokeForms.val();
+		
+		changePokemonImage($("#addPokemonImage"), pokemon, $("#addPokemonShiny").prop("checked"), pokeForm);
+		changePokemonIcon($("#addPokemonIcon"), pokemon, pokeForm);
+	}
+	
+	// Plant (Bulbasaur)
 	function getFullname(name, nickname) {
 		if (nickname != name)
 			return nickname + " (" + name + ")";
 		else return name;
 	}
 	
+	// Add Pokemon form submit event
 	function addPokemon() {
-		var pokemon = "";
+		var pokemonText = "";
         
 		var name = $("#addPokemonName").val().trim();
 		var nickname = $("#addPokemonNickname").val().trim();
@@ -515,101 +719,115 @@
 			nickname = name;
         var fullname = getFullname(name, nickname);
         
-        pokemon = fullname;
+        pokemonText = fullname;
+		
+		var pokeForm = $("#addPokemonForms").val();
+		
+		var shiny = $("#addPokemonShiny").prop("checked");
 
-		var gender;
+		var gender = "N/A";
 		if ($("#addPokemonGender").is(":enabled")) {
 			gender = $("#addPokemonGender").val();
-			pokemon += " (" + gender[0] + ")";
-		} else gender = "N/A"
+			pokemonText += " (" + gender[0] + ")";
+		}
 			
 		var item = $("#addPokemonItem").val().trim();
 		if (item != "")
-			pokemon += " @ " + item;
+			pokemonText += " @ " + item;
 		
-		var ability;
+		var ability = "N/A";
 		if ($("#addPokemonAbility").is(":enabled")) {
 			ability = $("#addPokemonAbility").val().trim();
-			pokemon += "<br>Ability: " + ability;
-		} else ability = "N/A";
+			pokemonText += "<br>Ability: " + ability;
+		}
 		
 		var level = $("#addPokemonLevel").val();
-		pokemon += "<br>Level: " + level;
+		pokemonText += "<br>Level: " + level;
 		
-		var nature;
+		var nature = "N/A";
 		if ($("#addPokemonNature").is(":enabled")) {
 			nature = $("#addPokemonNature").val();
-			pokemon += "<br>" + nature + " Nature";
-		} else nature = "N/A";
+			pokemonText += "<br>" + nature + " Nature";
+		}
 		
 		var moves = [];
 		$("#addPokemonMoves input").each(function() {
 			var move = $(this).val().trim();
 			if (move != "") {
 				moves.push(move);
-				pokemon += "<br>- " + move;
+				pokemonText += "<br>- " + move;
 			}
 		});
 		
-		var loc = $("#addPokemonMethod").val() + " " + $("#addPokemonLocation").val().trim();
-		pokemon += "<br>" + loc;
+		var loc = $("#addPokemonMethod").val() + " " + $("#currentLocation").text();
+		pokemonText += "<br>" + loc;
 		
-		var poke = {};
-		poke.name = name;
-		poke.nickname = nickname;
-		poke.fullname = fullname;
-		poke.gender = gender;
-		poke.item = item;
-		poke.ability = ability;
-		poke.level = level;
-		poke.nature = nature;
-		poke.moves = moves;
-		poke.location = loc;
+		var pokemon = {};
+		pokemon.name = name;
+		pokemon.nickname = nickname;
+		pokemon.fullname = fullname;
+		pokemon.gender = gender;
+		pokemon.item = item;
+		pokemon.ability = ability;
+		pokemon.level = level;
+		pokemon.nature = nature;
+		pokemon.moves = moves;
+		pokemon.loc = loc;
 		
 		if (party.length < 6) {
-			updateParty(party.length, poke);
-			party.push(poke);
-			pokemon = poke.nickname + " has been added to the party!<br>" + pokemon;
+			addToParty(pokemon);
+			pokemonText = pokemon.nickname + " has been added to the party!<br>" + pokemonText;
 		} else {
+			addToPC(pokemon);
 			updatePC(poke);
-			pokemon = poke.nickname + " was sent to the PC.<br>" + pokemon;
+			pokemonText = pokemon.nickname + " was sent to the PC.<br>" + pokemonText;
 		}
 		
-		log("Pokemon", pokemon);
+		log("Pokemon", pokemonText);
 		
 		$("#addPokemonPopup").foundation("close");
 		console.log(poke);
 		return false;
 	}
 	
-	//Party functions
 	
-	function updateParty(index, poke) {
-		$("#party-tabs img").eq(index).attr("src", getPokemonIcon(poke.name));
-		$(".partySlotName").eq(index).text(poke.fullname);
-		$(".partySlotLv").eq(index).css("visibility", "visible").text("Lv " + poke.level);
+	// ---------------------------
+	// ---------- Party ----------
+	// ---------------------------
+	
+	// Appends to party (add pokemon/load game)
+	function addToParty(pokemon) {
+		if (party.length < 6) {
+			$("#party-tabs img").eq(party.length).attr("src", getPokemonIcon(pokemon.name));
+			$(".partySlotName").eq(party.length).text(pokemon.fullname);
+			$(".partySlotLv").eq(party.length).css("visibility", "visible").text("Lv " + pokemon.level);
+			party.push(pokemon);
+		}
 	}
 	
+	// Resets party slot at index
 	function resetPartySlot(index) {
 		$("#party-tabs img").eq(index).attr("src", "img/icon.png");
-		$("#party-tabs .partySlotName").eq(index).text("No Pokemon");
+		$("#party-tabs .partySlotName").eq(index).text("No Pokémon");
 		$("#party-tabs .partySlotLv").eq(index).css("visibility", "hidden");
 	}
 	
+	// Deselects party
 	function deselectParty() {
 		$("#party-tabs li").removeClass("is-active");
 		$("#party-tabs a").attr("aria-selected", false);
-		$("#partyPokemon").text("No Pokemon selected");
+		$("#partyPokemon").text("No Pokémon selected");
 		$("#party").css("visibility", "hidden");
 	}
 	
-	function partyChange() {
-		partyIndex = $(this).find(".is-active").index();
-		if (party[partyIndex] == undefined) {
-			$("#partyPokemon").text("No Pokemon selected");
+	// Party click event
+	function clickPartyMember() {
+		currentPartyIndex = $(this).find(".is-active").index();
+		if (party[currentPartyIndex] == undefined) {
+			$("#partyPokemon").text("No Pokémon selected");
 			$("#party").css("visibility", "hidden");
 		} else {
-			var poke = party[partyIndex];
+			var poke = party[currentPartyIndex];
 			$("#party img").attr("src", getPokemonImage(poke.name));
 			$("#partyPokemon").text(poke.fullname);
 			$("#party .pokeLevel").text(poke.level);
@@ -623,21 +841,23 @@
 			for (i; i < 4; i++)
 				moves.eq(i).text("");
 			$("#party .pokeItem").text(poke.item);
-			$("#party .pokeLocation").text(poke.location);
+			$("#party .pokeLocation").text(poke.loc);
 			$("#party").css("visibility", "visible");
 		}
 	}
 	
+	// Level up click event
 	function levelUp() {
-		var poke = party[partyIndex];
+		var poke = party[currentPartyIndex];
 		poke.level++;
 		$("#party .pokeLevel").text(poke.level);
-		$(".partySlotLv").eq(partyIndex).text("Lv " + poke.level);
-		log("Level[" + partyIndex + "]", poke.nickname + " grew to level " + poke.level + "!");
+		$(".partySlotLv").eq(currentPartyIndex).text("Lv " + poke.level);
+		log("Level[" + currentPartyIndex + "]", poke.nickname + " grew to level " + poke.level + "!");
 	}
 	
+	// Change moves click event
 	function changeMovesPopup() {
-		var poke = party[partyIndex];
+		var poke = party[currentPartyIndex];
 		$("#changeMovesPokemon").text(poke.nickname);
 		var moves = $("#changeMoves input[type=text]");
 		var i;
@@ -647,8 +867,9 @@
 			moves.eq(i).val("");
 	}
 	
+	// 
 	function changeMoves() {
-		var poke = party[partyIndex];
+		var poke = party[currentPartyIndex];
 		var moves = [];
 		$("#changeMoves input[type=text]").each(function() {
 			var move = $(this).val().trim();
@@ -679,20 +900,20 @@
 			pokeMoves.eq(i).text("");
 		poke.moves = moves;
 		
-		log("Move[" + partyIndex + "]", logEntry);
+		log("Move[" + currentPartyIndex + "]", logEntry);
 		
 		$("#changeMovesPopup").foundation("close");
 		return false;
 	}
 	
 	function itemPopup() {
-		var poke = party[partyIndex];
+		var poke = party[currentPartyIndex];
 		$("#itemPokemon").text(poke.nickname);
 		$("#changeItem input[type=text]").val(poke.item);
 	}
 	
 	function changeItem() {
-		var poke = party[partyIndex];
+		var poke = party[currentPartyIndex];
 		var item = $("#changeItem input[type=text]").val().trim();
 		var prevItem = poke.item;
 		if (item != prevItem) {
@@ -702,21 +923,21 @@
 			if (prevItem != "") logEntry = "Took " + poke.nickname + "'s \"" + prevItem + "\". ";
 			if (item != "") logEntry += "Gave \"" + item + "\" to " + poke.nickname + ".";
 			logEntry.trim();
-			log("Item[" + partyIndex + "]", logEntry);
+			log("Item[" + currentPartyIndex + "]", logEntry);
 		}
 		$("#itemPopup").foundation("close");
 		return false;
 	}
 	
 	function evolvePopup() {
-		var poke = party[partyIndex];
+		var poke = party[currentPartyIndex];
 		$("#evolvePokemon").text(poke.nickname);
 		$("#evolveNewPokemon").val("");
 		$("#evolveNewAbility").val(poke.ability);
 	}
 	
 	function evolve() {
-		var poke = party[partyIndex];
+		var poke = party[currentPartyIndex];
 		var newPoke = $("#evolveNewPokemon").val().trim();
 		if (poke.name.toLowerCase() != newPoke.toLowerCase()) {
 			var logEntry = poke.nickname + " evolved into " + newPoke + "!";
@@ -726,8 +947,8 @@
 			poke.name = newPoke;
 			poke.fullname = getFullname(poke.name, poke.nickname);
 			
-			$("#party-tabs img").eq(partyIndex).attr("src", getPokemonIcon(poke.name));
-			$(".partySlotName").eq(partyIndex).text(poke.fullname);
+			$("#party-tabs img").eq(currentPartyIndex).attr("src", getPokemonIcon(poke.name));
+			$(".partySlotName").eq(currentPartyIndex).text(poke.fullname);
 			$("#partyPokemon").text(poke.fullname);
 			$("#party img").attr("src", getPokemonImage(poke.name));
 			
@@ -741,42 +962,42 @@
 				}
 			}
 			
-			log("Evolve[" + partyIndex + "]", logEntry);
+			log("Evolve[" + currentPartyIndex + "]", logEntry);
 			$("#evolvePopup").foundation("close");
 		} else alert("Cannot evolve into the same Pokémon! Change the Pokémon to evolve into.");
 		return false;
 	}
 	
 	function deposit() {
-		var poke = party.splice(partyIndex, 1)[0];
+		var poke = party.splice(currentPartyIndex, 1)[0];
 		
 		deselectParty();
-		$("#party-tabs li").eq(partyIndex).appendTo("#party-tabs");
+		$("#party-tabs li").eq(currentPartyIndex).appendTo("#party-tabs");
 		resetPartySlot(5);
 		
 		updatePC(poke);
-		log("Deposit[" + partyIndex + "]", "Deposited " + poke.nickname + " to the PC.");
+		log("Deposit[" + currentPartyIndex + "]", "Deposited " + poke.nickname + " to the PC.");
 	}
 	
 	function deathPopup() {
-		var poke = party[partyIndex];
+		var poke = party[currentPartyIndex];
 		$("#deathPokemon").text(poke.nickname);
 		$("#death label input").val("");
 	}
 	
 	function death() {
-		var poke = party.splice(partyIndex, 1)[0];
+		var poke = party.splice(currentPartyIndex, 1)[0];
 		var item = poke.item;
 		poke.item = "";
 		poke.death = $("#death input[type=text]").val().trim();
 		
 		deselectParty();
-		$("#party-tabs li").eq(partyIndex).appendTo("#party-tabs");
+		$("#party-tabs li").eq(currentPartyIndex).appendTo("#party-tabs");
 		resetPartySlot(5);
 		
 		updateCemetery(poke);
 		
-		log("Death[" + partyIndex + "]", "RIP " + poke.nickname + ". Cause of death: " + poke.death);
+		log("Death[" + currentPartyIndex + "]", "RIP " + poke.nickname + ". Cause of death: " + poke.death);
 		$("#deathPopup").foundation("close");
 		return false;
 	}
@@ -818,7 +1039,7 @@
 			for (i; i < 4; i++)
 				moves.eq(i).text("");
 			$("#pc .pokeItem").text(poke.item);
-			$("#pc .pokeLocation").text(poke.location);
+			$("#pc .pokeLocation").text(poke.loc);
 		}
 	}
 	
@@ -873,7 +1094,7 @@
 				moves.eq(i).text(poke.moves[i]);
 			for (i; i < 4; i++)
 				moves.eq(i).text("");
-			$("#cemetery .pokeLocation").text(poke.location);
+			$("#cemetery .pokeLocation").text(poke.loc);
 			$("#pokeDeath").text(poke.death);
 		}
 	}

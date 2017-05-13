@@ -2,7 +2,7 @@
 <html>
 	<!--Credits:
 		Ilya Kremer (https://github.com/ivkremer) and contributors for JQuery combobox plugin
-			pokestadium.com and Pkparaiso for animated Pokemon sprites and icons
+			PkParaíso and Serebii for animated Pokemon sprites and icons
 		-->
 	<head>
 		<title>Nuzlog</title>
@@ -10,12 +10,15 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+		<link rel="stylesheet" href="css/jquery-ui.min.css"/>
 		<link rel="stylesheet" href="css/foundation.css"/>
 		<link rel="stylesheet" href="css/nuzlog.css"/>
 		
 		<script src="js/jquery.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
 		<script src="js/foundation.js"></script>
 		<script src="js/data.js"></script>
+		<script src="js/combobox.js"></script>
 		<script src="js/nuzlog.js"></script>
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -30,7 +33,7 @@
 	<body>
 		<div class="callout secondary" id="header">
 			<div class="row">
-				<h1 class="float-left">Nuzlog</h1><span style="margin: auto">&nbsp;v.1.0.6</span>
+				<h1 class="float-left">Nuzlog</h1><span style="margin: auto">&nbsp;v.1.1.0</span>
 				<p class="text-right float-right">For all your Nuzlocking needs.<br>(NOTE: Make sure JavaScript is enabled to use this tool!)</p>
 			</div>
 			
@@ -44,18 +47,27 @@
 								<input id="title" type="text" placeholder="The Great Nuzlocke Challenge" required pattern="(\s*\S+.*\S+\s*|\S)">
 							</label>
 							<label>Game*
-								<input id="game" type="text" placeholder="Pokemon Ruby" required pattern="(\s*\S+.*\S+\s*|\S)">
+								<input id="game" type="text" placeholder="Pokémon Ruby" required pattern="(\s*\S+.*\S+\s*|\S)">
 							</label>
 							<label>Name*
 								<input id="name" type="text" placeholder="Ruby" required pattern="(\s*\S+.*\S+\s*|\S)">
 							</label>
-							<fieldset class="large-12 columns">
-								<input id="disableGenders" type="checkbox"><label for="enableGenders">Disable Genders</label>
-								<input id="disableNatures" type="checkbox"><label for="enableNatures">Disable Natures</label>
-								<input id="disableAbilities" type="checkbox"><label for="enableAbilities">Disable Abilities</label>
+							<label>Initial Location
+								<input id="location" type="text" placeholder="Littleroot Town" pattern="(\s*\S+.*\S+\s*|\S)">
+							</label>
+							<fieldset class="fieldset">
+								<div class="row">
+									<input id="disableGenders" type="checkbox"><label for="disableGenders">Disable Genders</label>
+								</div>
+								<div class="row">
+									<input id="disableNatures" type="checkbox"><label for="disableNatures">Disable Natures</label>
+								</div>
+								<div class="row">
+									<input id="disableAbilities" type="checkbox"><label for="disableAbilities">Disable Abilities</label>
+								</div>
 							</fieldset>
 							
-							<input type="submit" value="Start" class="button">
+							<input type="submit" value="Start!" class="large expanded button">
 						</form>
 						<button class="close-button" data-close aria-label="Close modal" type="button">
 							<span aria-hidden="true">&times;</span>
@@ -68,10 +80,22 @@
 					<div class="small reveal" id="saveLoadGamePopup" data-reveal>
 						<form id="loadGame">
 							<label>
-								Here is the current save of your game. Copy-paste this somewhere so you can load it later. To load a game, simply copy-paste the save here and press "Load Game".
+								<p>Here is the current save of your game.<br>
+								To save your game, either click "Save File" below or copy-paste this somewhere safe.<br>
+								To load your game, either click "Upload File" or copy-paste your save file here, then click "Load Game".</p>
 								<textarea id="saveGame" rows="15" required></textarea>
 							</label>
-							<input type="submit" value="Load Game" class="button">
+							<div class="small-4 columns">
+								<button class="large expanded button" type="button" id="saveFileButton">Save File</button>
+								<a id="saveFile" style="display:none"></a>
+							</div>
+							<div class="small-4 columns">
+								<button class="large expanded button" type="button" id="uploadFileButton">Upload File</button>
+								<input type="file" accept="text/plain" id="loadFile" style="display:none">
+							</div>
+							<div class="small-4 columns">
+								<input type="submit" value="Load Game" class="large expanded button">
+							</div>
 						</form>
 						<button class="close-button" data-close aria-label="Close modal" type="button">
 							<span aria-hidden="true">&times;</span>
@@ -84,11 +108,38 @@
 		<div class="expanded row" id="main">
 			<div id="cover"></div>
 			<div class="large-6 columns">
-				<div class="row callout" id="info">
-					<h3 id="titleLabel">Title</h3>
-					<h5 id="gameLabel">Game</h5>
-					<h5 id="nameLabel">Trainer Name</h5>
-					<p id="disabledLabel">All Enabled</p>
+				<div class="row" data-equalizer>
+					<div id="info" class="medium-8 columns callout" style="text-align: center" data-equalizer-watch>
+						<h3 id="titleLabel">Title</h3>
+						<h5 id="gameLabel">Game</h5>
+						<h5 id="nameLabel">Trainer Name</h5>
+						<p id="disabledLabel">All Enabled</p>
+					</div>
+					<div id="options" class="medium-4 columns callout" data-equalizer-watch>
+						<p><strong>Location:</strong><br><span id="currentLocation">N/A</span></p>
+						<button class="warning expanded button" type="button" id="newLocationButton" data-open="newLocationPopup">New Location</button>
+						<div class="tiny reveal" id="newLocationPopup" data-reveal>
+							<form id="newLocation">
+								<h3>New Location</h3>
+								<div class="small-6 columns">
+									<label>Old Location
+										<input id="oldLocationText" type="text" disabled>
+									</label>
+								</div>
+								<div class="small-6 columns">
+									<label>New Location
+										<input id="newLocationText" type="text" placeholder="Route 1" required pattern="(\s*\S+.*\S+\s*|\S)">
+									</label>
+								</div>
+								<input type="submit" value="Move to New Location" class="large warning expanded button">
+							</form>
+							<button class="close-button" data-close aria-label="Close modal" type="button">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						
+						<button class="alert expanded button" type="button" id="battleButton">Battle</button>
+					</div>
 				</div>
 				
 				<div class="row callout">
@@ -133,21 +184,22 @@
 						<div class="tabs-content" data-tabs-content="pokemon-tabs" data-equalizer>
 							<div class="tabs-panel is-active" id="partyPanel" data-equalizer-watch>
 								<ul class="tabs" data-tabs id="party-tabs">
-									<li class="tabs-title"><a><img src="img/icon.png"><p class="partySlotName">No Pokemon</p><p class="partySlotLv">Lv</p></a></li>	
-									<li class="tabs-title"><a><img src="img/icon.png"><p class="partySlotName">No Pokemon</p><p class="partySlotLv">Lv</p></a></li>	
-									<li class="tabs-title"><a><img src="img/icon.png"><p class="partySlotName">No Pokemon</p><p class="partySlotLv">Lv</p></a></li>	
-									<li class="tabs-title"><a><img src="img/icon.png"><p class="partySlotName">No Pokemon</p><p class="partySlotLv">Lv</p></a></li>	
-									<li class="tabs-title"><a><img src="img/icon.png"><p class="partySlotName">No Pokemon</p><p class="partySlotLv">Lv</p></a></li>	
-									<li class="tabs-title"><a><img src="img/icon.png"><p class="partySlotName">No Pokemon</p><p class="partySlotLv">Lv</p></a></li>	
+									<li class="tabs-title"><a><img src="img/icon.png"><p class="partySlotName">No Pokémon</p><p class="partySlotLv">Lv</p></a></li>	
+									<li class="tabs-title"><a><img src="img/icon.png"><p class="partySlotName">No Pokémon</p><p class="partySlotLv">Lv</p></a></li>	
+									<li class="tabs-title"><a><img src="img/icon.png"><p class="partySlotName">No Pokémon</p><p class="partySlotLv">Lv</p></a></li>	
+									<li class="tabs-title"><a><img src="img/icon.png"><p class="partySlotName">No Pokémon</p><p class="partySlotLv">Lv</p></a></li>	
+									<li class="tabs-title"><a><img src="img/icon.png"><p class="partySlotName">No Pokémon</p><p class="partySlotLv">Lv</p></a></li>	
+									<li class="tabs-title"><a><img src="img/icon.png"><p class="partySlotName">No Pokémon</p><p class="partySlotLv">Lv</p></a></li>	
 								</ul>
 								
 								<div class="tabs-content" data-tabs-content="party-tabs">
 									<div class="tabs-panel is-active">
-										<h4 id="partyPokemon">No Pokemon selected</h4>
+										<h4 id="partyPokemon">No Pokémon selected</h4>
 										<div class="media-object" id="party">
 											<div class="media-object-section">
 												<div class="thumbnail animate">
 													<img class="float-center" src="img/question.png">
+													<p class="loadingImage">Loading...</p>
 												</div>
 												<div class="row">
 													<button class="warning dropdown button" type="button" data-toggle="partyOptions">Options</button>
@@ -195,7 +247,7 @@
 														<div class="reveal" id="evolvePopup" data-reveal>
 															<h3>Evolving <span id="evolvePokemon"></span></h3>
 															<form id="evolve">
-																<label>New Pokemon*
+																<label>New Pokémon*
 																	<input type="text" id="evolveNewPokemon" placeholder="Venusaur" required pattern="(\s*\S+.*\S+\s*|\S)">
 																</label>
 																<label>New Ability*
@@ -256,10 +308,11 @@
 									</div>
 								</div>
 								<div class="callout">
-									<h4 id="pcPokemon">No Pokemon selected</h4>
+									<h4 id="pcPokemon">No Pokémon selected</h4>
 									<div class="media-object" id="pc">
 										<div class="media-object-section">
 											<div class="thumbnail animate">
+												<p class="loadingImage">Loading...</p>
 												<img class="float-center" src="img/question.png">
 											</div>
 										</div>
@@ -287,10 +340,11 @@
 									</select>
 								</div>
 								<div class="callout">
-									<h4 id="cemeteryPokemon">No Pokemon selected</h4>
+									<h4 id="cemeteryPokemon">No Pokémon selected</h4>
 									<div class="media-object" id="cemetery">
 										<div class="media-object-section">
 											<div class="thumbnail animate">
+												<p class="loadingImage">Loading...</p>
 												<img class="float-center" src="img/question.png">
 											</div>
 										</div>
@@ -313,102 +367,146 @@
 						</div>
 					</div>
 					
-					<div class="row">
-						<button class="large expanded success button" type="button" id="addPokemonButton" data-open="addPokemonPopup">Add Pokemon</button>
-						<div class="large reveal" id="addPokemonPopup" data-reveal>
-							<h3>Add New Pokemon</h3>
-							<form id="addPokemon">
-								<div class="row thumbnail animate float-center">
-									<img class="float-center" src="img/question.png">
-								</div>
-								<div class="row">
-									<label class="medium-6 columns">Pokemon*
-										<input id="addPokemonName" type="text" placeholder="Bulbasaur" required maxLength="11" pattern="(\s*\S+.*\S+\s*|\S)">
-									</label>
-									<label class="medium-6 columns">Nickname
-										<input id="addPokemonNickname" type="text" placeholder="Bulby" maxlength="12" pattern="(\s*\S+.*\S+\s*|\S)">
-									</label>
-								</div>
-								<div class="row">
-									<label class="large-3 medium-6 columns">Level*
-										<input id="addPokemonLevel" type="number" value="5">
-									</label>
-									<label class="large-3 medium-6 columns">Gender*
-										<select id="addPokemonGender">
-											<option>Male</option>
-											<option>Female</option>
-											<option>Genderless</option>
-										</select>
-									</label>
-									<label class="large-3 medium-6 columns">Nature*
-										<select id="addPokemonNature">
-											<option>Adamant</option>
-											<option>Bashful</option>
-											<option>Bold</option>
-											<option>Brave</option>
-											<option>Calm</option>
-											<option>Careful</option>
-											<option>Docile</option>
-											<option>Gentle</option>
-											<option>Hardy</option>
-											<option>Hasty</option>
-											<option>Impish</option>
-											<option>Jolly</option>
-											<option>Lax</option>
-											<option>Lonely</option>
-											<option>Mild</option>
-											<option>Modest</option>
-											<option>Naive</option>
-											<option>Naughty</option>
-											<option>Quiet</option>
-											<option>Quirky</option>
-											<option>Rash</option>
-											<option>Relaxed</option>
-											<option>Sassy</option>
-											<option>Serious</option>
-											<option>Timid</option>
-										</select>
-									</label>
-									<label class="large-3 medium-6 columns">Ability*
-										<input id="addPokemonAbility" type="text" placeholder="Overgrow" required maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
-									</label>
-								</div>
-								<div id="addPokemonMoves" class="row">
-									<label class="large-3 medium-6 columns">Move 1*
-										<input type="text" placeholder="Razor Leaf" required maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
-									</label>
-									<label class="large-3 medium-6 columns">Move 2
-										<input type="text" maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
-									</label>
-									<label class="large-3 medium-6 columns">Move 3
-										<input type="text" maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
-									</label>
-									<label class="large-3 medium-6 columns">Move 4
-										<input type="text" maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
-									</label>
-								</div>
-								<div class="row">
-									<label class="large-6 columns">Item
-										<input id="addPokemonItem" type="text" placeholder="Oran Berry" pattern="(\s*\S+.*\S+\s*|\S)">
-									</label>
-									<label class="large-6 columns">Location*
-										<div class="row">
-											<select class="medium-6 columns" id="addPokemonMethod">
-												<option>Received at:</option>
-												<option>Caught at:</option>
-											</select>
-											<div class="medium-6 columns">
-												<input type="text" id="addPokemonLocation" placeholder="Pallet Town" required pattern="\S+.*\S+">
+					<div class="row collapse">
+						<div class="small-6 columns">
+							<button class="large expanded success button" type="button" id="addPokemonButton" data-open="addPokemonPopup">Add Pokémon</button>
+							<div class="large reveal" id="addPokemonPopup" data-reveal>
+								<h3>Add New Pokémon</h3>
+								<form id="addPokemon">
+									<div class="media-object stack-for-small">
+										<div class="media-object-section middle">
+											<div class="thumbnail animate float-center">
+												<p class="loadingImage">Loading...</p>
+												<img id="addPokemonImage" class="float-center" src="img/question.png" style="width:auto">
 											</div>
+											<div class="media-object" style="margin: 0">
+												<div class="media-object-section bottom" style="padding-bottom: 0; padding-right: 1rem; display: table-cell">
+													<div class="thumbnail">
+														<img id="addPokemonIcon" src="img/icon.png">
+													</div>
+												</div>
+												<div class="media-object-section" style="padding-bottom: 0; display: table-cell">
+													<label>Form
+														<select id="addPokemonForms" disabled>
+														</select>
+													</label>
+												</div>
+											</div>
+											<input id="addPokemonShiny" type="checkbox"><label for="addPokemonShiny">Shiny</label></input>
 										</div>
-									</label>
+										<div class="media-object-section">
+											<div class="row">
+												<label class="medium-6 columns">Pokémon*
+													<input id="addPokemonName" type="text" placeholder="Bulbasaur" required maxLength="11" pattern="(\s*\S+.*\S+\s*|\S)">
+												</label>
+												<label class="medium-6 columns">Nickname
+													<input id="addPokemonNickname" type="text" placeholder="Bulby" maxlength="12" pattern="(\s*\S+.*\S+\s*|\S)">
+												</label>
+											</div>
+											<div class="row">
+												<label class="large-3 medium-6 columns">Level*
+													<input id="addPokemonLevel" type="number" value="5">
+												</label>
+												<label class="large-3 medium-6 columns">Gender*
+													<select id="addPokemonGender">
+														<option>Male</option>
+														<option>Female</option>
+														<option>Genderless</option>
+													</select>
+												</label>
+												<label class="large-3 medium-6 columns">Nature*
+													<select id="addPokemonNature">
+														<option>Adamant</option>
+														<option>Bashful</option>
+														<option>Bold</option>
+														<option>Brave</option>
+														<option>Calm</option>
+														<option>Careful</option>
+														<option>Docile</option>
+														<option>Gentle</option>
+														<option>Hardy</option>
+														<option>Hasty</option>
+														<option>Impish</option>
+														<option>Jolly</option>
+														<option>Lax</option>
+														<option>Lonely</option>
+														<option>Mild</option>
+														<option>Modest</option>
+														<option>Naive</option>
+														<option>Naughty</option>
+														<option>Quiet</option>
+														<option>Quirky</option>
+														<option>Rash</option>
+														<option>Relaxed</option>
+														<option>Sassy</option>
+														<option>Serious</option>
+														<option>Timid</option>
+													</select>
+												</label>
+												<label class="large-3 medium-6 columns">Ability*
+													<input id="addPokemonAbility" type="text" placeholder="Overgrow" required maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
+												</label>
+											</div>
+											<div id="addPokemonMoves" class="row">
+												<label class="large-3 medium-6 columns">Move 1*
+													<input type="text" placeholder="Razor Leaf" required maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
+												</label>
+												<label class="large-3 medium-6 columns">Move 2
+													<input type="text" maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
+												</label>
+												<label class="large-3 medium-6 columns">Move 3
+													<input type="text" maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
+												</label>
+												<label class="large-3 medium-6 columns">Move 4
+													<input type="text" maxLength="16" pattern="(\s*\S+.*\S+\s*|\S)">
+												</label>
+											</div>
+											<div class="row">
+												<label class="large-6 columns">Item
+													<input id="addPokemonItem" type="text" placeholder="Oran Berry" pattern="(\s*\S+.*\S+\s*|\S)">
+												</label>
+												<label class="large-6 columns">Location*
+													<div class="row">
+														<select class="small-6 columns" id="addPokemonMethod">
+															<option>Received at:</option>
+															<option>Caught at:</option>
+														</select>
+														<div class="small-6 columns">
+															<input type="text" id="addPokemonLocation" disabled>
+														</div>
+													</div>
+												</label>
+											</div>
+											
+										</div>
+									</div>
+									<input type="submit" value="Add Pokémon" class="large success expanded button">
+								</form>
+								<button class="close-button" data-close aria-label="Close modal" type="button">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						</div>
+						
+						<div class="small-6 columns">
+							<button class="large expanded secondary button" type="button" id="addEggButton" data-open="addEggPopup">Add Egg</button>
+							<div class="tiny reveal" id="addEggPopup" data-reveal>
+								<h3>Add Egg</h3>
+								<div class="media-object">
+									<div class="media-object-section">
+										<div class="thumbnail animate float-center">
+											<img class="float-center" src="http://cdn.bulbagarden.net/upload/1/1e/Spr_6x_Egg.png">
+										</div>
+									</div>
+									<div class="media-object-section">
+										<p>What will hatch from this? It doesn't seem close to hatching.</p>
+										<label>Received at:
+											<input type="text" disabled>
+										</label>
+									</div>
 								</div>
-								
-								<input type="submit" value="Add Pokemon" class="button">
-							</form>
-							<button class="close-button" data-close aria-label="Close modal" type="button">
-								<span aria-hidden="true">&times;</span>
-							</button>
+								<button class="large secondary expanded button" type="button">Add Egg</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -416,7 +514,11 @@
 		</div>
 		
 		<div class="callout secondary" id="footer">
-			<p style="text-align:center;">Copyright &copy; 2016-2017 Fatih Ridha (TechForce)</p>
+				Link to source: <a href="https://github.com/TechyFatih/Nuzlog" target="_blank">https://github.com/TechyFatih/Nuzlog</a><br>
+				Found a bug? Got feedback? Leave them in this thread: <a href="http://s7.zetaboards.com/Nuzlocke_Forum/topic/11009490/1/" target="_blank">http://s7.zetaboards.com/Nuzlocke_Forum/topic/11009490/1/</a><br><br>
+				Nuzlog copyright &copy; 2016-2017 Fatih Ridha (TechForce)<br>
+				Pokémon copyright &copy; 1995-2017 Nintendo<br>
+				Credit for Pokémon images and icons goes to PkParaíso, Serebii, and Bulbapedia
 		</div>
 	</body>
 </html>

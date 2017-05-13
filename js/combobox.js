@@ -2,39 +2,35 @@
 
 $.widget("custom.combobox", {
 	_create: function() {
-		if (this.options.data != undefined) {
-			if (this.options.data instanceof Array) {
-				for (var i = 0; i < this.options.data.length; i++)
+		if (this.options.data != undefined && this.options.data instanceof Array)
+			for (var i = 0; i < this.options.data.length; i++)
 				this.element.append($("<option>").text(this.options.data[i]));
-			}
-		}
-		this.wrapper = $("<div>")
-			.addClass("input-group")
-			.insertAfter(this.element);
 		
-		this.element.hide();
+		this.input = $(this.element);
+		this.input.wrap("<div class='input-group'></div>");
+		
 		this._createAutocomplete();
 		this._createShowAllButton();
 	},
 	
 	_createAutocomplete: function() {
-		this.input = $("<input>")
-			.appendTo(this.wrapper)
-			.attr("type", "text")
+		var min = 0;
+		if (this.options.minLength != undefined)
+			min = this.options.minLength;
+		
+		this.input
 			.addClass("input-group-field")
 			.autocomplete({
 				delay: 0,
-				minLength: 0,
+				minLength: min,
 				source: $.proxy(this, "_source")
-			})
-			.tooltip({
-				classes: {
-					"ui-tooltip": "ui-state-highlight"
-				}
 			});
-		if (this.options.required) this.input.attr("required", "");
-		if (this.options.placeholder) this.input.attr("placeholder", this.options.placeholder);
-		this.input.autocomplete("widget").css("z-index", 1006);	
+		this.input.autocomplete("widget").css({
+			zIndex: 1006,
+			maxHeight: "200px",
+			overflowY: "auto",
+			overflowX: "hidden"
+		});
 		
 		
 		this._on(this.input, {
@@ -43,9 +39,7 @@ $.widget("custom.combobox", {
 				this._trigger("select", event, {
 					item: ui.item.option
 				});
-			},
-			
-			autocompletechange: "_removeIfInvalid"
+			}
 		});
 	},
 	
@@ -55,10 +49,11 @@ $.widget("custom.combobox", {
 		
 		var div = $("<div>")
 					.addClass("input-group-button")
-					.appendTo(this.wrapper);
+					.insertAfter(input);
 		
-		$("<button>")
-			.appendTo(div)
+		var butt = $("<button>");
+		
+		butt.appendTo(div)
 			.addClass("hollow secondary button")
 			.attr("type", "button")
 			.html("&#x25BC;")
@@ -70,44 +65,27 @@ $.widget("custom.combobox", {
 				if (wasOpen) return;
 				input.autocomplete("search", "");
 			});
+			
+		if (this.options.minLength != undefined) {
+			if (this.options.minLength == 1)
+				butt.attr("title", "Enter 1 character to search");
+			else butt.attr("title", "Enter " + this.options.minLength + " characters to search");
+			butt.tooltip();
+		}
 	},
 	
 	_source: function(request, response) {
 		var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
 		response(this.element.children("option").map(function() {
 			var text = $(this).text();
-			if (this.value && (!request.term || matcher.test(text)))
+			if (this.value && (!request.term || matcher.test(text) || matcher.test(text.replace("é", "e"))))
 				return {label: text, value: text, option: this};
 		}));
 	},
 	
-	_removeIfInvalid: function(event, ui) {
-		if (ui.item) return;
-		
-		var value = this.input.val();
-		var valid = false;
-		this.element.children("option").each(function() {
-			if ($(this).text().toLowerCase() == value.toLowerCase()) {
-				this.selected = valid = true;
-				return false;
-			}
-		});
-		
-		if (valid) return;
-		
-		this.input
-			.val("")
-			.attr("title", value + " didn't match any item")
-			.tooltip("open");
-		this.element.val("");
-		this._delay(function() {
-			this.input.tooltip("close").attr("title", "");
-		}, 2500);
-		this.input.autocomplete("instance").term = "";
-	},
-	
 	_destroy: function() {
-		this.wrapper.remove();
-		this.element.show();
+		var par = this.input.parent();
+		par.before(this.input);
+		par.remove();
 	}
 });

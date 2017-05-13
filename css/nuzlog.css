@@ -1,4 +1,4 @@
-.reveal .button, .tabs *, #party, #addPokemonButton, #footer{
+.reveal .button, .tabs *, #party, #addPokemonButton, #addEggButton, #footer {
 	margin: 0;
 }
 
@@ -22,13 +22,22 @@
 	overflow-x: auto;
 }
 
+#options {
+	white-space: nowrap;
+	overflow-x: auto;
+}
+
+.loadingImage {
+	text-align: center;
+}
+
 #party button {
 	margin: 8px 0 8px 0;
 }
 
 #journal {
 	border: 1px solid gray;
-	height: 376px;
+	height: 365px;
 	overflow-y: auto;
 }
 
@@ -69,6 +78,7 @@
 .animate {
 	height: 200px;
 	width: 200px;
+	margin-bottom: 1rem;
 }
 
 .animate img {
@@ -81,32 +91,6 @@
 	width: 350px;
 }
 
-/*scombobox style overrides*/
-/*.scombobox {
-	position: relative;
-	margin: 0px;
+#footer {
+	font-size: 12px;
 }
-
-.scombobox-display {
-    width: 100%;
-	height: 2.4375rem;
-    padding: 2px 19px 2px 4px;
-    border: 1px solid #CCC;
-	border-radius: 0px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-}
-
-.scombobox-dropdown-background {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20px;
-    height: 100%;
-	background: initial;
-    border: 1px solid #CCC;
-    border-radius: 0 4px 4px 0;
-    border-left: 1px solid #CCC;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-}*/
