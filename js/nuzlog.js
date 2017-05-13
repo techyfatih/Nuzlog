@@ -106,7 +106,7 @@
 		
 		$("#addPokemonGender").prop("disabled", disableGenders);
 		$("#addPokemonNature").prop("disabled", disableNatures);
-		$("#addPokemonAbility, #evolveAbility").prop("disabled", disableAbilities);
+		$("#addPokemonAbility, #evolveNewAbility").prop("disabled", disableAbilities);
 	}
 
 	
@@ -150,8 +150,8 @@
 			$("#cover").remove();
 			$("#newGamePopup").foundation("close");
 			currentGame = true;
-			return false;
 		}
+		return false;
 	}
 	
 	//Saving and loading functions
