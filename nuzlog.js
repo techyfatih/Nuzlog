@@ -1,4 +1,4 @@
-(function () {
+var MODULE = (function (MODULE) {
 	"use strict";
 	
 	// Global variables
@@ -7,6 +7,7 @@
 	var currentPartyIndex = 0;
 	var pc = [];
 	var cemetery = [];
+	console.log(MODULE.test);
 	
 	// Run when doc is ready
 	$(document).ready(function() {
@@ -1098,4 +1099,4 @@
 			$("#pokeDeath").text(poke.death);
 		}
 	}
-})();
+}(MODULE));

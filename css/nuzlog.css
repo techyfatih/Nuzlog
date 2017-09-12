@@ -1,4 +1,105 @@
-.reveal .button, .tabs *, #party, #addPokemonButton, #addEggButton, #footer {
+/*Journal*/
+
+#journal-div {
+	border: 1px solid gray;
+}
+
+#journal-header {
+	margin: 0;
+}
+
+#journal-body {
+	height: 200px;
+	overflow-y: auto;
+}
+
+/*Tabs*/
+
+.tabs a {
+	padding: 10px;
+}
+
+.tabs * {
+	margin: 0;
+}
+
+.tabs-title {
+	border: 1px solid whitesmoke;
+}
+
+#party-tabs li {
+	width: 33%;
+	text-align: center;
+}
+
+/*Pokemon card*/
+
+.pokemon {
+	border: 1px solid gray;
+}
+
+.pokemon h4, .pokemon p, .pokemon .header * {
+	margin: 0;
+}
+
+.pokemon .header {
+	padding: 5px;
+}
+
+.pokemon .header .thumbnail {
+	border: 0;
+	box-shadow: none;
+}
+
+.pokemon .header button {
+	display: block;
+	margin: auto;
+	margin-right: 0;
+}
+
+.animate {
+	width: 200px;
+	height: 200px;
+}
+
+.animate img {
+	display: block;
+	margin: auto;
+	position: relative;
+	top: 100px;
+	transform: translate(0, -50%);
+}
+
+/*Other*/
+
+#footer {
+	font-size: 12px;
+	margin: 0;
+}
+
+.button.warning, .button.success {
+	color: white;
+}
+
+/*hacked stack-for-medium*/
+@media screen and (max-width: 63.9375em) {
+    .media-object.stack-for-medium {
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+	}
+    .media-object.stack-for-medium .media-object-section {
+		padding: 0;
+		padding-bottom: 1rem;
+		-ms-flex-preferred-size: 100%;
+		flex-basis: 100%;
+		max-width: 100%;
+	}
+	.media-object.stack-for-medium .media-object-section img {
+		width: auto;
+	}
+}
+
+/*.reveal .button, .tabs *, #party, #addPokemonButton, #addEggButton, #footer {
 	margin: 0;
 }
 
@@ -37,7 +138,7 @@
 
 #journal {
 	border: 1px solid gray;
-	height: 365px;
+	height: 354px;
 	overflow-y: auto;
 }
 
@@ -89,8 +190,4 @@
 
 #partyOptions {
 	width: 350px;
-}
-
-#footer {
-	font-size: 12px;
 }
