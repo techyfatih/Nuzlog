@@ -1,95 +1,131 @@
 "use strict"
 
-define(["jquery", "nuzlog", "journal"], function($, nuzlog, journal) {
-	function updateParty() {
-		var partySlotName = $(".partySlotName");
-		var partySlotLv = $(".partySlotLv");
-		for (var i = 0; i < nuzlog.party.length && i < 6; i++) {
-			var pokemon = nuzlog.party[i];
-			//$("#party-tabs img").eq(i).attr("src", getPokemonIcon(pokemon.name));
-			partySlotName.eq(i).text(pokemon.fullname);
-			partySlotLv.eq(i).css("visibility", "visible").text("Lv " + pokemon.level);
+define(["jquery", "data", "nuzlog", "journal"], function($, data, nuzlog, journal) {
+	function addToParty(pokemon) {
+		if (nuzlog.party.length < 6) {
+			nuzlog.party.push(pokemon);
+			var $slot = $("#party a").eq(nuzlog.party.length - 1);
+			$slot.css("visibility", "visible");
+			$slot.find(".slot-name").text(pokemon.name);
+			if (pokemon.gender && pokemon.gender != "Genderless")
+				$slot.find(".slot-gender").attr("src", "img/" + pokemon.gender.toLowerCase() + "-small.png");
+			$slot.find(".slot-level").text(pokemon.level);
 		}
-		for (i; i < 6; i++) {
-			partySlotName.eq(i).text("No Pokémon");
-			partySlotLv.eq(i).css("visibility", "hidden");
-		}
-	};
+		if (nuzlog.party.length >= 6)
+			$("#withdraw-button").addClass("disabled");
+	}
 	
-	function updatePC() {
-		var list = $("#pcList");
-		list.empty();
-		list.prop("disabled", true);
-		var withdrawButton = $("#withdrawButton");
-		withdrawButton.addClass("disabled");
-		for (var i = 0; i < nuzlog.pc.length; i++) {
-			var pokemon = nuzlog.pc[i];
-			list.append("<option>" + pokemon.fullname + "</option>");
-			list.prop("disabled", false);
-			if (nuzlog.party.length < 6)
-				withdrawButton.removeClass("disabled");
+	function removeFromParty() {
+		if (nuzlog.party.length > 0) {
+			$("#party a").eq(nuzlog.party.length - 1).css("visibility", "hidden");
+			$("#withdraw-button").removeClass("disabled");
+			return nuzlog.party.pop();
 		}
-		
-		var list = $("#pcList").append("<option>" + poke.fullname + "</option>");
-		if (pc.length >= 1) {
-			list.prop('disabled', false);
-			if (party.length < 6)
-				$("#withdrawButton").removeClass("disabled");
+		return null;
+	}
+	
+	function addToPC(pokemon) {
+		nuzlog.pc.push(pokemon);
+		$("#party li:first-child").clone(true).appendTo("#pc")
+	}
+	
+	function withdrawFromPC() {
+		if (nuzlog.pc.length > 0) {
+			
 		}
-	};
+	}
 	
 	return {
 		init: function() {
-			$("#addPokemonButton").click(function() {
-				$("#addPokemonLocation").val(nuzlog.location);
+			// Populate party
+			for (var i = 0; i < 5; i ++)
+				$("#party li:first-child").clone(true).appendTo("#party")
+			
+			// Setup comboboxes and stuff
+			data.pokemon.sort();
+			$("#add-pokemon-species").combobox({
+				source: data.pokemon
 			});
-			$("#addPokemon").submit(function() {
+			var natures = "";
+			for (var i = 0; i < data.natures.length; i++)
+				natures += "<option>" + data.natures[i] + "</option>";
+			$("#add-pokemon-nature").append(natures);
+			
+			// Handlers
+			$("#add-pokemon-button").click(function() {
+				$("#add-pokemon input:text").val("");
+				$("#add-pokemon").find("input:checkbox, input:radio").prop("checked", false);
+				$("#add-pokemon-level").val(5);
+				$("#add-pokemon option:eq(0)").prop("selected", true);
+				$("#add-pokemon-location").val(nuzlog.location);
+				$("#add-pokemon input:submit").val("Add Pokémon (Party: " + (nuzlog.party.length < 6 ? "Available" : "Full") + ")");
+			});
+			$("#add-pokemon-modal").on("open.zf.reveal", function() {
+				$("#add-pokemon-species").focus();
+			});
+			$("#add-pokemon").submit(function() {
 				var pokemon = {};
-				pokemon.species = $("#addPokemonSpecies").val().trim();
-				pokemon.nickname = $("#addPokemonNickname").val().trim();
-				pokemon.fullname = pokemon.species;
-				if (pokemon.nickname != "")
-					pokemon.fullname = pokemon.nickname + " (" + pokemon.species + ")";
-				pokemon.level = $("#addPokemonLevel").val();
+				
+				pokemon.species = $("#add-pokemon-species").val().trim();
+				pokemon.nickname = $("#add-pokemon-nickname").val().trim();
+				pokemon.name = pokemon.nickname ? pokemon.nickname : pokemon.species;
+				pokemon.level = $("#add-pokemon-level").val();
+				pokemon.form = $("#add-pokemon-form").val().trim();
+				pokemon.shiny = $("#add-pokemon-shiny").prop("checked");
+				
 				if (!nuzlog.disableGenders)
-					pokemon.gender = $("#addPokemonGender").val().substring(0,1);
+					pokemon.gender = $("input[name=add-pokemon-gender]:checked").val();
 				if (!nuzlog.disableNatures)
-					pokemon.nature = $("#addPokemonNature").val();
+					pokemon.nature = $("#add-pokemon-nature").val();
 				if (!nuzlog.disableAbilities)
-					pokemon.ability = $("#addPokemonAbility").val();
+					pokemon.ability = $("#add-pokemon-ability").val();
+				
 				pokemon.moves = [];
-				$("#addPokemonMoves input").each(function() {
+				$("#add-pokemon-moves input").each(function() {
 					var move = $(this).val().trim();
 					if (move != "")
 						pokemon.moves.push(move);
 				});
-				pokemon.item = $("#addPokemonItem").val().trim();
-				pokemon.method = $("#addPokemonMethod").val();
-				pokemon.location = $("#addPokemonLocation").val().trim();
-				pokemon.form = $("#addPokemonForm").val().trim();
-				pokemon.shiny = $("#addPokemonShiny").prop("checked");
+				
+				pokemon.item = $("#add-pokemon-item").val().trim();
+				pokemon.method = $("#add-pokemon-method").val();
+				pokemon.location = $("#add-pokemon-location").val().trim();
 				
 				pokemon.export = function() {
-					var pokemonText = this.fullname;
-					if (this.gender != "")
-						pokemonText += " (" + this.gender + ")";
-					if (this.ability != "")
+					var pokemonText = this.species;
+					if (this.form)
+						pokemonText += "-" + this.form;
+					if (this.nickname)
+						pokemonText = this.nickname + " (" + pokemonText + ")";
+					
+					if (this.gender && this.gender != "Genderless")
+						pokemonText += " (" + this.gender.substring(0,1) + ")";
+					if (this.item)
+						pokemonText += " @ " + this.item;
+					
+					if (this.ability)
 						pokemonText += "\nAbility: " + this.ability;
+					
 					pokemonText += "\nLevel: " + this.level;
-					if (this.nature != "")
+					
+					if (this.shiny)
+						pokemonText += "Shiny: " + this.shiny ? "Yes" : "No";
+					
+					if (this.nature)
 						pokemonText += "\n" + this.nature + " Nature";
+					
 					for (var i = 0; i < this.moves.length; i++)
 						pokemonText += "\n- " + this.moves[i];
+					
 					pokemonText += "\n" + this.method + this.location;
 					return pokemonText;
 				};
-				if (nuzlog.party < 6) {
-					nuzlog.party.push(pokemon);
-					updateParty();
+				if (nuzlog.party.length < 6) {
+					addToParty(pokemon);
 				} else {
-					nuzlog.pc.push(pokemon);
-					updatePC();
+					addToPC(pokemon);
 				}
+				$("#add-pokemon-modal").foundation("close");
 				return false;
 			});
 		}

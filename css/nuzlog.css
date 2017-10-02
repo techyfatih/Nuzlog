@@ -1,19 +1,121 @@
+/*Main*/
+
+#main {
+	position: relative;
+}
+
+#covear {
+	position: absolute;
+	top: -16px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background-color: black;
+	opacity: 0.5;
+	z-index: 1001;
+}
+
+.accordion-title {
+	padding-top: 10px;
+	padding-bottom: 1px;
+}
+
+.accordion-title, .accordion-content {
+	overflow-x: hidden;
+}
+
+#party a, .pokemon .level, .pokemon:not(#add-pokemon-card) .card-section {
+	visibility: hidden;
+}
+
+/*New Game*/
+
+#rules {
+	height: 100px;
+}
+
+/*Title*/
+
+#rules-dropdown {
+	width: 200px;
+	max-height: 100px;
+	overflow-y: auto;
+	word-wrap: break-word;
+}
+
 /*Journal*/
 
-#journal-div {
+#journal-section {
+	position: relative;
+	background: whitesmoke;
+	padding-top: 27px;
 	border: 1px solid gray;
 }
 
-#journal-header {
-	margin: 0;
+#journal-container {
+	background: white;
+	height: 217px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	border-top: 1px solid gray;
 }
 
-#journal-body {
-	height: 200px;
-	overflow-y: auto;
+#journal-container thead, #journal-container tbody {
+	border: none;
 }
 
-/*Tabs*/
+#journal-container th {
+	padding: 0;
+	width: 25%;
+}
+
+#journal-container th:last-child {
+	width: 50%;
+}
+
+#journal-container th div {
+	position: absolute;
+	top: 0;
+	padding: 2px 5px;
+	border-left: 1px solid gray;
+}
+
+#journal-container th:first-child div {
+	border: none;
+}
+
+#journal-container td {
+	border-bottom: 1px solid gray;
+	padding: 2px 5px;
+}
+
+#journal-container td + td {
+	border-left: 1px solid gray;
+}
+
+#journal-container td:nth-child(3) {
+	word-break: break-word;
+}
+
+/*Add Pokemon*/
+
+#test::after {
+    display: block;
+    width: 0;
+    height: 0;
+    border: inset 0.4em;
+    content: '';
+    border-bottom-width: 0;
+    border-top-style: solid;
+    border-color: #fefefe transparent transparent;
+    position: relative;
+    top: 0.4em;
+    display: inline-block;
+    float: right;
+    margin-left: 1em; 
+}
+
+/*Pokemon tabs and panels*/
 
 .tabs a {
 	padding: 10px;
@@ -27,167 +129,122 @@
 	border: 1px solid whitesmoke;
 }
 
-#party-tabs li {
-	width: 33%;
-	text-align: center;
+.slot-details {
+	max-width: calc(100% - 56px);
 }
 
-/*Pokemon card*/
+.slot-name:first-child { /*first child overrides foundation*/
+	padding-right: 5px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+#party {
+	margin-right: 10px;
+}
+
+#party li, #pc li, #cemetery li {
+	width: 100%;
+}
+
+#pc-container, #cemetery-container {
+	border: 1px solid gray;
+	height: 470px;
+	width: 100%;
+	overflow-y: scroll;
+}
+
+@media screen and (max-width: 39.9375em) {
+	#party li, #pc li, #cemetery li {
+		width: 50%;
+	}
+	
+	#pc-container, #cemetery-container {
+		height: 161px;
+	}
+}
+
+/*Pokemon cards*/
+
+#party-pokemon .card-divider {
+	background: #b3b3ff;
+}
+
+#pc-pokemon .card-divider {
+	background: #ffffb3;
+}
+
+#cemetery-pokemon .card-divider {
+	background: #e6e6e6;
+}
+
+#add-pokemon .card-divider {
+	background: #b3ffb3;
+}
 
 .pokemon {
 	border: 1px solid gray;
-}
-
-.pokemon h4, .pokemon p, .pokemon .header * {
 	margin: 0;
 }
 
-.pokemon .header {
-	padding: 5px;
+.pokemon .card-divider {
+	padding: 10px;
 }
 
-.pokemon .header .thumbnail {
-	border: 0;
-	box-shadow: none;
+.pokemon:not(#add-pokemon-card) .card-divider *,
+.pokemon .card-section .media-object  {
+	margin: 0;
 }
 
-.pokemon .header button {
-	display: block;
-	margin: auto;
-	margin-right: 0;
-}
-
-.animate {
+.sprite {
 	width: 200px;
 	height: 200px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.animate img {
+.sprite img {
 	display: block;
 	margin: auto;
 	position: relative;
 	top: 100px;
 	transform: translate(0, -50%);
+	width: auto;
+}
+
+#party-options-dropdown, #pc-options-dropdown {
+	width: 150px;
+	padding-bottom: 0;
 }
 
 /*Other*/
+
+.button.warning, .button.warning:hover, .button.warning:focus,
+.button.success, .button.success:hover, .button.success:focus {
+	color: white;
+}
+
+.reveal {
+	padding-bottom: 0;
+}
+
+.no-margin-bottom {
+	margin-bottom: 0;
+}
+
+.margin-bottom {
+	margin-bottom: 16px;
+}
 
 #footer {
 	font-size: 12px;
 	margin: 0;
 }
 
-.button.warning, .button.success {
-	color: white;
-}
-
-/*hacked stack-for-medium*/
-@media screen and (max-width: 63.9375em) {
-    .media-object.stack-for-medium {
-		-ms-flex-wrap: wrap;
-		flex-wrap: wrap;
-	}
-    .media-object.stack-for-medium .media-object-section {
-		padding: 0;
-		padding-bottom: 1rem;
-		-ms-flex-preferred-size: 100%;
-		flex-basis: 100%;
-		max-width: 100%;
-	}
-	.media-object.stack-for-medium .media-object-section img {
-		width: auto;
-	}
-}
-
-/*.reveal .button, .tabs *, #party, #addPokemonButton, #addEggButton, #footer {
-	margin: 0;
-}
-
-#main {
-	position: relative;
-}
-
-#cover {
-	position: absolute;
-	top: -16px;
-	bottom: 0px;
-	width: 100%;
-	background-color: black;
-	opacity: 0.5;
-	z-index: 1001;
-}
-
-#info {
-	text-align: center;
-	white-space: nowrap;
-	overflow-x: auto;
-}
-
-#options {
-	white-space: nowrap;
-	overflow-x: auto;
-}
-
-.loadingImage {
-	text-align: center;
-}
-
-#party button {
-	margin: 8px 0 8px 0;
-}
-
-#journal {
-	border: 1px solid gray;
-	height: 354px;
-	overflow-y: auto;
-}
-
-#journal .row {
-	display: flex;
-}
-
-#journal .row div {
-	border: 1px solid gray;
-	word-wrap: break-word;
-}
-
-#journalHeader {
-	background-color: whitesmoke;
-}
-
-.tabs-title {
-	border: 1px solid whitesmoke;
-}
-
-#pokemon-tabs a {
-	padding: 10px;
-}
-
-#party-tabs li {
-	width: 33%;
-	text-align: center;
-}
-
-#party-tabs a {
-	padding: 5px;
-}
-
-.partySlotLv, #party, #pc, #cemetery {
-	visibility: hidden;
-}
-
-.animate {
-	height: 200px;
-	width: 200px;
-	margin-bottom: 1rem;
-}
-
-.animate img {
-	position: relative;
-	top: 100px;
-	transform: translate(0, -50%);
-}
-
-#partyOptions {
-	width: 350px;
+.button.combobox::after {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
 }

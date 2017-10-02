@@ -1,30 +1,37 @@
 "use strict"
 
-define(["jquery"], function($) {
+define(["jquery", "nuzlog"], function($, nuzlog) {
 	var log = [];
 	
 	function insertLog(type, entry) {
 		var time = new Date().toLocaleString();
 		time = time.substring(0, time.length - 6) + time.substring(time.length - 3);
 		
-		var $row = $("<div/>", {class: "row"});
-		var $timeCol = $("<div/>", {class: "small-3 columns", text: time});		
-		var $typeCol = $("<div/>", {class: "small-3 columns", text: type});
-		var $entryCol = $("<div/>", {class: "small-6 columns", text: entry});
+		var $row = $("<tr/>");
+		var $timeCol = $("<td/>", {text: time});		
+		var $typeCol = $("<td/>", {text: type});
+		var $entryCol = $("<td/>", {text: entry});
 		
 		$row.append($timeCol);
 		$row.append($typeCol);
 		$row.append($entryCol);
-		$("#entries").append($row);
-		$("#journal").animate({
+		$("#journal").append($row);
+		$("#journal-container").animate({
 			scrollTop: $("#journal").scrollTop() + $row.offset().top
 		}, 0);
 	};
 	
 	return {
 		init: function() {
+			var logLocation = this.logLocation;
+			$("#new-location").submit(function() {
+				var $location = $("#new-location-input");
+				logLocation($location.val().trim());
+				$location.val("");
+				return false;
+			});
 			$("#log").submit(function() {
-				var message = $("#logText");
+				var message = $("#log-text");
 				var entry = message.val();
 				insertLog("Log", entry);
 				log.push[{type: "Log", entry: entry}];
@@ -35,7 +42,14 @@ define(["jquery"], function($) {
 		
 		reset: function() {
 			log = [];
-			$("#entries").empty();
+			$("#journal").empty();
+		},
+		
+		logLocation: function(location) {
+			nuzlog.location = location;
+			$("#location-label").text(location);
+			insertLog("Location", location);
+			log.push({type: "Location", entry: location});
 		},
 		
 		logPokemon: function(pokemon) {

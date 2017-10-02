@@ -1,5 +1,7 @@
 "use strict"
 
+// Global variables
+
 define({
 	location: "",
 	disableGenders: false,

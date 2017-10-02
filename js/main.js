@@ -4,20 +4,18 @@ requirejs.config({
 	baseUrl: "js/app",
 	paths: {
 		jquery: "../vendor/jquery",
-		foundation: "../vendor/foundation"
+		foundation: "../vendor/foundation",
+		jquery_ui: "../vendor/jquery-ui"
 	},
 	shim: {
 		"foundation": ["jquery"] //dependency
 	}
 });
 
-requirejs(["jquery", "foundation"],
-function($) {
-	var gameOpen = false;
-	
+requirejs(["jquery", "foundation", "game", "combobox"],
+function($, foundation, game) {
 	$(document).ready(function() {
-		//game.init();
-		
 		$(document).foundation();
+		game.init();
 	});
 });

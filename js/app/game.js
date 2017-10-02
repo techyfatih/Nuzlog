@@ -4,6 +4,7 @@ define(["jquery", "nuzlog", "journal", "pokemon"], function($, nuzlog, journal, 
 	var title = "";
 	var game = "";
 	var name = "";
+	var rules = [];
 	var gameOpen = false;
 	
 	function disableProperties(disableGenders, disableNatures, disableAbilities) {
@@ -13,20 +14,24 @@ define(["jquery", "nuzlog", "journal", "pokemon"], function($, nuzlog, journal, 
 		if (disableAbilities) disabled.push("Abilities");
 		
 		if (disabled.length > 0)
-			$("#disabledLabel").text("Disabled: " + disabled.join(", "));
-		else $("#disabledLabel").text("All Enabled");
+			$("#disabled-label").text("Disabled: " + disabled.join(", "));
+		else $("#disabled-label").text("All Enabled");
 		
-		$("#addPokemonGender").prop("disabled", disableGenders);
-		$("#addPokemonNature").prop("disabled", disableNatures);
-		$("#addPokemonAbility, #evolveNewAbility").prop("disabled", disableAbilities);
+		$("input[name=add-pokemon-gender]").prop("disabled", disableGenders);
+		$("#add-pokemon-nature").prop("disabled", disableNatures);
+		$(".disable-nature").hide();
+		$("#add-pokemon-ability, #evolveNewAbility").prop("disabled", disableAbilities);
+		$("#disable-nature").hide();
 	}
 	
 	function initNewGame() {
-		$("#newGameButton").click(function() {
-			$("#newGame input[type=text]").val("");
-			$("#newGame input[type=checkbox]").prop("checked", false);
+		$("#new-game-button").click(function() {
+			$("#new-game-modal input:text").val("");
+			$("#new-game-modal input:checkbox").prop("checked", false);
+			$("#new-game-modal select").empty();
 		});
-		$("#newGame").submit(function() {
+		$("#start-new-game-button").click(function(){$("#new-game-submit").click()});
+		$("#new-game").submit(function() {
 			var confirmNewGame = true;
 			if (gameOpen)
 				confirmNewGame = confirm("Are you sure you want to start a new game? All unsaved changes will be lost.");
@@ -36,10 +41,11 @@ define(["jquery", "nuzlog", "journal", "pokemon"], function($, nuzlog, journal, 
 				game = $("#game").val().trim();
 				name = $("#name").val().trim();
 				nuzlog.location = $("#location").val().trim();
+				rules = $("#rules option").map(function(){return $(this).val()});
 				
-				nuzlog.disableGenders = $("#disableGenders").prop("checked");
-				nuzlog.disableNatures = $("#disableNatures").prop("checked");
-				nuzlog.disableAbilities = $("#disableAbilities").prop("checked");
+				nuzlog.disableGenders = $("#disable-genders").prop("checked");
+				nuzlog.disableNatures = $("#disable-natures").prop("checked");
+				nuzlog.disableAbilities = $("#disable-abilities").prop("checked");
 				disableProperties(nuzlog.disableGenders, nuzlog.disableNatures, nuzlog.disableAbilities);
 				
 				nuzlog.party = [];
@@ -47,38 +53,57 @@ define(["jquery", "nuzlog", "journal", "pokemon"], function($, nuzlog, journal, 
 				nuzlog.cemetery = [];
 				
 				$("#cover").remove();
-				$("#titleLabel").text(title);
-				$("#gameLabel").text(game);
-				$("#nameLabel").text(name);
-				$("#currentLocation").text(nuzlog.location);
+				$("#title-label").text(title);
+				$("#game-label").text(game);
+				$("#name-label").text(name);
+				$("#location-label").text(nuzlog.location);
+				
+				var $rules = $("#rules-list");
+				$rules.empty();
+				if (rules.length > 0) {
+					for (var i = 0; i < rules.length; i++) {
+						$rules.append($("<li/>", {text: rules[i]}));
+					}
+				}
 				journal.reset();
 				
 				gameOpen = true;
-				$("#newGamePopup").foundation("close");
+				$("#new-game-modal").foundation("close");
 			}
 			return false;
+		});
+		$("#add-rule").submit(function() {
+			var $rule = $("#rule-input");
+			var rule = $rule.val().trim();
+			if (rule != "")
+				$("#rules").append($("<option/>", {text: rule}));
+			$rule.val("");
+			return false;
+		});
+		$("#remove-rule-button").click(function() {
+			$("#rules option:selected").remove();
 		});
 	}
 		
 	function initSaveLoadGame() {
-		$("#saveLoadGameButton").click(function() {
+		$("#save-load-game-button").click(function() {
 			var save = "";
 			if (gameOpen) {
-				save = nuzlog.title;
-				save += "\n" + nuzlog.game;
-				save += "\n" + nuzlog.name;
+				save = title;
+				save += "\n" + game;
+				save += "\n" + name;
 				save += "\n";
 			}
-			$("#saveGame").val(save);
+			$("#save-game").val(save);
 		});
-		$("#saveFileButton").click(function() {
+		$("#save-file-button").click(function() {
 		});
-		$("#uploadFileButton").click(function() {
+		$("#upload-file-button").click(function() {
 			
 		});
-		$("#loadFile").click(function() {
+		$("#load-file").click(function() {
 		});
-		$("#loadGame").submit(function() {
+		$("#load-game").submit(function() {
 			
 		});
 	}

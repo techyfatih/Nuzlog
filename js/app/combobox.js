@@ -1,91 +1,53 @@
 "use strict"
 
-$.widget("custom.combobox", {
-	_create: function() {
-		if (this.options.data != undefined && this.options.data instanceof Array)
-			for (var i = 0; i < this.options.data.length; i++)
-				this.element.append($("<option>").text(this.options.data[i]));
+define(["jquery", "jquery_ui/widgets/autocomplete"],
+function($, autocomplete, button) {
+	$.widget("custom.combobox", $.ui.autocomplete, {
+		options: {
+			delay: 0,
+			minLength: 0
+		},
 		
-		this.input = $(this.element);
-		this.input.wrap("<div class='input-group'></div>");
-		
-		this._createAutocomplete();
-		this._createShowAllButton();
-	},
-	
-	_createAutocomplete: function() {
-		var min = 0;
-		if (this.options.minLength != undefined)
-			min = this.options.minLength;
-		
-		this.input
-			.addClass("input-group-field")
-			.autocomplete({
-				delay: 0,
-				minLength: min,
-				source: $.proxy(this, "_source")
-			});
-		this.input.autocomplete("widget").css({
-			zIndex: 1006,
-			maxHeight: "200px",
-			overflowY: "auto",
-			overflowX: "hidden"
-		});
-		
-		
-		this._on(this.input, {
-			autocompleteselect: function(event, ui) {
-				ui.item.option.selected = true;
-				this._trigger("select", event, {
-					item: ui.item.option
-				});
-			}
-		});
-	},
-	
-	_createShowAllButton: function() {
-		var input = this.input;
-		var wasOpen = false;
-		
-		var div = $("<div>")
-					.addClass("input-group-button")
-					.insertAfter(input);
-		
-		var butt = $("<button>");
-		
-		butt.appendTo(div)
-			.addClass("hollow secondary button")
-			.attr("type", "button")
-			.html("&#x25BC;")
-			.mousedown(function() {
-				wasOpen = input.autocomplete("widget").is(":visible");
-			})
-			.click(function() {
-				input.trigger("focus");
-				if (wasOpen) return;
-				input.autocomplete("search", "");
-			});
+		_create: function() {
+			this._super();
+			var autocomplete = this;
 			
-		if (this.options.minLength != undefined) {
-			if (this.options.minLength == 1)
-				butt.attr("title", "Enter 1 character to search");
-			else butt.attr("title", "Enter " + this.options.minLength + " characters to search");
-			butt.tooltip();
+			var wrapper = $("<div class=\"input-group\" style=\"height: 39px\"></div>")
+				.insertAfter(this.element);
+			
+			this.element.appendTo(wrapper)
+				.addClass("input-group-field");
+			
+			var button = $(
+				"<div class=\"input-group-button\">" +
+					"<button type=\"button\" class=\"hollow secondary dropdown button combobox\" tabIndex=-1 style=\"padding: 0; background: whitesmoke\">" +
+				"</div>")
+				.click(function() {
+					autocomplete.search(autocomplete.element.val());
+				})
+				.appendTo(wrapper);
+			
+			var menu = this.menu;
+			menu.element.on("menufocus", function() {menu.bindings.length = 0;}); // hack for performance optimization
+		},
+		
+		_renderMenu: function(ul, items) {
+			var $ul = $(ul);
+			var $items = "";
+			for (var i = 0; i < items.length; i++) {
+				$items += "<li class=\"ui-menu-item\"><div tabindex=\"-1\" class=\"ui-menu-item-wrapper\">" + items[i].label + "</div></li>";
+			}
+			$ul.append($items)
+			$ul.css({
+				"z-index": 9001,
+				"max-height": "200px",
+				"overflow-y": "auto",
+				"overflow-x": "hidden"
+			});
+			var children = $ul.children();
+			for (var i = 0; i < items.length; i++) {
+				$(children[i]).data("ui-autocomplete-item", items[i]);
+			}
 		}
-	},
-	
-	_source: function(request, response) {
-		var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
-		response(this.element.children("option").map(function() {
-			var text = $(this).text();
-			if (this.value && (!request.term || matcher.test(text) || matcher.test(text.replace("é", "e"))))
-				return {label: text, value: text, option: this};
-		}));
-	},
-	
-	_destroy: function() {
-		var par = this.input.parent();
-		par.before(this.input);
-		par.remove();
-	}
+	});
 });
