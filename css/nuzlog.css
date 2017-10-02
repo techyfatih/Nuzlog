@@ -24,8 +24,8 @@
 	overflow-x: hidden;
 }
 
-#party a, .pokemon .level, .pokemon:not(#add-pokemon-card) .card-section {
-	visibility: hidden;
+#party a, #pc, #cemetery, .pokemon .level, .pokemon:not(#add-pokemon-card) .card-section {
+	avisibility: hidden;
 }
 
 /*New Game*/
@@ -43,76 +43,70 @@
 	word-wrap: break-word;
 }
 
-/*Journal*/
+/*Table with sticky header*/
 
-#journal-section {
+.table-sticky-header {
 	position: relative;
-	background: whitesmoke;
-	padding-top: 27px;
-	border: 1px solid gray;
+	background: #f8f8f8;
+	padding-top: 34px;
+	border: 1px solid #f1f1f1;
 }
 
-#journal-container {
+.table-sticky-header .container {
 	background: white;
-	height: 217px;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	border-top: 1px solid gray;
+	border-top: 1px solid #f1f1f1;
 }
 
-#journal-container thead, #journal-container tbody {
+.table-sticky-header thead, .table-sticky-header tbody {
 	border: none;
 }
 
-#journal-container th {
+.table-sticky-header th {
 	padding: 0;
-	width: 25%;
 }
 
-#journal-container th:last-child {
-	width: 50%;
-}
-
-#journal-container th div {
+.table-sticky-header th div {
 	position: absolute;
 	top: 0;
-	padding: 2px 5px;
-	border-left: 1px solid gray;
+	padding: 5px 10px;
+	border-left: 1px solid #f1f1f1;
 }
 
-#journal-container th:first-child div {
+.table-sticky-header th:first-child div {
 	border: none;
 }
 
-#journal-container td {
-	border-bottom: 1px solid gray;
-	padding: 2px 5px;
-}
-
-#journal-container td + td {
-	border-left: 1px solid gray;
-}
-
-#journal-container td:nth-child(3) {
+.table-sticky-header td {
+	border-bottom: 1px solid #f1f1f1;
+	padding: 5px 10px;
 	word-break: break-word;
 }
 
-/*Add Pokemon*/
+.table-sticky-header td + td {
+	border-left: 1px solid #f1f1f1;
+}
 
-#test::after {
-    display: block;
-    width: 0;
-    height: 0;
-    border: inset 0.4em;
-    content: '';
-    border-bottom-width: 0;
-    border-top-style: solid;
-    border-color: #fefefe transparent transparent;
-    position: relative;
-    top: 0.4em;
-    display: inline-block;
-    float: right;
-    margin-left: 1em; 
+.table-sticky-header tr:nth-child(even) { /*override foudation*/
+	background: whitesmoke
+}
+
+/*Tables*/
+
+#journal-container {
+	height: 217px;
+}
+
+#catches-container {
+	height: 300px;
+}
+
+/*Menu*/
+
+#failed-catch em {
+	visibility: hidden;
+	color: red;
 }
 
 /*Pokemon tabs and panels*/
@@ -140,7 +134,7 @@
 	white-space: nowrap;
 }
 
-#party {
+#party, #pc-container, #cemetery-container {
 	margin-right: 10px;
 }
 
@@ -149,9 +143,8 @@
 }
 
 #pc-container, #cemetery-container {
-	border: 1px solid gray;
+	border: 1px solid whitesmoke;
 	height: 470px;
-	width: 100%;
 	overflow-y: scroll;
 }
 

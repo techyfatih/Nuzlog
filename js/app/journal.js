@@ -8,7 +8,7 @@ define(["jquery", "nuzlog"], function($, nuzlog) {
 		time = time.substring(0, time.length - 6) + time.substring(time.length - 3);
 		
 		var $row = $("<tr/>");
-		var $timeCol = $("<td/>", {text: time});		
+		var $timeCol = $("<td/>", {text: time});
 		var $typeCol = $("<td/>", {text: type});
 		var $entryCol = $("<td/>", {text: entry});
 		

@@ -1,6 +1,6 @@
 "use strict"
 
-define(["jquery", "data", "nuzlog", "journal"], function($, data, nuzlog, journal) {
+define(["jquery", "data", "nuzlog", "journal", "catches"], function($, data, nuzlog, journal, catches) {
 	function addToParty(pokemon) {
 		if (nuzlog.party.length < 6) {
 			nuzlog.party.push(pokemon);
@@ -37,6 +37,8 @@ define(["jquery", "data", "nuzlog", "journal"], function($, data, nuzlog, journa
 	
 	return {
 		init: function() {
+			catches.init();
+			
 			// Populate party
 			for (var i = 0; i < 5; i ++)
 				$("#party li:first-child").clone(true).appendTo("#party")
@@ -125,6 +127,7 @@ define(["jquery", "data", "nuzlog", "journal"], function($, data, nuzlog, journa
 				} else {
 					addToPC(pokemon);
 				}
+				catches.addCatch(pokemon.location, pokemon);
 				$("#add-pokemon-modal").foundation("close");
 				return false;
 			});
