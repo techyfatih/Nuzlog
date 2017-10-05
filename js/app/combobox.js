@@ -1,7 +1,7 @@
 "use strict"
 
 define(["jquery", "jquery_ui/widgets/autocomplete"],
-function($, autocomplete, button) {
+function($, autocomplete) {
 	$.widget("custom.combobox", $.ui.autocomplete, {
 		options: {
 			delay: 0,
@@ -10,7 +10,7 @@ function($, autocomplete, button) {
 		
 		_create: function() {
 			this._super();
-			var autocomplete = this;
+			var combobox = this;
 			
 			var wrapper = $("<div class=\"input-group\" style=\"height: 39px\"></div>")
 				.insertAfter(this.element);
@@ -23,7 +23,9 @@ function($, autocomplete, button) {
 					"<button type=\"button\" class=\"hollow secondary dropdown button combobox\" tabIndex=-1 style=\"padding: 0; background: whitesmoke\">" +
 				"</div>")
 				.click(function() {
-					autocomplete.search(autocomplete.element.val());
+					var start = Date.now();
+					combobox.search("");
+					console.log(Date.now() - start);
 				})
 				.appendTo(wrapper);
 			

@@ -47,20 +47,20 @@
 					<!----------New Game---------->
 					
 					<button id="new-game-button" type="button" class="button large expanded" data-equalizer-watch data-open="new-game-modal">New Game</button>
-					<div class="reveal" id="new-game-modal" data-reveal>
+					<div id="new-game-modal" class="reveal" data-reveal>
 						<h3>Create New Game</h3>
-						<form id="new-game">
+						<form id="new-game-form">
 							<label>Title*
-								<input id="title" type="text" placeholder="The Great Nuzlocke Challenge" required pattern="[\S\s]*[\S]+[\S\s]*">
+								<input id="new-title" type="text" placeholder="The Great Nuzlocke Challenge" required pattern="[\S\s]*[\S]+[\S\s]*">
 							</label>
 							<label>Game*
-								<input id="game" type="text" placeholder="Pokémon Ruby" required pattern="[\S\s]*[\S]+[\S\s]*">
+								<input id="new-game" type="text" placeholder="Pokémon Ruby" required pattern="[\S\s]*[\S]+[\S\s]*">
 							</label>
 							<label>Name*
-								<input id="name" type="text" placeholder="Ruby" required pattern="[\S\s]*[\S]+[\S\s]*">
+								<input id="new-name" type="text" placeholder="Ruby" required pattern="[\S\s]*[\S]+[\S\s]*">
 							</label>
 							<label>Initial Location
-								<input id="location" type="text" placeholder="Littleroot Town" pattern="[\S\s]*[\S]+[\S\s]*">
+								<input id="initial-location" type="text" placeholder="Littleroot Town" pattern="[\S\s]*[\S]+[\S\s]*">
 							</label>
 							<input id="new-game-submit" type="submit" hidden>
 						</form>
@@ -73,9 +73,9 @@
 									<div class="cell"><input id="disable-abilities" type="checkbox"><label for="disable-abilities">Disable Abilities</label></div>
 								</div>
 								<div class="medium-auto cell">
-									<select id="rules" multiple class="no-margin-bottom"></select>
-									<form id="add-rule" class="input-group no-margin-bottom">
-										<input id="rule-input" class="input-group-field" type="text" placeholder="Dupes Clause" required pattern="[\S\s]*[\S]+[\S\s]*">
+									<select id="new-rules" multiple></select>
+									<form id="add-rule-form" class="input-group">
+										<input id="new-rule" type="text" class="input-group-field" placeholder="Dupes Clause" required pattern="[\S\s]*[\S]+[\S\s]*">
 										<div class="input-group-button">
 											<input type="submit" class="hollow button" value="Add">
 										</div>
@@ -86,7 +86,7 @@
 								</div>
 							</div>
 						</fieldset>
-						<button id="start-new-game-button" type="button" class="large expanded button">Start!</button>
+						<button id="start-button" type="button" class="large expanded button">Start!</button>
 						
 						<button class="close-button" data-close aria-label="Close modal" type="button">
 							<span aria-hidden="true">&times;</span>
@@ -131,18 +131,18 @@
 						<!----------Title---------->
 					
 						<li class="accordion-item is-active" data-accordion-item>
-							<a href="#" class="accordion-title"><h4 id="title-label">Title</h4></a>
+							<a href="#" class="accordion-title"><h4 id="title">Title</h4></a>
 							<div class="accordion-content" data-tab-content>
 								<div class="grid-x">
 									<div class="auto cell">
-										<p class="no-margin-bottom"><span id="game-label">Game</span><br>
-										<span id="name-label">Trainer Name</span></p>
+										<p id="info"><span id="game">Game</span><br>
+										<span id="name">Trainer Name</span></p>
 									</div>
 									<div class="shrink cell">
 										<button type="button" class="secondary dropdown button" data-toggle="rules-dropdown">Rules</button>
 										<div id="rules-dropdown" class="dropdown-pane" data-dropdown data-hover="true" data-hover-pane="true" data-alignment="right">
-											<span id="disabled-label">All Enabled</span>
-											<ul id="rules-list"></ul>
+											<span id="disabled">All Enabled</span>
+											<ul id="rules"></ul>
 										</div>
 									</div>
 								</div>
@@ -154,9 +154,9 @@
 						<li class="accordion-item is-active" data-accordion-item>
 							<a href="#" class="accordion-title"><h4>Journal</h4></a>
 							<div class="accordion-content" data-tab-content>
-								Current Location: <span id="location-label"></span>
-								<form id="new-location" class="input-group">
-									<input id="new-location-input" class="input-group-field" type="text" placeholder="Indigo Plateau" required pattern="[\S\s]*[\S]+[\S\s]*">
+								Current Location: <span id="location"></span>
+								<form id="new-location-form" class="input-group">
+									<input id="new-location" type="text" class="input-group-field" placeholder="Route 1" required pattern="[\S\s]*[\S]+[\S\s]*">
 									<div class="input-group-button">
 										<input type="submit" class="warning button" value="New Location">
 									</div>
@@ -175,13 +175,13 @@
 										</table>
 									</div>
 								</div>
-								<form id="log" class="input-group no-margin-bottom">
+								<form id="log" class="input-group">
 									<input id="log-text" class="input-group-field" type="text" placeholder="Write journal entry here" required pattern="[\S\s]*[\S]+[\S\s]*">
 									<div class="input-group-button">
 										<input type="submit" class="button" value="Log">
 									</div>
 									<div class="input-group-button">
-										<input id="undo-button" type="button" class="secondary button"value="Undo">
+										<input id="undo-button" type="button" class="secondary button" value="Undo" disabled>
 									</div>
 								</form>
 							</div>
@@ -190,40 +190,40 @@
 				</div>
 				
 				<div class="large-7 cell">
-					<div class="margin-bottom">
+					<div id="pokemon-column">
 				
 						<!----------Menu---------->
 
-						<div class="expanded button-group no-margin-bottom">
+						<div id="menu" class="expanded button-group">
 						
 							<!----------Add Pokémon---------->
 
-							<button id="add-pokemon-button" type="button" class="success button large expanded no-margin-bottom" data-open="add-pokemon-modal">Add Pokémon</button>
-							<div class="large reveal" id="add-pokemon-modal" data-reveal>
+							<button id="add-pokemon-button" type="button" class="success button large expanded" data-open="add-pokemon-modal">Add Pokémon</button>
+							<div class="reveal" id="add-pokemon-modal" data-reveal>
 								<h3>Add New Pokémon</h3>
 								<form id="add-pokemon">
 									<div id="add-pokemon-card" class="card pokemon">
 										<div class="card-divider">
 											<div class="media-object">
 												<div class="media-object-section align-self-middle">
-													<img class="icon" src="img/icon.png">
+													<img id="add-pokemon-icon" src="img/icon.png">
 												</div>
 												<div id="add-pokemon-header-inputs" class="media-object-section">
 													<div class="grid-x grid-margin-x">
-														<label class="large-3 small-6 cell">Pokémon*
+														<label class="small-6 cell">Pokémon*
 															<input id="add-pokemon-species" type="text" placeholder="Bulbasaur" required pattern="[\S\s]*[\S]+[\S\s]*">
 														</label>
-														<label class="large-3 small-6 cell">Nickname
+														<label class="small-6 cell">Nickname
 															<input id="add-pokemon-nickname" type="text" placeholder="Bulby" pattern="[\S\s]*[\S]+[\S\s]*">
 														</label>
-														<label class="large-3 small-4 cell">Level*
+														<label class="small-4 cell">Level*
 															<input id="add-pokemon-level" type="number" value="5" min="1" max="100">
 														</label>
-														<fieldset class="large-3 small-8 cell">
+														<fieldset class="small-8 cell">
 															<label>Gender*</label>
-															<input type="radio" name="add-pokemon-gender" value="Male" id="male" required><label for="male"><img src="img/male.png"></label>
-															<input type="radio" name="add-pokemon-gender" value="Female" id="female"><label for="female"><img src="img/female.png"></label>
-															<input type="radio" name="add-pokemon-gender" value="Genderless" id="genderless"><label for="genderless">N/A</label>
+															<input name="add-pokemon-gender" type="radio" class="disable-genders" value="Male" id="male" required><label for="male"><img src="img/male.png"></label>
+															<input name="add-pokemon-gender" type="radio" class="disable-genders" value="Female" id="female"><label for="female"><img src="img/female.png"></label>
+															<input name="add-pokemon-gender" type="radio" class="disable-genders" value="Genderless" id="genderless"><label for="genderless">N/A</label>
 														</fieldset>
 													</div>
 												</div>
@@ -243,10 +243,10 @@
 												<div class="media-object-section grid-x grid-margin-x">
 													<div class="small-6 cell">
 														<label>Nature*
-															<select id="add-pokemon-nature"></select> <!--populated in JS-->
+															<select id="add-pokemon-nature" class="disable-natures"></select> <!--populated in JS-->
 														</label>
 														<label>Ability*
-															<input id="add-pokemon-ability" type="text" placeholder="Overgrow" required pattern="[\S\s]*[\S]+[\S\s]*">
+															<input id="add-pokemon-ability" type="text" class="disable-abilities" placeholder="Overgrow" required pattern="[\S\s]*[\S]+[\S\s]*">
 														</label>
 														<label>Item
 															<input id="add-pokemon-item" type="text" placeholder="Oran Berry" pattern="[\S\s]*[\S]+[\S\s]*">
@@ -260,22 +260,26 @@
 															<input type="text" pattern="[\S\s]*[\S]+[\S\s]*">
 														</label>
 													</div>
-													<div class="cell grid-x">
-														<label class="small-5 cell">Location*
-															<select id="add-pokemon-method">
-																<option>Received at:</option>
-																<option>Caught at:</option>
-															</select>
-														</label>
-														<label class="small-7 cell"><em id="valid-catch">No catches at this location yet.</em>
-															<input type="text" id="add-pokemon-location" required pattern="[\S\s]*[\S]+[\S\s]*">
-														</label>
-													</div>
+													<label class="cell">Location*
+														<div class="grid-x">
+															<div class="small-6 cell">
+																<select id="add-pokemon-method">
+																	<option>Received at:</option>
+																	<option>Caught at:</option>
+																	<option>Hatched at:</option>
+																</select>
+															</div>
+															<div class="small-6 cell">
+																<input type="text" id="add-pokemon-location" required pattern="[\S\s]*[\S]+[\S\s]*">
+															</div>
+														<em id="valid-location">No catches at this location yet.</em>
+														</div>
+													</label>
 												</div>
 											</div>
 										</div>
 									</div>
-									<input type="submit" value="Add Pokémon (Party: Available)" class="large success expanded button">
+									<input id="add-pokemon-submit" type="submit" class="large expanded success button" value="Add Pokémon (Party: Available)">
 								</form>
 								<button class="close-button" data-close aria-label="Close modal" type="button">
 									<span aria-hidden="true">&times;</span>
@@ -300,12 +304,12 @@
 										</table>
 									</div>
 								</div>
-								<form id="failed-catch">
-									<em>You already reported this location!</em>
+								<form id="failed-catch-form">
+									<em id="failed-catch-text">You already reported this location!</em>
 									<div class="input-group">
-										<input type="text" class="input-group-field" placeholder="Enter location" required pattern="[\S\s]*[\S]+[\S\s]*">
+										<input id="failed-catch-location" type="text" class="input-group-field" placeholder="Enter location" required pattern="[\S\s]*[\S]+[\S\s]*">
 										<div class="input-group-button">
-											<input type="button" class="secondary button" value="Report Failed Catch">
+											<input type="submit" class="secondary button" value="Report Failed Catch">
 										</div>
 									</div>
 								</form>
@@ -346,13 +350,16 @@
 						<div id="pokemon-panels" class="tabs-content" data-tabs-content="pokemon-tabs">
 							<div id="party-panel" class="tabs-panel is-active">
 								<div class="grid-x">
+								
+									<!----------Party Tabs---------->
+									
 									<div class="medium-4 cell">
 										<ul id="party" class="tabs" data-tabs data-active-collapse="true">
 											<li class="tabs-title">
 												<a href="#party">
 													<div class="media-object">
 														<img class="media-object-section align-self-middle slot-icon" src="img/icon.png">
-														<div class="slot-details media-object-section">
+														<div class="slot-details media-object-section to-hide">
 															<div class="media-object">
 																<div class="slot-name media-object-section">Fletchinder</div>
 																<div class="media-object-section"><img class="slot-gender" src="img/female-small.png"></div>
@@ -364,6 +371,9 @@
 											</li> <!--More slots added in JS-->
 										</ul>
 									</div>
+								
+									<!----------Party Pokemon---------->
+									
 									<div class="medium-8 cell">
 										<div id="party-pokemon" class="card pokemon">
 											<div class="card-divider">
@@ -372,12 +382,12 @@
 														<img class="icon" src="img/icon.png">
 													</div>
 													<div class="media-object-section">
-														<h4 class="name">No Pokémon <img class="gender"></h4>
-														<span class="level">Level</span>
+														<h4><span class="name">No Pokémon</span> <img class="gender to-hide"></h4>
+														<span class="to-hide">Level <span class="level">100</span></span>
 													</div>
 												</div>
 											</div>
-											<div class="card-section">
+											<div class="card-section to-hide">
 												<div class="media-object">
 													<div class="media-object-section">
 														<div class="thumbnail sprite">
@@ -390,23 +400,48 @@
 													</div>
 													<div class="media-object-section">
 														<p>
-															<span class="disable-nature"><span class="nature"></span> Nature<br></span>
-															<span class="disable-ability">Ability: <span class="ability"></span><br></span>
+															<span class="disable-natures"><span class="nature"></span> Nature<br></span>
+															<span class="disable-abilities">Ability: <span class="ability"></span><br></span>
 															Moves:<br>
-															- <span class="move1"></span><br>
-															- <span class="move2"></span><br>
-															- <span class="move3"></span><br>
-															- <span class="move4"></span><br>
+															- <span class="moves"></span><br>
+															- <span class="moves"></span><br>
+															- <span class="moves"></span><br>
+															- <span class="moves"></span><br>
 															Item: <span class="item"></span><br>
 														</p>
 													</div>
 												</div>
-												<p class="method">Received at: </span><span class="location">?</p>
+												<p><span class="method">Received at:</span> <span class="location">?</span></p>
+												
+												<!----------Party Options--------->
+												
 												<div class="expanded button-group">
 													<button type="button" class="dropdown button" data-toggle="party-options-dropdown">Options</button>
 													<div id="party-options-dropdown" class="dropdown-pane" data-dropdown data-hover="true" data-hover-pane="true" data-position="left">
 														<div id="options" class="stacked expanded button-group">
-															<button type="button" class="button">Level Up</button>
+												
+															<!----------Level Up--------->
+												
+															<button type="button" class="button" data-open="level-modal">Level Up</button>
+															<div id="level-modal" class="tiny reveal" data-reveal>
+																<h3>Level Up</h3>
+																<div class="media-object">
+																	<img class="icon media-object-section align-self-middle" src="img/icon.png">
+																	<div class="media-object-section">
+																		<div class="media-object">
+																			<div class="name media-object-section">Fletchinder</div>
+																			<div class="media-object-section"><img class="gender" src="img/female-small.png"></div>
+																		</div>
+																	</div>
+																</div>
+																<form id="level-form" class="input-group">
+																	<span class="input-group-label">Level:&nbsp;<span class="level"></span></span>
+																	<input id="level-input" type="number" class="input-group-field" value=1 min=1 required>
+																	<div class="input-group-button">
+																		<input type="submit" class="button" value="Add Levels">
+																	</div>
+																</form>
+															</div>
 															<button type="button" class="warning button">Moves</button>
 															<button type="button" class="warning button">Item</button>
 															<button type="button" class="success button">Evolve</button>
@@ -414,7 +449,8 @@
 															<button type="button" class="alert button">Death</button>
 														</div>
 													</div>
-													<button type="button" class="secondary dropdown button">Export</button>
+													<button type="button" class="secondary dropdown button" data-toggle="party-export">Export</button>
+													<div id="party-export" class="dropdown-pane" data-dropdown data-hover="true" data-hover-pane="true" data-position="top" data-alignment="right"></div>
 												</div>
 											</div>
 										</div>
@@ -428,7 +464,7 @@
 								<div class="grid-x">
 									<div class="medium-4 cell">
 										<div id="pc-container">
-											<ul id="pc" class="tabs" data-tabs data-active-collapse="true"></ul>
+											<ul id="pc" class="tabs to-hide" data-tabs data-active-collapse="true"></ul>
 										</div>
 									</div>
 									<div class="medium-8 cell">
@@ -491,7 +527,7 @@
 								<div class="grid-x">
 									<div class="medium-4 cell">
 										<div id="cemetery-container">
-											<ul id="cemetery" class="tabs" data-tabs data-active-collapse="true"></ul>
+											<ul id="cemetery" class="tabs to-hide" data-tabs data-active-collapse="true"></ul>
 										</div>
 									</div>
 									<div class="medium-8 cell">
@@ -541,7 +577,7 @@
 							</div>
 							
 						</div> <!--pokemon-panels-->
-					</div> <!--margin-bottom-->
+					</div> <!--pokemon-column-->
 				</div> <!--large-6 cell-->
 			</div> <!--grid-x-->
 		</div> <!--main-->

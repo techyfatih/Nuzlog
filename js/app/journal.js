@@ -1,60 +1,62 @@
-"use strict"
-
-define(["jquery", "nuzlog"], function($, nuzlog) {
+define(["jquery"],
+function($) {
 	var log = [];
+	
+	var $journal = $("#journal");
+	var $journalContainer = $("#journal-container");
+	var $logText = $("#log-text");
 	
 	function insertLog(type, entry) {
 		var time = new Date().toLocaleString();
 		time = time.substring(0, time.length - 6) + time.substring(time.length - 3);
 		
-		var $row = $("<tr/>");
-		var $timeCol = $("<td/>", {text: time});
-		var $typeCol = $("<td/>", {text: type});
-		var $entryCol = $("<td/>", {text: entry});
-		
-		$row.append($timeCol);
-		$row.append($typeCol);
-		$row.append($entryCol);
-		$("#journal").append($row);
-		$("#journal-container").animate({
-			scrollTop: $("#journal").scrollTop() + $row.offset().top
+		$row = $(
+			"<tr>" +
+				"<td>" + time + "</td>" +
+				"<td>" + type + "</td>" +
+				"<td>" + entry + "</td>" +
+			"</tr>"
+		);
+		$journal.append($row);
+		$journalContainer.animate({
+			scrollTop: $journal.scrollTop() + $row.offset().top
 		}, 0);
 	};
 	
+	//Handler
+	function onLogSubmit() {
+		var entry = $logText.val().trim();
+		insertLog("Log", entry);
+		log.push[{type: "Log", entry: entry}];
+		$logText.val("");
+		return false;
+	}
+	
 	return {
 		init: function() {
-			var logLocation = this.logLocation;
-			$("#new-location").submit(function() {
-				var $location = $("#new-location-input");
-				logLocation($location.val().trim());
-				$location.val("");
-				return false;
-			});
-			$("#log").submit(function() {
-				var message = $("#log-text");
-				var entry = message.val();
-				insertLog("Log", entry);
-				log.push[{type: "Log", entry: entry}];
-				message.val("");
-				return false;
-			});
+			$("#log").submit(onLogSubmit);
 		},
 		
 		reset: function() {
 			log = [];
-			$("#journal").empty();
+			$journal.empty();
+			$logText.val("");
 		},
 		
 		logLocation: function(location) {
-			nuzlog.location = location;
-			$("#location-label").text(location);
 			insertLog("Location", location);
 			log.push({type: "Location", entry: location});
 		},
 		
-		logPokemon: function(pokemon) {
-			insertLog("Pokemon", pokemon.export.replace("\n", "<br>"));
+		logPokemon: function(pokemon, party) {
+			var text = pokemon.name + (party ? " has been added to the party!" : " was put in the PC.");
+			insertLog("Pokemon", text + "<br>" + pokemon.export());
 			log.push({type: "Pokemon", entry: pokemon});
+		},
+		
+		logLevel: function(index, pokemon) {
+			insertLog("Level" + index, pokemon.name + " grew to level " + pokemon.level + "!");
+			log.push({type: "Level", index: index, entry: pokemon.level});
 		}
 	};
 });

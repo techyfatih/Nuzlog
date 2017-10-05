@@ -4,7 +4,7 @@
 	position: relative;
 }
 
-#covear {
+#cover {
 	position: absolute;
 	top: -16px;
 	left: 0px;
@@ -24,21 +24,35 @@
 	overflow-x: hidden;
 }
 
-#party a, #pc, #cemetery, .pokemon .level, .pokemon:not(#add-pokemon-card) .card-section {
-	avisibility: hidden;
+.to-hide {
+	visibility: hidden;
+}
+
+/*Modals*/
+
+#new-game-modal, #add-pokemon-modal, #catches-modal {
+	padding-bottom: 0;
 }
 
 /*New Game*/
 
-#rules {
+#new-rules {
 	height: 100px;
+}
+
+#new-rules, #add-rule-form {
+	margin-bottom: 0;
 }
 
 /*Title*/
 
+#info {
+	margin-bottom: 0;
+}
+
 #rules-dropdown {
-	width: 200px;
-	max-height: 100px;
+	width: 315px;
+	max-height: 150px;
 	overflow-y: auto;
 	word-wrap: break-word;
 }
@@ -92,19 +106,40 @@
 	background: whitesmoke
 }
 
-/*Tables*/
+/*Journal*/
 
 #journal-container {
-	height: 217px;
+	height: 210px;
 }
+
+#log {
+	margin-bottom: 0;
+}
+
+
+#pokemon-column {
+	margin-bottom: 16px;
+}
+
+/*Menu*/
+
+#menu {
+	margin-bottom: 0;
+}
+
+/*Add Pokemon*/
+
+#add-pokemon-method, #add-pokemon-location {
+	margin-bottom: 0;
+}
+
+/*Catches*/
 
 #catches-container {
 	height: 300px;
 }
 
-/*Menu*/
-
-#failed-catch em {
+#failed-catch-text {
 	visibility: hidden;
 	color: red;
 }
@@ -168,10 +203,6 @@
 	background: #ffffb3;
 }
 
-#cemetery-pokemon .card-divider {
-	background: #e6e6e6;
-}
-
 #add-pokemon .card-divider {
 	background: #b3ffb3;
 }
@@ -207,9 +238,27 @@
 	width: auto;
 }
 
+@media screen and (max-width: 39.9375em) {
+	.media-object.stack-for-small .media-object-section img {
+		width: auto;
+	}
+}
+
 #party-options-dropdown, #pc-options-dropdown {
 	width: 150px;
 	padding-bottom: 0;
+}
+
+#party-export {
+	width: 200px;
+}
+
+/*Combobox*/
+
+.button.combobox::after {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
 /*Other*/
@@ -219,25 +268,15 @@
 	color: white;
 }
 
-.reveal {
-	padding-bottom: 0;
-}
-
 .no-margin-bottom {
-	margin-bottom: 0;
+	amargin-bottom: 0;
 }
 
 .margin-bottom {
-	margin-bottom: 16px;
+	amargin-bottom: 16px;
 }
 
 #footer {
 	font-size: 12px;
 	margin: 0;
-}
-
-.button.combobox::after {
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-bottom: 10px;
 }
