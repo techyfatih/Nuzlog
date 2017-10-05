@@ -198,7 +198,7 @@
 						
 							<!----------Add Pokémon---------->
 
-							<button id="add-pokemon-button" type="button" class="success button large expanded" data-open="add-pokemon-modal">Add Pokémon</button>
+							<button type="button" class="success button large expanded" data-open="add-pokemon-modal">Add Pokémon</button>
 							<div class="reveal" id="add-pokemon-modal" data-reveal>
 								<h3>Add New Pokémon</h3>
 								<form id="add-pokemon">
@@ -288,7 +288,7 @@
 							
 							<!----------Catches---------->
 							
-							<button id="catches-button" type="button" class="secondary button" data-open="catches-modal">Catches</button>
+							<button type="button" class="secondary button" data-open="catches-modal">Catches</button>
 							<div id="catches-modal" class="reveal" data-reveal>
 								<h3>Catches</h3>
 								<div class="table-sticky-header">
@@ -337,12 +337,13 @@
 							</div>
 						</div>
 						
+						
 						<!----------Pokémon Tabs--------->
 						
 						<ul id="pokemon-tabs" class="tabs" data-tabs>
-							<li class="tabs-title is-active"><a href="#party-panel"><h4>Party</h4></a></li>
-							<li class="tabs-title"><a href="#pc-panel"><h4>PC</h4></a></li>
-							<li class="tabs-title"><a href="#cemetery-panel"><h4>Cemetery</h4></a></li>
+							<li id="party-tab" class="tabs-title is-active"><a href="#party-panel"><h4>Party</h4></a></li>
+							<li id="pc-tab" class="tabs-title"><a href="#pc-panel"><h4>PC</h4></a></li>
+							<li id="cemetery-tab" class="tabs-title"><a href="#cemetery-panel"><h4>Cemetery</h4></a></li>
 						</ul>
 						
 						<!----------Party---------->
@@ -382,7 +383,7 @@
 														<img class="icon" src="img/icon.png">
 													</div>
 													<div class="media-object-section">
-														<h4><span class="name">No Pokémon</span> <img class="gender to-hide"></h4>
+														<h4><span class="name">No Pokémon</span> <img class="gender-big to-hide"></h4>
 														<span class="to-hide">Level <span class="level">100</span></span>
 													</div>
 												</div>
@@ -430,7 +431,7 @@
 																	<div class="media-object-section">
 																		<div class="media-object">
 																			<div class="name media-object-section">Fletchinder</div>
-																			<div class="media-object-section"><img class="gender" src="img/female-small.png"></div>
+																			<div class="media-object-section"><img class="gender-small" src="img/female-small.png"></div>
 																		</div>
 																	</div>
 																</div>
@@ -441,12 +442,133 @@
 																		<input type="submit" class="button" value="Add Levels">
 																	</div>
 																</form>
+																<button class="close-button" data-close aria-label="Close modal" type="button">
+																	<span aria-hidden="true">&times;</span>
+																</button>
 															</div>
-															<button type="button" class="warning button">Moves</button>
+												
+															<!----------Moves--------->
+												
+															<button type="button" class="warning button" data-open="moves-modal">Moves</button>
+															<div id="moves-modal" class="tiny reveal" data-reveal>
+																<h3>Moves</h3>
+																<div class="media-object">
+																	<img class="icon media-object-section align-self-middle" src="img/icon.png">
+																	<div class="media-object-section">
+																		<div class="media-object">
+																			<div class="name media-object-section">Fletchinder</div>
+																			<div class="media-object-section"><img class="gender-small" src="img/female-small.png"></div>
+																		</div>
+																	</div>
+																</div>
+																<form id="moves-form">
+																	<div class="grid-x">
+																		<label id="current-moves" class="small-6 cell">Current
+																			<input type="text" disabled>
+																			<input type="text" disabled>
+																			<input type="text" disabled>
+																			<input type="text" disabled>
+																		</label>
+																		<label id="new-moves" class="small-6 cell">New
+																			<input type="text" required pattern="[\S\s]*[\S]+[\S\s]*">
+																			<input type="text" pattern="[\S\s]*[\S]+[\S\s]*">
+																			<input type="text" pattern="[\S\s]*[\S]+[\S\s]*">
+																			<input type="text" pattern="[\S\s]*[\S]+[\S\s]*">
+																		</label>
+																	</div>
+																	<input type="submit" class="warning expanded button" value="Change Moves">
+																</form>
+																<button class="close-button" data-close aria-label="Close modal" type="button">
+																	<span aria-hidden="true">&times;</span>
+																</button>
+															</div>
+												
+															<!----------Item--------->
+												
 															<button type="button" class="warning button">Item</button>
-															<button type="button" class="success button">Evolve</button>
-															<button type="button" class="secondary button">Deposit</button>
+															<div id="level-modal" class="tiny reveal" data-reveal>
+																<h3>Level Up</h3>
+																<div class="media-object">
+																	<img class="icon media-object-section align-self-middle" src="img/icon.png">
+																	<div class="media-object-section">
+																		<div class="media-object">
+																			<div class="name media-object-section">Fletchinder</div>
+																			<div class="media-object-section"><img class="gender-small" src="img/female-small.png"></div>
+																		</div>
+																	</div>
+																</div>
+																<form id="level-form" class="input-group">
+																	<span class="input-group-label">Level:&nbsp;<span class="level"></span></span>
+																	<input id="level-input" type="number" class="input-group-field" value=1 min=1 required>
+																	<div class="input-group-button">
+																		<input type="submit" class="button" value="Add Levels">
+																	</div>
+																</form>
+																<button class="close-button" data-close aria-label="Close modal" type="button">
+																	<span aria-hidden="true">&times;</span>
+																</button>
+															</div>
+												
+															<!----------Evolve--------->
+												
+															<button type="button" class="success button" data-open="evolve-modal">Evolve</button>
+															<div id="evolve-modal" class="tiny reveal" data-reveal>
+																<h3>Evolve</h3>
+																<div class="media-object">
+																	<img class="icon media-object-section align-self-middle" src="img/icon.png">
+																	<div class="media-object-section">
+																		<div class="media-object">
+																			<div class="name media-object-section">Fletchinder</div>
+																			<div class="media-object-section"><img class="gender-small" src="img/female-small.png"></div>
+																		</div>
+																	</div>
+																</div>
+																<form id="evolve-form">
+																	<label>Pokémon*
+																		<input id="evolve-species" type="text" placeholder="Ivysaur" required pattern="[\S\s]*[\S]+[\S\s]*">
+																	</label>
+																	<label>Ability*
+																		<div class="input-group">
+																			<input id="current-ability" class="ability input-group-field" type="text" disabled>
+																			<input id="evolve-ability" type="text" class="disable-abilities input-group-field" required pattern="[\S\s]*[\S]+[\S\s]*">
+																		</div>
+																	</label>
+																	<input type="submit" class="expanded success button" value="Evolve">
+																</form>
+																<button class="close-button" data-close aria-label="Close modal" type="button">
+																	<span aria-hidden="true">&times;</span>
+																</button>
+															</div>
+												
+															<!----------Deposit--------->
+												
+															<button id="deposit-button" type="button" class="secondary button">Deposit</button>
+												
+															<!----------Death--------->
+												
 															<button type="button" class="alert button">Death</button>
+															<div id="level-modal" class="tiny reveal" data-reveal>
+																<h3>Level Up</h3>
+																<div class="media-object">
+																	<img class="icon media-object-section align-self-middle" src="img/icon.png">
+																	<div class="media-object-section">
+																		<div class="media-object">
+																			<div class="name media-object-section">Fletchinder</div>
+																			<div class="media-object-section"><img class="gender-small" src="img/female-small.png"></div>
+																		</div>
+																	</div>
+																</div>
+																<form id="level-form" class="input-group">
+																	<span class="input-group-label">Level:&nbsp;<span class="level"></span></span>
+																	<input id="level-input" type="number" class="input-group-field" value=1 min=1 required>
+																	<div class="input-group-button">
+																		<input type="submit" class="button" value="Add Levels">
+																	</div>
+																</form>
+																<button class="close-button" data-close aria-label="Close modal" type="button">
+																	<span aria-hidden="true">&times;</span>
+																</button>
+															</div>
 														</div>
 													</div>
 													<button type="button" class="secondary dropdown button" data-toggle="party-export">Export</button>

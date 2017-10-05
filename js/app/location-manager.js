@@ -15,6 +15,7 @@ function($, journal) {
 	// Handler
 	function onLocationSubmit() {
 		setLocation($newLocation.val().trim());
+		$newLocation.val("");
 		return false;
 	}
 	

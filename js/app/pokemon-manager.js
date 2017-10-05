@@ -1,8 +1,19 @@
-define(["jquery", "journal", "pokemon/party"],
-function($, journal, party) {
+define(["jquery", "pokemon/party", "pokemon/pc", "pokemon/cemetery"],
+function($, party, pc, cemetery) {
+	$tabs = $("#pokemon-tabs");
+	$partyTab = $("#party-tab");
+	$pcTab = $("#pc-tab");
+	$cemeteryTab = $("#cemetery-tab");
+	
+	$deposit = $("#deposit-button");
+	function onDepositClick() {
+		
+	}
+	
 	return {
 		init: function() {
 			party.init();
+			$deposit.clik
 		},
 		
 		reset: function() {
@@ -17,7 +28,22 @@ function($, journal, party) {
 					party.add(pokemon);
 				} else {
 					pc.add(pokemon);
-					journal.logPokemon(pokemon, false);
+				}
+				this.focusPokemon(pokemon);
+			}
+		},
+		
+		focusPokemon: function(pokemon) {
+			if (pokemon && pokemon.slot) {
+				if (pokemon.slot["party"] != undefined) {
+					$tabs.foundation("_handleTabChange", $partyTab);
+					party.focusSlot(pokemon.slot["party"]);
+				} else if (pokemon.slot["pc"] != undefined) {
+					$tabs.foundation("_handleTabChange", $pcTab);
+					pc.focusSlot(pokemon.slot["pc"]);
+				} else if (pokemon.slot["cemetery"] != undefined) {
+					$tabs.foundation("_handleTabChange", $cemeteryTab);
+					cemetery.focusSlot(pokemon.slot["cemetery"]);
 				}
 			}
 		}

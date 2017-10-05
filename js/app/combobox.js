@@ -33,11 +33,15 @@ function($, autocomplete) {
 			menu.element.on("menufocus", function() {menu.bindings.length = 0;}); // hack for performance optimization
 		},
 		
+		_renderItem: function(item) {
+			return item.label;
+		},
+		
 		_renderMenu: function(ul, items) {
 			var $ul = $(ul);
 			var $items = "";
 			for (var i = 0; i < items.length; i++) {
-				$items += "<li class=\"ui-menu-item\"><div tabindex=\"-1\" class=\"ui-menu-item-wrapper\">" + items[i].label + "</div></li>";
+				$items += "<li class=\"ui-menu-item\"><div tabindex=\"-1\" class=\"ui-menu-item-wrapper\">" + this._renderItem(items[i]) + "</div></li>";;
 			}
 			$ul.append($items)
 			$ul.css({

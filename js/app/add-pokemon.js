@@ -24,6 +24,10 @@ function($, data, locationManager, catches, info, pokemonManager) {
 	
 	var $submit = $("#add-pokemon-submit");
 	
+	function normalize(species) {
+		return species.replace(/[\.\s-]/g, "").replace(/♀/g, "f").replace(/♂/g, "m");
+	}
+	
 	function changeIcon(species) {
 		for (var i = 0; i < data.pokemon.length; i++) {
 			if (species.toLowerCase() == data.pokemon[i].toLowerCase()) {
@@ -45,7 +49,7 @@ function($, data, locationManager, catches, info, pokemonManager) {
 	}
 	
 	//Handlers
-	function onAddPokemonClick() {
+	function onModalOpen() {
 		changeIcon("");
 		$species.val("");
 		$nickname.val("");
@@ -68,9 +72,6 @@ function($, data, locationManager, catches, info, pokemonManager) {
 		
 		var partySize = pokemonManager.partySize();
 		$submit.val("Add Pokémon (Party: " + (partySize < 6 ? (6 - partySize) + " Available" : "Full") + ")");
-	}
-	
-	function onModalFocus() {
 		$species.focus();
 	}
 	
@@ -87,8 +88,7 @@ function($, data, locationManager, catches, info, pokemonManager) {
 		
 		pokemon.species = $species.val().trim();
 		pokemon.nickname = $nickname.val().trim();
-		pokemon.fullname = pokemon.nickname ? pokemon.nickname + " (" + pokemon.species + ")" : pokemon.species;
-		pokemon.name = pokemon.nickname ? pokemon.nickname : pokemon.species;
+		
 		pokemon.level = parseInt($level.val());
 		pokemon.form = $form.val().trim();
 		pokemon.shiny = $shiny.prop("checked");
@@ -110,6 +110,12 @@ function($, data, locationManager, catches, info, pokemonManager) {
 		pokemon.method = $method.val();
 		pokemon.location = $location.val().trim();
 		
+		pokemon.fullname = function() {
+			return this.nickname ? this.nickname + " (" + this.species + ")" : this.species;
+		};
+		pokemon.name = function() {
+			return this.nickname ? this.nickname : this.species;
+		}
 		pokemon.getGenderIcon = function(small) {
 			if (pokemon.gender && pokemon.gender != "Genderless")
 				return "img/" + pokemon.gender.toLowerCase() + (small ? "-small" : "") + ".png";
@@ -152,13 +158,12 @@ function($, data, locationManager, catches, info, pokemonManager) {
 	return {
 		init: function() {
 			// Setup comboboxes and nature select
-			data.pokemon.sort();
 			$species.combobox({
 				source: function(request, response) {
-					var term = request.term.replace(/[\.\s-]/g, "").replace(/♀/g, "f").replace(/♂/g, "m");
+					var term = normalize(request.term);
 					var matcher = new RegExp( $.ui.autocomplete.escapeRegex(term), "i" );
 					response($.grep(data.pokemon, function(species) {
-						return matcher.test(species.replace(/[\.\s-]/g, "").replace(/♀/g, "f").replace(/♂/g, "m"));
+						return matcher.test(normalize(species));
 					}));
 				},
 				close: onSpeciesChange
@@ -172,10 +177,9 @@ function($, data, locationManager, catches, info, pokemonManager) {
 			$nature.html("<option>" + data.natures.join("</option><option>") + "</option>");
 			
 			// Handlers
-			$("#add-pokemon-button").click(onAddPokemonClick);
-			$modal.on("open.zf.reveal", onModalFocus);
-			$species.on("change keyup paste select", onSpeciesChange);
-			$location.on("change keyup paste", onLocationChange);
+			$modal.on("open.zf.reveal", onModalOpen);
+			$species.on("input keydown", onSpeciesChange);
+			$location.on("keyup", onLocationChange);
 			$addPokemonForm.submit(onSubmit);
 		}
 	};

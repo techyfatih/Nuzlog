@@ -30,7 +30,7 @@
 
 /*Modals*/
 
-#new-game-modal, #add-pokemon-modal, #catches-modal {
+#new-game-modal, #save-load-game-modal, #add-pokemon-modal, #catches-modal, #level-modal, #evolve-modal {
 	padding-bottom: 0;
 }
 
@@ -251,6 +251,12 @@
 
 #party-export {
 	width: 200px;
+}
+
+/*Party Options*/
+
+#moves-form input {
+	margin-bottom: 0;
 }
 
 /*Combobox*/

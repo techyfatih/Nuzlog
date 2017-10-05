@@ -82,7 +82,7 @@ function($, journal, party) {
 		var pokemon = party[$party.find(".is-active").index()];
 		if (pokemon != undefined) {
 			$partyHide.css("visibility", "visible");
-			$partyName.text(pokemon.fullname);
+			$partyName.text(pokemon.fullname());
 			$partyGender.attr("src", pokemon.getGenderIcon(false));
 			$partyLevel.text(pokemon.level);
 			$partyForm.text(pokemon.form ? pokemon.form : "Normal");
@@ -142,7 +142,7 @@ function($, journal, party) {
 				}
 				$slot.find(".slot-icon").attr("src", "img/icon.png");
 				$slot.find(".slot-details").css("visibility", "visible");
-				$slot.find(".slot-name").text(pokemon.name);
+				$slot.find(".slot-name").text(pokemon.name());
 				$slot.find(".slot-gender").attr("src", pokemon.getGenderIcon(true));
 				$slot.find(".slot-level").text(pokemon.level);
 			}

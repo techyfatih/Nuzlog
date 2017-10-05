@@ -21,13 +21,14 @@ function($) {
 		$journalContainer.animate({
 			scrollTop: $journal.scrollTop() + $row.offset().top
 		}, 0);
+		log[log.length - 1].time = time;
 	};
 	
 	//Handler
 	function onLogSubmit() {
 		var entry = $logText.val().trim();
-		insertLog("Log", entry);
 		log.push[{type: "Log", entry: entry}];
+		insertLog("Log", entry);
 		$logText.val("");
 		return false;
 	}
@@ -44,19 +45,34 @@ function($) {
 		},
 		
 		logLocation: function(location) {
+			log.push({type: "Location", location: location});
 			insertLog("Location", location);
-			log.push({type: "Location", entry: location});
 		},
 		
 		logPokemon: function(pokemon, party) {
-			var text = pokemon.name + (party ? " has been added to the party!" : " was put in the PC.");
+			var text = pokemon.name() + (party ? " has been added to the party!" : " was put in the PC.");
+			log.push({type: "Pokemon", pokemon: pokemon});
 			insertLog("Pokemon", text + "<br>" + pokemon.export());
-			log.push({type: "Pokemon", entry: pokemon});
+		},
+		
+		logFailCatch: function(location) {
+			log.push({type: "Catch", location: location});
+			insertLog("Catch", "Failed to catch a Pokemon at " + location);
 		},
 		
 		logLevel: function(index, pokemon) {
+			log.push({type: "Level", index: index, level: pokemon.level});
 			insertLog("Level" + index, pokemon.name + " grew to level " + pokemon.level + "!");
-			log.push({type: "Level", index: index, entry: pokemon.level});
+		},
+		
+		logMoves: function(index, pokemon) {
+			log.push({type: "Moves", index: index, moves: pokemon.moves});
+			insertLog("Moves" + index, pokemon.name + " changed moves:" + "<br>- " + pokemon.moves.join("<br>- "));
+		},
+		
+		logEvolve: function(index, pokemon) {
+			log.push({type: "Evolve", index: index, species: pokemon.species, ability: pokemon.ability});
+			insertLog("Evolve" + index, pokemon.name() + " evolved into " + pokemon.species + "!<br>Ability: " + pokemon.ability);
 		}
 	};
 });
