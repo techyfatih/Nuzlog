@@ -1,0 +1,12 @@
+.custom-dropdown {
+  position: absolute;
+  width: 100%;
+  z-index: 9001;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid gray;
+}
+
+.custom-dropdown .list-group-item {
+  padding: 5px;
+}
