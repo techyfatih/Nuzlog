@@ -129,6 +129,7 @@ class _Combobox extends React.Component {
 
   handleFocus(e) {
     this.setState({menuOpen: true});
+    this.props.onFocus(e);
   }
 
   handleKeyDown(e) {

@@ -6,12 +6,19 @@
   margin: 0;
 }
 
+@media (max-width: 530px) {
+  .hidden-xxs {
+    display: none;
+  }
+}
+
+/* Sticky table header */
+
 .table-fixed thead {
   width: calc(100% - 17px);
 }
 
 .table-fixed tbody {
-  height: 200px;
   overflow-y: scroll;
   width: 100%;
   border-top: 1px solid #ddd;
@@ -36,10 +43,4 @@
 
 .table-fixed td:last-child, .table-fixed th:last-child {
   border-right: 0;
-}
-
-@media (max-width: 530px) {
-  .hidden-xxs {
-    display: none;
-  }
 }

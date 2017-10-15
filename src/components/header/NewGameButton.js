@@ -69,7 +69,7 @@ class NewGameForm extends React.Component {
       abilities: !values.abilities,
       list: this.state.rules
     }
-    this.props.onNewGame(info, rules, values.location);
+    this.props.onNewGame(info, rules, values.newLocation);
     this.props.onSubmit();
   }
 
@@ -132,7 +132,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onNewGame: (info, rules, location) => {
         dispatch(newGame(info, rules))
-        dispatch(newLocation(location));
+        if (location)
+          dispatch(newLocation(location));
     }
   }
 }
@@ -140,21 +141,12 @@ const mapDispatchToProps = dispatch => {
 const NewGame = connect(null, mapDispatchToProps)(NewGameForm);
 
 export default class NewGameButton extends React.Component {
-  constructor() {
-    super();
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit() {
-    this.modal.close();
-  }
-
   render() {
     return (
       <ModalButton bsStyle='primary' label='New Game'
         ref={ref => this.modal = ref}>
         <Modal.Header closeButton><h2>New Game</h2></Modal.Header>
-        <NewGame onSubmit={this.handleSubmit} />
+        <NewGame onSubmit={() => this.modal.close()} />
       </ModalButton>
     );
   }

@@ -1,0 +1,40 @@
+#current-location {
+  height: 15px;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sticky {
+  margin: 0;
+}
+
+.sticky .panel-title {
+  font-weight: bold;
+  width: calc(100% - 17px);
+}
+
+.sticky .panel-heading, .sticky .list-group-item {
+  padding: 0;
+}
+
+.sticky .row {
+  margin: 0;
+}
+
+.sticky .row > div {
+  padding: 5px 10px;
+}
+
+.sticky .row > div:not(:last-child) {
+  border-right: 1px solid #ddd;
+}
+
+.sticky .list-group {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.sticky .panel-body {
+  display: none;
+}

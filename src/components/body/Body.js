@@ -1,8 +1,8 @@
 import React from 'react';
 import { Grid, Col, Row } from 'react-bootstrap';
 
-import Info from './Info';
-import Journal from './Journal';
+import Info from './info/Info';
+import Journal from './journal/Journal';
 import Menu from './Menu';
 
 export default class Body extends React.Component {
