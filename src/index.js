@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { combineForms } from 'react-redux-form';
 
+import nuzlog from './reducers';
 import App from './components/App';
 
-const store = createStore(combineForms({
-}));
+let store = createStore(nuzlog);
 
 const root = document.getElementById('root');
 const render = Component => (

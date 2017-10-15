@@ -58,6 +58,6 @@ module.exports = {
         })
     ],
     resolve: {
-        modules: ['node_modules', 'src/data']
+        modules: ['node_modules', 'src']
     }
 };

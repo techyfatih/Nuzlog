@@ -18,7 +18,7 @@ export default class Journal extends React.Component {
           </FormGroup>
         </form>
 
-        <Table className='table-fixed' condensed bordered style={{margin:0}}>
+        <Table className='table-fixed' condensed bordered>
           <thead>
             <tr>
               <th className='col-xs-3'>Time</th>

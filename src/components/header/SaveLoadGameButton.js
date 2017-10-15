@@ -1,8 +1,9 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
-import ModalButton from './helper/ModalButton';
 
-export default class App extends React.Component {
+import ModalButton from 'components/other/ModalButton';
+
+export default class SaveLoadGameButton extends React.Component {
   render() {
     return (
       <ModalButton bsStyle='primary' label='Save/Load Game'>

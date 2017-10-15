@@ -1,7 +1,8 @@
 import React from 'react';
 import { Media, Panel, Thumbnail, Table } from 'react-bootstrap';
-import icon from './img/icon.png';
-import female from './img/female.png';
+
+import icon from 'img/icon.png';
+import female from 'img/female.png';
 
 export default class PokeCard extends React.Component {
   render() {

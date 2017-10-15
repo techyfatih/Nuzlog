@@ -1,0 +1,8 @@
+#rules {
+  max-width: 300px;
+}
+
+#rules-list {
+  max-height: 150px;
+  overflow-y: auto;
+}

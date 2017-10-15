@@ -1,7 +1,8 @@
 import React from 'react';
 import { Media } from 'react-bootstrap';
-import icon from './img/icon.png';
-import female from './img/female-small.png';
+
+import icon from 'img/icon.png';
+import female from 'img/female-small.png';
 
 export default class PokeSlot extends React.Component {
   render() {
