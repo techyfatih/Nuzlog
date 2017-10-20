@@ -3,7 +3,7 @@ Current version is still v.1.0.6! Check other branches.
 
 # Nuzlog v. 1.1.0
 
-Nuzlog is a graphical tool desigend to help Pokemon players document their Nuzlocke adventures in detail.
+Nuzlog is a graphical tool designed to help Pokemon players document their Nuzlocke adventures in detail.
 
 Check out Nuzlog here: https://techyfatih.github.io/Nuzlog/
 
