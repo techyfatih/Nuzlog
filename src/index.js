@@ -7,7 +7,10 @@ import { createStore } from 'redux';
 import nuzlog from './reducers';
 import App from './components/App';
 
-let store = createStore(nuzlog);
+let store = createStore(
+  nuzlog,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 const root = document.getElementById('root');
 const render = Component => (

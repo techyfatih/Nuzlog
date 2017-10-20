@@ -17,7 +17,7 @@ export default class PokeCard extends React.Component {
       </Media>
     );
     return (
-      <Panel header={header} style={{width:'270px', margin:0}} >
+      <Panel class='poke-card' header={header} style={{width:'270px', margin:0}} >
         <Thumbnail style={{margin:0}} ><img src='http://www.pkparaiso.com/imagenes/xy/sprites/animados/gyarados-mega.gif' /></Thumbnail>
         <Table condensed style={{margin:0}}>
           <tbody>

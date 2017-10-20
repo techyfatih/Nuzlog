@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Panel, FormGroup, ControlLabel, InputGroup, FormControl, Button,
-  Table, Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Panel, Button, Table,
+  FormGroup, ControlLabel, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import './Journal.css';
+import StickyTable from 'components/other/StickyTable';
 import { newLocation, recordLog } from 'actions';
 
 class NewLocationForm extends React.Component {
@@ -87,38 +88,28 @@ class LogForm extends React.Component {
 }
 
 class JournalView extends React.Component {
-  componentDidUpdate() {
-    if (this.newLog)
-      ReactDOM.findDOMNode(this.newLog).scrollIntoView('block', 'nearest');
-  }
-
   render() {
     return (
       <Panel header='Journal' bsStyle='warning'>
-        <NewLocationForm newLocation={this.props.newLocation} />
-
-        <Panel className='sticky' header={(
-          <Row>
-            <Col xs={3}>Time</Col>
-            <Col xs={3}>Type</Col>
-            <Col xs={6}>Entry</Col>
-          </Row>
-        )}>
-          <ListGroup fill>
+        <NewLocationForm location={this.props.location}
+          newLocation={this.props.newLocation} />
+        
+        <StickyTable>
+          <StickyTable.Header>
+            <th width={'25%'}>Time</th>
+            <th width={'25%'}>Type</th>
+            <th width={'50%'}>Entry</th>
+          </StickyTable.Header>
+          <StickyTable.Body height='200px'>
             {this.props.log.map((log, index) => (
-              <ListGroupItem key={index}
-                ref={ref => {
-                  if (index == this.props.log.length - 1) this.newLog = ref}}>
-                <Row>
-                  <Col xs={3}>{log.time}</Col>
-                  <Col xs={3}>{log.type}</Col>
-                  <Col xs={6}>{log.entry}</Col>
-                </Row>
-              </ListGroupItem>
+              <tr key={index}>
+                <td width={'25%'}>{log.time}</td>
+                <td width={'25%'}>{log.type}</td>
+                <td width={'50%'}>{log.entry}</td>
+              </tr>
             ))}
-          </ListGroup>
-          <div />
-        </Panel>
+          </StickyTable.Body>
+        </StickyTable>
         <LogForm recordLog={this.props.recordLog} />
       </Panel>
     );
