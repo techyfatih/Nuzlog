@@ -1,29 +1,31 @@
 import React from 'react';
-import { Media, Panel, Thumbnail, Table } from 'react-bootstrap';
+import { Media, Panel, Image, Thumbnail, Table } from 'react-bootstrap';
 
+import './PokeCard.css';
 import icon from 'img/icon.png';
+import male from 'img/male.png';
 import female from 'img/female.png';
+import sprite from 'img/sprite.png';
 
 export default class PokeCard extends React.Component {
   render() {
-    const header = (
-      <Media>
-        <Media.Left><img src={icon} /></Media.Left>
-        <Media.Body>
-          <Media.Heading>Fletchinder <img src={female} /></Media.Heading>
-          <p>Level 100</p>
-        </Media.Body>
-        <Media.Right>*</Media.Right>
-      </Media>
-    );
     return (
-      <Panel class='poke-card' header={header} style={{width:'270px', margin:0}} >
-        <Thumbnail style={{margin:0}} ><img src='http://www.pkparaiso.com/imagenes/xy/sprites/animados/gyarados-mega.gif' /></Thumbnail>
-        <Table condensed style={{margin:0}}>
+      <Panel className='poke-card' header={
+        <Media>
+          <Media.Left align='middle'><img src={icon} /></Media.Left>
+          <Media.Body>
+            <Media.Heading>Fletchinder (Fletchinder) <img src={male} /></Media.Heading>
+            <p>Level 100</p>
+          </Media.Body>
+          <Media.Right>*</Media.Right>
+        </Media>
+      }>
+        <Thumbnail src={'https://www.pkparaiso.com/imagenes/sol-luna/sprites/animados/celesteela.gif'} />
+        <Table condensed>
           <tbody>
             <tr>
-              <th width={1} style={{border: 0}} >Form:</th>
-              <td width={2} style={{border: 0}}>Normal</td>
+              <th>Form:</th>
+              <td>Normal</td>
             </tr>
             <tr>
               <th>Nature:</th>

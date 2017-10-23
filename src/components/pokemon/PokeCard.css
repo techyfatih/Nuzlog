@@ -1,0 +1,24 @@
+.poke-card {
+  width: 320px;
+  margin: 0;
+}
+
+@media (max-width: 530px) {
+  .poke-card {
+  }
+}
+
+.poke-card p {
+  margin: 0;
+}
+
+.poke-card .thumbnail {
+  margin: 0;
+  height: 200px;
+}
+
+.poke-card .thumbnail img {
+  position: relative;
+  top: 95px;
+  transform: translate(0, -50%);
+}

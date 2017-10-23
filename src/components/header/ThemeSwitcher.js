@@ -12,13 +12,15 @@ export default class ThemeSwitcher extends React.Component {
 
   onChange(value) {
     this.setState({ value });
-    const link = 'bootstrap/css/bootstrap' + (value == 'dark' ? '-dark' : '') + '.min.css';
+    const link = 'bootstrap/css/bootstrap' +
+      (value == 'dark' ? '-dark' : '') + '.min.css';
     stylesheet.setAttribute('href', link);
   }
 
   render() {
     return (
-      <ToggleButtonGroup {...this.props} type='radio' name='theme' value={this.state.value} onChange={this.onChange}>
+      <ToggleButtonGroup {...this.props} type='radio' name='theme'
+        value={this.state.value} onChange={this.onChange}>
         <ToggleButton value='default'>Default</ToggleButton>
         <ToggleButton value='dark'>Dark</ToggleButton>
       </ToggleButtonGroup>

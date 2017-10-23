@@ -31,6 +31,7 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         info: action.info,
         rules: action.rules,
+        location: '',
         log: []
       })
       break;

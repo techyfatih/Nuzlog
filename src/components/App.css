@@ -11,36 +11,3 @@
     display: none;
   }
 }
-
-/* Sticky table header */
-
-.table-fixed thead {
-  width: calc(100% - 17px);
-}
-
-.table-fixed tbody {
-  overflow-y: scroll;
-  width: 100%;
-  border-top: 1px solid #ddd;
-}
-
-.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
-  display: block;
-}
-
-.table-fixed tbody tr td, .table-fixed thead tr th {
-  float: left;
-  border-left: 0;
-}
-
-.table-fixed thead tr th {
-  border-bottom: 0;
-}
-
-.table-fixed tr:nth-child(odd) td {
-  background: whitesmoke;
-}
-
-.table-fixed td:last-child, .table-fixed th:last-child {
-  border-right: 0;
-}

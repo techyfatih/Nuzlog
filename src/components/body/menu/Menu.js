@@ -1,14 +1,16 @@
 import React from 'react';
 import { Panel, ButtonGroup, Button, Tabs, Tab, ToggleButtonGroup, ToggleButton, Table } from 'react-bootstrap';
-import PokeSlot from './PokeSlot'
-import PokeCard from './PokeCard';
+
+import AddPokemonButton from './AddPokemonButton';
+import PokeSlot from 'components/pokemon/PokeSlot'
+import PokeCard from 'components/pokemon/PokeCard';
 
 export default class Menu extends React.Component {
   render() {
     return (
       <Panel header='Menu' bsStyle='success'>
         <ButtonGroup justified>
-          <Button bsStyle='success' href='#'>Add <span className='hidden-xs'>Pokemon</span></Button>
+          <AddPokemonButton />
           <Button bsStyle='info' href='#'>Catches</Button>
           <Button bsStyle='warning' href='#'>Bag</Button>
           <Button bsStyle='danger' href='#'>Battle</Button>

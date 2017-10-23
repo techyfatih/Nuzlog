@@ -96,15 +96,15 @@ class JournalView extends React.Component {
         
         <StickyTable>
           <StickyTable.Header>
-            <th width={'25%'}>Time</th>
-            <th width={'25%'}>Type</th>
+            <th width={'30%'}>Time</th>
+            <th width={'20%'}>Type</th>
             <th width={'50%'}>Entry</th>
           </StickyTable.Header>
           <StickyTable.Body height='200px'>
             {this.props.log.map((log, index) => (
               <tr key={index}>
-                <td width={'25%'}>{log.time}</td>
-                <td width={'25%'}>{log.type}</td>
+                <td width={'30%'}>{log.time}</td>
+                <td width={'20%'}>{log.type}</td>
                 <td width={'50%'}>{log.entry}</td>
               </tr>
             ))}

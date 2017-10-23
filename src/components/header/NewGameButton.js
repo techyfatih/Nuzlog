@@ -1,35 +1,29 @@
 import React from 'react';
 import { Modal, Button, Table, Panel, ListGroup, ListGroupItem, InputGroup, FormControl, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { LocalForm, Control, actions } from 'react-redux-form';
 
-import './NewGame.css';
 import games from 'data/games.json';
 import { newGame, newLocation } from 'actions';
-import ValidationForm from 'components/form/ValidationForm';
-import { TextControl, Combobox, CheckboxControl, MultiSelect } from
-'components/form/FormControls';
-import ModalButton from 'components/other/ModalButton';
+import { ModalButtonForm } from 'components/other/ModalButton';
+import { ValidationForm, TextControl, ComboboxControl, CheckboxControl } from 'components/form/Form';
+import StickyTable from 'components/other/StickyTable';
 
-class NewGameForm extends React.Component {
+const cover = document.getElementById('cover');
+
+class Rules extends React.Component {
   constructor() {
     super();
-    this.state = {
-      rule: '',
-      rules: []
-    };
-    this.handleRuleChange = this.handleRuleChange.bind(this);
-    this.handleRuleKeyDown = this.handleRuleKeyDown.bind(this);
+    this.state = {rule: ''};
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
     this.addRule = this.addRule.bind(this);
-    this.removeRule = this.removeRule.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
   
-  handleRuleChange(e) {
+  handleChange(e) {
     this.setState({rule: e.target.value});
   }
 
-  handleRuleKeyDown(e) {
+  handleKeyDown(e) {
     if (e.keyCode == 13) {
       this.addRule();
       e.preventDefault();
@@ -38,15 +32,63 @@ class NewGameForm extends React.Component {
 
   addRule() {
     if (this.state.rule) {
-      this.setState(prevState => {
-        return {
-          rule: '',
-          rules: [...prevState.rules, prevState.rule]
-        }
-      })
+      this.props.addRule(this.state.rule);
+      this.setState({rule: ''});
     }
   }
 
+  render() {
+    return (
+      <div>
+        <StickyTable>
+          <StickyTable.Header>
+            <th>Rules</th>
+          </StickyTable.Header>
+          <StickyTable.Body height={100}>
+            {this.props.rules.map((rule, index) =>
+              <tr key={index}>
+                <td>{rule}</td>
+                <td width={24}>
+                  <Button className='close'
+                    onClick={() => this.props.removeRule(index)}>
+                    <Glyphicon glyph='remove'/>
+                  </Button>
+                </td>
+              </tr>
+            )}
+          </StickyTable.Body>
+        </StickyTable>
+        <InputGroup>
+          <FormControl type='text' value={this.state.rule}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown} />
+          <InputGroup.Button>
+            <Button onClick={this.addRule}>Add</Button>
+          </InputGroup.Button>
+        </InputGroup>
+      </div>
+    )
+  }
+}
+
+class _NewGameButton extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      rule: '',
+      rules: []
+    };
+    this.addRule = this.addRule.bind(this);
+    this.removeRule = this.removeRule.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  addRule(rule) {
+    this.setState(prevState => {
+      return {rules: [...prevState.rules, rule]};
+    })
+  }
+  
   removeRule(key) {
     if (this.state.rules[key]) {
       this.setState(prevState => {
@@ -70,51 +112,32 @@ class NewGameForm extends React.Component {
       list: this.state.rules
     }
     this.props.onNewGame(info, rules, values.newLocation);
-    this.props.onSubmit();
+    if (cover != null) cover.remove();
   }
 
   render() {
     return (
-      <ValidationForm onSubmit={this.handleSubmit} focus='title'
-        getDispatch={dispatch => this.dispatch = dispatch}>
+      <ModalButtonForm bsStyle='primary' label='New Game' focus='title'
+        onSubmit={this.handleSubmit}>
+        <Modal.Header><h2>New Game</h2></Modal.Header>
         <Modal.Body>
           <TextControl id='title' label='Title*'
             placeholder='The Great Nuzlocke Challenge' required />
-          <Combobox id='game' label='Game*'
+          <ComboboxControl id='game' label='Game*'
             placeholder='Pokémon Ruby' items={games} required />
           <TextControl id='name' label='Name*'
             placeholder='Ruby' required />
           <TextControl id='newLocation' label='Initial Location'
             placeholder='Littleroot Town' />
           <Table><tbody><tr>
-            <td style={{width: '150px'}} >
+            <td width={150} >
               <CheckboxControl id='genders' label='Disable Genders'/>
               <CheckboxControl id='natures' label='Disable Natures'/>
               <CheckboxControl id='abilities' label='Disable Abilities'/>
             </td>
             <td>
-              <Panel id='new-rules-panel' header={'Rules'}>
-                <ListGroup fill>
-                  {this.state.rules.map((rule, index) =>
-                    <ListGroupItem key={index}>
-                      {rule}
-                      <Button className='pull-right'
-                        onClick={() => this.removeRule(index)}>
-                        <Glyphicon glyph='remove'/>
-                      </Button>
-                    </ListGroupItem>
-                  )}
-                </ListGroup>
-                <div/>
-              </Panel>
-              <InputGroup>
-                <FormControl type='text' value={this.state.rule}
-                  onChange={this.handleRuleChange}
-                  onKeyDown={this.handleRuleKeyDown} />
-                <InputGroup.Button>
-                  <Button onClick={this.addRule}>Add</Button>
-                </InputGroup.Button>
-              </InputGroup>
+              <Rules rules={this.state.rules}
+                addRule={this.addRule} removeRule={this.removeRule} />
             </td>
           </tr></tbody></Table>
         </Modal.Body>
@@ -123,7 +146,7 @@ class NewGameForm extends React.Component {
             Start
           </Button>
         </Modal.Footer>
-      </ValidationForm>
+      </ModalButtonForm>
     );
   }
 }
@@ -138,16 +161,5 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const NewGame = connect(null, mapDispatchToProps)(NewGameForm);
-
-export default class NewGameButton extends React.Component {
-  render() {
-    return (
-      <ModalButton bsStyle='primary' label='New Game'
-        ref={ref => this.modal = ref}>
-        <Modal.Header closeButton><h2>New Game</h2></Modal.Header>
-        <NewGame onSubmit={() => this.modal.close()} />
-      </ModalButton>
-    );
-  }
-}
+const NewGameButton = connect(null, mapDispatchToProps)(_NewGameButton);
+export default NewGameButton;

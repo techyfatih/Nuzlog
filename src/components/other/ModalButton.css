@@ -1,0 +1,12 @@
+.modal {
+  display: block;
+}
+
+.modal-open {
+  padding-right: 17px;
+}
+
+.modal-close-button {
+  margin-top: 15px;
+  margin-right: 15px;
+}

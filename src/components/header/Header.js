@@ -13,8 +13,8 @@ export default class Header extends React.Component {
           <h1 className='pull-left'>Nuzlog <small>v.1.1.0</small></h1>
           <ThemeSwitcher className='pull-right' />
           <ButtonGroup bsSize='large' justified>
-            <NewGameButton />
-            <SaveLoadGameButton />
+            <NewGameButton bsStyle='primary' />
+            <SaveLoadGameButton bsStyle='primary' />
           </ButtonGroup>
         </Grid>
       </Well>
