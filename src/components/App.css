@@ -5,9 +5,3 @@
 .table {
   margin: 0;
 }
-
-@media (max-width: 530px) {
-  .hidden-xxs {
-    display: none;
-  }
-}

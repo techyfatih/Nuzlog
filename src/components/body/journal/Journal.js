@@ -5,7 +5,7 @@ import { Panel, Button, Table,
 import { connect } from 'react-redux';
 
 import './Journal.css';
-import StickyTable from 'components/other/StickyTable';
+import StickyTable from 'components/stickyTable/StickyTable';
 import { newLocation, recordLog } from 'actions';
 
 class NewLocationForm extends React.Component {

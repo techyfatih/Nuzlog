@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { NEW_GAME, NEW_LOCATION, RECORD_LOG } from './actions';
+import { types } from './actions';
 
 const initialState = {
   info: {
@@ -14,7 +14,10 @@ const initialState = {
     list: [],
   },
   location: '',
-  log: []
+  log: [],
+  party: [],
+  pc: [],
+  cemetery: []
 }
 
 const recordLog = (type, entry) => {
@@ -27,7 +30,7 @@ const recordLog = (type, entry) => {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case NEW_GAME:
+    case types.NEW_GAME:
       return Object.assign({}, state, {
         info: action.info,
         rules: action.rules,
@@ -35,17 +38,29 @@ export default (state = initialState, action) => {
         log: []
       })
       break;
-    case NEW_LOCATION:
+    case types.NEW_LOCATION:
       return Object.assign({}, state, {
         location: action.location,
-        log: [...state.log, recordLog('location', action.location)]
+        log: [...state.log, recordLog('Location', action.location)]
       });
       break;
-    case RECORD_LOG:
+    case types.RECORD_LOG:
       return Object.assign({}, state, {
-        log: [...state.log, recordLog('log', action.log)]
+        log: [...state.log, recordLog('Log', action.log)]
       })
       break;
+    case types.ADD_POKEMON:
+      if (state.party.length < 6) {
+        return Object.assign({}, state, {
+          party: [...state.party, action.pokemon],
+          log: [...state.log, recordLog('Party', action.pokemon.export())]
+        })
+      } else {
+        return Object.assign({}, state, {
+          pc: [...state.pc, action.pokemon],
+          log: [...state.log, recordLog('PC', action.pokemon.export())]
+        })
+      }
     default:
       return state;
   }

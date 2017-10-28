@@ -10,7 +10,7 @@ export default class Body extends React.Component {
   render() {
     return (
       <div id='main'>
-        <div id='cover'/>
+        <div id='covser'/>
         <Grid fluid>
           <Row>
             <Col lg={6} md={5}>

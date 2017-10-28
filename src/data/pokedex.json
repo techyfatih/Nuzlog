@@ -1,0 +1,4668 @@
+{
+  "Bulbasaur": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ivysaur": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Venusaur": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Charmander": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Charmeleon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Charizard": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Squirtle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Wartortle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Blastoise": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Caterpie": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Metapod": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Butterfree": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Weedle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Kakuna": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Beedrill": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pidgey": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pidgeotto": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pidgeot": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Rattata": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Raticate": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Spearow": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Fearow": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ekans": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Arbok": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pikachu": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Raichu": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sandshrew": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sandslash": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Nidoran♀": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Nidorina": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Nidoqueen": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Nidoran♂": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Nidorino": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Nidoking": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Clefairy": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Clefable": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Vulpix": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ninetales": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Jigglypuff": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Wigglytuff": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Zubat": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Golbat": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Oddish": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gloom": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Vileplume": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Paras": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Parasect": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Venonat": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Venomoth": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Diglett": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dugtrio": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Meowth": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Persian": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Psyduck": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Golduck": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mankey": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Primeape": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Growlithe": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Arcanine": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Poliwag": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Poliwhirl": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Poliwrath": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Abra": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Kadabra": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Alakazam": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Machop": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Machoke": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Machamp": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bellsprout": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Weepinbell": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Victreebel": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tentacool": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tentacruel": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Geodude": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Graveler": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Golem": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ponyta": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Rapidash": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Slowpoke": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Slowbro": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Magnemite": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Magneton": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Farfetch'd": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Doduo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dodrio": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Seel": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dewgong": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Grimer": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Muk": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Shellder": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cloyster": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gastly": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Haunter": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gengar": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Onix": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Drowzee": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Hypno": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Krabby": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Kingler": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Voltorb": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Electrode": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Exeggcute": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Exeggutor": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cubone": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Marowak": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Hitmonlee": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Hitmonchan": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Lickitung": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Koffing": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Weezing": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Rhyhorn": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Rhydon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Chansey": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Tangela": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Kangaskhan": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Horsea": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Seadra": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Goldeen": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Seaking": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Staryu": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Starmie": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Mr. Mime": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Scyther": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Jynx": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Electabuzz": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Magmar": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pinsir": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tauros": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Magikarp": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gyarados": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lapras": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ditto": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Eevee": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Vaporeon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Jolteon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Flareon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Porygon": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Omanyte": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Omastar": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Kabuto": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Kabutops": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Aerodactyl": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Snorlax": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Articuno": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Zapdos": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Moltres": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Dratini": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dragonair": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dragonite": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mewtwo": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Mew": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Chikorita": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bayleef": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Meganium": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cyndaquil": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Quilava": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Typhlosion": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Totodile": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Croconaw": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Feraligatr": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sentret": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Furret": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Hoothoot": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Noctowl": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ledyba": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ledian": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Spinarak": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ariados": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Crobat": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Chinchou": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lanturn": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pichu": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cleffa": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Igglybuff": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Togepi": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Togetic": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Natu": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Xatu": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mareep": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Flaaffy": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ampharos": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bellossom": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Marill": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Azumarill": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sudowoodo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Politoed": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Hoppip": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Skiploom": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Jumpluff": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Aipom": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sunkern": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sunflora": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Yanma": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Wooper": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Quagsire": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Espeon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Umbreon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Murkrow": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Slowking": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Misdreavus": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Unown": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Wobbuffet": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Girafarig": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pineco": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Forretress": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dunsparce": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gligar": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Steelix": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Snubbull": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Granbull": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Qwilfish": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Scizor": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Shuckle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Heracross": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sneasel": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Teddiursa": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ursaring": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Slugma": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Magcargo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Swinub": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Piloswine": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Corsola": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Remoraid": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Octillery": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Delibird": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mantine": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Skarmory": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Houndour": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Houndoom": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Kingdra": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Phanpy": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Donphan": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Porygon2": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Stantler": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Smeargle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tyrogue": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Hitmontop": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Smoochum": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Elekid": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Magby": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Miltank": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Blissey": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Raikou": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Entei": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Suicune": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Larvitar": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pupitar": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tyranitar": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lugia": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Ho-Oh": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Celebi": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Treecko": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Grovyle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sceptile": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Torchic": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Combusken": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Blaziken": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mudkip": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Marshtomp": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Swampert": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Poochyena": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mightyena": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Zigzagoon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Linoone": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Wurmple": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Silcoon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Beautifly": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cascoon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dustox": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lotad": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lombre": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ludicolo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Seedot": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Nuzleaf": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Shiftry": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Taillow": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Swellow": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Wingull": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pelipper": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ralts": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Kirlia": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gardevoir": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Surskit": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Masquerain": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Shroomish": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Breloom": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Slakoth": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Vigoroth": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Slaking": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Nincada": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ninjask": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Shedinja": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Whismur": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Loudred": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Exploud": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Makuhita": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Hariyama": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Azurill": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Nosepass": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Skitty": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Delcatty": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sableye": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mawile": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Aron": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lairon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Aggron": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Meditite": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Medicham": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Electrike": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Manectric": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Plusle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Minun": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Volbeat": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Illumise": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Roselia": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gulpin": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Swalot": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Carvanha": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sharpedo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Wailmer": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Wailord": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Numel": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Camerupt": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Torkoal": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Spoink": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Grumpig": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Spinda": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Trapinch": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Vibrava": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Flygon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cacnea": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cacturne": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Swablu": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Altaria": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Zangoose": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Seviper": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lunatone": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Solrock": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Barboach": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Whiscash": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Corphish": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Crawdaunt": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Baltoy": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Claydol": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Lileep": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cradily": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Anorith": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Armaldo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Feebas": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Milotic": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Castform": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Kecleon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Shuppet": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Banette": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Duskull": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dusclops": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tropius": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Chimecho": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Absol": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Wynaut": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Snorunt": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Glalie": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Spheal": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sealeo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Walrein": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Clamperl": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Huntail": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gorebyss": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Relicanth": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Luvdisc": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bagon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Shelgon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Salamence": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Beldum": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Metang": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Metagross": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Regirock": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Regice": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Registeel": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Latias": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Latios": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Kyogre": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Groudon": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Rayquaza": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Jirachi": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Deoxys": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Turtwig": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Grotle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Torterra": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Chimchar": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Monferno": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Infernape": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Piplup": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Prinplup": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Empoleon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Starly": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Staravia": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Staraptor": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bidoof": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bibarel": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Kricketot": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Kricketune": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Shinx": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Luxio": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Luxray": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Budew": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Roserade": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cranidos": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Rampardos": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Shieldon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bastiodon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Burmy": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Wormadam": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Mothim": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Combee": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Vespiquen": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Pachirisu": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Buizel": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Floatzel": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cherubi": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cherrim": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Shellos": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gastrodon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ambipom": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Drifloon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Drifblim": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Buneary": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lopunny": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mismagius": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Honchkrow": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Glameow": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Purugly": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Chingling": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Stunky": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Skuntank": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bronzor": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Bronzong": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Bonsly": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mime Jr.": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Happiny": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Chatot": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Spiritomb": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gible": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gabite": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Garchomp": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Munchlax": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Riolu": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lucario": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Hippopotas": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Hippowdon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Skorupi": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Drapion": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Croagunk": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Toxicroak": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Carnivine": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Finneon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lumineon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mantyke": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Snover": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Abomasnow": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Weavile": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Magnezone": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Lickilicky": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Rhyperior": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tangrowth": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Electivire": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Magmortar": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Togekiss": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Yanmega": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Leafeon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Glaceon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gliscor": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mamoswine": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Porygon-Z": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Gallade": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Probopass": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dusknoir": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Froslass": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Rotom": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Uxie": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Mesprit": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Azelf": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Dialga": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Palkia": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Heatran": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Regigigas": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Giratina": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Cresselia": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Phione": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Manaphy": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Darkrai": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Shaymin": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Arceus": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Victini": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Snivy": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Servine": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Serperior": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tepig": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pignite": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Emboar": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Oshawott": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dewott": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Samurott": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Patrat": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Watchog": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lillipup": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Herdier": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Stoutland": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Purrloin": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Liepard": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pansage": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Simisage": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pansear": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Simisear": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Panpour": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Simipour": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Munna": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Musharna": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pidove": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tranquill": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Unfezant": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Blitzle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Zebstrika": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Roggenrola": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Boldore": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gigalith": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Woobat": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Swoobat": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Drilbur": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Excadrill": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Audino": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Timburr": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gurdurr": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Conkeldurr": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tympole": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Palpitoad": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Seismitoad": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Throh": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Sawk": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Sewaddle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Swadloon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Leavanny": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Venipede": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Whirlipede": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Scolipede": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cottonee": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Whimsicott": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Petilil": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Lilligant": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Basculin": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sandile": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Krokorok": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Krookodile": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Darumaka": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Darmanitan": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Maractus": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dwebble": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Crustle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Scraggy": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Scrafty": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sigilyph": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Yamask": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cofagrigus": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tirtouga": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Carracosta": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Archen": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Archeops": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Trubbish": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Garbodor": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Zorua": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Zoroark": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Minccino": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cinccino": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gothita": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gothorita": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gothitelle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Solosis": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Duosion": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Reuniclus": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ducklett": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Swanna": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Vanillite": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Vanillish": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Vanilluxe": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Deerling": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sawsbuck": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Emolga": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Karrablast": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Escavalier": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Foongus": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Amoonguss": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Frillish": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Jellicent": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Alomomola": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Joltik": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Galvantula": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ferroseed": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ferrothorn": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Klink": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Klang": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Klinklang": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Tynamo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Eelektrik": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Eelektross": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Elgyem": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Beheeyem": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Litwick": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lampent": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Chandelure": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Axew": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Fraxure": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Haxorus": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cubchoo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Beartic": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cryogonal": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Shelmet": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Accelgor": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Stunfisk": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mienfoo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mienshao": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Druddigon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Golett": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Golurk": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Pawniard": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bisharp": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bouffalant": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Rufflet": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Braviary": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Vullaby": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Mandibuzz": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Heatmor": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Durant": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Deino": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Zweilous": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Hydreigon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Larvesta": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Volcarona": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cobalion": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Terrakion": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Virizion": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Tornadus": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Thundurus": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Reshiram": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Zekrom": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Landorus": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Kyurem": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Keldeo": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Meloetta": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Genesect": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Chespin": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Quilladin": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Chesnaught": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Fennekin": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Braixen": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Delphox": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Froakie": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Frogadier": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Greninja": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bunnelby": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Diggersby": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Fletchling": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Fletchinder": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Talonflame": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Scatterbug": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Spewpa": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Vivillon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Litleo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pyroar": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Flabebe": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Floette": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Florges": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Skiddo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gogoat": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pancham": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pangoro": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Furfrou": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Espurr": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Meowstic": {
+    "gender": [
+      "M"
+    ]
+  },
+  "Honedge": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Doublade": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Aegislash": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Spritzee": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Aromatisse": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Swirlix": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Slurpuff": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Inkay": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Malamar": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Binacle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Barbaracle": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Skrelp": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dragalge": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Clauncher": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Clawitzer": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Helioptile": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Heliolisk": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tyrunt": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tyrantrum": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Amaura": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Aurorus": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sylveon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Hawlucha": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dedenne": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Carbink": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Goomy": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sliggoo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Goodra": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Klefki": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Phantump": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Trevenant": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pumpkaboo": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gourgeist": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bergmite": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Avalugg": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Noibat": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Noivern": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Xerneas": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Yveltal": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Zygarde": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Diancie": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Hoopa": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Volcanion": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Rowlet": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dartrix": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Decidueye": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Litten": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Torracat": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Incineroar": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Popplio": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Brionne": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Primarina": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pikipek": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Trumbeak": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Toucannon": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Yungoos": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Gumshoos": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Grubbin": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Charjabug": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Vikavolt": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Crabrawler": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Crabominable": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Oricorio": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Cutiefly": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Ribombee": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Rockruff": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lycanroc": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Wishiwashi": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mareanie": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Toxapex": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mudbray": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mudsdale": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dewpider": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Araquanid": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Fomantis": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Lurantis": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Morelull": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Shiinotic": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Salandit": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Salazzle": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Stufful": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bewear": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bounsweet": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Steenee": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Tsareena": {
+    "gender": [
+      "F"
+    ]
+  },
+  "Comfey": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Oranguru": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Passimian": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Wimpod": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Golisopod": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Sandygast": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Palossand": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Pyukumuku": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Type: Null": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Silvally": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Minior": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Komala": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Turtonator": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Togedemaru": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Mimikyu": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Bruxish": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Drampa": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Dhelmise": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Jangmo-o": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Hakamo-o": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Kommo-o": {
+    "gender": [
+      "M",
+      "F"
+    ]
+  },
+  "Tapu Koko": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Tapu Lele": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Tapu Bulu": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Tapu Fini": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Cosmog": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Cosmoem": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Solgaleo": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Lunala": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Nihilego": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Buzzwole": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Pheromosa": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Xurkitree": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Celesteela": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Kartana": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Guzzlord": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Necrozma": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Magearna": {
+    "gender": [
+      "N"
+    ]
+  },
+  "Marshadow": {
+    "gender": [
+      "N"
+    ]
+  }
+}

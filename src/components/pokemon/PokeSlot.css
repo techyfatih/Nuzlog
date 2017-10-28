@@ -1,0 +1,13 @@
+.poke-slot, .poke-slot p {
+  margin: 0;
+}
+
+.poke-slot .media-left {
+  padding-right: 0;
+}
+
+@media (max-width: 530px) {
+  .poke-slot p {
+    display: none;
+  }
+}

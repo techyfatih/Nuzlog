@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Glyphicon } from 'react-bootstrap';
+import { Button, Modal as bsModal } from 'react-bootstrap';
 
-import './ModalButton.css';
+import './Modal.css';
 import ValidationForm from 'components/form/ValidationForm';
 
-class Modal extends React.Component {
+export class Modal extends React.Component {
   constructor() {
     super();
     this.handleClick = this.handleClick.bind(this);
@@ -13,10 +13,14 @@ class Modal extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.show)
+    if (nextProps.show) {
       document.body.classList.add('modal-open');
-    else
+      document.addEventListener('keydown', this.handleKeyDown);
+    }
+    else {
       document.body.classList.remove('modal-open');
+      document.removeEventListener('keydown', this.handleKeyDown);
+    }
   }
 
   handleClick(e) {
@@ -33,14 +37,15 @@ class Modal extends React.Component {
   render() {
     return ReactDOM.createPortal(
       <div role='dialog' hidden={!this.props.show}
-        onClick={this.handleClick} onKeyDown={this.handleKeyDown}>
+        onClick={this.handleClick}>
         <div className='modal-backdrop fade in'></div>
         <div role='dialog' tabIndex={-1} className='fade in modal'>
-          <div className='modal-dialog'>
+          <div className={'modal-dialog' + (this.props.bsSize ?
+            ' modal-' + this.props.bsSize : '')}>
             <div className='modal-content' role='document' ref='modal'>
               <Button className='modal-close-button close pull-right'
-                onClick={this.props.onHide}>
-                <Glyphicon glyph='remove' />
+                aria-label='Close' onClick={this.props.onHide}>
+                <span aria-hidden='true'>&times;</span>
               </Button>
               {this.props.children}
             </div>
@@ -52,6 +57,10 @@ class Modal extends React.Component {
   }
 }
 
+Modal.Header = bsModal.Header;
+Modal.Body = bsModal.Body;
+Modal.Footer = bsModal.Footer;
+
 export class ModalButton extends React.Component {
   constructor(props) {
     super(props);
@@ -60,7 +69,7 @@ export class ModalButton extends React.Component {
     this.close = this.close.bind(this);
   }
 
-  open() {
+  open(e) {
     this.setState({ showModal: true });
     if (typeof this.props.onOpen == 'function')
       this.props.onOpen();
@@ -76,7 +85,8 @@ export class ModalButton extends React.Component {
     return (
       <Button bsStyle={this.props.bsStyle} href='#' onClick={this.open}>
         {this.props.label}
-        <Modal show={this.state.showModal} onHide={this.close}>
+        <Modal bsSize={this.props.bsSize}
+          show={this.state.showModal} onHide={this.close}>
           {this.props.children}
         </Modal>
       </Button>
@@ -89,27 +99,28 @@ export class ModalButtonForm extends React.Component {
     super(props);
     this.handleOpen = this.handleOpen.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleHide = this.handleHide.bind(this);
   }
 
   handleOpen() {
-    this.refs.form.focus(this.props.focus);
+    this.refs.form.reset();
   }
 
   handleSubmit(values) {
     this.refs.modal.close();
-    this.props.onSubmit(values);
-  }
-
-  handleHide() {
-    this.refs.form.reset();
+    if (typeof this.props.submit == 'function')
+      this.props.onSubmit(values);
   }
 
   render() {
     return (
-      <ModalButton bsStyle={this.props.bsStyle} label={this.props.label}
-        onOpen={this.handleOpen} onHide={this.handleHide} ref='modal'>
-        <ValidationForm onSubmit={this.handleSubmit} ref='form'>
+      <ModalButton ref='modal'
+        bsStyle={this.props.bsStyle}
+        bsSize={this.props.bsSize}
+        label={this.props.label}
+        onOpen={this.handleOpen}>
+        <ValidationForm ref='form'
+          initialState={this.props.initialState}
+          onSubmit={this.handleSubmit}>
           {this.props.children}
         </ValidationForm>
       </ModalButton>

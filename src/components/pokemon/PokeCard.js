@@ -12,45 +12,56 @@ export default class PokeCard extends React.Component {
     return (
       <Panel className='poke-card' header={
         <Media>
-          <Media.Left align='middle'><img src={icon} /></Media.Left>
+          <Media.Left align='middle'>
+            <img src={this.props.icon ? this.props.icon : icon} />
+          </Media.Left>
           <Media.Body>
-            <Media.Heading>Fletchinder (Fletchinder) <img src={male} /></Media.Heading>
-            <p>Level 100</p>
+            <Media.Heading>
+              <span className='name'>
+                {this.props.name ? this.props.name : 'No Pokémon'}
+              </span>&nbsp;
+              <img className='gender' src={
+                this.props.gender == 'M' ? male :
+                this.props.gender == 'F' ? female : ''} />
+              </Media.Heading>
+            <p className={this.props.level ? '' : 'invisible'}>
+              Level {this.props.level}
+            </p>
           </Media.Body>
-          <Media.Right>*</Media.Right>
+          {this.props.shiny && <Media.Right>*</Media.Right>}
         </Media>
       }>
-        <Thumbnail src={'https://www.pkparaiso.com/imagenes/sol-luna/sprites/animados/celesteela.gif'} />
+        <Thumbnail src={this.props.sprite ? this.props.sprite : sprite} />
         <Table condensed>
           <tbody>
-            <tr>
+            <tr className={this.props.form ? '' : 'invisible'}>
               <th>Form:</th>
-              <td>Normal</td>
+              <td>{this.props.form}</td>
             </tr>
-            <tr>
+            <tr className={this.props.nature ? '' : 'invisible'}>
               <th>Nature:</th>
-              <td>Adamant</td>
+              <td>{this.props.nature}</td>
             </tr>
-            <tr>
+            <tr className={this.props.ability ? '' : 'invisible'}>
               <th>Ability:</th>
-              <td>New Bark Town</td>
+              <td>{this.props.ability}</td>
             </tr>
-            <tr>
+            <tr className={this.props.moves ? '' : 'invisible'}>
               <th>Moves:</th>
               <td>
-                - Ice Beam <br/>
-                - Thunderbolt <br/>
-                - Nasty Plot <br/>
-                - Protect
-              </td>
+                - {this.props.moves && this.props.moves[0]} <br/>
+                - {this.props.moves && this.props.moves[1]} <br/>
+                - {this.props.moves && this.props.moves[2]} <br/>
+                - {this.props.moves && this.props.moves[3]}
+                </td>
             </tr>
-            <tr>
+            <tr className={this.props.item ? '' : 'invisible'}>
               <th>Item:</th>
-              <td>Gyaradosite</td>
+              <td>{this.props.item}</td>
             </tr>
-            <tr>
-              <th>Received at:</th>
-              <td>Lake of Rage</td>
+            <tr className={this.props.location ? '' : 'invisible'}>
+              <th>{this.props.method}</th>
+              <td>{this.props.location}</td>
             </tr>
           </tbody>
         </Table>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-import { ModalButton } from 'components/other/ModalButton';
+import { ModalButton } from 'components/modal/Modal';
 
 export default class SaveLoadGameButton extends React.Component {
   render() {

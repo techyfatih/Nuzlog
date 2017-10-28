@@ -1,0 +1,22 @@
+#add-pokemon {
+  margin: 0;
+}
+
+#add-pokemon .panel-heading {
+  background: #b3ffb3;
+}
+
+#add-pokemon .media, #add-pokemon .media-body {
+  overflow: visible;
+}
+
+#add-pokemon .thumbnail {
+  margin: 0;
+  height: 200px;
+}
+
+#add-pokemon .thumbnail img {
+  position: relative;
+  top: 95px;
+  transform: translate(0, -50%);
+}

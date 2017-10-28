@@ -12,6 +12,14 @@ const normalize = str => {
 }
 
 const filter = (items, value) => {
+  if (!Array.isArray(items)) {
+    return Object.keys(items)
+      .filter(key => normalize(key).indexOf(normalize(value)) !== -1)
+      .reduce((obj, key) => {
+        obj[key] = items[key];
+        return obj;
+      }, {});
+  }
   return items.filter(item => {
     return normalize(item).indexOf(normalize(value)) !== -1;
   });
@@ -26,6 +34,7 @@ class _ComboboxMenu extends React.Component {
   componentDidUpdate() {
     if (this.activeItem)
       ReactDOM.findDOMNode(this.activeItem).scrollIntoView({block: 'nearest'});
+    else ReactDOM.findDOMNode(this).scrollTop = 0;
   }
 
   handleClick(e) {
@@ -40,11 +49,7 @@ class _ComboboxMenu extends React.Component {
           {this.props.items.map((item, key) => {
             const isActive = key == this.props.activeIndex;
             return (
-              <ListGroupItem
-                href='#'
-                key={key}
-                tabIndex={-1}
-                active={isActive}
+              <ListGroupItem href='#' key={key} tabIndex={-1} active={isActive}
                 onClick={this.handleClick}
                 ref={ref => {if (isActive) this.activeItem = ref}}>
                 {item}
@@ -66,22 +71,16 @@ class _Combobox extends React.Component {
       activeIndex: -1,
       selected: props.value
     };
+    this.openMenu = this.openMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.clickListener = e => {
       if (this.state.menuOpen && !this.group.contains(e.target))
-        this.setState({menuOpen: false});
+        this.closeMenu();
     };
-  }
-
-  componentDidMount() {
-    document.addEventListener('click', this.clickListener);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.clickListener);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -105,28 +104,40 @@ class _Combobox extends React.Component {
       this.input.focus();
   }
 
-  handleChange(e) {
+  openMenu() {
     this.setState({menuOpen: true});
+    document.addEventListener('click', this.clickListener);
+  }
+
+  closeMenu() {
+    this.setState({menuOpen: false});
+    document.removeEventListener('click', this.clickListener);
+  }
+
+  handleChange(e) {
+    this.openMenu();
     this.props.onChange(e);
   }
 
   handleKeyDown(e) {
     switch (e.keyCode) {
       case 40: //down
+        this.openMenu();
         this.setState(prevState => {
           let activeIndex = -1;
-          if (prevState.activeIndex < prevState.filtered.length - 1)
+          if (prevState.activeIndex < Object.keys(prevState.filtered).length - 1)
             activeIndex = prevState.activeIndex + 1;
-          return {menuOpen: true, activeIndex};
+          return {activeIndex};
         })
         e.preventDefault();
         break;
       case 38: //up
+        this.openMenu();
         this.setState(prevState => {
-          let activeIndex = prevState.filtered.length - 1;
+          let activeIndex = Object.keys(prevState.filtered).length - 1;
           if (prevState.activeIndex >= 0)
             activeIndex = prevState.activeIndex - 1;
-          return {menuOpen: true, activeIndex};
+          return {activeIndex};
         })
         e.preventDefault();
         break;
@@ -140,11 +151,11 @@ class _Combobox extends React.Component {
   }
 
   handleClick() {
-    this.setState(prevState => {return {menuOpen: !prevState.menuOpen}});
+    !this.state.menuOpen ? this.openMenu() : this.closeMenu();
   }
 
   handleSelect(val) {
-    this.setState({menuOpen: false});
+    this.closeMenu();
     this.props.onChange(val);
   }
 
@@ -172,9 +183,9 @@ class _Combobox extends React.Component {
             </Button>
           </InputGroup.Button>
         </InputGroup>
-        <_ComboboxMenu
+        <_ComboboxMenu ref={ref=>this.menu=ref}
           open={this.state.menuOpen}
-          items={this.state.filtered}
+          items={Object.values(this.state.filtered)}
           activeIndex={this.state.activeIndex}
           onSelect={this.handleSelect} />
       </FormGroup>
@@ -192,6 +203,7 @@ export default class ComboboxControl extends React.Component {
         placeholder={this.props.placeholder}
         items={this.props.items}
         required={this.props.required}
+        onChange={this.props.onChange}
         component={_Combobox}
         mapProps={{
           pristine: ({fieldValue}) => fieldValue.pristine,
