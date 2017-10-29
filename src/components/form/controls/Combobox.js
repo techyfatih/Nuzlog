@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { InputGroup, Button, Glyphicon, Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { OrderedMap } from 'immutable';
 
-import { EnhancedGroup, EnhancedControl } from './EnhancedInput';
+import { EnhancedGroup, EnhancedControl } from './Input';
 import enhanceControl from './enhanceControl';
 
 import './Combobox.css';
@@ -163,7 +163,6 @@ class Combobox extends React.Component {
         }
         break;
     }
-    this.props.onKeyDown(e);
   }
 
   handleButtonClick() {

@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Button, Modal as bsModal } from 'react-bootstrap';
 
 import './Modal.css';
-import ValidationForm from 'components/form/ValidationForm';
+import CloseButton from 'components/CloseButton';
+import Enhanced from 'components/form/Enhanced';
 
 export class Modal extends React.Component {
   constructor() {
@@ -43,10 +44,8 @@ export class Modal extends React.Component {
           <div className={'modal-dialog' + (this.props.bsSize ?
             ' modal-' + this.props.bsSize : '')}>
             <div className='modal-content' role='document' ref='modal'>
-              <Button className='modal-close-button close pull-right'
-                aria-label='Close' onClick={this.props.onHide}>
-                <span aria-hidden='true'>&times;</span>
-              </Button>
+              <CloseButton class='modal-close-button close'
+                onClick={this.props.onHide} />
               {this.props.children}
             </div>
           </div>
@@ -69,10 +68,12 @@ export class ModalButton extends React.Component {
     this.close = this.close.bind(this);
   }
 
-  open(e) {
-    this.setState({ showModal: true });
-    if (typeof this.props.onOpen == 'function')
-      this.props.onOpen();
+  open() {
+    if (!this.state.showModal) {
+      this.setState({ showModal: true });
+      if (typeof this.props.onOpen == 'function')
+        this.props.onOpen();
+    }
   }
 
   close() {
@@ -90,40 +91,6 @@ export class ModalButton extends React.Component {
           {this.props.children}
         </Modal>
       </Button>
-    )
-  }
-}
-
-export class ModalButtonForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleOpen = this.handleOpen.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleOpen() {
-    this.refs.form.reset();
-  }
-
-  handleSubmit(values) {
-    this.refs.modal.close();
-    if (typeof this.props.submit == 'function')
-      this.props.onSubmit(values);
-  }
-
-  render() {
-    return (
-      <ModalButton ref='modal'
-        bsStyle={this.props.bsStyle}
-        bsSize={this.props.bsSize}
-        label={this.props.label}
-        onOpen={this.handleOpen}>
-        <ValidationForm ref='form'
-          initialState={this.props.initialState}
-          onSubmit={this.handleSubmit}>
-          {this.props.children}
-        </ValidationForm>
-      </ModalButton>
     )
   }
 }

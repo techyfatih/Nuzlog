@@ -4,10 +4,19 @@ import { connect } from 'react-redux';
 
 import games from 'data/games.json';
 import { newGame, newLocation } from 'actions';
-import { Modal, ModalButtonForm } from 'components/modal/Modal';
-import ValidationForm from 'components/form/ValidationForm';
-import { TextControl, ComboboxControl, CheckboxControl } from 'components/form/Controls';
+import { Modal, ModalButton } from 'components/modal/Modal';
+import Enhanced from 'components/form/Enhanced';
 import Rules from './Rules';
+
+let fields = [
+  ['title', {value: '', required: true}],
+  ['game', {value: '', required: true}],
+  ['name', {value: '', required: true}],
+  ['initLocation', ''],
+  ['disableGenders', false],
+  ['disableNatures', false],
+  ['disableAbilities', false]
+];
 
 class NewGameButton extends React.Component {
   constructor() {
@@ -16,9 +25,18 @@ class NewGameButton extends React.Component {
       rule: '',
       rules: []
     };
+    this.reset = this.reset.bind(this);
     this.addRule = this.addRule.bind(this);
     this.removeRule = this.removeRule.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  reset() {
+    this.setState({
+      rule: '',
+      rules: []
+    });
+    this.props.reset();
   }
 
   addRule(rule) {
@@ -37,62 +55,91 @@ class NewGameButton extends React.Component {
     }
   }
 
-  handleSubmit(values) {
-    const info = {
-      title: values.title,
-      game: values.game,
-      name: values.name
-    };
-    const rules = {
-      genders: !values.genders,
-      natures: !values.natures,
-      abilities: !values.abilities,
-      list: this.state.rules
-    }
-    this.props.onNewGame(info, rules, values.newLocation);
-    const cover = document.getElementById('cover');
-    if (cover != null) cover.remove();
+  handleSubmit(e) {
+    this.props.onSubmit(e, () => {
+      let values = this.props.state;
+      const info = {
+        title: values.get('title').value,
+        game: values.get('game').value,
+        name: values.get('name').value
+      };
+      let location = values.get('initLocation').value;
+      const rules = {
+        genders: !values.get('disableGenders').value,
+        natures: !values.get('disableNatures').value,
+        abilities: !values.get('disableAbilities').value,
+        list: this.state.rules
+      }
+      this.props.onNewGame(info, rules, location);
+      const cover = document.getElementById('cover');
+      if (cover != null) cover.remove();
+      this.modal.close();
+    });
   }
 
   render() {
     return (
-      <ModalButtonForm bsStyle='primary' label='New Game' focus='title'
-        onSubmit={this.handleSubmit}>
-        <Modal.Header><h2>New Game</h2></Modal.Header>
+      <ModalButton bsStyle='primary' label='New Game' onOpen={this.reset}
+        ref={ref => this.modal = ref}>
+        <Enhanced.Form onSubmit={this.handleSubmit}>
+          <Modal.Header><h2>New Game</h2></Modal.Header>
 
-        <Modal.Body>
-          <TextControl id='title' label='Title*'
-            placeholder='The Great Nuzlocke Challenge' required />
-          <ComboboxControl id='game' label='Game*'
-            placeholder='Pokémon Ruby' items={games} required />
-          <TextControl id='name' label='Name*'
-            placeholder='Ruby' required />
-          <TextControl id='newLocation' label='Initial Location'
-            placeholder='Littleroot Town' />
+          <Modal.Body>
+            <Enhanced.Input id='title'
+              state={this.props.state}
+              onChange={this.props.onChange}
+              label='Title*'
+              placeholder='The Great Nuzlocke Challenge' />
+            <Enhanced.Combobox id='game'
+              state={this.props.state}
+              onChange={this.props.onChange}
+              label='Game*'
+              placeholder='Pokémon Ruby'
+              items={games} />
+            <Enhanced.Input id='name'
+              state={this.props.state}
+              onChange={this.props.onChange}
+              label='Name*'
+              placeholder='Ruby' />
+            <Enhanced.Input id='initLocation'
+              state={this.props.state}
+              onChange={this.props.onChange}
+              label='Initial Location'
+              placeholder='Littleroot Town' />
 
-          <Table>
-            <tbody>
-              <tr>
-                <td width={150} >
-                  <CheckboxControl id='genders' label='Disable Genders'/>
-                  <CheckboxControl id='natures' label='Disable Natures'/>
-                  <CheckboxControl id='abilities' label='Disable Abilities'/>
-                </td>
-                <td>
-                  <Rules rules={this.state.rules}
-                    addRule={this.addRule} removeRule={this.removeRule} />
-                </td>
-              </tr>
-            </tbody>
-          </Table>
-        </Modal.Body>
+            <Table>
+              <tbody>
+                <tr>
+                  <td width={150} >
+                    <Enhanced.Checkbox id='disableGenders'
+                      state={this.props.state}
+                      onChange={this.props.onChange}
+                      label='Disable Genders'/>
+                    <Enhanced.Checkbox id='disableNatures'
+                      state={this.props.state}
+                      onChange={this.props.onChange}
+                      label='Disable Natures'/>
+                    <Enhanced.Checkbox id='disableAbilities'
+                      state={this.props.state}
+                      onChange={this.props.onChange}
+                      label='Disable Abilities'/>
+                  </td>
+                  <td>
+                    <Rules rules={this.state.rules}
+                      addRule={this.addRule} removeRule={this.removeRule} />
+                  </td>
+                </tr>
+              </tbody>
+            </Table>
+          </Modal.Body>
 
-        <Modal.Footer>
-          <Button type='submit' bsStyle='primary' bsSize='large' block>
-            Start
-          </Button>
-        </Modal.Footer>
-      </ModalButtonForm>
+          <Modal.Footer>
+            <Button type='submit' bsStyle='primary' bsSize='large' block>
+              Start
+            </Button>
+          </Modal.Footer>
+        </Enhanced.Form>
+      </ModalButton>
     );
   }
 }
@@ -107,4 +154,5 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(NewGameButton);
+const EnhancedNewGameButton = Enhanced.enhanceForm(NewGameButton, fields);
+export default connect(null, mapDispatchToProps)(EnhancedNewGameButton);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, InputGroup, FormControl, Glyphicon } from 'react-bootstrap';
 
+import CloseButton from 'components/CloseButton';
 import StickyTable from 'components/stickyTable/StickyTable';
 
 export default class Rules extends React.Component {
@@ -43,10 +44,7 @@ export default class Rules extends React.Component {
               <tr key={index}>
                 <td>{rule}</td>
                 <td width={24}>
-                  <Button className='close'
-                    onClick={() => this.props.removeRule(index)}>
-                    <Glyphicon glyph='remove'/>
-                  </Button>
+                  <CloseButton onClick={() => this.props.removeRule(index)} />
                 </td>
               </tr>
             )}
