@@ -1,23 +1,30 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 export default (EnhancedControl) => {
   return class extends React.Component {
     constructor(props) {
       super(props);
-      this.state = props.form.get(props.id);
+      this.validate = this.validate.bind(this);
+      this.state = this.props.form.addField(
+        props.id,
+        props.value,
+        this.validate(props.value)
+      );
       this.handleChange = this.handleChange.bind(this);
       this.handleKeyDown = this.handleKeyDown.bind(this);
     }
-
-    componentDidMount() {
-      if (typeof this.props.getValidator == 'function' &&
-          typeof this.validator == 'function')
-        this.props.getValidator(this.props.id, this.validator);
+    
+    validate(value) {
+      let valid = !this.props.required || value;
+      if (this.props.min)
+        valid = valid && value >= this.props.min;
+      if (this.props.max)
+        valid = valid && value <= this.props.max;
+      return valid;
     }
 
     componentWillReceiveProps(nextProps) {
-      this.setState(nextProps.form.get(nextProps.id));
+      this.setState(nextProps.state.get(nextProps.id));
     }
 
     componentDidUpdate() {
@@ -26,7 +33,7 @@ export default (EnhancedControl) => {
     }
 
     handleChange(value) {
-      this.props.onChange(this.props.id, value);
+      this.props.form.onChange(this.props.id, value, this.validate(value));
     }
 
     handleKeyDown(e) {

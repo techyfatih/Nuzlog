@@ -1,17 +1,5 @@
 import React from 'react';
-import { Map as iMap, OrderedMap } from 'immutable';
-
-const validate = (value, required, min, max) => {
-  console.log(value + ' ' + required + ' ' + min + ' ' + max)
-  let valid = !required || value && value.length;
-  if (!valid && typeof value == 'number') {
-    if (min != null)
-      valid = valid && value >= min;
-    if (max != null)
-      valid = valid && value <= max;
-  }
-  return valid;
-}
+import { OrderedMap } from 'immutable';
 
 export const EnhancedForm = props => {
   return (
@@ -25,45 +13,22 @@ export const enhanceForm = (EnhancedForm, fields) => {
   return class extends React.Component {
     constructor(props) {
       super(props);
-
-      this.initial = new Map();
-      fields.forEach((value, field) => {
-        this.initial.set(field, {
-          value,
-          pristine: true,
-          focus: false,
-          valid: true
-        })
-      });
-      this.initial = Array.from(this.initial);
-      this.state = {
-        data: OrderedMap(this.initial),
-        validators: iMap()
-      };
       
-      this.getValidator = this.getValidator.bind(this);
       this.updateState = this.updateState.bind(this);
+      this.addField = this.addField.bind(this);
+      this.handleChange = this.handleChange.bind(this);
       this.focus = this.focus.bind(this);
       this.reset = this.reset.bind(this);
-      this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    
-    getValidator(id, validator) {
-      for (let i = 0; i < this.initial.length; i++) {
-        let field = this.initial[i];
-        if (field[0] == id) {
-          field[1].valid = validator(field[1].value)
-          break;
-        }
-      }
 
-      this.setState(({data, validators}) => ({
-        data: data.update(id, props => Object.assign({}, props, {
-          valid: validator(props.value)
-        })),
-        validators: validators.set(id, validator)
-      }));
+      this.initial = [];
+      this.state = {
+        data: OrderedMap()
+      };
+      this.form = {
+        addField: this.addField,
+        onChange: this.handleChange
+      };
     }
 
     updateState(id, props, callback) {
@@ -80,6 +45,24 @@ export const enhanceForm = (EnhancedForm, fields) => {
       }));
     }
 
+    addField(id, value, valid) {
+      let fieldProps = {
+        value: value ? value : '',
+        pristine: true,
+        focus: false,
+        valid
+      };
+      this.initial.push([id, fieldProps]);
+      this.setState(({data}) => ({
+        data: data.set(id, fieldProps)
+      }));
+      return fieldProps;
+    }
+
+    handleChange(id, value, valid) {
+      this.updateState(id, {value, pristine: false, valid});
+    }
+
     reset() {
       this.setState({
         data: OrderedMap(this.initial)
@@ -87,22 +70,6 @@ export const enhanceForm = (EnhancedForm, fields) => {
       
       if (typeof this.props.onReset == 'function')
         this.props.onReset();
-    }
-
-    handleChange(id, value) {
-      this.setState(({data, validators}) => ({
-        data: data.update(id, props => {
-          let validator = validators.get(id);
-          if (!validator)
-            validator = () => true;
-
-          return {
-            value,
-            pristine: false,
-            valid: validator(value)
-          }
-        })
-      }))
     }
 
     handleSubmit(e) {
@@ -126,10 +93,10 @@ export const enhanceForm = (EnhancedForm, fields) => {
     render() {
       return (
         <EnhancedForm {...this.props}
-          form={this.state.data}
+          state={this.state.data}
+          form={this.form}
           getValidator={this.getValidator}
           reset={this.reset}
-          onChange={this.handleChange}
           onSubmit={this.handleSubmit} />
       );
     }

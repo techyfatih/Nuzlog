@@ -13,7 +13,6 @@ export default class ValidationForm extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.refs.localform);
     /*for (let control in this.props.initialState) {
       let val = this.props.initialState[control];
       this.dispatch(actions.change('local.' + control, val));

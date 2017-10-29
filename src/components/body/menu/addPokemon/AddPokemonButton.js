@@ -18,16 +18,18 @@ import NumberControl from 'components/form/controls/NumberControl';
 import { addPokemon } from 'actions';
 
 import { EnhancedForm, enhanceForm } from 'components/form/test/EnhancedForm';
-import EnhancedText from 'components/form/test/EnhancedText';
-import EnhancedNumber from 'components/form/test/EnhancedNumber';
+import EnhancedInput from 'components/form/test/EnhancedInput';
+import EnhancedCheckbox from 'components/form/test/EnhancedCheckbox';
+import EnhancedCombobox from 'components/form/test/EnhancedCombobox';
 
-let pokemon = {};
-for (let name in pokedex) {
-  pokemon[name] = <span><img src={icons[name]}/>{name}</span>;
-};
+let pokemon = [];
+for (var i = 0; i < pokedex.length; i++) {
+  let name = pokedex[i][0];
+  pokemon.push([name, <span><img src={icons[name]}/>{name}</span>]);
+}
 
 let fields = new Map();
-fields.set('pokemon', '');
+/*fields.set('pokemon', '');
 fields.set('nickname', '');
 fields.set('level', 5);
 fields.set('shiny', false);
@@ -40,7 +42,7 @@ fields.set('move3', '');
 fields.set('move4', '');
 fields.set('item', '');
 fields.set('method', 0);
-fields.set('location', '');
+fields.set('location', '');*/
 
 class AddPokemonButton extends React.Component {
   render() {
@@ -59,25 +61,32 @@ class AddPokemonButton extends React.Component {
                 <Media.Body>
                   <Row>
                     <Col sm={6}>
-                      <EnhancedText id='pokemon' label='Pokémon*'
-                        placeholder='Bulbasaur'
+                      <EnhancedCombobox id='pokemon'
+                        state={this.props.state}
                         form={this.props.form}
-                        onChange={this.props.onChange}
-                        getValidator={this.props.getValidator}
+                        label='Pokémon*'
+                        placeholder='Bulbasaur'
+                        items={pokemon}
                         required />
                     </Col>
                     <Col sm={6}>
-                      <EnhancedText id='nickname' label='Nickname'
-                        placehoder='Bulby'
+                      <EnhancedInput id='nickname'
+                        state={this.props.state}
                         form={this.props.form}
-                        onChange={this.props.onChange} />
+                        label='Nickname'
+                        placeholder='Bulby' />
                     </Col>
                   </Row>
-                  <EnhancedNumber id='level' label='Level*'
+                  <EnhancedInput id='level' type='number'
+                    state={this.props.state}
                     form={this.props.form}
-                    onChange={this.props.onChange}
-                    getValidator={this.props.getValidator}
+                    label='Level*'
+                    placeholder={'1-100'}
                     required min={1} max={100} />
+                  <EnhancedCheckbox id='shiny'
+                    state={this.props.state}
+                    form={this.props.form}
+                    label='Shiny' />
                 </Media.Body>
               </Media>
             }>
