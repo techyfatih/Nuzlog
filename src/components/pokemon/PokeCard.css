@@ -21,6 +21,10 @@
   top: -4px;
 }
 
+.poke-card .shiny {
+  color: red;
+}
+
 .poke-card .panel-heading * {
   margin: 0;
 }

@@ -1,9 +1,11 @@
 import React from 'react';
 import { OrderedMap } from 'immutable';
 
+import './Controls.css';
 import Input from './controls/Input';
 import Combobox from './controls/Combobox';
 import Checkbox from './controls/Checkbox';
+import ToggleGroup from './controls/ToggleGroup';
 
 const Form = props => {
   return (
@@ -17,12 +19,6 @@ const enhanceForm = (EnhancedForm, fields) => {
   return class extends React.Component {
     constructor(props) {
       super(props);
-      
-      this.updateState = this.updateState.bind(this);
-      this.handleChange = this.handleChange.bind(this);
-      this.focus = this.focus.bind(this);
-      this.reset = this.reset.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
 
       this.initial = [];
       for (let i = 0; i < fields.length; i++) {
@@ -33,8 +29,8 @@ const enhanceForm = (EnhancedForm, fields) => {
         
         const validator = value => {
           let valid = !props.required || value != undefined && value != '';
-          if (props.min) valid = valid && valid >= props.min;
-          if (props.max) valid = valid && valid <= props.max;
+          if (props.min) valid = valid && value >= props.min;
+          if (props.max) valid = valid && value <= props.max;
           return valid;
         };
         this.initial.push([id, {
@@ -48,9 +44,16 @@ const enhanceForm = (EnhancedForm, fields) => {
           focus: false
         }]);
       }
+
       this.state = {
         data: OrderedMap(this.initial)
       };
+
+      this.updateState = this.updateState.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+      this.focus = this.focus.bind(this);
+      this.reset = this.reset.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     updateState(id, props, callback) {
@@ -74,7 +77,7 @@ const enhanceForm = (EnhancedForm, fields) => {
           pristine: false,
           valid: props.validator(value)
         }))
-      }), () =>console.log(this.state.data.get(id)));
+      }));
     }
 
     reset(initial) {
@@ -90,6 +93,7 @@ const enhanceForm = (EnhancedForm, fields) => {
     }
 
     handleSubmit(e, success) {
+      e.preventDefault();
       let toFocus;
       let iter = this.state.data.entries();
       let i = iter.next();
@@ -103,11 +107,9 @@ const enhanceForm = (EnhancedForm, fields) => {
               return Object.assign({}, props, {pristine: false});
             })
           }), () => this.focus(toFocus));
-          e.preventDefault();
           return;
         }
         i = iter.next();
-        console.log(i);
       }
       success();
     }
@@ -129,5 +131,6 @@ export default {
   enhanceForm,
   Input,
   Combobox,
-  Checkbox
+  Checkbox,
+  ToggleGroup
 };

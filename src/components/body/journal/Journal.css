@@ -38,3 +38,17 @@
 .sticky .panel-body {
   display: none;
 }
+
+.virtual-table .ReactVirtualized__Table__headerRow {
+  border: 1px solid #ddd;
+  border-radius: 4px 4px 0 0;
+}
+
+.virtual-table .ReactVirtualized__Table__Grid {
+  border: 1px solid #ddd;
+  border-radius: 0 0 4px 4px;
+}
+
+.virtual-table .ReactVirtualized__Table__row {
+  border-bottom: 1px solid #ddd;
+}

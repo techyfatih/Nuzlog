@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { InputGroup, Button, Glyphicon, Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
-import { List, AutoSizer } from 'react-virtualized';
+import { OrderedMap } from 'immutable';
 
 import { EnhancedGroup, EnhancedControl } from './Input';
 import enhanceControl from './enhanceControl';
@@ -26,7 +26,6 @@ class ComboboxMenu extends React.Component {
   constructor() {
     super();
     this.handleClick = this.handleClick.bind(this);
-    this.rowRenderer = this.rowRenderer.bind(this);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -51,50 +50,37 @@ class ComboboxMenu extends React.Component {
     return false;
   }
 
+  componentDidUpdate() {
+    if (this.activeItem)
+      ReactDOM.findDOMNode(this.activeItem).scrollIntoView({block: 'nearest'});
+    else ReactDOM.findDOMNode(this).parentNode.scrollTop = 0;
+  }
+
   handleClick(e) {
     this.props.onSelect(e.target.text);
   }
 
-  rowRenderer({key, index, style}) {
-    let item = this.props.items[index];
-    if (Array.isArray(item))
-      item = item[1];
-    return (
-      <ListGroupItem href='#'
-        key={key}
-        style={style}
-        tabIndex={-1}
-        active={index == this.props.activeIndex}
-        onClick={this.handleClick}>
-        {item}
-      </ListGroupItem>
-    )
-  }
-
   render() {
-    const rowHeight = this.props.rowHeight ? this.props.rowHeight : 30;
     return (
-      <Panel className='combobox-dropdown'>
-        <ListGroup fill>
-          <AutoSizer disableHeight>
-            {({width}) => (
-              <List
-                height={Math.min(150, this.props.items.length * rowHeight)}
-                width={width-1}
-                rowCount={this.props.items.length}
-                rowHeight={rowHeight}
-                rowRenderer={this.rowRenderer}
-                scrollToIndex={this.props.activeIndex}
-                tabIndex={-1}/>
-            )}
-          </AutoSizer>
-        </ListGroup>
-      </Panel>
+      <ListGroup>
+        {this.props.items.map((item, key) => {
+          if (Array.isArray(item))
+            item = item[1];
+          const isActive = key == this.props.activeIndex;
+          return (
+            <ListGroupItem href='#' key={key} tabIndex={-1} active={isActive}
+              onClick={this.handleClick}
+              ref={ref => {if (isActive) this.activeItem = ref}}>
+              {item}
+            </ListGroupItem>
+          );
+        })}
+      </ListGroup>
     );
   }
 }
 
-export class Combobox extends React.Component {
+class Combobox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -115,8 +101,7 @@ export class Combobox extends React.Component {
 
   getInput(ref) {
     this.input = ref;
-    if (typeof this.props.getInput == 'function')
-      this.props.getInput(ref);
+    this.props.getInput(ref);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -210,17 +195,17 @@ export class Combobox extends React.Component {
             inputRef={this.getInput} />
           <InputGroup.Button>
             <Button onClick={this.handleButtonClick} tabIndex={-1}>
-              <Glyphicon
-                glyph={!this.state.menuOpen ? 'chevron-down' : 'chevron-up'}/>
+              <Glyphicon glyph='chevron-down'/>
             </Button>
           </InputGroup.Button>
         </InputGroup>
-        {this.state.menuOpen &&
-        <ComboboxMenu
-          items={this.state.filtered}
-          activeIndex={this.state.activeIndex}
-          onSelect={this.handleSelect}
-          rowHeight={this.props.rowHeight} />}
+        <Panel className='combobox-dropdown'
+          hidden={!this.state.menuOpen || this.state.filtered.length == 0}>
+          <ComboboxMenu fill
+            items={this.state.filtered}
+            activeIndex={this.state.activeIndex}
+            onSelect={this.handleSelect} />
+        </Panel>
       </EnhancedGroup>
     );
   }

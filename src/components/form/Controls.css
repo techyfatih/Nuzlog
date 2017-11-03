@@ -1,0 +1,27 @@
+.has-error .btn {
+  color: #a94442;
+  border-color: #a94442;
+  background-color: #f2dede;
+}
+
+.has-error .btn:hover, .has-error .btn.active {
+  background-color: #e8caca;
+}
+
+.has-error .btn:active {
+  background-color: #d8a6a6;
+}
+
+.has-success .btn {
+  color: #3c763d;
+  border-color: #3c763d;
+  background-color: #dff0d8;
+}
+
+.has-success .btn:hover, .has-success .btn.active {
+  background-color: #c1e3b5;
+}
+
+.has-success .btn:active {
+  background-color: #a2d590;
+}

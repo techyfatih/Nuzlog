@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Modal as bsModal } from 'react-bootstrap';
+import { Button, Modal as BSModal } from 'react-bootstrap';
 
 import './Modal.css';
 import CloseButton from 'components/CloseButton';
@@ -25,7 +25,6 @@ export class Modal extends React.Component {
   }
 
   handleClick(e) {
-    e.stopPropagation();
     if (!this.refs.modal.contains(e.target))
       this.props.onHide();
   }
@@ -56,9 +55,9 @@ export class Modal extends React.Component {
   }
 }
 
-Modal.Header = bsModal.Header;
-Modal.Body = bsModal.Body;
-Modal.Footer = bsModal.Footer;
+Modal.Header = BSModal.Header;
+Modal.Body = BSModal.Body;
+Modal.Footer = BSModal.Footer;
 
 export class ModalButton extends React.Component {
   constructor(props) {
@@ -86,10 +85,10 @@ export class ModalButton extends React.Component {
     return (
       <Button bsStyle={this.props.bsStyle} href='#' onClick={this.open}>
         {this.props.label}
-        <Modal bsSize={this.props.bsSize}
+        <BSModal bsSize={this.props.bsSize}
           show={this.state.showModal} onHide={this.close}>
           {this.props.children}
-        </Modal>
+        </BSModal>
       </Button>
     )
   }

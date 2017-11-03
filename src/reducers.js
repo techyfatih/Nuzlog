@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { types } from './actions';
+import Pokemon from 'components/pokemon/Pokemon';
 
 const initialState = {
   info: {
@@ -22,7 +23,7 @@ const initialState = {
 
 const recordLog = (type, entry) => {
   return {
-    time: new Date().toLocaleString(),
+    time: new Date(),
     type,
     entry
   }
@@ -53,12 +54,12 @@ export default (state = initialState, action) => {
       if (state.party.length < 6) {
         return Object.assign({}, state, {
           party: [...state.party, action.pokemon],
-          log: [...state.log, recordLog('Party', action.pokemon.export())]
+          log: [...state.log, recordLog('Party', action.pokemon)]
         })
       } else {
         return Object.assign({}, state, {
           pc: [...state.pc, action.pokemon],
-          log: [...state.log, recordLog('PC', action.pokemon.export())]
+          log: [...state.log, recordLog('PC', action.pokemon)]
         })
       }
     default:

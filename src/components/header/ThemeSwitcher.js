@@ -19,7 +19,7 @@ export default class ThemeSwitcher extends React.Component {
 
   render() {
     return (
-      <ToggleButtonGroup {...this.props} type='radio' name='theme'
+      <ToggleButtonGroup type='radio' name='theme'
         value={this.state.value} onChange={this.onChange}>
         <ToggleButton value='default'>Default</ToggleButton>
         <ToggleButton value='dark'>Dark</ToggleButton>

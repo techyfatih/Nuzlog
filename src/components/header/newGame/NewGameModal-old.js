@@ -1,10 +1,13 @@
 import React from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Modal, Button, Table, Col, Row, Grid } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { LocalForm, Control } from 'react-redux-form';
+import TextInput, {RRFText} from 'components/form/controls2/TextInput';
+
+import './NewGame.css';
 
 import games from 'data/games.json';
 import { newGame, newLocation } from 'actions';
-import { Modal, ModalButton } from 'components/modal/Modal';
 import Enhanced from 'components/form/Enhanced';
 import Rules from './Rules';
 
@@ -18,7 +21,7 @@ let fields = [
   ['disableAbilities', false]
 ];
 
-class NewGameButton extends React.Component {
+class NewGameModal extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -73,17 +76,19 @@ class NewGameButton extends React.Component {
       this.props.onNewGame(info, rules, location);
       const cover = document.getElementById('cover');
       if (cover != null) cover.remove();
-      this.modal.close();
+      this.props.onHide();
     });
   }
 
   render() {
     return (
-      <ModalButton bsStyle='primary' label='New Game' onOpen={this.reset}
-        ref={ref => this.modal = ref}>
+      <Modal show={this.props.show} onEnter={this.reset} onHide={this.props.onHide}>
+        <LocalForm>
+          <RRFText model='.title' label='Title' required/>
+          <input type='submit'/>
+        </LocalForm>
         <Enhanced.Form onSubmit={this.handleSubmit}>
           <Modal.Header><h2>New Game</h2></Modal.Header>
-
           <Modal.Body>
             <Enhanced.Input id='title'
               state={this.props.state}
@@ -107,30 +112,26 @@ class NewGameButton extends React.Component {
               label='Initial Location'
               placeholder='Littleroot Town' />
 
-            <Table>
-              <tbody>
-                <tr>
-                  <td width={150} >
-                    <Enhanced.Checkbox id='disableGenders'
-                      state={this.props.state}
-                      onChange={this.props.onChange}
-                      label='Disable Genders'/>
-                    <Enhanced.Checkbox id='disableNatures'
-                      state={this.props.state}
-                      onChange={this.props.onChange}
-                      label='Disable Natures'/>
-                    <Enhanced.Checkbox id='disableAbilities'
-                      state={this.props.state}
-                      onChange={this.props.onChange}
-                      label='Disable Abilities'/>
-                  </td>
-                  <td>
-                    <Rules rules={this.state.rules}
-                      addRule={this.addRule} removeRule={this.removeRule} />
-                  </td>
-                </tr>
-              </tbody>
-            </Table>
+            <Row className='no-margin'>
+              <div className='pull-left'>
+                <Enhanced.Checkbox id='disableGenders'
+                  state={this.props.state}
+                  onChange={this.props.onChange}
+                  label='Disable Genders'/>
+                <Enhanced.Checkbox id='disableNatures'
+                  state={this.props.state}
+                  onChange={this.props.onChange}
+                  label='Disable Natures'/>
+                <Enhanced.Checkbox id='disableAbilities'
+                  state={this.props.state}
+                  onChange={this.props.onChange}
+                  label='Disable Abilities'/>
+              </div>
+              <div id='new-rules' className='pull-right'>
+                <Rules rules={this.state.rules}
+                  addRule={this.addRule} removeRule={this.removeRule} />
+              </div>
+            </Row>
           </Modal.Body>
 
           <Modal.Footer>
@@ -139,7 +140,7 @@ class NewGameButton extends React.Component {
             </Button>
           </Modal.Footer>
         </Enhanced.Form>
-      </ModalButton>
+      </Modal>
     );
   }
 }
@@ -154,5 +155,5 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const EnhancedNewGameButton = Enhanced.enhanceForm(NewGameButton, fields);
-export default connect(null, mapDispatchToProps)(EnhancedNewGameButton);
+const EnhancedNewGameModal = Enhanced.enhanceForm(NewGameModal, fields);
+export default connect(null, mapDispatchToProps)(EnhancedNewGameModal);

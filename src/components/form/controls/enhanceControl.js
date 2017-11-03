@@ -4,33 +4,18 @@ export default (EnhancedControl) => {
   return class extends React.Component {
     constructor(props) {
       super(props);
-      /*this.validate = this.validate.bind(this);
-      this.state = this.props.form.addField(
-        props.id,
-        props.value,
-        this.validate(props.value)
-      );*/
       this.state = this.props.state.get(props.id);
       this.handleChange = this.handleChange.bind(this);
-      this.handleKeyDown = this.handleKeyDown.bind(this);
     }
     
-    validate(value) {
-      let valid = !this.props.required || value;
-      if (this.props.min)
-        valid = valid && value >= this.props.min;
-      if (this.props.max)
-        valid = valid && value <= this.props.max;
-      return valid;
-    }
-
     componentWillReceiveProps(nextProps) {
       this.setState(nextProps.state.get(nextProps.id));
     }
 
     componentDidUpdate() {
-      if (this.input && this.state.focus)
+      if (this.input && this.state.focus) {
         this.input.focus();
+      }
     }
 
     handleChange(value) {

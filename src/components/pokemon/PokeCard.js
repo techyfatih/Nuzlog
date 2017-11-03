@@ -7,61 +7,87 @@ import male from 'img/male.png';
 import female from 'img/female.png';
 import sprite from 'img/sprite.png';
 
+const getPokemon = pokemon => {
+  return {
+    icon,
+    name: pokemon ? pokemon.name : 'No Pokémon',
+    level: pokemon ? pokemon.level : null,
+    gender: pokemon ? pokemon.gender : null,
+    shiny: pokemon ? pokemon.shiny : null,
+    form: pokemon ? pokemon.form : null,
+    nature: pokemon ? pokemon.nature : null,
+    ability: pokemon ? pokemon.ability : null,
+    moves: pokemon ? pokemon.moves : null,
+    item: pokemon ? pokemon.moves : null,
+    method: pokemon ? pokemon.method : null,
+    location: pokemon ? pokemon.location : null
+  }
+}
+
 export default class PokeCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = getPokemon(props.pokemon);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState(getPokemon(nextProps.pokemon));
+  }
+
   render() {
     return (
       <Panel className='poke-card' header={
         <Media>
           <Media.Left align='middle'>
-            <img src={this.props.icon ? this.props.icon : icon} />
+            <img src={this.state.icon ? this.state.icon : icon} />
           </Media.Left>
           <Media.Body>
             <Media.Heading>
               <span className='name'>
-                {this.props.name ? this.props.name : 'No Pokémon'}
+                {this.state.name ? this.state.name : 'No Pokémon'}
               </span>&nbsp;
               <img className='gender' src={
-                this.props.gender == 'M' ? male :
-                this.props.gender == 'F' ? female : ''} />
+                this.state.gender == 'M' ? male :
+                this.state.gender == 'F' ? female : ''} />
               </Media.Heading>
-            <p className={this.props.level ? '' : 'invisible'}>
-              Level {this.props.level}
+            <p className={this.state.level ? '' : 'invisible'}>
+              Level {this.state.level}
             </p>
           </Media.Body>
-          {this.props.shiny && <Media.Right>*</Media.Right>}
+          {this.state.shiny && <Media.Right className='shiny'>*</Media.Right>}
         </Media>
       }>
-        <Thumbnail src={this.props.sprite ? this.props.sprite : sprite} />
-        <Table condensed>
+        <Thumbnail src={this.state.sprite ? this.state.sprite : sprite} />
+        <Table condensed className={this.props.pokemon ? '' : 'invisible'}>
           <tbody>
-            <tr className={this.props.form ? '' : 'invisible'}>
-              <th>Form:</th>
-              <td>{this.props.form}</td>
+            <tr>
+              <th width={100}>Form:</th>
+              <td><div>{this.state.form ? this.state.form : 'Normal'}</div></td>
             </tr>
-            <tr className={this.props.nature ? '' : 'invisible'}>
+            <tr>
               <th>Nature:</th>
-              <td>{this.props.nature}</td>
+              <td>{this.state.nature}</td>
             </tr>
-            <tr className={this.props.ability ? '' : 'invisible'}>
+            <tr>
               <th>Ability:</th>
-              <td>{this.props.ability}</td>
+              <td>{this.state.ability}</td>
             </tr>
-            <tr className={this.props.moves ? '' : 'invisible'}>
+            <tr>
               <th>Moves:</th>
               <td>
-                - {this.props.moves && this.props.moves[0]} <br/>
-                - {this.props.moves && this.props.moves[1]} <br/>
-                - {this.props.moves && this.props.moves[2]} <br/>
-                - {this.props.moves && this.props.moves[3]}
+                - {this.state.moves && this.state.moves[0]} <br/>
+                - {this.state.moves && this.state.moves[1]} <br/>
+                - {this.state.moves && this.state.moves[2]} <br/>
+                - {this.state.moves && this.state.moves[3]}
                 </td>
             </tr>
-            <tr className={this.props.item ? '' : 'invisible'}>
+            <tr>
               <th>Item:</th>
-              <td>{this.props.item}</td>
+              <td>{this.state.item}</td>
             </tr>
-            <tr className={this.props.location ? '' : 'invisible'}>
-              <th>{this.props.method}</th>
-              <td>{this.props.location}</td>
+            <tr>
+              <th>{this.state.method}</th>
+              <td>{this.state.location}</td>
             </tr>
           </tbody>
         </Table>

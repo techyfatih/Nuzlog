@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import './Info.css';
 
-class InfoView extends React.Component {
+class Info extends React.Component {
   render() {
     let rulesText = 'All Enabled';
     let disabled = [];
@@ -43,5 +43,4 @@ const mapStateToProps = state => {
   };
 };
 
-const Info = connect(mapStateToProps)(InfoView);
-export default Info;
+export default connect(mapStateToProps)(Info);

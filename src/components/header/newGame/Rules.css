@@ -1,0 +1,16 @@
+.custom-list {
+  margin: 0;
+}
+
+.custom-list .panel-heading, .custom-list .list-group-item {
+  padding: 5px 10px;
+}
+
+.custom-list .list-group {
+  height: 100px;
+  overflow-y: scroll;
+}
+
+.new-rule {
+  width: calc(100% - 15px);
+}

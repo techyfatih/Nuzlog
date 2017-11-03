@@ -1,8 +1,11 @@
-#party, #party table {
+#party {
   margin: 0;
 }
 
-#party td {
-  border: 0;
-  padding: 0
+#party-tabs {
+  width: calc(100% - 335px);
+}
+
+#party-options {
+  margin-top: 10px;
 }

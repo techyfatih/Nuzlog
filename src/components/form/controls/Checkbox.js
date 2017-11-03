@@ -10,12 +10,14 @@ class Checkbox extends React.Component {
   }
 
   handleChange(e) {
+    console.log(e);
     this.props.onChange(e.target.checked);
   }
 
   render() {
     return (
       <BSCheckbox
+        checked={this.props.value}
         onChange={this.handleChange}
         onKeyDown={this.props.onKeyDown}>
         {this.props.label}
