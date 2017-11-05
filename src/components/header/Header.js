@@ -3,7 +3,6 @@ import { Well, Grid, ButtonGroup, Button, Modal } from 'react-bootstrap';
 
 import ThemeSwitcher from './ThemeSwitcher';
 import NewGameModal from './newGame/NewGameModal';
-import SaveLoadGameButton from './SaveLoadGameButton';
 
 export default class Header extends React.Component {
   constructor() {
@@ -42,8 +41,7 @@ export default class Header extends React.Component {
           </ButtonGroup>
         </Grid>
 
-        <NewGameModal
-          show={this.state.newGameOpen}
+        <NewGameModal show={this.state.newGameOpen}
           onHide={this.closeNewGame} />
       </Well>
     );

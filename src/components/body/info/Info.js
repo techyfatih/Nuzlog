@@ -22,10 +22,11 @@ class Info extends React.Component {
       </Popover>
     );
     return (
-      <Panel header={this.props.info.title} bsStyle='info'>
-        <div className='pull-left'>
-          <h4 style={{marginTop: 0}}>{this.props.info.game}</h4>
-          <h4 style={{margin: 0}}>{this.props.info.name}</h4>
+      <Panel bsStyle='info'
+        header={<div><h3>{this.props.info.title}</h3></div>}>
+        <div id='info' className='pull-left'>
+          <h4 id='info-game'>{this.props.info.game}</h4>
+          <h4 id='info-name'>{this.props.info.name}</h4>
         </div>
         <OverlayTrigger trigger='click' rootClose
           placement='left' overlay={rules}>

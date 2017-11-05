@@ -92,15 +92,15 @@ class LogForm extends React.Component {
 class JournalView extends React.Component {
   constructor() {
     super();
-    this._cache = new CellMeasurerCache({
+    this.cache = new CellMeasurerCache({
       fixedWidth: true,
       minHeight: 40
     });
-    this._timeCellRenderer = this._timeCellRenderer.bind(this);
-    this._entryCellRenderer = this._entryCellRenderer.bind(this);
+    this.timeCellRenderer = this.timeCellRenderer.bind(this);
+    this.entryCellRenderer = this.entryCellRenderer.bind(this);
   }
 
-  _timeCellRenderer({cellData}) {
+  timeCellRenderer({cellData}) {
     return (
       <span>
         {cellData.toLocaleDateString()}<br/>
@@ -109,7 +109,7 @@ class JournalView extends React.Component {
     )
   }
 
-  _entryCellRenderer({dataKey, parent, rowIndex}) {
+  entryCellRenderer({dataKey, parent, rowIndex}) {
     const log = this.props.log[rowIndex];
     let content = log.entry;
     switch (log.type) {
@@ -134,7 +134,7 @@ class JournalView extends React.Component {
     }
     return (
       <CellMeasurer
-        cache={this._cache}
+        cache={this.cache}
         columnIndex={0}
         key={dataKey}
         parent={parent}
@@ -148,7 +148,7 @@ class JournalView extends React.Component {
 
   render() {
     return (
-      <Panel header='Journal' bsStyle='warning'>
+      <Panel bsStyle='warning' header={<div><h3>Journal</h3></div>}>
         <NewLocationForm location={this.props.location}
           newLocation={this.props.newLocation} />
         
@@ -156,12 +156,12 @@ class JournalView extends React.Component {
           {({width}) => {
             return (
               <Table
-                deferredMeasurementCache={this._cache}
+                deferredMeasurementCache={this.cache}
                 className='virtual-table'
                 width={width}
                 height={370}
                 headerHeight={30}
-                rowHeight={this._cache.rowHeight}
+                rowHeight={this.cache.rowHeight}
                 rowCount={this.props.log.length}
                 rowGetter={({index}) => this.props.log[index]}
                 scrollToIndex={this.props.log.length - 1}>
@@ -169,7 +169,7 @@ class JournalView extends React.Component {
                   label='Time'
                   dataKey='time'
                   width={150}
-                  cellRenderer={this._timeCellRenderer} />
+                  cellRenderer={this.timeCellRenderer} />
                 <Column
                   label='Type'
                   dataKey='type'
@@ -178,7 +178,7 @@ class JournalView extends React.Component {
                   label='Entry'
                   dataKey='entry'
                   width={width - 130}
-                  cellRenderer={this._entryCellRenderer} />
+                  cellRenderer={this.entryCellRenderer} />
               </Table>
             )
           }}

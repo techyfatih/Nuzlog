@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { FormGroup, InputGroup, FormControl, ControlLabel, Button, Glyphicon, Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { InputGroup, Button, Glyphicon, Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { List, AutoSizer } from 'react-virtualized';
-import { Control } from 'react-redux-form';
+
+import { EnhancedGroup, EnhancedControl } from './Input';
+import enhanceControl from './enhanceControl';
 
 import './Combobox.css';
 
 const normalize = str => {
   if (typeof str == 'string')
-    return str.trim().toLowerCase().replace(/é/g, 'e');
+    return str.toLowerCase().replace(/é/g, 'e');
   return '';
 }
 
@@ -72,8 +74,7 @@ class ComboboxMenu extends React.Component {
   render() {
     const rowHeight = this.props.rowHeight ? this.props.rowHeight : 30;
     return (
-      <Panel className='combobox-dropdown'
-        onMouseDown={this.props.onMouseDown}>
+      <Panel className='combobox-dropdown'>
         <ListGroup fill>
           <AutoSizer disableHeight>
             {({width}) => (
@@ -93,54 +94,86 @@ class ComboboxMenu extends React.Component {
   }
 }
 
-export default class Combobox extends React.Component {
+export class Combobox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mousedown: false,
       menuOpen: false,
       filtered: filter(props.items, props.value),
-      activeIndex: -1
+      activeIndex: -1,
+      selected: props.value
     };
+    this.getInput = this.getInput.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.openMenu = this.openMenu.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleMouseDown = this.handleMouseDown.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
   }
 
+  getInput(ref) {
+    this.input = ref;
+    if (typeof this.props.getInput == 'function')
+      this.props.getInput(ref);
+  }
+
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      filtered: filter(nextProps.items, nextProps.value),
-      activeIndex: -1
+    this.setState(prevState => {
+      var activeIndex = prevState.activeIndex;
+      var selected = prevState.selected;
+      if (selected != nextProps.value) {
+        activeIndex = -1;
+        selected = nextProps.value;
+      }
+      return {
+        filtered: filter(nextProps.items, nextProps.value),
+        activeIndex,
+        selected
+      };
     });
-    if (nextProps.focus)
-      this.input.focus();
+  }
+
+  handleClick(e) {
+    if (this.state.menuOpen && !this.group.contains(e.target))
+      this.closeMenu();
+  }
+
+  openMenu() {
+    this.setState({menuOpen: true});
+    document.addEventListener('click', this.handleClick);
+  }
+
+  closeMenu() {
+    this.setState({menuOpen: false});
+    document.removeEventListener('click', this.handleClick);
   }
 
   handleChange(value) {
-    this.setState({menuOpen: true});
+    this.openMenu();
     this.props.onChange(value);
   }
 
   handleKeyDown(e) {
     switch (e.keyCode) {
       case 40: //down
+        this.openMenu();
         this.setState(prevState => {
-          let activeIndex = prevState.activeIndex + 1;
-          if (activeIndex >= prevState.filtered.length)
-            activeIndex = -1;
-          return {menuOpen: true, activeIndex};
+          let activeIndex = -1;
+          if (prevState.activeIndex < prevState.filtered.length - 1)
+            activeIndex = prevState.activeIndex + 1;
+          return {activeIndex};
         })
         e.preventDefault();
         break;
       case 38: //up
+        this.openMenu();
         this.setState(prevState => {
-          let activeIndex = prevState.activeIndex - 1;
-          if (prevState.activeIndex < 0)
-            activeIndex = prevState.filtered.length - 1;
-          return {menuOpen: true, activeIndex};
+          let activeIndex = prevState.filtered.length - 1;
+          if (prevState.activeIndex >= 0)
+            activeIndex = prevState.activeIndex - 1;
+          return {activeIndex};
         })
         e.preventDefault();
         break;
@@ -153,53 +186,30 @@ export default class Combobox extends React.Component {
     }
   }
 
-  handleBlur(e) {
-    this.setState(({mousedown}) => {
-      if (mousedown) return {mousedown: false};
-      else return {menuOpen: false};
-    });
-    if (typeof this.props.onBlur == 'function')
-      this.props.onBlur(e);
-  }
-
-  handleMouseDown() {
-    this.setState((s, {focus}) => ({mousedown: focus}));
-  }
-
-  handleClick() {
-    this.setState(({menuOpen}) => ({menuOpen: !menuOpen}));
-    this.input.focus();
+  handleButtonClick() {
+    if (!this.state.menuOpen) {
+      this.openMenu();
+      this.input.focus();
+    } else this.closeMenu();
   }
 
   handleSelect(value) {
-    this.setState({menuOpen: false});
+    this.closeMenu();
     if (Array.isArray(value))
       value = value[0];
     this.props.onChange(value);
-    this.input.focus();
   }
 
   render() {
     return (
-      <FormGroup className='combobox' controlId={this.props.id}
-        validationState={
-          !this.props.required || this.props.pristine
-          ? null : (this.props.valid ? 'success' : 'error')}
-        ref={ref=> this.group = ReactDOM.findDOMNode(ref)}>
-        {this.props.label && <ControlLabel>{this.props.label}</ControlLabel>}
-        <InputGroup>
-          <FormControl type='text'
-            placeholder={this.props.placeholder}
-            value={this.props.value}
+      <EnhancedGroup className='combobox' {...this.props}>
+        <InputGroup ref={ref => this.group = ReactDOM.findDOMNode(ref)}>
+          <EnhancedControl {...this.props}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
-            onFocus={this.props.onFocus}
-            onBlur={this.handleBlur}
-            inputRef={ref => this.input = ref} />
+            inputRef={this.getInput} />
           <InputGroup.Button>
-            <Button tabIndex={-1}
-              onMouseDown={this.handleMouseDown}
-              onClick={this.handleClick}>
+            <Button onClick={this.handleButtonClick} tabIndex={-1}>
               <Glyphicon
                 glyph={!this.state.menuOpen ? 'chevron-down' : 'chevron-up'}/>
             </Button>
@@ -209,32 +219,11 @@ export default class Combobox extends React.Component {
         <ComboboxMenu
           items={this.state.filtered}
           activeIndex={this.state.activeIndex}
-          onMouseDown={this.handleMouseDown}
-          onSelect={this.handleSelect} />}
-      </FormGroup>
+          onSelect={this.handleSelect}
+          rowHeight={this.props.rowHeight} />}
+      </EnhancedGroup>
     );
   }
 }
 
-export class RRFCombobox extends React.Component {
-  render() {
-    return (
-      <Control.text
-        model={this.props.model}
-        id={this.props.model}
-        required={this.props.required}
-        label={this.props.label}
-        placeholder={this.props.placeholder}
-        component={Combobox}
-        items={this.props.items}
-        validators={{
-          required: (val) => !this.props.required || val && val.trim().length
-        }}
-        mapProps={{
-          pristine: ({fieldValue}) => fieldValue.pristine,
-          valid: ({fieldValue}) => fieldValue.valid,
-          focus: ({fieldValue}) => fieldValue.focus
-        }} />
-    )
-  }
-}
+export default enhanceControl(Combobox);

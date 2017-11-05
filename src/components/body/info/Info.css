@@ -1,3 +1,20 @@
+#info {
+  width: calc(100% - 80px);
+}
+
+#info-game {
+  margin-top: 0;
+}
+
+#info-name {
+  margin: 0;
+}
+
+#info-game, #info-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 #rules {
   max-width: 300px;
 }
