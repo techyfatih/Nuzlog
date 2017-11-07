@@ -2,6 +2,11 @@ import React from 'react';
 import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 export default class NumberInput extends React.Component {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.focus)
+      this.input.focus();
+  }
+
   render() {
     return (
       <FormGroup controlId={this.props.id}
@@ -12,9 +17,12 @@ export default class NumberInput extends React.Component {
         <FormControl type='number'
           placeholder={this.props.placeholder}
           value={this.props.value}
+          onChange={this.props.onChange}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
           min={this.props.min}
           max={this.props.max}
-          onChange={this.handleChange} />
+          inputRef={ref => this.input = ref} />
       </FormGroup>
     );
   }

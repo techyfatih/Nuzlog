@@ -28,6 +28,7 @@ export default class RRForm extends React.Component {
     return (
       <LocalForm autoComplete='off' hideNativeErrors
         getDispatch={this.getDispatch}
+        onUpdate={this.props.onUpdate}
         onSubmitFailed={this.handleSubmitFailed}
         onSubmit={this.props.onSubmit}>
         {this.props.children}

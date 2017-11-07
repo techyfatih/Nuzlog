@@ -1,14 +1,13 @@
 import React from 'react';
-import { Modal, Button, ToggleButtonGroup, Table, Col, Row, Grid } from 'react-bootstrap';
+import { Modal, Checkbox, Button, ToggleButtonGroup, } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { actions } from 'react-redux-form';
+import { Control, actions } from 'react-redux-form';
 
 import './NewGame.css';
 import games from 'data/games.json';
 
 import RRForm from 'components/form/RRForm';
 import { RRFText, RRFCombobox } from 'components/form/RRFControls';
-import StyledToggle from 'components/form/controls/StyledToggle';
 import { newGame, newLocation } from 'actions';
 import Rules from './Rules';
 
@@ -21,7 +20,6 @@ class NewGameModal extends React.Component {
       rules: []
     };
     this.reset = this.reset.bind(this);
-    this.handleDisableChange = this.handleDisableChange.bind(this);
     this.addRule = this.addRule.bind(this);
     this.removeRule = this.removeRule.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,15 +27,10 @@ class NewGameModal extends React.Component {
 
   reset() {
     this.setState({
-      disable: [],
       rule: '',
       rules: []
     });
     this.dispatch(actions.focus('local.title'));
-  }
-
-  handleDisableChange(disable) {
-    this.setState({disable});
   }
 
   addRule(rule) {
@@ -64,9 +57,9 @@ class NewGameModal extends React.Component {
     };
     let location = values.location
     const rules = {
-      genders: !this.state.disable.includes('genders'),
-      natures: !this.state.disable.includes('natures'),
-      abilities: !this.state.disable.includes('abilities'),
+      genders: !values.genders,
+      natures: !values.natures,
+      abilities: !values.abilities,
       list: this.state.rules
     }
     this.props.onNewGame(info, rules, location);
@@ -94,13 +87,17 @@ class NewGameModal extends React.Component {
               placeholder='Littleroot Town'/>
 
             <div className='clearfix'>
-              <ToggleButtonGroup type='checkbox' vertical className='pull-left'
-                value={this.state.disable}
-                onChange={this.handleDisableChange}>
-                <StyledToggle value='genders'>Disable Genders</StyledToggle>
-                <StyledToggle value='natures'>Disable Natures</StyledToggle>
-                <StyledToggle value='abilities'>Disable Abilities</StyledToggle>
-              </ToggleButtonGroup>
+              <div className='pull-left'>
+                <Control.checkbox model='.genders' component={Checkbox}>
+                  Disable Genders
+                </Control.checkbox>
+                <Control.checkbox model='.natures' component={Checkbox}>
+                  Disable Natures
+                </Control.checkbox>
+                <Control.checkbox model='.abilities' component={Checkbox}>
+                  Disable Abilities
+                </Control.checkbox>
+              </div>
               
               <div id='new-rules' className='pull-right'>
                 <Rules rules={this.state.rules}

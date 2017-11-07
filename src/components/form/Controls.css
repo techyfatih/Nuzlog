@@ -1,3 +1,11 @@
+.btn {
+  transition:
+    color ease-in-out .15s,
+    border-color ease-in-out .15s,
+    background-color ease-in-out .15s,
+    box-shadow ease-in-out .15s;
+}
+
 .has-error .btn {
   color: #a94442;
   border-color: #a94442;
