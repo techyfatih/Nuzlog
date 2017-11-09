@@ -51,6 +51,8 @@ export const levelUp = (index, number) => {
 
 export const changeMoves = (index, moves) => {
   return {
-    t
-  }
-}
+    type: types.CHANGE_MOVES,
+    index,
+    moves
+  };
+};

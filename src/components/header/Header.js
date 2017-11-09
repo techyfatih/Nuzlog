@@ -3,15 +3,20 @@ import { Well, Grid, ButtonGroup, Button, Modal } from 'react-bootstrap';
 
 import ThemeSwitcher from './ThemeSwitcher';
 import NewGameModal from './newGame/NewGameModal';
+import SaveLoadGameModal from './SaveLoadGameModal';
 
 export default class Header extends React.Component {
   constructor() {
     super();
     this.state = {
-      newGameOpen: false
+      newGameOpen: false,
+      saveLoadGameOpen: false
     }
     this.openNewGame = this.openNewGame.bind(this);
     this.closeNewGame = this.closeNewGame.bind(this);
+    
+    this.openSaveLoadGame = this.openSaveLoadGame.bind(this);
+    this.closeSaveLoadGame = this.closeSaveLoadGame.bind(this);
   }
 
   openNewGame() {
@@ -20,6 +25,14 @@ export default class Header extends React.Component {
 
   closeNewGame() {
     this.setState({newGameOpen: false});
+  }
+
+  openSaveLoadGame() {
+    this.setState({saveLoadGameOpen: true});
+  }
+
+  closeSaveLoadGame() {
+    this.setState({saveLoadGameOpen: false});
   }
 
   render() {
@@ -35,7 +48,7 @@ export default class Header extends React.Component {
             <Button href='#' bsStyle='primary' onClick={this.openNewGame}>
               New Game
             </Button>
-            <Button href='#' bsStyle='primary'>
+            <Button href='#' bsStyle='primary' onClick={this.openSaveLoadGame}>
               Save/Load Game
             </Button>
           </ButtonGroup>
@@ -43,6 +56,8 @@ export default class Header extends React.Component {
 
         <NewGameModal show={this.state.newGameOpen}
           onHide={this.closeNewGame} />
+        <SaveLoadGameModal show={this.state.saveLoadGameOpen}
+          onHide={this.closeSaveLoadGame} />
       </Well>
     );
   }
