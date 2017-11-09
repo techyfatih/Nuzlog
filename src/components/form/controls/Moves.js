@@ -10,9 +10,26 @@ export default class Moves extends React.Component {
   constructor() {
     super();
     this.state = {
-      moves: ['', '', '', '']
+      moves: ['', '', '', ''],
+      focus: [false, false, false, false]
     };
+    this.focus = this.focus.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+  }
+
+  focus(index) {
+    this.setState(({focus}) => {
+      const newFocus = focus.slice();
+      newFocus.splice(index, 1, true);
+      return {focus: newFocus};
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.focus)
+      this.focus(0);
   }
 
   handleChange(index, move) {
@@ -21,10 +38,21 @@ export default class Moves extends React.Component {
       newMoves.splice(index, 1, move);
       return {moves: newMoves};
     }, () => {
-      console.log(this.state.moves);
       if (typeof this.props.onChange == 'function')
         this.props.onChange(this.state.moves.filter(move => move));
     });
+  }
+
+  handleFocus(index) {
+    focus(index);
+    if (typeof this.props.onFocus == 'function')
+      this.props.onFocus();
+  }
+
+  handleBlur(e) {
+    this.setState({focus: [false, false, false, false]});
+    if (typeof this.props.onBlur == 'function')
+      this.props.onBlur(e);
   }
 
   render() {
@@ -39,8 +67,9 @@ export default class Moves extends React.Component {
             placeholder={move}
             value={this.state.moves[index]}
             onChange={move => this.handleChange(index, move)}
-            onFocus={this.props.onFocus}
-            onBlur={this.props.onBlur} >
+            focus={this.state.focus[index]}
+            onFocus={() => this.handleFocus(index)}
+            onBlur={this.handleBlur}>
             {moves}
           </Combobox>
         ))}

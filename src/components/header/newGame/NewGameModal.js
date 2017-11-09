@@ -80,7 +80,9 @@ class NewGameModal extends React.Component {
             <RRFText model='.title' label='Title*'
               placeholder='The Great Nuzlocke Challenge' required/>
             <RRFCombobox model='.game' label='Game*'
-              placeholder='Pokémon Ruby' items={games} required/>
+              placeholder='Pokémon Ruby' required>
+              {games}
+            </RRFCombobox>
             <RRFText model='.name' label='Name*'
               placeholder='Ruby' required/>
             <RRFText model='.location' label='Initial Location'

@@ -49,7 +49,8 @@ export class RRFCombobox extends React.Component {
           pristine: ({fieldValue}) => fieldValue.pristine,
           valid: ({fieldValue}) => fieldValue.valid,
           focus: ({fieldValue}) => fieldValue.focus
-        }}>
+        }}
+        onChange={this.props.onChange}>
         {this.props.children}
       </Control.text>
     )
@@ -99,7 +100,8 @@ export class RRFToggle extends React.Component {
           pristine: ({fieldValue}) => fieldValue.pristine,
           valid: ({fieldValue}) => fieldValue.valid,
           focus: ({fieldValue}) => fieldValue.focus
-        }}>
+        }}
+        onChange={this.props.onChange}>
         {this.props.children}
       </Control>
     )

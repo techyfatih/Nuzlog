@@ -2,14 +2,15 @@ import React from 'react';
 import { Media, Panel, Image, Thumbnail, Table } from 'react-bootstrap';
 
 import './PokeCard.css';
-import icon from 'img/icon.png';
+
 import male from 'img/male.png';
 import female from 'img/female.png';
-import sprite from 'img/sprite.png';
+
+import PokeIcon from './PokeIcon';
+import PokeSprite from './PokeSprite';
 
 const getPokemon = pokemon => {
   return {
-    icon,
     name: pokemon ? pokemon.name : 'No Pokémon',
     level: pokemon ? pokemon.level : null,
     gender: pokemon ? pokemon.gender : null,
@@ -27,11 +28,15 @@ const getPokemon = pokemon => {
 export default class PokeCard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = getPokemon(props.pokemon);
+    this.state = {
+      pokemon: getPokemon(props.pokemon)
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState(getPokemon(nextProps.pokemon));
+    this.setState({
+      pokemon: getPokemon(nextProps.pokemon)
+    });
   }
 
   render() {
@@ -39,7 +44,7 @@ export default class PokeCard extends React.Component {
       <Panel className='poke-card' header={
         <Media>
           <Media.Left align='middle'>
-            <img src={this.state.icon ? this.state.icon : icon} />
+            <PokeIcon pokemon={this.state} />
           </Media.Left>
           <Media.Body>
             <Media.Heading>
@@ -57,7 +62,7 @@ export default class PokeCard extends React.Component {
           {this.state.shiny && <Media.Right className='shiny'>*</Media.Right>}
         </Media>
       }>
-        <Thumbnail src={this.state.sprite ? this.state.sprite : sprite} />
+        <PokeSprite pokemon={this.state.pokemon} />
         <Table condensed className={this.props.pokemon ? '' : 'invisible'}>
           <tbody>
             <tr>

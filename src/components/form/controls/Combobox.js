@@ -7,19 +7,7 @@ import { List, AutoSizer,
 import './Combobox.css';
 import '../Controls.css';
 
-const normalize = str => {
-  if (typeof str == 'string')
-    return str.trim().toLowerCase().replace(/é/g, 'e');
-  return '';
-}
-
-const filter = (items, value) => {
-  return items.filter(item => {
-    if (Array.isArray(item))
-      item = item[0];
-    return normalize(item).indexOf(normalize(value)) !== -1;
-  });
-}
+import normalize from 'utilities/normalize';
 
 const filterChildren = (children, value) => {
   return React.Children.map(children, child => {
@@ -41,35 +29,7 @@ class ComboboxMenu extends React.Component {
     this.rowRenderer = this.rowRenderer.bind(this);
   }
 
-  /*shouldComponentUpdate(nextProps) {
-    if (this.props.activeIndex != nextProps.activeIndex) {
-      return true;
-    }
-
-    if (this.props.items.length != nextProps.items.length)
-      return true;
-    
-    for (let i = 0; i < this.props.items.length; i++) {
-      let item1 = this.props.items[i];
-      let item2 = nextProps.items[i];
-      if (item1.length != item2.length)
-        return true;
-      
-      for (let j = 0; j < item1.length; j++) {
-        if (item1[j] != item2[j])
-          return true;
-      }
-    }
-    return false;
-  }*/
-
   rowRenderer({key, parent, index, style}) {
-    /*let item = this.props.items[index];
-    let display = item;
-    if (Array.isArray(item)) {
-      display = item[1];
-      item = item[0];
-    }*/
     return (
       <ListGroupItem
         href='#'
@@ -87,7 +47,8 @@ class ComboboxMenu extends React.Component {
     const count = React.Children.count(this.props.children);
     const rowHeight = this.props.rowHeight ? this.props.rowHeight : 30;
     let height = count * rowHeight;
-    if (height > 150) height = 150;
+    if (height == 0) height = 30;
+    else if (height > 150) height = 150;
 
     const scroll = this.props.activeIndex != -1 ? this.props.activeIndex : 0;
     return (
@@ -102,6 +63,9 @@ class ComboboxMenu extends React.Component {
                 rowCount={count}
                 rowHeight={rowHeight}
                 rowRenderer={this.rowRenderer}
+                noRowsRenderer={() => (
+                  <ListGroupItem><em>No results</em></ListGroupItem>
+                )}
                 scrollToIndex={this.props.activeIndex}
                 tabIndex={-1}/>
             )}
@@ -130,10 +94,13 @@ export default class Combobox extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      filtered: filterChildren(nextProps.children, nextProps.value),
-      activeIndex: -1
-    });
+    if (this.props.children != nextProps.children ||
+        this.props.value != nextProps.value) {
+      this.setState({
+        filtered: filterChildren(nextProps.children, nextProps.value),
+        activeIndex: -1
+      });
+    }
     if (nextProps.focus)
       this.input.focus();
   }

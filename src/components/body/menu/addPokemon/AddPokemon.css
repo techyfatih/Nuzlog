@@ -10,14 +10,19 @@
   overflow: visible;
 }
 
-#add-pokemon .thumbnail {
+.sprite .panel-body {
+  text-align: center;
   height: 200px;
 }
 
-#add-pokemon .thumbnail img {
-  position: relative;
-  top: 95px;
-  transform: translate(0, -50%);
+.sprite .helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.sprite img {
+  vertical-align: middle
 }
 
 #add-location .form-group {

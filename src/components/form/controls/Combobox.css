@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.combobox .input-group {
+  width: 100%;
+}
+
 .combobox-dropdown {
   position: absolute;
   width: 100%;

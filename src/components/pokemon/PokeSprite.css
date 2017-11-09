@@ -1,0 +1,14 @@
+.sprite .panel-body {
+  text-align: center;
+  height: 200px;
+}
+
+.sprite .helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.sprite img {
+  vertical-align: middle
+}
