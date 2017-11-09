@@ -48,20 +48,20 @@ class AddPokemonModal extends React.Component {
     this.dispatch(actions.focus('local.pokemon'));
   }
 
-  changePokemon(name) {
+  changePokemon(species) {
     let gender = '';
     let forms = ['Normal'];
 
-    let pokemon = pokedex.get(normalize(name));
+    let pokemon = pokedex.get(normalize(species));
     if (pokemon) {
       gender = pokemon.gender[0];
       this.dispatch(actions.change('local.gender', gender));
       if (pokemon.forms)
         forms = forms.concat(pokemon.forms);
     }
+    this.updatePokemon({species, gender, form: ''});
+    
     this.dispatch(actions.change('local.form', ''));
-    this.updatePokemon({name, gender, form: ''});
-    console.log(forms);
     this.setState({forms});
   }
 
@@ -145,7 +145,7 @@ class AddPokemonModal extends React.Component {
                     </Col>
                     <Col xs={6}>
                       <RRFText model='.nickname' label='Nickname'
-                        placeholder='Bulby' required />
+                        placeholder='Bulby' />
                     </Col>
                   </Row>
                   <Row>

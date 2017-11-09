@@ -11,6 +11,7 @@ import PokeSprite from './PokeSprite';
 
 const getPokemon = pokemon => {
   return {
+    species: pokemon ? pokemon.species : null,
     name: pokemon ? pokemon.name : 'No Pokémon',
     level: pokemon ? pokemon.level : null,
     gender: pokemon ? pokemon.gender : null,
@@ -44,22 +45,22 @@ export default class PokeCard extends React.Component {
       <Panel className='poke-card' header={
         <Media>
           <Media.Left align='middle'>
-            <PokeIcon pokemon={this.state} />
+            <PokeIcon pokemon={this.state.pokemon} />
           </Media.Left>
           <Media.Body>
             <Media.Heading>
               <span className='name'>
-                {this.state.name ? this.state.name : 'No Pokémon'}
+                {this.state.pokemon.name ? this.state.pokemon.name : 'No Pokémon'}
               </span>&nbsp;
               <img className='gender' src={
-                this.state.gender == 'M' ? male :
-                this.state.gender == 'F' ? female : ''} />
+                this.state.pokemon.gender == 'M' ? male :
+                this.state.pokemon.gender == 'F' ? female : ''} />
               </Media.Heading>
-            <p className={this.state.level ? '' : 'invisible'}>
-              Level {this.state.level}
+            <p className={this.state.pokemon.level ? '' : 'invisible'}>
+              Level {this.state.pokemon.level}
             </p>
           </Media.Body>
-          {this.state.shiny && <Media.Right className='shiny'>*</Media.Right>}
+          {this.state.pokemon.shiny && <Media.Right className='shiny'>*</Media.Right>}
         </Media>
       }>
         <PokeSprite pokemon={this.state.pokemon} />
@@ -67,32 +68,32 @@ export default class PokeCard extends React.Component {
           <tbody>
             <tr>
               <th width={100}>Form:</th>
-              <td><div>{this.state.form ? this.state.form : 'Normal'}</div></td>
+              <td><div>{this.state.pokemon.form ? this.state.pokemon.form : 'Normal'}</div></td>
             </tr>
             <tr>
               <th>Nature:</th>
-              <td>{this.state.nature}</td>
+              <td>{this.state.pokemon.nature}</td>
             </tr>
             <tr>
               <th>Ability:</th>
-              <td>{this.state.ability}</td>
+              <td>{this.state.pokemon.ability}</td>
             </tr>
             <tr>
               <th>Moves:</th>
               <td>
-                - {this.state.moves && this.state.moves[0]} <br/>
-                - {this.state.moves && this.state.moves[1]} <br/>
-                - {this.state.moves && this.state.moves[2]} <br/>
-                - {this.state.moves && this.state.moves[3]}
+                - {this.state.pokemon.moves && this.state.pokemon.moves[0]} <br/>
+                - {this.state.pokemon.moves && this.state.pokemon.moves[1]} <br/>
+                - {this.state.pokemon.moves && this.state.pokemon.moves[2]} <br/>
+                - {this.state.pokemon.moves && this.state.pokemon.moves[3]}
                 </td>
             </tr>
             <tr>
               <th>Item:</th>
-              <td>{this.state.item}</td>
+              <td>{this.state.pokemon.item}</td>
             </tr>
             <tr>
-              <th>{this.state.method}</th>
-              <td>{this.state.location}</td>
+              <th>{this.state.pokemon.method}</th>
+              <td>{this.state.pokemon.location}</td>
             </tr>
           </tbody>
         </Table>

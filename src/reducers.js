@@ -32,36 +32,49 @@ const recordLog = (type, entry) => {
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.NEW_GAME:
-      return Object.assign({}, state, {
+      return {...state,
         info: action.info,
         rules: action.rules,
         location: '',
         log: []
-      })
-      break;
+      };
     case types.NEW_LOCATION:
-      return Object.assign({}, state, {
+      return {...state,
         location: action.location,
         log: [...state.log, recordLog('Location', action.location)]
-      });
-      break;
+      }
     case types.RECORD_LOG:
-      return Object.assign({}, state, {
+      return {...state,
         log: [...state.log, recordLog('Log', action.log)]
-      })
-      break;
+      };
     case types.ADD_POKEMON:
       if (state.party.length < 6) {
-        return Object.assign({}, state, {
+        return {...state,
           party: [...state.party, action.pokemon],
           log: [...state.log, recordLog('Party', action.pokemon)]
-        })
+        }
       } else {
-        return Object.assign({}, state, {
+        return {...state,
           pc: [...state.pc, action.pokemon],
           log: [...state.log, recordLog('PC', action.pokemon)]
-        })
+        }
       }
+    case types.LEVEL_UP:
+      const {index, number} = action;
+      if (index < 0 || index > state.party.length)
+        return state;
+      
+      let pokemon = state.party[index];
+      pokemon = {...pokemon, level: pokemon.level + number};
+
+      return {...state,
+        party: [
+          state.party.slice(0, index),
+          pokemon,
+          state.party.slice(index)],
+        log: [...state.log, recordLog('Level' + index),
+          pokemon.name + ' grew to Level ' + pokemon.level + '!']
+      };
     default:
       return state;
   }

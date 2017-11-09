@@ -28,8 +28,10 @@ export default class Moves extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.focus)
+    if (nextProps.focus) {
       this.focus(0);
+      console.log('focus');
+    }
   }
 
   handleChange(index, move) {

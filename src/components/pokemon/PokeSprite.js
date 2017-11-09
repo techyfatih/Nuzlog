@@ -27,29 +27,30 @@ export default class PokeSprite extends React.Component {
   componentWillReceiveProps(nextProps) {
     let sprite = defaultSprite;
     if (nextProps.pokemon) {
-      let {name, gender, shiny, form} = nextProps.pokemon;
-      name = normalize(name);
+      let {species, gender, shiny, form} = nextProps.pokemon;
+      species = normalize(species);
       form = normalize(form);
 
-      let pokemon = pokedex.get(name);
+      let pokemon = pokedex.get(species);
       if (pokemon) {
-        switch (name) {
+        switch (species) {
           case 'nidoranf':
-            name = 'nidoran_f';
+            species = 'nidoran_f';
             break;
           case 'nidoranm':
-            name = 'nidoran_m';
+            species = 'nidoran_m';
             break;
         }
-        if (gender == 'F' && pokemon.femaleForm) name += '-f';
         if (pokemon.forms) {
           for (let i = 0; i < pokemon.forms.length; i++) {
             if (form == normalize(pokemon.forms[i])) {
-              name += '-' + form;
+              species += '-' + form;
               break;
             }
           }
         }
+        if (species.indexOf('-') == -1 && gender == 'F' && pokemon.femaleForm)
+          species += '-f';
 
         sprite = 'https://www.pkparaiso.com/imagenes/';
         if (form != 'alola' && pokemon.num <= 721)
@@ -57,7 +58,7 @@ export default class PokeSprite extends React.Component {
         else
           sprite += 'sol-luna/sprites/animados';
         if (shiny) sprite += '-shiny';
-        sprite += '/' + name + '.gif';
+        sprite += '/' + species + '.gif';
       }
     }
     if (this.state.sprite != sprite) {

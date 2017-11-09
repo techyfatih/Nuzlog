@@ -14,17 +14,17 @@ export default class PokeIcon extends React.PureComponent {
   componentWillReceiveProps(nextProps) {
     let icon;
     if (nextProps.pokemon) {
-      let {name, gender, form} = nextProps.pokemon;
-      name = normalize(name);
+      let {species, gender, form} = nextProps.pokemon;
+      species = normalize(species);
       form = normalize(form);
 
-      icon = icons[name + '-' + form];
+      icon = icons[species + '-' + form];
       if (!icon) {
         if (gender != 'F') {
-          icon = icons[name];
+          icon = icons[species];
         } else {
-          icon = icons[name + '-f'];
-          if (!icon) icon = icons[name];
+          icon = icons[species + '-f'];
+          if (!icon) icon = icons[species];
         }
       }
     }

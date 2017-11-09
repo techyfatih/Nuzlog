@@ -1,0 +1,11 @@
+#pc {
+  margin: 0;
+}
+
+#pc-tabs {
+  width: calc(100% - 335px);
+}
+
+#pc-options {
+  margin-top: 10px;
+}

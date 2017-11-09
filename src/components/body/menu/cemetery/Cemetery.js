@@ -3,26 +3,21 @@ import { Panel, ToggleButtonGroup, ToggleButton,
   ButtonGroup, Button } from 'react-bootstrap';
 import { connect } from 'react-redux'
 
-import './Party.css';
+import './PC.css';
 
 import PokeSlot from 'components/pokemon/PokeSlot';
 import PokeCard from 'components/pokemon/PokeCard';
-import LevelModal from './LevelModal';
 
 const six = [...Array(6).keys()];
 
-class PartyView extends React.Component {
+class Cemetery extends React.Component {
   constructor() {
     super();
     this.state = {
-      value: -1,
-      levelOpen: false
+      value: -1
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-
-    this.openLevel = this.openLevel.bind(this);
-    this.closeLevel = this.closeLevel.bind(this);
   }
 
   handleChange(value) {
@@ -32,14 +27,6 @@ class PartyView extends React.Component {
   handleClick(e) {
     if (e.target.value && e.target.value == this.state.value)
       this.setState({value: -1});
-  }
-
-  openLevel() {
-    this.setState({levelOpen: true});
-  }
-
-  closeLevel() {
-    this.setState({levelOpen: false});
   }
 
   render() {
@@ -53,32 +40,20 @@ class PartyView extends React.Component {
             onChange={this.handleChange}>
             {six.map(index => (
               <ToggleButton value={index} key={index}
-                disabled={!this.props.party[index]}
+                disabled={!this.props.cemetery[index]}
                 onClick={this.handleClick}>
-                <PokeSlot pokemon={this.props.party[index]} />
+                <PokeSlot pokemon={this.props.cemetery[index]} />
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
           <ButtonGroup id='party-options' vertical block>
-            <Button href='#' bsStyle='primary' onClick={this.openLevel}
+            <Button href='#' bsStyle='primary'
               disabled={this.state.value == -1}>Level Up</Button>
-            <Button href='#' bsStyle='warning'
-              disabled={this.state.value == -1}>Moves</Button>
-            <Button href='#' bsStyle='warning'
-              disabled={this.state.value == -1}>Item</Button>
-            <Button href='#' bsStyle='success'
-              disabled={this.state.value == -1}>Evolve</Button>
-            <Button href='#' bsStyle='info'
-              disabled={this.state.value == -1}>Deposit</Button>
-            <Button href='#' bsStyle='danger'
-              disabled={this.state.value == -1}>Death</Button>
           </ButtonGroup>
         </div>
         <div className='pull-right'>
-          <PokeCard pokemon={this.props.party[this.state.value]} />
+          <PokeCard pokemon={this.props.cemetery[this.state.value]} />
         </div>
-
-        <LevelModal show={this.state.levelOpen} onHide={this.closeLevel} />
       </Panel>
     );
   }
@@ -86,9 +61,8 @@ class PartyView extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    party: state.party
+    cemetery: state.cemetery
   };
 };
 
-const Party = connect(mapStateToProps)(PartyView);
-export default Party;
+export default connect(mapStateToProps)(Cemetery);

@@ -3,6 +3,8 @@ import { Panel, ButtonGroup, Button, Tabs, Tab } from 'react-bootstrap';
 
 import AddPokemonModal from './addPokemon/AddPokemonModal';
 import Party from './party/Party';
+import PC from './pc/PC';
+import Cemetery from './cemetery/Cemetery';
 
 export default class Menu extends React.Component {
   constructor() {
@@ -36,8 +38,8 @@ export default class Menu extends React.Component {
 
         <Tabs defaultActiveKey={1} id='pokemon-tabs' justified>
           <Tab eventKey={1} title='Party'><Party /></Tab>
-          <Tab eventKey={2} title='PC'>PC</Tab>
-          <Tab eventKey={3} title='Cemetery'>Cemetery</Tab>
+          <Tab eventKey={2} title='PC'><PC /></Tab>
+          <Tab eventKey={3} title='Cemetery'><Cemetery /></Tab>
         </Tabs>
         
         <AddPokemonModal

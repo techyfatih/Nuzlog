@@ -10,6 +10,7 @@ import PokeIcon from './PokeIcon';
 
 const getPokemon = pokemon => {
   return {
+    species: pokemon ? pokemon.species : null,
     name: pokemon ? pokemon.name : 'No Pokémon',
     level: pokemon ? pokemon.level : null,
     gender: pokemon ? pokemon.gender : null
@@ -38,12 +39,12 @@ export default class PokeSlot extends React.Component {
         </Media.Left>
         <Media.Body className={this.props.pokemon ? '' : 'invisible'}>
           <p>
-            {this.state.name}
+            {this.state.pokemon.name}&nbsp;
             <img className='gender' src={
-              this.state.gender == 'M' ? male :
-              this.state.gender == 'F' ? female : ''} />
+              this.state.pokemon.gender == 'M' ? male :
+              this.state.pokemon.gender == 'F' ? female : ''} />
           </p>
-          <p>Level {this.state.level}</p>
+          <p>Level {this.state.pokemon.level}</p>
         </Media.Body>
       </Media>
     );
