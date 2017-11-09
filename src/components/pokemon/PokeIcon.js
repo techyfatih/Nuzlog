@@ -5,31 +5,35 @@ import icons from 'img/icons';
 
 import normalize from 'utilities/normalize';
 
+const getIcon = pokemon => {
+  let icon;
+  if (pokemon) {
+    let {species, gender, form} = pokemon;
+    species = normalize(species);
+    form = normalize(form);
+
+    icon = icons[species + '-' + form];
+    if (!icon) {
+      if (gender != 'F') {
+        icon = icons[species];
+      } else {
+        icon = icons[species + '-f'];
+        if (!icon) icon = icons[species];
+      }
+    }
+  }
+  if (!icon) icon = defaultIcon;
+  return icon;
+}
+
 export default class PokeIcon extends React.PureComponent {
-  constructor() {
-    super();
-    this.state = {icon: defaultIcon};
+  constructor(props) {
+    super(props);
+    this.state = {icon: getIcon(props.pokemon)};
   }
 
   componentWillReceiveProps(nextProps) {
-    let icon;
-    if (nextProps.pokemon) {
-      let {species, gender, form} = nextProps.pokemon;
-      species = normalize(species);
-      form = normalize(form);
-
-      icon = icons[species + '-' + form];
-      if (!icon) {
-        if (gender != 'F') {
-          icon = icons[species];
-        } else {
-          icon = icons[species + '-f'];
-          if (!icon) icon = icons[species];
-        }
-      }
-    }
-    if (!icon) icon = defaultIcon;
-    this.setState({icon});
+    this.setState({icon: getIcon(nextProps.pokemon)});
   }
 
   render() {

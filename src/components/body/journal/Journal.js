@@ -131,6 +131,9 @@ class JournalView extends React.Component {
           </span>
         );
         break;
+      default:
+        content = JSON.stringify(content);
+        break;
     }
     return (
       <CellMeasurer

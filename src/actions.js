@@ -41,18 +41,57 @@ export const addPokemon = pokemon => {
   };
 };
 
-export const levelUp = (index, number) => {
+export const levelUp = (index, levels) => {
   return {
     type: types.LEVEL_UP,
     index,
-    number
-  }
-}
+    levels
+  };
+};
 
 export const changeMoves = (index, moves) => {
   return {
     type: types.CHANGE_MOVES,
     index,
     moves
+  };
+};
+
+export const changeItem = (index, item) => {
+  return {
+    type: types.CHANGE_ITEM,
+    index,
+    item
+  };
+};
+
+export const evolve = (index, species, ability) => {
+  return {
+    type: types.EVOLVE,
+    index,
+    species,
+    ability
+  };
+};
+
+export const deposit = index => {
+  return {
+    type: types.DEPOSIT,
+    index
+  };
+};
+
+export const death = (index, cause) => {
+  return {
+    type: types.DEATH,
+    index,
+    cause
+  };
+};
+
+export const withdraw = index => {
+  return {
+    type: types.WITHDRAW,
+    index
   };
 };
