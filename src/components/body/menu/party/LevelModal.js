@@ -2,33 +2,32 @@ import React from 'react';
 import { Modal, Panel,
   FormGroup, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { actions } from 'react-redux-form';
 
 import PokeIcon from 'components/pokemon/PokeIcon';
+import RRForm from 'components/form/RRForm';
+import { RRFNumber } from 'components/form/RRFControls';
 import { levelUp } from 'actions';
 
 class LevelModal extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      levels: 1
-    };
+  constructor(props) {
+    super(props);
+    this.state = {levels: 1};
     this.handleEnter = this.handleEnter.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleEnter() {
-    this.setState({levels: 1});
+    this.dispatch(actions.focus('local.levels'));
   }
 
-  handleChange(e) {
-    const levels = e.target.value ? parseInt(e.target.value) : 1;
+  handleChange(levels) {
     this.setState({levels})
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.onLevelUp(this.props.index, this.state.levels);
+  handleSubmit(values) {
+    this.props.onLevelUp(this.props.index, values.levels);
     this.props.onHide();
   }
 
@@ -40,28 +39,27 @@ class LevelModal extends React.Component {
     return (
       <Modal show={this.props.show}
         onEnter={this.handleEnter} onHide={this.props.onHide}>
-        <form
-          onSubmit={this.handleSubmit}>
+        <RRForm getDispatch={dispatch => this.dispatch = dispatch}
+          onUpdate={this.handleUpdate} onSubmit={this.handleSubmit}>
           <Modal.Header closeButton><h2>Level Up</h2></Modal.Header>
           <Modal.Body>
             <p><PokeIcon pokemon={pokemon} /> {name}</p>
-            <FormGroup>
-              <InputGroup>
-                <FormControl type='number'
-                  value={this.state.levels}
-                  onChange={this.handleChange} />
-                <InputGroup.Addon>Levels</InputGroup.Addon>
-              </InputGroup>
-            </FormGroup>
-            <p>From <strong>Level {level} </strong>
-              to <strong>Level {newLevel}</strong></p>
+            <RRFNumber model='.levels' placeholder='1-100' required
+              onChange={this.handleChange}
+              defaultValue={1}>
+              <InputGroup.Addon>Level(s)</InputGroup.Addon>
+            </RRFNumber>
+            <p>
+              From <strong>Level {level} </strong>
+              to <strong>Level {newLevel}</strong>
+            </p>
           </Modal.Body>
           <Modal.Footer>
             <Button type='submit' bsStyle='primary' bsSize='large' block>
               Level Up
             </Button>
           </Modal.Footer>
-        </form>
+        </RRForm>
       </Modal>
     );
   }

@@ -34,7 +34,7 @@ class AddPokemonModal extends React.Component {
     }
     this.state = this.initial;
 
-    this.reset = this.reset.bind(this);
+    this.handleEnter = this.handleEnter.bind(this);
     this.changePokemon = this.changePokemon.bind(this);
     this.changeGender = this.changeGender.bind(this);
     this.changeShiny = this.changeShiny.bind(this);
@@ -44,7 +44,7 @@ class AddPokemonModal extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
-  reset() {
+  handleEnter() {
     this.setState(this.initial);
     this.dispatch(actions.change('local.location', this.props.location));
     this.dispatch(actions.setPristine('local'));
@@ -102,7 +102,7 @@ class AddPokemonModal extends React.Component {
       form: values.form,
       nature: values.nature,
       ability: values.ability,
-      moves: values.moves,
+      moves: values.moves.filter(move => move),
       item: values.item,
       method: values.method,
       location: values.location
@@ -113,7 +113,7 @@ class AddPokemonModal extends React.Component {
   render() {
     return (
       <Modal show={this.props.show}
-        onEntered={this.reset} onHide={this.props.onHide}>
+        onEnter={this.handleEnter} onHide={this.props.onHide}>
         <RRForm getDispatch={dispatch => this.dispatch = dispatch}
           onUpdate={this.handleUpdate}
           onSubmit={this.handleSubmit}

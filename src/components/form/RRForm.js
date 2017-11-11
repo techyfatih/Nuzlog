@@ -18,7 +18,7 @@ export default class RRForm extends React.Component {
     this.dispatch(actions.setDirty('local'));
     let toFocus;
     for (let i in form) {
-      let model = form[i].model;
+      let model = 'local.' + i;
       let valid = form[i].valid;
       if (valid == null) {
         valid = form[i].$form.valid;

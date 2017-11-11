@@ -17,17 +17,19 @@ class PartyView extends React.Component {
     super();
     this.state = {
       index: -1,
-      levelOpen: false,
-      movesOpen: false
+      level: false,
+      form: false,
+      moves: false,
+      item: false,
+      evolve: false,
+      deposit: false,
+      death: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
 
-    this.openLevel = this.openLevel.bind(this);
-    this.closeLevel = this.closeLevel.bind(this);
-
-    this.openMoves = this.openMoves.bind(this);
-    this.closeMoves = this.closeMoves.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
   }
 
   handleChange(index) {
@@ -39,20 +41,12 @@ class PartyView extends React.Component {
       this.setState({index: -1});
   }
 
-  openLevel() {
-    this.setState({levelOpen: true});
+  open(modal) {
+    this.setState({[modal]: true});
   }
 
-  closeLevel() {
-    this.setState({levelOpen: false});
-  }
-
-  openMoves() {
-    this.setState({movesOpen: true});
-  }
-
-  closeMoves() {
-    this.setState({movesOpen: false});
+  close(modal) {
+    this.setState({[modal]: false});
   }
 
   render() {
@@ -73,28 +67,46 @@ class PartyView extends React.Component {
             ))}
           </ToggleButtonGroup>
           <ButtonGroup id='party-options' vertical block>
-            <Button href='#' bsStyle='primary' onClick={this.openLevel}
-              disabled={this.state.index == -1}>Level Up</Button>
-            <Button href='#' bsStyle='warning' onClick={this.openMoves}
-              disabled={this.state.index == -1}>Moves</Button>
+            <Button href='#' bsStyle='primary'
+              disabled={this.state.index == -1}
+              onClick={() => this.open('level')}>
+              Level Up
+            </Button>
             <Button href='#' bsStyle='warning'
-              disabled={this.state.index == -1}>Item</Button>
+              onClick={() => this.open('moves')}
+              disabled={this.state.index == -1}>
+              Moves
+            </Button>
+            <Button href='#' bsStyle='warning'
+              onClick={() => this.open('item')}
+              disabled={this.state.index == -1}>
+              Item
+            </Button>
             <Button href='#' bsStyle='success'
-              disabled={this.state.index == -1}>Evolve</Button>
+              onClick={() => this.open('evolve')}
+              disabled={this.state.index == -1}>
+              Evolve
+            </Button>
             <Button href='#' bsStyle='info'
-              disabled={this.state.index == -1}>Deposit</Button>
+              onClick={() => this.open('deposit')}
+              disabled={this.state.index == -1}>
+              Deposit
+            </Button>
             <Button href='#' bsStyle='danger'
-              disabled={this.state.index == -1}>Death</Button>
+              onClick={() => this.open('death')}
+              disabled={this.state.index == -1}>
+              Death
+            </Button>
           </ButtonGroup>
         </div>
         <div className='pull-right'>
           <PokeCard pokemon={this.props.party[this.state.index]} />
         </div>
 
-        <LevelModal show={this.state.levelOpen} index={this.state.index}
-          onHide={this.closeLevel} />
-        <MovesModal show={this.state.movesOpen} index={this.state.index}
-          onHide={this.closeMoves} />
+        <LevelModal show={this.state.level} index={this.state.index}
+          onHide={() => this.close('level')} />
+        <MovesModal show={this.state.moves} index={this.state.index}
+          onHide={() => this.close('moves')} />
       </Panel>
     );
   }

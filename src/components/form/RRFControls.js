@@ -79,7 +79,11 @@ export class RRFNumber extends React.Component {
           pristine: ({fieldValue}) => fieldValue.pristine,
           valid: ({fieldValue}) => fieldValue.valid,
           focus: ({fieldValue}) => fieldValue.focus
-        }} />
+        }}
+        defaultValue={this.props.defaultValue}
+        onChange={this.props.onChange}>
+          {this.props.children}
+      </Control.text>
     )
   }
 }
@@ -131,13 +135,21 @@ export class RRFMoves extends React.Component {
         required={this.props.required}
         component={Moves}
         validators={{
-          required: val => !this.props.required || val && val.length
+          required: moves => {
+            if (!this.props.required) return true;
+            for (let i in moves) {
+              if (moves[i]) return true;
+            }
+            return false;
+          }
         }}
         mapProps={{
           pristine: ({fieldValue}) => fieldValue.pristine,
           valid: ({fieldValue}) => fieldValue.valid,
           focus: ({fieldValue}) => fieldValue.focus
-        }} />
+        }}
+        defaultValue={this.props.defaultValue ?
+          this.props.defaultValue : ['', '', '' ,'']} />
     )
   }
 }

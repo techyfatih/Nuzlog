@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, InputGroup } from 'react-bootstrap';
 
 export default class NumberInput extends React.Component {
   constructor() {
@@ -21,21 +21,29 @@ export default class NumberInput extends React.Component {
   }
 
   render() {
+    const control = (
+      <FormControl type='number'
+        placeholder={this.props.placeholder}
+        value={this.props.value}
+        onChange={this.handleChange}
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}
+        min={this.props.min}
+        max={this.props.max}
+        inputRef={ref => this.input = ref} />
+    )
     return (
       <FormGroup controlId={this.props.id}
         validationState={
           !this.props.required || this.props.pristine
           ? null : (this.props.valid ? 'success' : 'error')}>
         {this.props.label && <ControlLabel>{this.props.label}</ControlLabel>}
-        <FormControl type='number'
-          placeholder={this.props.placeholder}
-          value={this.props.value}
-          onChange={this.handleChange}
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-          min={this.props.min}
-          max={this.props.max}
-          inputRef={ref => this.input = ref} />
+        {this.props.children ? (
+          <InputGroup>
+            {control}
+            {this.props.children}
+          </InputGroup>
+        ) : control}
       </FormGroup>
     );
   }
