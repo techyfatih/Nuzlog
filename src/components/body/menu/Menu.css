@@ -1,3 +1,11 @@
+#menu .panel-heading {
+  font-size: 24px;
+}
+
 #pokemon-tabs {
   margin-top: 10px;
+}
+
+#pokemon-tabs .nav a {
+  font-size: 20px;
 }

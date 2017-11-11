@@ -9,12 +9,7 @@ import female from 'img/female-small.png';
 import PokeIcon from './PokeIcon';
 
 const getPokemon = pokemon => {
-  return {
-    species: pokemon ? pokemon.species : null,
-    name: pokemon ? pokemon.name : 'No Pokémon',
-    level: pokemon ? pokemon.level : null,
-    gender: pokemon ? pokemon.gender : null
-  };
+  return pokemon ? pokemon : {};
 }
 
 export default class PokeSlot extends React.Component {

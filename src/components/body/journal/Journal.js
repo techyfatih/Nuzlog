@@ -162,7 +162,7 @@ class JournalView extends React.Component {
                 deferredMeasurementCache={this.cache}
                 className='virtual-table'
                 width={width}
-                height={370}
+                height={425}
                 headerHeight={30}
                 rowHeight={this.cache.rowHeight}
                 rowCount={this.props.log.length}

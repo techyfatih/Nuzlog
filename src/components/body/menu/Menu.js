@@ -1,6 +1,8 @@
 import React from 'react';
 import { Panel, ButtonGroup, Button, Tabs, Tab } from 'react-bootstrap';
 
+import './Menu.css';
+
 import AddPokemonModal from './addPokemon/AddPokemonModal';
 import LUL from './LUL';
 import Party from './party/Party';
@@ -38,7 +40,7 @@ export default class Menu extends React.Component {
 
   render() {
     return (
-      <Panel header='Menu' bsStyle='success'>
+      <Panel id='menu' header='Menu' bsStyle='success'>
         <ButtonGroup justified>
           <Button bsStyle='success' href='#' onClick={this.openAdd}>
             Add <span className='hidden-xs'>Pokémon</span>

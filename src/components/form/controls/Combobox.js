@@ -22,10 +22,6 @@ const filterChildren = (children, value) => {
 class ComboboxMenu extends React.Component {
   constructor() {
     super();
-    this.cache = new CellMeasurerCache({
-      fixedWidth: true,
-      minHeight: 30
-    })
     this.rowRenderer = this.rowRenderer.bind(this);
   }
 
@@ -81,12 +77,14 @@ export default class Combobox extends React.Component {
     super(props);
     this.state = {
       mousedown: false,
+      focus: false,
       menuOpen: false,
       filtered: filterChildren(props.children, props.value),
       activeIndex: -1
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.handleMouseDown = this.handleMouseDown.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -94,13 +92,19 @@ export default class Combobox extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.children != nextProps.children ||
-        this.props.value != nextProps.value) {
-      this.setState({
-        filtered: filterChildren(nextProps.children, nextProps.value),
-        activeIndex: -1
-      });
-    }
+    this.setState(prevState => {
+      let filtered = prevState.filtered;
+      let activeIndex = prevState.activeIndex;
+      if (this.props.children != nextProps.children ||
+          this.props.value != nextProps.value) {
+        filtered =  filterChildren(nextProps.children, nextProps.value);
+        activeIndex = -1;
+      }
+      return {
+        filtered,
+        activeIndex
+      }
+    });
     if (nextProps.focus)
       this.input.focus();
   }
@@ -139,20 +143,27 @@ export default class Combobox extends React.Component {
     }
   }
 
-  handleBlur(e) {
+  handleFocus() {
+    this.setState({focus: true});
+    if (typeof this.props.onFocus == 'function')
+      this.props.onFocus();
+  }
+
+  handleBlur() {
     this.setState(({mousedown}) => {
       if (mousedown) {
-        this.input.focus();
-        return {mousedown: false};
+        return {mousedown: false, focus: true};
       }
-      else return {menuOpen: false};
-    });
+      else {
+        return {menuOpen: false, focus: false};
+      }
+    }, () => this.state.focus ? this.input.focus() : null);
     if (typeof this.props.onBlur == 'function')
-      this.props.onBlur(e);
+      this.props.onBlur();
   }
 
   handleMouseDown() {
-    this.setState((s, {focus}) => ({mousedown: focus}));
+    this.setState(({focus}) => ({mousedown: focus}));
   }
 
   handleClick() {
@@ -181,7 +192,7 @@ export default class Combobox extends React.Component {
             value={this.props.value}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
-            onFocus={this.props.onFocus}
+            onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             inputRef={ref => this.input = ref} />
           <InputGroup.Button>

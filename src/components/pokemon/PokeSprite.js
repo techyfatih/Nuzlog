@@ -74,7 +74,10 @@ export default class PokeSprite extends React.Component {
   }
 
   handleError(e) {
-    this.setState(this.initial);
+    this.setState({
+      sprite: null,
+      loading: false
+    });
   }
 
   render() {
@@ -83,7 +86,8 @@ export default class PokeSprite extends React.Component {
         <span className='helper' />
         <img src={loading} hidden={!this.state.loading}/>
         <img src={this.state.sprite} hidden={this.state.loading}
-          onLoad={this.handleLoad} onError={this.handleError} />
+          onLoad={this.handleLoad} onError={this.handleError}
+          alt='Image Not Found'/>
       </Panel>
     )
   }

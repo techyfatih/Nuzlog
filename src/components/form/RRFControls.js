@@ -7,6 +7,7 @@ import TextInput from './controls/TextInput';
 import Combobox from './controls/Combobox';
 import NumberInput from './controls/NumberInput';
 import ToggleGroup from './controls/ToggleGroup';
+import Select from './controls/Select';
 import Moves from './controls/Moves';
 
 export class RRFText extends React.Component {
@@ -70,7 +71,7 @@ export class RRFNumber extends React.Component {
         max={this.props.max}
         component={NumberInput}
         validators={{
-          required: (val) => !this.props.required || val && val.trim().length,
+          required: (val) => !this.props.required || typeof val == 'number',
           min: (val) => !this.props.min || val >= this.props.min,
           max: (val) => !this.props.max || val <= this.props.max
         }}
@@ -108,56 +109,35 @@ export class RRFToggle extends React.Component {
   }
 }
 
+export class RRFSelect extends React.Component {
+  render() {
+    let child = this.props.children;
+    if (Array.isArray(child)) child = child[0];
+    return (
+      <Control.select model={this.props.model}
+        id={this.props.model}
+        component={Select}
+        defaultValue={child.props.value}>
+        {this.props.children}
+      </Control.select>
+    )
+  }
+}
+
 export class RRFMoves extends React.Component {
   render() {
     return (
       <Control model='.moves'
+        required={this.props.required}
         component={Moves}
-        validators={{required: val => val && val.length}}
+        validators={{
+          required: val => !this.props.required || val && val.length
+        }}
         mapProps={{
           pristine: ({fieldValue}) => fieldValue.pristine,
           valid: ({fieldValue}) => fieldValue.valid,
           focus: ({fieldValue}) => fieldValue.focus
         }} />
-    )
-  }
-}
-
-export class RRFMoves2 extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      pristine: true,
-      valid: false,
-    }
-    this.handleUpdate = this.handleUpdate.bind(this);
-  }
-
-  handleUpdate(form) {
-    const {pristine, valid} = form.$form;
-    this.setState({pristine, valid})
-  }
-
-  render() {
-    return (
-      <LocalForm component='div' onUpdate={e=>console.log(e)}
-        validators={{
-          '': ({m1, m2, m3, m4}) => m1 && m2 && m3 && m4
-        }}>
-        <Control.text model='.m1' required
-          id={this.props.id + '1'}
-          label='Moves*'
-          placeholder='Tackle'
-          component={Combobox}
-          pristine={this.state.pristine}
-          valid={this.state.valid}
-          mapProps={{
-            focus: ({fieldValue}) => fieldValue.focus
-          }}
-          onChange={this.props.onChange}>
-          {this.props.children}
-        </Control.text>
-      </LocalForm>
     )
   }
 }

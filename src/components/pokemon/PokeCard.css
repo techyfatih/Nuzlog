@@ -8,6 +8,10 @@
   }
 }
 
+.poke-card .panel-heading *, .poke-card .sprite, .poke-card .table {
+  margin: 0;
+}
+
 .poke-card .name {
   white-space: nowrap;
   max-width: 200px;
@@ -23,19 +27,4 @@
 
 .poke-card .shiny {
   color: red;
-}
-
-.poke-card .panel-heading * {
-  margin: 0;
-}
-
-.poke-card .thumbnail {
-  margin: 0;
-  height: 200px;
-}
-
-.poke-card .thumbnail img {
-  position: relative;
-  top: 95px;
-  transform: translate(0, -50%);
 }

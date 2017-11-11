@@ -1,10 +1,11 @@
 import React from 'react';
 import { Modal, Media, Panel, Checkbox, Thumbnail, Button,
-  Grid, Row, Col, Table, ControlLabel, Form } from 'react-bootstrap';
-import { Control, actions } from 'react-redux-form';
+  Grid, Row, Col, Table, ControlLabel, FormControl, Form } from 'react-bootstrap';
+import { Control, Field, actions } from 'react-redux-form';
 import { connect } from 'react-redux';
 
 import './AddPokemon.css';
+
 import pokedexArr from 'data/pokedex.json';
 import pokedex from 'data/pokedex';
 import natures from 'data/natures.json';
@@ -19,7 +20,7 @@ import normalize from 'utilities/normalize';
 import PokeIcon from 'components/pokemon/PokeIcon';
 import PokeSprite from 'components/pokemon/PokeSprite';
 import RRForm from 'components/form/RRForm';
-import { RRFText, RRFCombobox, RRFNumber, RRFToggle } from 'components/form/RRFControls';
+import { RRFText, RRFCombobox, RRFNumber, RRFToggle, RRFSelect, RRFMoves } from 'components/form/RRFControls';
 import { addPokemon } from 'actions';
 import Pokemon from 'components/pokemon/Pokemon';
 
@@ -45,6 +46,8 @@ class AddPokemonModal extends React.Component {
   
   reset() {
     this.setState(this.initial);
+    this.dispatch(actions.change('local.location', this.props.location));
+    this.dispatch(actions.setPristine('local'));
     this.dispatch(actions.focus('local.pokemon'));
   }
 
@@ -90,13 +93,6 @@ class AddPokemonModal extends React.Component {
   }
 
   handleSubmit(values) {
-    console.log(values);
-    let moves = [];
-    if (values.moves) {
-      for (let move in values.moves) {
-        moves.push(values.moves[move]);
-      }
-    }
     this.props.onAddPokemon(new Pokemon({
       species: values.pokemon,
       nickname: values.nickname,
@@ -106,7 +102,7 @@ class AddPokemonModal extends React.Component {
       form: values.form,
       nature: values.nature,
       ability: values.ability,
-      moves,
+      moves: values.moves,
       item: values.item,
       method: values.method,
       location: values.location
@@ -117,7 +113,7 @@ class AddPokemonModal extends React.Component {
   render() {
     return (
       <Modal show={this.props.show}
-        onEnter={this.reset} onHide={this.props.onHide}>
+        onEntered={this.reset} onHide={this.props.onHide}>
         <RRForm getDispatch={dispatch => this.dispatch = dispatch}
           onUpdate={this.handleUpdate}
           onSubmit={this.handleSubmit}
@@ -195,14 +191,7 @@ class AddPokemonModal extends React.Component {
                   </RRFCombobox>
                 </Col>
                 <Col xs={6}>
-                  <RRFCombobox model='.moves[0]' label='Moves*'
-                    placeholder='Tackle' required>{moves}</RRFCombobox>
-                  <RRFCombobox model='.moves[1]'
-                    placeholder='Growl'>{moves}</RRFCombobox>
-                  <RRFCombobox model='.moves[2]'
-                    placeholder='Leech Seed'>{moves}</RRFCombobox>
-                  <RRFCombobox model='.moves[3]'
-                    placeholder='Razor Leaf'>{moves}</RRFCombobox>
+                  <RRFMoves required />
                 </Col>
               </Row>
 
@@ -210,10 +199,10 @@ class AddPokemonModal extends React.Component {
 
               <ControlLabel>Location*</ControlLabel>
               <Form id='add-location' componentClass='fieldset' inline>
-                <RRFCombobox model='.method' placeholder='Received at:'
-                  required>
-                  {['Received at:', 'Caught at:']}
-                </RRFCombobox>
+                <RRFSelect model='.method'>
+                  <option value='Received at:'>Received at:</option>
+                  <option value='Caught at:'>Caught at:</option>
+                </RRFSelect>
                 <RRFText model='.location' placeholder='Pallet Town' required />
               </Form>
             </Panel>
