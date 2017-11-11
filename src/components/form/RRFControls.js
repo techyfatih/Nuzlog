@@ -122,3 +122,42 @@ export class RRFMoves extends React.Component {
     )
   }
 }
+
+export class RRFMoves2 extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      pristine: true,
+      valid: false,
+    }
+    this.handleUpdate = this.handleUpdate.bind(this);
+  }
+
+  handleUpdate(form) {
+    const {pristine, valid} = form.$form;
+    this.setState({pristine, valid})
+  }
+
+  render() {
+    return (
+      <LocalForm component='div' onUpdate={e=>console.log(e)}
+        validators={{
+          '': ({m1, m2, m3, m4}) => m1 && m2 && m3 && m4
+        }}>
+        <Control.text model='.m1' required
+          id={this.props.id + '1'}
+          label='Moves*'
+          placeholder='Tackle'
+          component={Combobox}
+          pristine={this.state.pristine}
+          valid={this.state.valid}
+          mapProps={{
+            focus: ({fieldValue}) => fieldValue.focus
+          }}
+          onChange={this.props.onChange}>
+          {this.props.children}
+        </Control.text>
+      </LocalForm>
+    )
+  }
+}

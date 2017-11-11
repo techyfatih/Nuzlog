@@ -2,16 +2,18 @@ import React from 'react';
 import { Modal, Panel,
   FormGroup, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { actions } from 'react-redux-form';
 
 import PokeIcon from 'components/pokemon/PokeIcon';
-import { levelUp } from 'actions';
+import RRForm from 'components/form/RRForm';
+import { RRFMoves } from 'components/form/RRFControls';
+import Moves from 'components/form/controls/Moves';
+import { changeMoves } from 'actions';
 
-class LevelModal extends React.Component {
+class MovesModal extends React.Component {
   constructor() {
     super();
-    this.state = {
-      levels: 1
-    };
+    this.state = {levels: 1};
     this.handleEnter = this.handleEnter.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,7 +24,7 @@ class LevelModal extends React.Component {
   }
 
   handleChange(e) {
-    const levels = e.target.value ? parseInt(e.target.value) : 1;
+    const levels = e.target.value ? e.target.value : 1;
     this.setState({levels})
   }
 
@@ -36,7 +38,7 @@ class LevelModal extends React.Component {
     const pokemon = this.props.party[this.props.index];
     const name = pokemon ? pokemon.name : '?';
     const level = pokemon ? pokemon.level : 1;
-    const newLevel = level + this.state.levels;
+    const newLevel = parseInt(level) + parseInt(this.state.levels);
     return (
       <Modal show={this.props.show}
         onEnter={this.handleEnter} onHide={this.props.onHide}>
@@ -47,7 +49,8 @@ class LevelModal extends React.Component {
             <p><PokeIcon pokemon={pokemon} /> {name}</p>
             <FormGroup>
               <InputGroup>
-                <FormControl type='number'
+                <FormControl type='number' min={1} max={100 - level}
+                  placeholder='1-100'
                   value={this.state.levels}
                   onChange={this.handleChange} />
                 <InputGroup.Addon>Levels</InputGroup.Addon>
@@ -75,10 +78,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLevelUp: (index, number) => {
-        dispatch(levelUp(index, number));
+    onChangeMoves: (index, moves) => {
+        dispatch(changeMoves(index, moves));
     }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LevelModal);
+export default connect(mapStateToProps, mapDispatchToProps)(MovesModal);

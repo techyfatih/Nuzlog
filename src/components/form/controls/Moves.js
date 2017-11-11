@@ -28,9 +28,10 @@ export default class Moves extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // TODO FIX
     if (nextProps.focus) {
-      this.focus(0);
-      console.log('focus');
+      //this.focus(0);
+      //console.log('focus');
     }
   }
 

@@ -20,8 +20,8 @@ const getPokemon = pokemon => {
     nature: pokemon ? pokemon.nature : null,
     ability: pokemon ? pokemon.ability : null,
     moves: pokemon ? pokemon.moves : null,
-    item: pokemon ? pokemon.moves : null,
-    method: pokemon ? pokemon.method : null,
+    item: pokemon ? pokemon.item : null,
+    method: pokemon ? pokemon.method : 'Received at:',
     location: pokemon ? pokemon.location : null
   }
 }

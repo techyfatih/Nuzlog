@@ -8,6 +8,7 @@ import './Party.css';
 import PokeSlot from 'components/pokemon/PokeSlot';
 import PokeCard from 'components/pokemon/PokeCard';
 import LevelModal from './LevelModal';
+import MovesModal from './MovesModal';
 
 const six = [...Array(6).keys()];
 
@@ -16,13 +17,17 @@ class PartyView extends React.Component {
     super();
     this.state = {
       index: -1,
-      levelOpen: false
+      levelOpen: false,
+      movesOpen: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
 
     this.openLevel = this.openLevel.bind(this);
     this.closeLevel = this.closeLevel.bind(this);
+
+    this.openMoves = this.openMoves.bind(this);
+    this.closeMoves = this.closeMoves.bind(this);
   }
 
   handleChange(index) {
@@ -40,6 +45,14 @@ class PartyView extends React.Component {
 
   closeLevel() {
     this.setState({levelOpen: false});
+  }
+
+  openMoves() {
+    this.setState({movesOpen: true});
+  }
+
+  closeMoves() {
+    this.setState({movesOpen: false});
   }
 
   render() {
@@ -62,7 +75,7 @@ class PartyView extends React.Component {
           <ButtonGroup id='party-options' vertical block>
             <Button href='#' bsStyle='primary' onClick={this.openLevel}
               disabled={this.state.index == -1}>Level Up</Button>
-            <Button href='#' bsStyle='warning'
+            <Button href='#' bsStyle='warning' onClick={this.openMoves}
               disabled={this.state.index == -1}>Moves</Button>
             <Button href='#' bsStyle='warning'
               disabled={this.state.index == -1}>Item</Button>
@@ -80,6 +93,8 @@ class PartyView extends React.Component {
 
         <LevelModal show={this.state.levelOpen} index={this.state.index}
           onHide={this.closeLevel} />
+        <MovesModal show={this.state.movesOpen} index={this.state.index}
+          onHide={this.closeMoves} />
       </Panel>
     );
   }

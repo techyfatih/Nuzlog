@@ -19,7 +19,7 @@ import normalize from 'utilities/normalize';
 import PokeIcon from 'components/pokemon/PokeIcon';
 import PokeSprite from 'components/pokemon/PokeSprite';
 import RRForm from 'components/form/RRForm';
-import { RRFText, RRFCombobox, RRFNumber, RRFToggle, RRFMoves } from 'components/form/RRFControls';
+import { RRFText, RRFCombobox, RRFNumber, RRFToggle } from 'components/form/RRFControls';
 import { addPokemon } from 'actions';
 import Pokemon from 'components/pokemon/Pokemon';
 
@@ -86,11 +86,17 @@ class AddPokemonModal extends React.Component {
   }
 
   handleUpdate(form) {
-    //this.setState({form});
-    console.log(form);
+    //console.log(form);
   }
 
   handleSubmit(values) {
+    console.log(values);
+    let moves = [];
+    if (values.moves) {
+      for (let move in values.moves) {
+        moves.push(values.moves[move]);
+      }
+    }
     this.props.onAddPokemon(new Pokemon({
       species: values.pokemon,
       nickname: values.nickname,
@@ -100,7 +106,7 @@ class AddPokemonModal extends React.Component {
       form: values.form,
       nature: values.nature,
       ability: values.ability,
-      moves: values.moves,
+      moves,
       item: values.item,
       method: values.method,
       location: values.location
@@ -160,8 +166,7 @@ class AddPokemonModal extends React.Component {
                     </Col>
                     <Col xs={6}>
                       <RRFNumber model='.level' label='Level*'
-                        placeholder='1-100'
-                        min={1} max={100} required />
+                        placeholder='1-100' required />
                     </Col>
                     <Col sm={2}>
                       <Control.checkbox model='.shiny' component={Checkbox}
@@ -190,7 +195,14 @@ class AddPokemonModal extends React.Component {
                   </RRFCombobox>
                 </Col>
                 <Col xs={6}>
-                  <RRFMoves />
+                  <RRFCombobox model='.moves[0]' label='Moves*'
+                    placeholder='Tackle' required>{moves}</RRFCombobox>
+                  <RRFCombobox model='.moves[1]'
+                    placeholder='Growl'>{moves}</RRFCombobox>
+                  <RRFCombobox model='.moves[2]'
+                    placeholder='Leech Seed'>{moves}</RRFCombobox>
+                  <RRFCombobox model='.moves[3]'
+                    placeholder='Razor Leaf'>{moves}</RRFCombobox>
                 </Col>
               </Row>
 

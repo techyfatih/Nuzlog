@@ -19,7 +19,7 @@ export default class Pokemon {
     this.nickname = nickname;
     this.name = nickname ? nickname : species;
     this.gender = gender;
-    this.level = level;
+    this.level = parseInt(level);
     this.shiny = shiny;
     this.form = form;
     this.nature = nature;
