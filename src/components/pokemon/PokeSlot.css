@@ -2,12 +2,29 @@
   margin: 0;
 }
 
-.poke-slot .media-left {
-  padding-right: 0;
+.poke-slot .icon {
+  margin-top: 5px;
 }
 
-@media (max-width: 530px) {
-  .poke-slot p {
+.poke-slot .info {
+  margin-left: 10px;
+  width: calc(100% - 50px);
+}
+
+.poke-slot .name {
+  max-width: calc(100% - 10px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.poke-slot .gender {
+  position: relative;
+  top: 5px;
+  left: 5px;
+}
+
+@media (max-width: 600px) {
+  .poke-slot .info {
     display: none;
   }
 }

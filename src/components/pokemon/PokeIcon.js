@@ -26,7 +26,7 @@ const getIcon = pokemon => {
   return icon;
 }
 
-export default class PokeIcon extends React.PureComponent {
+export default class PokeIcon extends React.Component {
   constructor(props) {
     super(props);
     this.state = {icon: getIcon(props.pokemon)};

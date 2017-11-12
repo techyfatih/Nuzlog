@@ -1,7 +1,7 @@
 import React from 'react';
-import { Control, LocalForm, Fieldset } from 'react-redux-form';
+import { Control } from 'react-redux-form';
 
-import moves from 'data/moves.json';
+import pokedex from 'data/pokedex.json'; //HAS TO BE JSON, NOT JS
 
 import TextInput from './controls/TextInput';
 import Combobox from './controls/Combobox';
@@ -51,7 +51,8 @@ export class RRFCombobox extends React.Component {
           valid: ({fieldValue}) => fieldValue.valid,
           focus: ({fieldValue}) => fieldValue.focus
         }}
-        onChange={this.props.onChange}>
+        onChange={this.props.onChange}
+        defaultValue={this.props.defaultValue}>
         {this.props.children}
       </Control.text>
     )
@@ -124,6 +125,30 @@ export class RRFSelect extends React.Component {
         defaultValue={child.props.value}>
         {this.props.children}
       </Control.select>
+    )
+  }
+}
+
+export class RRFPokemon extends React.Component {
+  render() {
+    return (
+      <RRFCombobox
+        model={this.props.model}
+        label={this.props.label}
+        placeholder={this.props.placeholder}
+        rowHeight={40}
+        onChange={this.props.onChange}
+        required={this.props.required}>
+        {pokedex.map((pokemon, index) => {
+          const name = pokemon[1].name;
+          return (
+            <span value={name} key={index}>
+              <img src={icons[pokemon[0]]} />
+              {name}
+            </span>
+          )
+        })}
+      </RRFCombobox>
     )
   }
 }

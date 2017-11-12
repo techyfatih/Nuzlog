@@ -23,7 +23,7 @@ export default class Moves extends React.Component {
   render() {
     return (
       <div>
-        <ControlLabel>Moves*</ControlLabel>
+        <ControlLabel>Moves</ControlLabel>
         {sample.map((move, index) => (
           <Combobox required={this.props.required}
             key={index}

@@ -6,25 +6,10 @@ import './PokeCard.css';
 import male from 'img/male.png';
 import female from 'img/female.png';
 
+import getPokemon from './getPokemon';
+import getFullname from './getFullname';
 import PokeIcon from './PokeIcon';
 import PokeSprite from './PokeSprite';
-
-const getPokemon = pokemon => {
-  return {
-    species: pokemon ? pokemon.species : null,
-    name: pokemon ? pokemon.name : 'No Pokémon',
-    level: pokemon ? pokemon.level : null,
-    gender: pokemon ? pokemon.gender : null,
-    shiny: pokemon ? pokemon.shiny : null,
-    form: pokemon ? pokemon.form : null,
-    nature: pokemon ? pokemon.nature : null,
-    ability: pokemon ? pokemon.ability : null,
-    moves: pokemon ? pokemon.moves : null,
-    item: pokemon ? pokemon.item : null,
-    method: pokemon ? pokemon.method : 'Received at:',
-    location: pokemon ? pokemon.location : null
-  }
-}
 
 export default class PokeCard extends React.Component {
   constructor(props) {
@@ -41,59 +26,61 @@ export default class PokeCard extends React.Component {
   }
 
   render() {
+    const {pokemon} = this.state;
+    const name = getFullname(pokemon);
+    const moves = Array.isArray(pokemon.moves);
+    
     return (
-      <Panel className='poke-card' header={
+      <Panel className='poke-card' bsStyle={this.props.bsStyle} header={
         <Media>
           <Media.Left align='middle'>
-            <PokeIcon pokemon={this.state.pokemon} />
+            <PokeIcon pokemon={pokemon} />
           </Media.Left>
           <Media.Body>
             <Media.Heading>
-              <span className='name'>
-                {this.state.pokemon.name ? this.state.pokemon.name : 'No Pokémon'}
-              </span>&nbsp;
+              <span className='name'>{name ? name : 'No Pokémon'}</span>&nbsp;
               <img className='gender' src={
-                this.state.pokemon.gender == 'M' ? male :
-                this.state.pokemon.gender == 'F' ? female : ''} />
+                pokemon.gender == 'M' ? male :
+                pokemon.gender == 'F' ? female : ''} />
               </Media.Heading>
-            <p className={this.state.pokemon.level ? '' : 'invisible'}>
-              Level {this.state.pokemon.level}
+            <p className={pokemon.level ? '' : 'invisible'}>
+              Level {pokemon.level}
             </p>
           </Media.Body>
-          {this.state.pokemon.shiny && <Media.Right className='shiny'>*</Media.Right>}
+          {pokemon.shiny && <Media.Right className='shiny'>*</Media.Right>}
         </Media>
       }>
-        <PokeSprite pokemon={this.state.pokemon} />
+        <PokeSprite pokemon={pokemon} />
         <Table condensed className={this.props.pokemon ? '' : 'invisible'}>
           <tbody>
             <tr>
               <th width={100}>Form:</th>
-              <td><div>{this.state.pokemon.form ? this.state.pokemon.form : 'Normal'}</div></td>
+              <td>{pokemon.form ? pokemon.form : 'Normal'}</td>
             </tr>
             <tr>
               <th>Nature:</th>
-              <td>{this.state.pokemon.nature}</td>
+              <td>{pokemon.nature}</td>
             </tr>
             <tr>
               <th>Ability:</th>
-              <td>{this.state.pokemon.ability}</td>
+              <td>{pokemon.ability}</td>
             </tr>
             <tr>
               <th>Moves:</th>
               <td>
-                - {this.state.pokemon.moves && this.state.pokemon.moves[0]} <br/>
-                - {this.state.pokemon.moves && this.state.pokemon.moves[1]} <br/>
-                - {this.state.pokemon.moves && this.state.pokemon.moves[2]} <br/>
-                - {this.state.pokemon.moves && this.state.pokemon.moves[3]}
-                </td>
+                - {moves && pokemon.moves[0]} <br/>
+                - {moves && pokemon.moves[1]} <br/>
+                - {moves && pokemon.moves[2]} <br/>
+                - {moves && pokemon.moves[3]}
+              </td>
             </tr>
             <tr>
               <th>Item:</th>
-              <td>{this.state.pokemon.item}</td>
+              <td>{pokemon.item}</td>
             </tr>
             <tr>
-              <th>{this.state.pokemon.method}</th>
-              <td>{this.state.pokemon.location}</td>
+              <th>{pokemon.method ? pokemon.method : 'Received at:'}</th>
+              <td>{pokemon.location}</td>
             </tr>
           </tbody>
         </Table>

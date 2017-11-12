@@ -1,26 +1,29 @@
 import React from 'react';
-import { Modal, Media, Panel, Checkbox, Thumbnail, Button,
-  Grid, Row, Col, Table, ControlLabel, FormControl, Form } from 'react-bootstrap';
-import { Control, Field, actions } from 'react-redux-form';
+import { Modal, Media, Panel, Checkbox, Button, Row, Col, ControlLabel,
+  Form } from 'react-bootstrap';
+import { Control, actions } from 'react-redux-form';
 import { connect } from 'react-redux';
 
 import './AddPokemon.css';
 
-import pokedexArr from 'data/pokedex.json';
 import pokedex from 'data/pokedex';
 import natures from 'data/natures.json';
 import abilities from 'data/abilities.json';
-import moves from 'data/moves.json';
 
 import male from 'img/male.png';
 import female from 'img/female.png';
 import icons from 'img/icons';
 
 import normalize from 'utilities/normalize';
+
 import PokeIcon from 'components/pokemon/PokeIcon';
 import PokeSprite from 'components/pokemon/PokeSprite';
+
 import RRForm from 'components/form/RRForm';
-import { RRFText, RRFCombobox, RRFNumber, RRFToggle, RRFSelect, RRFMoves } from 'components/form/RRFControls';
+import RRFPokemon from 'components/form/RRFPokemon';
+import RRFForms from 'components/form/RRFForms';
+import { RRFText, RRFCombobox, RRFNumber, RRFToggle, RRFSelect,
+  RRFMoves } from 'components/form/RRFControls';
 import { addPokemon } from 'actions';
 import Pokemon from 'components/pokemon/Pokemon';
 
@@ -35,7 +38,7 @@ class AddPokemonModal extends React.Component {
     this.state = this.initial;
 
     this.handleEnter = this.handleEnter.bind(this);
-    this.changePokemon = this.changePokemon.bind(this);
+    this.changeSpecies = this.changeSpecies.bind(this);
     this.changeGender = this.changeGender.bind(this);
     this.changeShiny = this.changeShiny.bind(this);
     this.changeForm = this.changeForm.bind(this);
@@ -51,7 +54,7 @@ class AddPokemonModal extends React.Component {
     this.dispatch(actions.focus('local.pokemon'));
   }
 
-  changePokemon(species) {
+  changeSpecies(species) {
     let gender = '';
     let forms = ['Normal'];
 
@@ -93,7 +96,7 @@ class AddPokemonModal extends React.Component {
   }
 
   handleSubmit(values) {
-    this.props.onAddPokemon(new Pokemon({
+    this.props.onAddPokemon({
       species: values.pokemon,
       nickname: values.nickname,
       gender: values.gender,
@@ -106,20 +109,20 @@ class AddPokemonModal extends React.Component {
       item: values.item,
       method: values.method,
       location: values.location
-    }));
+    });
     this.props.onHide();
   }
 
   render() {
     return (
-      <Modal show={this.props.show}
-        onEnter={this.handleEnter} onHide={this.props.onHide}>
-        <RRForm getDispatch={dispatch => this.dispatch = dispatch}
+      <Modal
+        show={this.props.show}
+        onEnter={this.handleEnter}
+        onHide={this.props.onHide}>
+        <RRForm
+          getDispatch={dispatch => this.dispatch = dispatch}
           onUpdate={this.handleUpdate}
-          onSubmit={this.handleSubmit}
-          validators={{
-            '': ({m1, m2, m3, m4}) => m1 || m2 || m3 || m4
-          }}>
+          onSubmit={this.handleSubmit}>
           <Modal.Header><h2>Add Pokémon</h2></Modal.Header>
           <Modal.Body>
             <Panel id='add-pokemon' header={
@@ -130,20 +133,9 @@ class AddPokemonModal extends React.Component {
                 <Media.Body>
                   <Row>
                     <Col xs={6}>
-                      <RRFCombobox model='.pokemon' label='Pokémon*'
-                        placeholder='Bulbasaur' rowHeight={40}
-                        onChange={this.changePokemon}
-                        required>
-                        {pokedexArr.map((pokemon, index) => {
-                          const name = pokemon[1].name;
-                          return (
-                            <span value={name} key={index}>
-                              <img src={icons[pokemon[0]]} />
-                              {name}
-                            </span>
-                          )
-                        })}
-                      </RRFCombobox>
+                      <RRFPokemon model='.pokemon' label='Pokemon*'
+                        placeholder='Bulbasaur' required
+                        onChange={this.changeSpecies} />
                     </Col>
                     <Col xs={6}>
                       <RRFText model='.nickname' label='Nickname'
@@ -152,8 +144,7 @@ class AddPokemonModal extends React.Component {
                   </Row>
                   <Row>
                     <Col sm={4} xs={6}>
-                      <RRFToggle type='radio' model='.gender'
-                        label='Gender*' required
+                      <RRFToggle type='radio' model='.gender' label='Gender'
                         onChange={this.changeGender}>
                         <img src={male} value='M' />
                         <img src={female} value='F' />
@@ -161,8 +152,8 @@ class AddPokemonModal extends React.Component {
                       </RRFToggle>
                     </Col>
                     <Col xs={6}>
-                      <RRFNumber model='.level' label='Level*'
-                        placeholder='1-100' required />
+                      <RRFNumber model='.level' label='Level'
+                        placeholder='1-100' />
                     </Col>
                     <Col sm={2}>
                       <Control.checkbox model='.shiny' component={Checkbox}
@@ -177,33 +168,32 @@ class AddPokemonModal extends React.Component {
               <PokeSprite pokemon={this.state.pokemon} />
               <Row>
                 <Col xs={6}>
-                  <RRFCombobox model='.form' label='Form' placeholder='Normal'
-                    onChange={this.changeForm}>
-                    {this.state.forms}
-                  </RRFCombobox>
-                  <RRFCombobox model='.nature' label='Nature*'
-                    placeholder='Adamant' required>
+                  <RRFForms model='.form' label='Form' placeholder='Normal'
+                    pokemon={this.state.pokemon}
+                    onChange={this.changeForm} />
+                  <RRFCombobox model='.nature' label='Nature'
+                    placeholder='Adamant'>
                     {natures}
                   </RRFCombobox>
-                  <RRFCombobox model='.ability' label='Ability*'
-                    placeholder='Overgrow' required>
+                  <RRFCombobox model='.ability' label='Ability'
+                    placeholder='Overgrow'>
                     {abilities}
                   </RRFCombobox>
                 </Col>
                 <Col xs={6}>
-                  <RRFMoves required />
+                  <RRFMoves />
                 </Col>
               </Row>
 
               <RRFText model='.item' label='Item' placeholder='Oran Berry' />
 
-              <ControlLabel>Location*</ControlLabel>
+              <ControlLabel>Location</ControlLabel>
               <Form id='add-location' componentClass='fieldset' inline>
                 <RRFSelect model='.method'>
                   <option value='Received at:'>Received at:</option>
                   <option value='Caught at:'>Caught at:</option>
                 </RRFSelect>
-                <RRFText model='.location' placeholder='Pallet Town' required />
+                <RRFText model='.location' placeholder='Pallet Town' />
               </Form>
             </Panel>
           </Modal.Body>

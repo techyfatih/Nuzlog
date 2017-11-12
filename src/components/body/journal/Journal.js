@@ -113,7 +113,7 @@ class JournalView extends React.Component {
     const log = this.props.log[rowIndex];
     let content = log.entry;
     switch (log.type) {
-      case 'Party':
+      /*case 'Party':
         content = (
           <span>
             {log.entry.name} has joined the party!<br/>
@@ -130,7 +130,7 @@ class JournalView extends React.Component {
             {Pokemon.exportReact(log.entry)}
           </span>
         );
-        break;
+        break;*/
       default:
         content = JSON.stringify(content);
         break;
@@ -151,7 +151,7 @@ class JournalView extends React.Component {
 
   render() {
     return (
-      <Panel bsStyle='warning' header={<div><h3>Journal</h3></div>}>
+      <Panel id='journal' bsStyle='warning' header='Journal'>
         <NewLocationForm location={this.props.location}
           newLocation={this.props.newLocation} />
         
@@ -162,7 +162,7 @@ class JournalView extends React.Component {
                 deferredMeasurementCache={this.cache}
                 className='virtual-table'
                 width={width}
-                height={425}
+                height={429}
                 headerHeight={30}
                 rowHeight={this.cache.rowHeight}
                 rowCount={this.props.log.length}

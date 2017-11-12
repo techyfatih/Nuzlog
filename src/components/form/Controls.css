@@ -12,7 +12,7 @@
   background-color: #f2dede;
 }
 
-.has-error .btn:hover, .has-error .btn.active {
+.has-error .btn:hover {
   background-color: #e8caca;
 }
 
@@ -26,7 +26,7 @@
   background-color: #dff0d8;
 }
 
-.has-success .btn:hover, .has-success .btn.active {
+.has-success .btn:hover {
   background-color: #c1e3b5;
 }
 

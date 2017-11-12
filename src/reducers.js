@@ -29,18 +29,20 @@ const recordLog = (type, entry) => {
   };
 };
 
-const changeParty = (party, index, {levels, moves, item, species, ability}) => {
+const changeParty = (party, index, {levels, form, moves, item, species, ability}) => {
   let pokemon = party[index];
   if (!levels) levels = 0;
+  if (form == null) form = pokemon.form;
   if (!moves) moves = pokemon.moves;
-  if (!item) item = pokemon.item;
+  if (item == null) item = pokemon.item;
   if (!species) species = pokemon.species;
   if (!ability) ability = pokemon.ability;
 
   pokemon = {...pokemon,
     level: parseInt(pokemon.level) + parseInt(levels),
-    item,
+    form,
     moves,
+    item,
     species,
     ability,
   };
@@ -89,6 +91,15 @@ export default (state = initialState, action) => {
       return {...state,
         party: changeParty(state.party, index, {levels}),
         log: [...state.log, recordLog('Level' + index, action)]
+      };
+    case types.CHANGE_FORM:
+      const {form} = action;
+      if (index < 0 || index > state.party.length)
+        return state;
+      
+      return {...state,
+        party: changeParty(state.party, index, {form}),
+        log: [...state.log, recordLog('Form' + index, action)]
       };
     case types.CHANGE_MOVES:
       const {moves} = action;

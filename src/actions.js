@@ -4,6 +4,7 @@ export const types = {
   RECORD_LOG: 'RECORD_LOG',
   ADD_POKEMON: 'ADD_POKEMON',
   LEVEL_UP : 'LEVEL_UP',
+  CHANGE_FORM: 'CHANGE_FORM',
   CHANGE_MOVES: 'CHANGE_MOVES',
   CHANGE_ITEM: 'CHANGE_ITEM',
   EVOLVE: 'EVOLVE',
@@ -48,6 +49,14 @@ export const levelUp = (index, levels) => {
     levels
   };
 };
+
+export const changeForm = (index, form) => {
+  return {
+    type: types.CHANGE_FORM,
+    index,
+    form
+  }
+}
 
 export const changeMoves = (index, moves) => {
   return {

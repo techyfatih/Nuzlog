@@ -1,19 +1,33 @@
 import React from 'react';
-import { Modal, Panel, Row, Col,
-  ControlLabel, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Modal, Panel, Row, Col, ControlLabel, FormGroup, FormControl,
+  Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
 
+import getPokemon from 'components/pokemon/getPokemon';
+import getFullname from 'components/pokemon/getFullname';
+
 import PokeIcon from 'components/pokemon/PokeIcon';
+
 import RRForm from 'components/form/RRForm';
 import { RRFMoves } from 'components/form/RRFControls';
+
 import { changeMoves } from 'actions';
 
 class MovesModal extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      pokemon: getPokemon(props.party[props.index])
+    };
     this.handleEnter = this.handleEnter.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      pokemon: getPokemon(nextProps.party[nextProps.index])
+    });
   }
 
   handleEnter() {
@@ -27,19 +41,24 @@ class MovesModal extends React.Component {
   }
 
   render() {
-    const pokemon = this.props.party[this.props.index];
-    const name = pokemon ? pokemon.name : '?';
-    const moves = pokemon ? pokemon.moves : [];
-    for (let i = moves.length; i < 4; i++)
+    const {pokemon} = this.state;
+    const moves = pokemon.moves ? pokemon.moves : [];
+    for (let i = moves.length; i < 4; i++) {
       moves[i] = '';
+    }
+
     return (
-      <Modal show={this.props.show}
-        onEnter={this.handleEnter} onHide={this.props.onHide}>
-        <RRForm getDispatch={dispatch => this.dispatch = dispatch}
-          onUpdate={this.handleUpdate} onSubmit={this.handleSubmit}>
-          <Modal.Header closeButton><h2>Moves</h2></Modal.Header>
+      <Modal
+        show={this.props.show}
+        onEnter={this.handleEnter}
+        onHide={this.props.onHide}>
+        <RRForm
+          getDispatch={dispatch => this.dispatch = dispatch}
+          onUpdate={this.handleUpdate}
+          onSubmit={this.handleSubmit}>
+          <Modal.Header closeButton><h2>Change Moves</h2></Modal.Header>
           <Modal.Body>
-            <p><PokeIcon pokemon={pokemon} /> {name}</p>
+            <p><PokeIcon pokemon={pokemon} /> {getFullname(pokemon)}</p>
             <Row>
               <Col sm={6}>
                 <ControlLabel>Old Moves</ControlLabel>
@@ -49,8 +68,7 @@ class MovesModal extends React.Component {
                 <FormGroup><FormControl value={moves[3]} disabled /></FormGroup>
               </Col>
               <Col sm={6}>
-                <RRFMoves model='.moves' initialValue={['Test']} required
-                  defaultValue={moves} />
+                <RRFMoves model='.moves' required defaultValue={moves} />
               </Col>
             </Row>
           </Modal.Body>

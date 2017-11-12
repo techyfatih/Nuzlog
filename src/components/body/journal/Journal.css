@@ -1,5 +1,8 @@
+#journal .panel-heading {
+  font-size: 24px;
+}
+
 #current-location {
-  height: 15px;
   max-width: 150px;
   overflow: hidden;
   text-overflow: ellipsis;

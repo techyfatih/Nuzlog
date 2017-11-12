@@ -1,4 +1,8 @@
-#info {
+#info .panel-heading {
+  font-size: 24px;
+}
+
+#info-text {
   width: calc(100% - 80px);
 }
 

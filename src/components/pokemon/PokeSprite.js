@@ -10,13 +10,55 @@ import pokedex from 'data/pokedex';
 
 import normalize from 'utilities/normalize';
 
-export default class PokeSprite extends React.Component {
-  constructor() {
-    super();
+const getSprite = pokemon => {
+  let sprite = defaultSprite;
+  if (pokemon) {
+    let {species, gender, shiny, form} = pokemon;
+    species = normalize(species);
+    form = normalize(form);
 
+    let _pokemon = pokedex.get(species);
+    if (_pokemon) {
+      switch (species) {
+        case 'nidoranf':
+          species = 'nidoran_f';
+          break;
+        case 'nidoranm':
+          species = 'nidoran_m';
+          break;
+      }
+      if (_pokemon.forms) {
+        for (let i = 0; i < _pokemon.forms.length; i++) {
+          if (form == normalize(_pokemon.forms[i])) {
+            species += '-' + form;
+            break;
+          }
+        }
+      }
+      if (species.indexOf('-') == -1 && gender == 'F' && _pokemon.femaleForm)
+        species += '-f';
+
+      sprite = 'https://www.pkparaiso.com/imagenes/';
+      if (form != 'alola' && _pokemon.num <= 721)
+        sprite += 'xy/sprites/animados';
+      else
+        sprite += 'sol-luna/sprites/animados';
+      if (shiny) sprite += '-shiny';
+      sprite += '/' + species + '.gif';
+    }
+  }
+  return sprite;
+}
+
+export default class PokeSprite extends React.Component {
+  constructor(props) {
+    super(props);
+    const sprite = getSprite(props.pokemon);
+    let loading = false;
+    if (sprite != defaultSprite) loading = true;
     this.initial = {
-      sprite: defaultSprite,
-      loading: false
+      sprite,
+      loading
     }
     this.state = this.initial;
 
@@ -25,42 +67,7 @@ export default class PokeSprite extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let sprite = defaultSprite;
-    if (nextProps.pokemon) {
-      let {species, gender, shiny, form} = nextProps.pokemon;
-      species = normalize(species);
-      form = normalize(form);
-
-      let pokemon = pokedex.get(species);
-      if (pokemon) {
-        switch (species) {
-          case 'nidoranf':
-            species = 'nidoran_f';
-            break;
-          case 'nidoranm':
-            species = 'nidoran_m';
-            break;
-        }
-        if (pokemon.forms) {
-          for (let i = 0; i < pokemon.forms.length; i++) {
-            if (form == normalize(pokemon.forms[i])) {
-              species += '-' + form;
-              break;
-            }
-          }
-        }
-        if (species.indexOf('-') == -1 && gender == 'F' && pokemon.femaleForm)
-          species += '-f';
-
-        sprite = 'https://www.pkparaiso.com/imagenes/';
-        if (form != 'alola' && pokemon.num <= 721)
-          sprite += 'xy/sprites/animados';
-        else
-          sprite += 'sol-luna/sprites/animados';
-        if (shiny) sprite += '-shiny';
-        sprite += '/' + species + '.gif';
-      }
-    }
+    const sprite = getSprite(nextProps.pokemon);
     if (this.state.sprite != sprite) {
       this.setState({
         sprite,
