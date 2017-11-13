@@ -42,7 +42,7 @@ const logAction = (state, action) => {
       if (party.length < 6) {
         return {...state, party: [...party, {...action.pokemon}]};
       } else {
-        return {...state, party: [...pc, {...action.pokemon}]};
+        return {...state, pc: [...pc, {...action.pokemon}]};
       }
 
     // Party

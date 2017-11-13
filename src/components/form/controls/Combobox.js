@@ -19,7 +19,7 @@ const filterChildren = (children, value) => {
   })
 };
 
-class ComboboxMenu extends React.PureComponent {
+class ComboboxMenu extends React.Component {
   constructor() {
     super();
     this.rowRenderer = this.rowRenderer.bind(this);
@@ -33,7 +33,10 @@ class ComboboxMenu extends React.PureComponent {
         style={style}
         tabIndex={-1}
         active={index == this.props.activeIndex}
-        onClick={() => this.props.onSelect(index)}>
+        onClick={e => {
+          e.preventDefault();
+          this.props.onSelect(index)}
+        }>
         {this.props.children[index]}
       </ListGroupItem>
     )
@@ -72,7 +75,7 @@ class ComboboxMenu extends React.PureComponent {
   }
 }
 
-export default class Combobox extends React.PureComponent {
+export default class Combobox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

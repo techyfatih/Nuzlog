@@ -23,7 +23,6 @@ export default class PokeCard extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.pokemon);
     this.setState({
       pokemon: getPokemon(nextProps.pokemon)
     });

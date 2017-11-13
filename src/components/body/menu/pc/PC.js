@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Panel, ToggleButtonGroup, ToggleButton, ButtonGroup,
   Button } from 'react-bootstrap';
 import { connect } from 'react-redux'
@@ -13,25 +14,21 @@ import { withdraw } from 'actions';
 class PC extends React.Component {
   constructor() {
     super();
-    this.state = {
-      index: -1
-    };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleChange(index) {
-    this.setState({index});
+    this.props.onChange(index);
   }
 
   handleClick(e) {
-    if (e.target.value && e.target.value == this.state.index)
-      this.setState({index: -1});
+    if (e.target.value && e.target.value == this.props.index)
+      this.props.onChange(-1);
   }
 
   render() {
-    const {pc} = this.props;
-    const {index} = this.state;
+    const {pc, index, partyFull} = this.props;
 
     return (
       <Panel id='pc'>
@@ -51,7 +48,7 @@ class PC extends React.Component {
 
           <ButtonGroup id='pc-options' vertical block>
             <Button href='#' bsStyle='primary'
-              disabled={index == -1 || this.props.partySize >= 6}
+              disabled={index == -1 || partyFull}
               onClick={() => this.props.onWithdraw(index)}>
               Withdraw
             </Button>
@@ -66,12 +63,12 @@ class PC extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    partySize: state.party.length,
-    pc: state.pc
-  };
-};
+PC.propTypes = {
+  pc: PropTypes.array.isRequired,
+  index: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+  partyFull: PropTypes.bool.isRequired,
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -81,4 +78,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PC);
+export default connect(null, mapDispatchToProps)(PC);

@@ -1,19 +1,15 @@
-#pc {
+#cemetery {
   margin: 0;
 }
 
-#pc-left {
+#cemetery .pull-left {
   width: calc(100% - 335px);
 }
 
-#pc-tabs {
-  height: 525px;
+#cemetery-tabs {
+  height: 550px;
   overflow-y: scroll;
   border: 1px solid #ddd;
   border-radius: 5px;
   width: 100%;
-}
-
-#pc-options {
-  margin-top: 10px;
 }

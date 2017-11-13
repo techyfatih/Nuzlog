@@ -1,6 +1,7 @@
 import React from 'react';
-import { Panel, ToggleButtonGroup, ToggleButton,
-  ButtonGroup, Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { Panel, ToggleButtonGroup, ToggleButton, ButtonGroup,
+  Button } from 'react-bootstrap';
 import { connect } from 'react-redux'
 
 import './Party.css';
@@ -12,34 +13,24 @@ import PartyOptions from './PartyOptions'
 
 const six = [...Array(6).keys()];
 
-class Party extends React.Component {
+export default class Party extends React.Component {
   constructor() {
     super();
-    this.state = {
-      index: -1
-    };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.party != nextProps.party) {
-      this.setState({index: -1});
-    }
-  }
-
   handleChange(index) {
-    this.setState({index});
+    this.props.onChange(index);
   }
 
   handleClick(e) {
-    if (e.target.value && e.target.value == this.state.index)
-      this.setState({index: -1});
+    if (e.target.value && e.target.value == this.props.index)
+      this.props.onChange(-1);
   }
 
   render() {
-    const {party} = this.props;
-    const {index} = this.state;
+    const {party, index} = this.props;
 
     return (
       <Panel id='party'>
@@ -47,7 +38,7 @@ class Party extends React.Component {
           <ToggleButtonGroup vertical
             type='radio'
             name='party'
-            value={this.state.index}
+            value={index}
             onChange={this.handleChange}>
             {six.map(key => (
               <ToggleButton value={key} key={key}
@@ -67,10 +58,8 @@ class Party extends React.Component {
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    party: state.party
-  };
-};
-
-export default connect(mapStateToProps)(Party);
+Party.propTypes = {
+  party: PropTypes.array.isRequired,
+  index: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired
+}

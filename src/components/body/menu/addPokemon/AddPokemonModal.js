@@ -90,7 +90,6 @@ class AddPokemonModal extends React.Component {
   }
 
   handleSubmit(values) {
-    console.log(values.moves.filter(move => move));
     this.props.onAddPokemon({
       species: values.species,
       nickname: values.nickname,
@@ -182,13 +181,14 @@ class AddPokemonModal extends React.Component {
 
               <RRFText model='.item' label='Item' placeholder='Oran Berry' />
 
-              <ControlLabel>Location</ControlLabel>
+              <ControlLabel>Location*</ControlLabel>
               <Form id='add-location' componentClass='fieldset' inline>
                 <RRFSelect model='.method'>
                   <option value='Received at:'>Received at:</option>
                   <option value='Caught at:'>Caught at:</option>
                 </RRFSelect>
-                <RRFText model='.location' placeholder='Pallet Town' />
+                <RRFText model='.location' placeholder='Pallet Town'
+                  required />
               </Form>
             </Panel>
           </Modal.Body>

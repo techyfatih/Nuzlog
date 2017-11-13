@@ -9,6 +9,7 @@ import 'react-virtualized/styles.css';
 import './Journal.css';
 
 import NewLocation from './newLocation/NewLocation';
+import PokeExport from 'components/pokemon/PokeExport';
 
 import { recordLog } from 'actions';
 
@@ -87,6 +88,9 @@ class Journal extends React.Component {
     const log = this.props.log[rowIndex];
     let content = log.entry;
     switch (log.type) {
+      case 'Add':
+        content = <PokeExport pokemon={content.pokemon} />
+        break;
       /*case 'Party':
         content = (
           <span>

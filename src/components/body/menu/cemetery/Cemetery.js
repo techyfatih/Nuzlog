@@ -1,68 +1,60 @@
 import React from 'react';
-import { Panel, ToggleButtonGroup, ToggleButton,
-  ButtonGroup, Button } from 'react-bootstrap';
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types';
+import { Panel, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 
-import './PC.css';
+import './Cemetery.css';
 
 import PokeSlot from 'components/pokemon/PokeSlot';
 import PokeCard from 'components/pokemon/PokeCard';
 
-const six = [...Array(6).keys()];
+import { withdraw } from 'actions';
 
-class Cemetery extends React.Component {
+export default class Cemetery extends React.Component {
   constructor() {
     super();
-    this.state = {
-      value: -1
-    };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleChange(value) {
-    this.setState({value});
+  handleChange(index) {
+    this.props.onChange(index);
   }
 
   handleClick(e) {
-    if (e.target.value && e.target.value == this.state.value)
-      this.setState({value: -1});
+    if (e.target.value && e.target.value == this.props.index)
+      this.props.onChange(-1);
   }
 
   render() {
+    const {cemetery, index} = this.props;
+
     return (
-      <Panel id='party'>
-        <div id='party-tabs' className='pull-left'>
-          <ToggleButtonGroup vertical
+      <Panel id='cemetery'>
+        <div className='pull-left'>
+          <ToggleButtonGroup id='cemetery-tabs' vertical
             type='radio'
-            name='party'
-            value={this.state.value}
+            name='pc'
+            value={index}
             onChange={this.handleChange}>
-            {six.map(index => (
-              <ToggleButton value={index} key={index}
-                disabled={!this.props.cemetery[index]}
+            {cemetery.map((val, key) => (
+              <ToggleButton value={key} key={key}
                 onClick={this.handleClick}>
-                <PokeSlot pokemon={this.props.cemetery[index]} />
+                <PokeSlot pokemon={cemetery[key]} />
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
-          <ButtonGroup id='party-options' vertical block>
-            <Button href='#' bsStyle='primary'
-              disabled={this.state.value == -1}>Level Up</Button>
-          </ButtonGroup>
         </div>
+
         <div className='pull-right'>
-          <PokeCard pokemon={this.props.cemetery[this.state.value]} />
+          <PokeCard pokemon={cemetery[index]} />
         </div>
       </Panel>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    cemetery: state.cemetery
-  };
-};
-
-export default connect(mapStateToProps)(Cemetery);
+Cemetery.propTypes = {
+  cemetery: PropTypes.array.isRequired,
+  index: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired
+}
