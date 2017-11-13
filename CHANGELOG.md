@@ -1,5 +1,8 @@
 ## Changelog
 
+#v. 2.0.0 (???)
+Changed everything.
+
 # v. 1.0.6 (May 12, 2017)
 -Fixed bug with evolving after loading a game
 -Fixed compatibility issues with using Internet Explorer
