@@ -3,12 +3,7 @@
   margin: 0;
 }
 
-@media (max-width: 530px) {
-  .poke-card {
-  }
-}
-
-.poke-card .panel-heading *, .poke-card .table {
+.poke-card .panel-heading *, .poke-card .sprite, .poke-card .table {
   margin: 0;
 }
 

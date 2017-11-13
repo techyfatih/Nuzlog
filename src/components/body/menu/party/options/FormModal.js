@@ -6,13 +6,14 @@ import { actions } from 'react-redux-form';
 import pokedex from 'data/pokedex';
 
 import normalize from 'utilities/normalize';
-import getPokemon from 'components/pokemon/getPokemon';
-import getFullname from 'components/pokemon/getFullname';
+import getPokemon from 'utilities/getPokemon';
+import getFullname from 'utilities/getFullname';
 
 import PokeIcon from 'components/pokemon/PokeIcon';
 import PokeSprite from 'components/pokemon/PokeSprite';
 
 import RRForm from 'components/form/RRForm';
+import RRFForms from 'components/form/RRFForms';
 import { RRFCombobox } from 'components/form/RRFControls';
 
 import { changeForm } from 'actions';
@@ -81,14 +82,8 @@ class FormModal extends React.Component {
           <Modal.Body>
             <p><PokeIcon pokemon={pokemon} /> {getFullname(pokemon)}</p>
             <PokeSprite pokemon={pokemon} />
-            <RRFCombobox
-              model='.form'
-              label='Form'
-              placeholder='Normal'
-              onChange={this.handleChange}
-              defaultValue={pokemon.form}>
-              {forms}
-            </RRFCombobox>
+            <RRFForms model='.form' label='Form' placeholder='Normal'
+              pokemon={pokemon} onChange={this.handleChange} />
           </Modal.Body>
           <Modal.Footer>
             <Button type='submit' bsStyle='warning' bsSize='large' block>

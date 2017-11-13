@@ -4,8 +4,8 @@ import { Modal, Panel, Row, Col, ControlLabel, FormGroup, FormControl,
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
 
-import getPokemon from 'components/pokemon/getPokemon';
-import getFullname from 'components/pokemon/getFullname';
+import getPokemon from 'utilities/getPokemon';
+import getFullname from 'utilities/getFullname';
 
 import PokeIcon from 'components/pokemon/PokeIcon';
 
@@ -42,7 +42,7 @@ class MovesModal extends React.Component {
 
   render() {
     const {pokemon} = this.state;
-    const moves = pokemon.moves ? pokemon.moves : [];
+    const moves = pokemon.moves ? pokemon.moves.slice() : [];
     for (let i = moves.length; i < 4; i++) {
       moves[i] = '';
     }
@@ -68,7 +68,7 @@ class MovesModal extends React.Component {
                 <FormGroup><FormControl value={moves[3]} disabled /></FormGroup>
               </Col>
               <Col sm={6}>
-                <RRFMoves model='.moves' required defaultValue={moves} />
+                <RRFMoves model='.moves' defaultValue={moves} />
               </Col>
             </Row>
           </Modal.Body>

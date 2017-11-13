@@ -1,29 +1,33 @@
-#info .panel-heading {
+#info {
+  font-weight: bold;
+  padding-right: 0;
+}
+
+#info .panel-heading, #info h4 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#info .panel-heading, #rules .panel-heading {
   font-size: 24px;
 }
 
-#info-text {
-  width: calc(100% - 80px);
-}
-
-#info-game {
-  margin-top: 0;
-}
-
-#info-name {
-  margin: 0;
-}
-
 #info-game, #info-name {
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 #rules {
-  max-width: 300px;
+  padding-left: 0;
 }
 
-#rules-list {
-  max-height: 150px;
-  overflow-y: auto;
+#rules .list-group-item {
+  padding: 5px 10px;
+}
+
+#rules .list-group {
+  height: 98px;
+  overflow-y: scroll;
 }

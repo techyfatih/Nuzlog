@@ -9,30 +9,19 @@ export default class Header extends React.Component {
   constructor() {
     super();
     this.state = {
-      newGameOpen: false,
-      saveLoadGameOpen: false
+      newGame: false,
+      saveLoadGame: false
     }
-    this.openNewGame = this.openNewGame.bind(this);
-    this.closeNewGame = this.closeNewGame.bind(this);
-    
-    this.openSaveLoadGame = this.openSaveLoadGame.bind(this);
-    this.closeSaveLoadGame = this.closeSaveLoadGame.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
   }
 
-  openNewGame() {
-    this.setState({newGameOpen: true});
+  open(modal) {
+    this.setState({[modal]: true});
   }
 
-  closeNewGame() {
-    this.setState({newGameOpen: false});
-  }
-
-  openSaveLoadGame() {
-    this.setState({saveLoadGameOpen: true});
-  }
-
-  closeSaveLoadGame() {
-    this.setState({saveLoadGameOpen: false});
+  close(modal) {
+    this.setState({[modal]: false});
   }
 
   render() {
@@ -45,19 +34,21 @@ export default class Header extends React.Component {
           <div className='pull-right'><ThemeSwitcher/></div>
           
           <ButtonGroup bsSize='large' justified>
-            <Button href='#' bsStyle='primary' onClick={this.openNewGame}>
+            <Button href='#' bsStyle='primary'
+              onClick={() => this.open('newGame')}>
               New Game
             </Button>
-            <Button href='#' bsStyle='primary' onClick={this.openSaveLoadGame}>
+            <Button href='#' bsStyle='primary'
+              onClick={() => this.open('saveLoadGame')}>
               Save/Load Game
             </Button>
           </ButtonGroup>
         </Grid>
 
-        <NewGameModal show={this.state.newGameOpen}
-          onHide={this.closeNewGame} />
-        <SaveLoadGameModal show={this.state.saveLoadGameOpen}
-          onHide={this.closeSaveLoadGame} />
+        <NewGameModal show={this.state.newGame}
+          onHide={() => this.close('newGame')} />
+        <SaveLoadGameModal show={this.state.saveLoadGame}
+          onHide={() => this.close('saveLoadGame')} />
       </Well>
     );
   }

@@ -1,12 +1,16 @@
-.custom-list {
+#new-rules {
   margin: 0;
 }
 
-.custom-list .panel-heading, .custom-list .list-group-item {
+#new-rules .panel-heading {
+  font-weight: bold
+}
+
+#new-rules .panel-heading, #new-rules .list-group-item {
   padding: 5px 10px;
 }
 
-.custom-list .list-group {
+#new-rules .list-group {
   height: 100px;
   overflow-y: scroll;
 }

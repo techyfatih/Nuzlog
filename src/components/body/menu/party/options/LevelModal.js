@@ -3,18 +3,23 @@ import { Modal, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
 
-import getPokemon from 'components/pokemon/getPokemon';
-import getFullname from 'components/pokemon/getFullname';
+import getPokemon from 'utilities/getPokemon';
+import getFullname from 'utilities/getFullname';
+
 import PokeIcon from 'components/pokemon/PokeIcon';
+
 import RRForm from 'components/form/RRForm';
 import { RRFNumber } from 'components/form/RRFControls';
+
 import { levelUp } from 'actions';
 
 class LevelModal extends React.Component {
   constructor(props) {
     super(props);
+    const pokemon = getPokemon(props.party[props.index]);
     this.state = {
-      pokemon: getPokemon(props.party[props.index]),
+      pokemon,
+      level: pokemon.level ? pokemon.level : 0,
       levels: 1
     };
     this.handleEnter = this.handleEnter.bind(this);
@@ -23,12 +28,17 @@ class LevelModal extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
+    const pokemon = getPokemon(nextProps.party[nextProps.index]);
     this.setState({
-      pokemon: getPokemon(nextProps.party[nextProps.index])
+      pokemon,
+      level: pokemon.level ? pokemon.level : 0
     });
   }
 
   handleEnter() {
+    this.setState({
+      levels: 1
+    })
     this.dispatch(actions.focus('local.levels'));
   }
 
@@ -42,7 +52,7 @@ class LevelModal extends React.Component {
   }
 
   render() {
-    const {pokemon, levels} = this.state;
+    const {pokemon, level, levels} = this.state;
     
     return (
       <Modal
@@ -65,8 +75,8 @@ class LevelModal extends React.Component {
               <InputGroup.Addon>Level(s)</InputGroup.Addon>
             </RRFNumber>
             <p>
-              From <strong>Level {pokemon.level} </strong>
-              to <strong>Level {pokemon.level + levels}</strong>
+              From <strong>Level {level} </strong>
+              to <strong>Level {level + levels}</strong>
             </p>
           </Modal.Body>
           <Modal.Footer>

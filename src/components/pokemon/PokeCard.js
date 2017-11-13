@@ -1,13 +1,16 @@
 import React from 'react';
-import { Media, Panel, Image, Thumbnail, Table } from 'react-bootstrap';
+import { Media, Panel, Image, Thumbnail, Table, Button,
+  Popover, OverlayTrigger } from 'react-bootstrap';
 
 import './PokeCard.css';
 
 import male from 'img/male.png';
 import female from 'img/female.png';
 
-import getPokemon from './getPokemon';
-import getFullname from './getFullname';
+import getPokemon from 'utilities/getPokemon';
+import getFullname from 'utilities/getFullname';
+
+import PokeExport from './PokeExport';
 import PokeIcon from './PokeIcon';
 import PokeSprite from './PokeSprite';
 
@@ -20,6 +23,7 @@ export default class PokeCard extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps.pokemon);
     this.setState({
       pokemon: getPokemon(nextProps.pokemon)
     });
@@ -29,6 +33,11 @@ export default class PokeCard extends React.Component {
     const {pokemon} = this.state;
     const name = getFullname(pokemon);
     const moves = Array.isArray(pokemon.moves);
+    const popover = (
+      <Popover id='export'>
+        <PokeExport pokemon={pokemon} />
+      </Popover>
+    );
     
     return (
       <Panel className='poke-card' bsStyle={this.props.bsStyle} header={
@@ -51,39 +60,45 @@ export default class PokeCard extends React.Component {
         </Media>
       }>
         <PokeSprite pokemon={pokemon} />
-        <Table condensed className={this.props.pokemon ? '' : 'invisible'}>
-          <tbody>
-            <tr>
-              <th width={100}>Form:</th>
-              <td>{pokemon.form ? pokemon.form : 'Normal'}</td>
-            </tr>
-            <tr>
-              <th>Nature:</th>
-              <td>{pokemon.nature}</td>
-            </tr>
-            <tr>
-              <th>Ability:</th>
-              <td>{pokemon.ability}</td>
-            </tr>
-            <tr>
-              <th>Moves:</th>
-              <td>
-                - {moves && pokemon.moves[0]} <br/>
-                - {moves && pokemon.moves[1]} <br/>
-                - {moves && pokemon.moves[2]} <br/>
-                - {moves && pokemon.moves[3]}
-              </td>
-            </tr>
-            <tr>
-              <th>Item:</th>
-              <td>{pokemon.item}</td>
-            </tr>
-            <tr>
-              <th>{pokemon.method ? pokemon.method : 'Received at:'}</th>
-              <td>{pokemon.location}</td>
-            </tr>
-          </tbody>
-        </Table>
+        <div className={this.props.pokemon ? '' : 'invisible'}>
+          <Table condensed>
+            <tbody>
+              <tr>
+                <th width={100}>Form:</th>
+                <td>{pokemon.form ? pokemon.form : 'Normal'}</td>
+              </tr>
+              <tr>
+                <th>Nature:</th>
+                <td>{pokemon.nature}</td>
+              </tr>
+              <tr>
+                <th>Ability:</th>
+                <td>{pokemon.ability}</td>
+              </tr>
+              <tr>
+                <th>Moves:</th>
+                <td>
+                  - {moves && pokemon.moves[0]} <br/>
+                  - {moves && pokemon.moves[1]} <br/>
+                  - {moves && pokemon.moves[2]} <br/>
+                  - {moves && pokemon.moves[3]}
+                </td>
+              </tr>
+              <tr>
+                <th>Item:</th>
+                <td>{pokemon.item}</td>
+              </tr>
+              <tr>
+                <th>{pokemon.method ? pokemon.method : 'Received at:'}</th>
+                <td>{pokemon.location}</td>
+              </tr>
+            </tbody>
+          </Table>
+          <OverlayTrigger trigger='click' placement='top' overlay={popover}
+            rootClose>
+            <Button block>Export </Button>
+          </OverlayTrigger>
+        </div>
       </Panel>
     );
   }

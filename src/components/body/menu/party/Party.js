@@ -22,6 +22,12 @@ class Party extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.party != nextProps.party) {
+      this.setState({index: -1});
+    }
+  }
+
   handleChange(index) {
     this.setState({index});
   }

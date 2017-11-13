@@ -19,7 +19,7 @@ const filterChildren = (children, value) => {
   })
 };
 
-class ComboboxMenu extends React.Component {
+class ComboboxMenu extends React.PureComponent {
   constructor() {
     super();
     this.rowRenderer = this.rowRenderer.bind(this);
@@ -72,14 +72,14 @@ class ComboboxMenu extends React.Component {
   }
 }
 
-export default class Combobox extends React.Component {
+export default class Combobox extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       mousedown: false,
       focus: false,
       menuOpen: false,
-      filtered: filterChildren(props.children, props.value),
+      filtered: props.children,
       activeIndex: -1
     };
     this.handleChange = this.handleChange.bind(this);
@@ -92,26 +92,18 @@ export default class Combobox extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState(prevState => {
-      let filtered = prevState.filtered;
-      let activeIndex = prevState.activeIndex;
-      if (this.props.children != nextProps.children ||
-          this.props.value != nextProps.value) {
-        filtered =  filterChildren(nextProps.children, nextProps.value);
-        activeIndex = -1;
-      }
-      return {
-        filtered,
-        activeIndex
-      }
-    });
     if (nextProps.focus)
       this.input.focus();
   }
 
   handleChange(e) {
-    this.setState({menuOpen: true});
-    this.props.onChange(e.target.value);
+    const value = e.target.value;
+    this.setState({
+      menuOpen: true,
+      filtered: filterChildren(this.props.children, value),
+      activeIndex: -1
+    });
+    this.props.onChange(value);
   }
 
   handleKeyDown(e) {
@@ -152,10 +144,17 @@ export default class Combobox extends React.Component {
   handleBlur() {
     this.setState(({mousedown}) => {
       if (mousedown) {
-        return {mousedown: false, focus: true};
+        return {
+          mousedown: false,
+          focus: true
+        };
       }
       else {
-        return {menuOpen: false, focus: false};
+        return {
+          menuOpen: false,
+          filtered: this.props.children,
+          focus: false
+        };
       }
     }, () => this.state.focus ? this.input.focus() : null);
     if (typeof this.props.onBlur == 'function')
@@ -167,16 +166,24 @@ export default class Combobox extends React.Component {
   }
 
   handleClick() {
-    this.setState(({menuOpen}) => ({menuOpen: !menuOpen}));
+    this.setState(({menuOpen}) => ({
+      menuOpen: !menuOpen,
+      filtered: this.props.children,
+      activeIndex: -1
+    }));
     this.input.focus();
   }
 
   handleSelect(index) {
-    this.setState({menuOpen: false});
     let value = this.state.filtered[index];
     if (value.props && value.props.value) value = value.props.value;
     this.props.onChange(value);
     this.input.focus();
+    this.setState({
+      menuOpen: false,
+      filtered: this.props.children,
+      activeIndex: -1
+    });
   }
 
   render() {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ButtonGroup, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import LevelModal from './options/LevelModal';
 import FormModal from './options/FormModal';
@@ -8,7 +9,9 @@ import ItemModal from './options/ItemModal';
 import EvolveModal from './options/EvolveModal';
 import DeathModal from './options/DeathModal';
 
-export default class PartyOptions extends React.Component {
+import { deposit } from 'actions';
+
+class PartyOptions extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -65,7 +68,8 @@ export default class PartyOptions extends React.Component {
             Evolve
           </Button>
 
-          <Button href='#' bsStyle='info' disabled={disabled}>
+          <Button href='#' bsStyle='info' disabled={disabled}
+            onClick={() => this.props.onDeposit(index)}>
             Deposit
           </Button>
 
@@ -85,3 +89,13 @@ export default class PartyOptions extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onDeposit: index => {
+      dispatch(deposit(index))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(PartyOptions)

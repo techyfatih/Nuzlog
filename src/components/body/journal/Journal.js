@@ -1,55 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Panel, Button,
-  FormGroup, ControlLabel, InputGroup, FormControl } from 'react-bootstrap';
+import { Panel, Button, FormGroup, ControlLabel, InputGroup,
+  FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { AutoSizer, Table, Column, CellMeasurerCache, CellMeasurer } from 'react-virtualized';
+import { AutoSizer, Table, Column, CellMeasurerCache,
+  CellMeasurer } from 'react-virtualized';
 import 'react-virtualized/styles.css';
 
 import './Journal.css';
-import Pokemon from 'components/pokemon/Pokemon';
-import { newLocation, recordLog } from 'actions';
 
-class NewLocationForm extends React.Component {
-  constructor() {
-    super();
-    this.state = {value: ''};
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+import NewLocation from './newLocation/NewLocation';
 
-  handleChange(e) {
-    this.setState({value: e.target.value});
-  }
-
-  handleSubmit(e) {
-    if (this.state.value) {
-      this.props.newLocation(this.state.value);
-      this.setState({value: ''});
-    }
-    e.preventDefault();
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <FormGroup controlId='location'>
-          <ControlLabel>Current Location</ControlLabel>
-          <InputGroup>
-            <InputGroup.Addon>
-              <div id='current-location'>{this.props.location}</div>
-            </InputGroup.Addon>
-            <FormControl type='text' value={this.state.value}
-              onChange={this.handleChange} />
-            <InputGroup.Button>
-              <Button type='submit' bsStyle='warning'>New Location</Button>
-            </InputGroup.Button>
-          </InputGroup>
-        </FormGroup>
-      </form>
-    )
-  }
-}
+import { recordLog } from 'actions';
 
 class LogForm extends React.Component {
   constructor() {
@@ -89,15 +50,28 @@ class LogForm extends React.Component {
   }
 }
 
-class JournalView extends React.Component {
+class Journal extends React.Component {
   constructor() {
     super();
     this.cache = new CellMeasurerCache({
       fixedWidth: true,
       minHeight: 40
     });
+    this.handleResize = this.handleResize.bind(this);
     this.timeCellRenderer = this.timeCellRenderer.bind(this);
     this.entryCellRenderer = this.entryCellRenderer.bind(this);
+  }
+
+  handleResize() {
+    this.cache.clearAll();
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
   }
 
   timeCellRenderer({cellData}) {
@@ -152,8 +126,7 @@ class JournalView extends React.Component {
   render() {
     return (
       <Panel id='journal' bsStyle='warning' header='Journal'>
-        <NewLocationForm location={this.props.location}
-          newLocation={this.props.newLocation} />
+        <NewLocation />
         
         <AutoSizer disableHeight>
           {({width}) => {
@@ -162,7 +135,7 @@ class JournalView extends React.Component {
                 deferredMeasurementCache={this.cache}
                 className='virtual-table'
                 width={width}
-                height={429}
+                height={423}
                 headerHeight={30}
                 rowHeight={this.cache.rowHeight}
                 rowCount={this.props.log.length}
@@ -194,17 +167,14 @@ class JournalView extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    location: state.location,
     log: state.log
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    newLocation: location => dispatch(newLocation(location)),
     recordLog: log => dispatch(recordLog(log))
   };
 };
 
-const Journal = connect(mapStateToProps, mapDispatchToProps)(JournalView);
-export default Journal;
+export default connect(mapStateToProps, mapDispatchToProps)(Journal);

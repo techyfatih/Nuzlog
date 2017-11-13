@@ -1,6 +1,6 @@
 import React from 'react';
-import { Panel, ToggleButtonGroup, ToggleButton,
-  ButtonGroup, Button } from 'react-bootstrap';
+import { Panel, ToggleButtonGroup, ToggleButton, ButtonGroup,
+  Button } from 'react-bootstrap';
 import { connect } from 'react-redux'
 
 import './PC.css';
@@ -8,51 +8,58 @@ import './PC.css';
 import PokeSlot from 'components/pokemon/PokeSlot';
 import PokeCard from 'components/pokemon/PokeCard';
 
-const six = [...Array(6).keys()];
+import { withdraw } from 'actions';
 
 class PC extends React.Component {
   constructor() {
     super();
     this.state = {
-      value: -1
+      index: -1
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleChange(value) {
-    this.setState({value});
+  handleChange(index) {
+    this.setState({index});
   }
 
   handleClick(e) {
-    if (e.target.value && e.target.value == this.state.value)
-      this.setState({value: -1});
+    if (e.target.value && e.target.value == this.state.index)
+      this.setState({index: -1});
   }
 
   render() {
+    const {pc} = this.props;
+    const {index} = this.state;
+
     return (
-      <Panel id='party'>
-        <div id='party-tabs' className='pull-left'>
-          <ToggleButtonGroup vertical
+      <Panel id='pc'>
+        <div id='pc-left' className='pull-left'>
+          <ToggleButtonGroup id='pc-tabs' vertical
             type='radio'
-            name='party'
-            value={this.state.value}
+            name='pc'
+            value={index}
             onChange={this.handleChange}>
-            {six.map(index => (
-              <ToggleButton value={index} key={index}
-                disabled={!this.props.pc[index]}
+            {pc.map((val, key) => (
+              <ToggleButton value={key} key={key}
                 onClick={this.handleClick}>
-                <PokeSlot pokemon={this.props.pc[index]} />
+                <PokeSlot pokemon={pc[key]} />
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
+
           <ButtonGroup id='pc-options' vertical block>
             <Button href='#' bsStyle='primary'
-              disabled={this.state.value == -1}>Withdraw</Button>
+              disabled={index == -1 || this.props.partySize >= 6}
+              onClick={() => this.props.onWithdraw(index)}>
+              Withdraw
+            </Button>
           </ButtonGroup>
         </div>
+
         <div className='pull-right'>
-          <PokeCard pokemon={this.props.pc[this.state.value]} />
+          <PokeCard pokemon={pc[index]} bsStyle='warning' />
         </div>
       </Panel>
     );
@@ -61,8 +68,17 @@ class PC extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    partySize: state.party.length,
     pc: state.pc
   };
 };
 
-export default connect(mapStateToProps)(PC);
+const mapDispatchToProps = dispatch => {
+  return {
+    onWithdraw: index => {
+      dispatch(withdraw(index));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PC);

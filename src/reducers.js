@@ -1,152 +1,142 @@
-import { combineReducers } from 'redux';
 import { types } from './actions';
 
 const initialState = {
-  info: {
-    title: 'Title',
-    game: 'Game',
-    name: 'Name'
-  },
-  rules: {
-    genders: true,
-    natures: true,
-    abilities: true,
-    list: [],
-  },
+  title: 'Title',
+  game: 'Game',
+  name: 'Name',
+  rules: [],
+
   location: '',
-  log: [],
+
   party: [],
   pc: [],
-  cemetery: []
-}
+  cemetery: [],
 
-
-const recordLog = (type, entry) => {
-  return {
-    time: new Date(),
-    type,
-    entry
-  };
+  log: [],
 };
 
-const changeParty = (party, index, {levels, form, moves, item, species, ability}) => {
-  let pokemon = party[index];
-  if (!levels) levels = 0;
-  if (form == null) form = pokemon.form;
-  if (!moves) moves = pokemon.moves;
-  if (item == null) item = pokemon.item;
-  if (!species) species = pokemon.species;
-  if (!ability) ability = pokemon.ability;
+const changeParty = (party, index, change) => {
+  const {levels, ..._change} = change;
 
-  pokemon = {...pokemon,
-    level: parseInt(pokemon.level) + parseInt(levels),
-    form,
-    moves,
-    item,
-    species,
-    ability,
-  };
+  let pokemon = {...party[index], ..._change};
+
+  if (levels) {
+    pokemon.level = (pokemon.level ? pokemon.level : 0) + (levels ? levels: 0);
+  }
 
   return [...party.slice(0, index), pokemon, ...party.slice(index + 1)];
 }
 
-export default (state = initialState, action) => {
+const logAction = (state, action) => {
   const {index} = action;
+  const {party, pc, cemetery} = state;
+
   switch (action.type) {
-    case types.NEW_GAME:
-      return {...state,
-        info: action.info,
-        rules: action.rules,
-        location: '',
-        log: []
-      };
     case types.NEW_LOCATION:
-      return {...state,
-        location: action.location,
-        log: [...state.log, recordLog('Location', action.location)]
-      }
+      return {...state, location: action.location};
+
     case types.RECORD_LOG:
-      return {...state,
-        log: [...state.log, recordLog('Log', action.log)]
-      };
+      return {...state};
+      
     case types.ADD_POKEMON:
-      if (state.party.length < 6) {
-        return {...state,
-          party: [...state.party, action.pokemon],
-          log: [...state.log, recordLog('Party', action.pokemon)]
-        }
+      if (party.length < 6) {
+        return {...state, party: [...party, {...action.pokemon}]};
       } else {
-        return {...state,
-          pc: [...state.pc, action.pokemon],
-          log: [...state.log, recordLog('PC', action.pokemon)]
-        }
+        return {...state, party: [...pc, {...action.pokemon}]};
       }
 
     // Party
     case types.LEVEL_UP:
-      const {levels} = action;
-      if (index < 0 || index > state.party.length)
+      if (index < 0 || index > party.length)
         return state;
       
       return {...state,
-        party: changeParty(state.party, index, {levels}),
-        log: [...state.log, recordLog('Level' + index, action)]
+        party: changeParty(party, index, {levels: action.levels})
       };
     case types.CHANGE_FORM:
-      const {form} = action;
-      if (index < 0 || index > state.party.length)
+      if (index < 0 || index > party.length)
         return state;
       
       return {...state,
-        party: changeParty(state.party, index, {form}),
-        log: [...state.log, recordLog('Form' + index, action)]
+        party: changeParty(party, index, {form: action.form})
       };
     case types.CHANGE_MOVES:
-      const {moves} = action;
-      if (index < 0 || index > state.party.length)
+      if (index < 0 || index > party.length)
         return state;
-      
+
       return {...state,
-        party: changeParty(state.party, index, {moves}),
-        log: [...state.log, recordLog('Moves' + index, action)]
+        party: changeParty(party, index, {moves: action.moves})
       };
     case types.CHANGE_ITEM:
-      const {item} = action;
-      if (index < 0 || index > state.party.length)
+      if (index < 0 || index > party.length)
         return state;
       
       return {...state,
-        party: changeParty(state.party, index, {item}),
-        log: [...state.log, recordLog('Item' + index, action)]
+        party: changeParty(party, index, {item: action.item})
       };
     case types.EVOLVE:
-      const {species, ability} = action;
-      if (index < 0 || index > state.party.length)
+      if (index < 0 || index > party.length)
         return state;
       
       return {...state,
-        party: changeParty(state.party, index, {species, ability}),
-        log: [...state.log, recordLog('Evolve' + index, action)]
+        party: changeParty(party, index, {
+          species: action.species,
+          ability: action.ability
+        })
       };
     case types.DEPOSIT:
-      if (index < 0 || index > state.party.length)
+      if (index < 0 || index > party.length)
         return state;
-      
+
       return {...state,
-        party: changeParty(state.party, index, {moves}),
-        log: [...state.log, recordLog('Deposit' + index, action.index)]
+        party: [...party.slice(0, index), ...party.slice(index + 1)],
+        pc: pc.concat([{...state.party[index]}])
       };
     case types.DEATH:
-      const {cause} = action;
-      if (index < 0 || index > state.party.length)
+      if (index < 0 || index > party.length)
+        return state;
+
+      return {...state,
+        party: [...party.slice(0, index), ...party.slice(index + 1)],
+        cemetery: cemetery.concat([{...party[index], cause: action.cause}])
+      };
+
+    // PC
+    case types.WITHDRAW:
+      if (party.length >= 6 || index < 0 || index > pc.length)
         return state;
       
       return {...state,
-        party: changeParty(state.party, index, {moves}),
-        log: [...state.log, recordLog('Death' + index, action)]
+        party: party.concat([{...pc[index]}]),
+        pc: [...pc.slice(0, index), ...pc.slice(index + 1)]
       };
-
+    
     default:
       return state;
   }
-}
+};
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case types.NEW_GAME:
+      return {...state,
+        title: action.title,
+        game: action.game,
+        name: action.name,
+        rules: action.rules,
+        location: '',
+        log: []
+      };
+    default:
+      const _state = logAction(state, action);
+      if (_state == state) return state;
+
+      const {time, type, ..._action} = action;
+      _state.log = [...state.log, {
+        time: action.time,
+        type: action.type,
+        entry: _action
+      }];
+      return _state;
+  }
+};

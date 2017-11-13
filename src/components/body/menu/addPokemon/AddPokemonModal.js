@@ -32,8 +32,7 @@ class AddPokemonModal extends React.Component {
     super(props);
 
     this.initial = {
-      pokemon: null,
-      forms: ['Normal']
+      pokemon: null
     }
     this.state = this.initial;
 
@@ -51,24 +50,19 @@ class AddPokemonModal extends React.Component {
     this.setState(this.initial);
     this.dispatch(actions.change('local.location', this.props.location));
     this.dispatch(actions.setPristine('local'));
-    this.dispatch(actions.focus('local.pokemon'));
+    this.dispatch(actions.focus('local.species'));
   }
 
   changeSpecies(species) {
     let gender = '';
-    let forms = ['Normal'];
 
     let pokemon = pokedex.get(normalize(species));
     if (pokemon) {
       gender = pokemon.gender[0];
       this.dispatch(actions.change('local.gender', gender));
-      if (pokemon.forms)
-        forms = forms.concat(pokemon.forms);
     }
     this.updatePokemon({species, gender, form: ''});
-    
     this.dispatch(actions.change('local.form', ''));
-    this.setState({forms});
   }
 
   changeGender(gender) {
@@ -96,8 +90,9 @@ class AddPokemonModal extends React.Component {
   }
 
   handleSubmit(values) {
+    console.log(values.moves.filter(move => move));
     this.props.onAddPokemon({
-      species: values.pokemon,
+      species: values.species,
       nickname: values.nickname,
       gender: values.gender,
       level: values.level,
@@ -133,7 +128,7 @@ class AddPokemonModal extends React.Component {
                 <Media.Body>
                   <Row>
                     <Col xs={6}>
-                      <RRFPokemon model='.pokemon' label='Pokemon*'
+                      <RRFPokemon model='.species' label='Pokemon*'
                         placeholder='Bulbasaur' required
                         onChange={this.changeSpecies} />
                     </Col>

@@ -2,8 +2,15 @@
   margin: 0;
 }
 
-#pc-tabs {
+#pc-left {
   width: calc(100% - 335px);
+}
+
+#pc-tabs {
+  height: 500px;
+  overflow-y: scroll;
+  border: 1px solid #ddd;
+  width: 100%;
 }
 
 #pc-options {

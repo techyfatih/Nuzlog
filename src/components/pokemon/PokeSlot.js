@@ -6,8 +6,9 @@ import './PokeSlot.css';
 import male from 'img/male-small.png';
 import female from 'img/female-small.png';
 
-import getPokemon from './getPokemon';
-import getFullname from './getFullname';
+import getPokemon from 'utilities/getPokemon';
+import getFullname from 'utilities/getFullname';
+
 import PokeIcon from './PokeIcon';
 
 export default class PokeSlot extends React.Component {

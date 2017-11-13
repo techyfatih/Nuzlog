@@ -300,17 +300,17 @@
       ],
       "femaleForm": true,
       "forms": [
-        "pikachucosplay",
-        "pikachurockstar",
-        "pikachubelle",
-        "pikachupopstar",
-        "pikachuphd",
-        "pikachulibre",
-        "pikachuoriginal",
-        "pikachuhoenn",
-        "pikachusinnoh",
-        "pikachuunova",
-        "pikachukalos",
+        "Cosplay",
+        "Rockstar",
+        "Belle",
+        "Popstar",
+        "Phd",
+        "Libre",
+        "Original",
+        "Hoenn",
+        "Sinnoh",
+        "Unova",
+        "Kalos",
         "Alola"
       ]
     }
@@ -1997,7 +1997,7 @@
         "F"
       ],
       "forms": [
-        "pichuspikyeared"
+        "Spikyeared"
       ]
     }
   ],
@@ -2724,7 +2724,7 @@
         "F"
       ],
       "forms": [
-        "pokestarsmeargle"
+        "Pokestar"
       ]
     }
   ],
@@ -4041,9 +4041,9 @@
         "F"
       ],
       "forms": [
-        "castformsunny",
-        "castformrainy",
-        "castformsnowy"
+        "Sunny",
+        "Rainy",
+        "Snowy"
       ]
     }
   ],
@@ -4400,7 +4400,7 @@
         "N"
       ],
       "forms": [
-        "kyogreprimal"
+        "Primal"
       ]
     }
   ],
@@ -4413,7 +4413,7 @@
         "N"
       ],
       "forms": [
-        "groudonprimal"
+        "Primal"
       ]
     }
   ],
@@ -4449,9 +4449,9 @@
         "N"
       ],
       "forms": [
-        "deoxysattack",
-        "deoxysdefense",
-        "deoxysspeed"
+        "Attack",
+        "Defense",
+        "Speed"
       ]
     }
   ],
@@ -4759,8 +4759,8 @@
         "F"
       ],
       "forms": [
-        "wormadamsandy",
-        "wormadamtrash"
+        "Sandy",
+        "Trash"
       ]
     }
   ],
@@ -4853,7 +4853,7 @@
         "F"
       ],
       "forms": [
-        "cherrimsunshine"
+        "Sunshine"
       ]
     }
   ],
@@ -5517,11 +5517,11 @@
         "N"
       ],
       "forms": [
-        "rotomheat",
-        "rotomwash",
-        "rotomfrost",
-        "rotomfan",
-        "rotommow"
+        "Heat",
+        "Wash",
+        "Frost",
+        "Fan",
+        "Mow"
       ]
     }
   ],
@@ -5605,7 +5605,7 @@
         "N"
       ],
       "forms": [
-        "giratinaorigin"
+        "Origin"
       ]
     }
   ],
@@ -5658,7 +5658,7 @@
         "N"
       ],
       "forms": [
-        "shayminsky"
+        "Sky"
       ]
     }
   ],
@@ -5671,23 +5671,23 @@
         "N"
       ],
       "forms": [
-        "arceusbug",
-        "arceusdark",
-        "arceusdragon",
-        "arceuselectric",
-        "arceusfairy",
-        "arceusfighting",
-        "arceusfire",
-        "arceusflying",
-        "arceusghost",
-        "arceusgrass",
-        "arceusground",
-        "arceusice",
-        "arceuspoison",
-        "arceuspsychic",
-        "arceusrock",
-        "arceussteel",
-        "arceuswater"
+        "Bug",
+        "Dark",
+        "Dragon",
+        "Electric",
+        "Fairy",
+        "Fighting",
+        "Fire",
+        "Flying",
+        "Ghost",
+        "Grass",
+        "Ground",
+        "Ice",
+        "Poison",
+        "Psychic",
+        "Rock",
+        "Steel",
+        "Water"
       ]
     }
   ],
@@ -6316,7 +6316,7 @@
         "F"
       ],
       "forms": [
-        "basculinbluestriped"
+        "Bluestriped"
       ]
     }
   ],
@@ -6374,7 +6374,7 @@
         "F"
       ],
       "forms": [
-        "darmanitanzen"
+        "Zen"
       ]
     }
   ],
@@ -7311,7 +7311,7 @@
         "M"
       ],
       "forms": [
-        "tornadustherian"
+        "Therian"
       ]
     }
   ],
@@ -7324,7 +7324,7 @@
         "M"
       ],
       "forms": [
-        "thundurustherian"
+        "Therian"
       ]
     }
   ],
@@ -7357,7 +7357,7 @@
         "M"
       ],
       "forms": [
-        "landorustherian"
+        "Therian"
       ]
     }
   ],
@@ -7370,8 +7370,8 @@
         "N"
       ],
       "forms": [
-        "kyuremblack",
-        "kyuremwhite"
+        "Black",
+        "White"
       ]
     }
   ],
@@ -7384,7 +7384,7 @@
         "N"
       ],
       "forms": [
-        "keldeoresolute"
+        "Resolute"
       ]
     }
   ],
@@ -7397,7 +7397,7 @@
         "N"
       ],
       "forms": [
-        "meloettapirouette"
+        "Pirouette"
       ]
     }
   ],
@@ -7410,10 +7410,10 @@
         "N"
       ],
       "forms": [
-        "genesectdouse",
-        "genesectshock",
-        "genesectburn",
-        "genesectchill"
+        "Douse",
+        "Shock",
+        "Burn",
+        "Chill"
       ]
     }
   ],
@@ -7515,7 +7515,7 @@
         "F"
       ],
       "forms": [
-        "greninjaash"
+        "Ash"
       ]
     }
   ],
@@ -7606,8 +7606,8 @@
         "F"
       ],
       "forms": [
-        "vivillonfancy",
-        "vivillonpokeball"
+        "Fancy",
+        "Pokeball"
       ]
     }
   ],
@@ -7653,7 +7653,7 @@
         "F"
       ],
       "forms": [
-        "floetteeternal"
+        "Eternal"
       ]
     }
   ],
@@ -7743,7 +7743,7 @@
       ],
       "femaleForm": true,
       "forms": [
-        "meowsticf"
+        "F"
       ]
     }
   ],
@@ -7779,7 +7779,7 @@
         "F"
       ],
       "forms": [
-        "aegislashblade"
+        "Blade"
       ]
     }
   ],
@@ -8100,9 +8100,9 @@
         "F"
       ],
       "forms": [
-        "pumpkaboosmall",
-        "pumpkaboolarge",
-        "pumpkaboosuper"
+        "Small",
+        "Large",
+        "Super"
       ]
     }
   ],
@@ -8116,9 +8116,9 @@
         "F"
       ],
       "forms": [
-        "gourgeistsmall",
-        "gourgeistlarge",
-        "gourgeistsuper"
+        "Small",
+        "Large",
+        "Super"
       ]
     }
   ],
@@ -8195,8 +8195,8 @@
         "N"
       ],
       "forms": [
-        "zygarde10",
-        "zygardecomplete"
+        "10",
+        "Complete"
       ]
     }
   ],
@@ -8222,7 +8222,7 @@
         "N"
       ],
       "forms": [
-        "hoopaunbound"
+        "Unbound"
       ]
     }
   ],
@@ -8455,9 +8455,9 @@
         "F"
       ],
       "forms": [
-        "oricoriopompom",
-        "oricoriopau",
-        "oricoriosensu"
+        "Pompom",
+        "Pau",
+        "Sensu"
       ]
     }
   ],
@@ -8504,7 +8504,7 @@
         "F"
       ],
       "forms": [
-        "lycanrocmidnight"
+        "Midnight"
       ]
     }
   ],
@@ -8518,7 +8518,7 @@
         "F"
       ],
       "forms": [
-        "wishiwashischool"
+        "School"
       ]
     }
   ],
@@ -8812,23 +8812,23 @@
         "N"
       ],
       "forms": [
-        "silvallybug",
-        "silvallydark",
-        "silvallydragon",
-        "silvallyelectric",
-        "silvallyfairy",
-        "silvallyfighting",
-        "silvallyfire",
-        "silvallyflying",
-        "silvallyghost",
-        "silvallygrass",
-        "silvallyground",
-        "silvallyice",
-        "silvallypoison",
-        "silvallypsychic",
-        "silvallyrock",
-        "silvallysteel",
-        "silvallywater"
+        "Bug",
+        "Dark",
+        "Dragon",
+        "Electric",
+        "Fairy",
+        "Fighting",
+        "Fire",
+        "Flying",
+        "Ghost",
+        "Grass",
+        "Ground",
+        "Ice",
+        "Poison",
+        "Psychic",
+        "Rock",
+        "Steel",
+        "Water"
       ]
     }
   ],
@@ -8841,7 +8841,7 @@
         "N"
       ],
       "forms": [
-        "miniormeteor"
+        "Meteor"
       ]
     }
   ],
@@ -8888,7 +8888,7 @@
         "F"
       ],
       "forms": [
-        "mimikyubusted"
+        "Busted"
       ]
     }
   ],
@@ -9126,7 +9126,7 @@
         "N"
       ],
       "forms": [
-        "magearnaoriginal"
+        "Original"
       ]
     }
   ],

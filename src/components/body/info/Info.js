@@ -1,49 +1,42 @@
 import React from 'react';
-import { Popover, Panel, Button, OverlayTrigger } from 'react-bootstrap';
+import { Row, Col, Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import './Info.css';
 
 class Info extends React.Component {
   render() {
-    const {rules, info} = this.props;
+    const {title, game, name, rules} = this.props;
 
-    let rulesText = 'All Enabled';
-    let disabled = [];
-    if (!rules.genders) disabled.push('Genders');
-    if (!rules.natures) disabled.push('Natures');
-    if (!rules.abilities) disabled.push('Abilities');
-    if (disabled.length) rulesText = 'Disabled: ' + disabled.join(', ');
-    
-    const rulesPopover = (
-      <Popover id='rules'>
-        <div id='rules-list'>
-          {rulesText}
-          {rules.list.map((rule, index) =>
-            <li key={index}>{rule}</li>)}
-        </div>
-      </Popover>
-    );
     return (
-      <Panel id='info' bsStyle='info' header={info.title}>
-        <div id='info-text' className='pull-left'>
-          <h4 id='info-game'>{info.game}</h4>
-          <h4 id='info-name'>{info.name}</h4>
-        </div>
-        <OverlayTrigger
-          trigger='click'
-          rootClose placement='left'
-          overlay={rulesPopover}>
-          <Button className='pull-right' bsStyle='info'>Rules</Button>
-        </OverlayTrigger>
-      </Panel>
+      <Row>
+        <Col xs={7} id='info'>
+        <Panel bsStyle='info' header={title}>
+          <div>
+            <h4>{game}</h4>
+            <h4>{name}</h4>
+          </div>
+        </Panel>
+        </Col>
+        <Col id='rules' xs={5}>
+        <Panel bsStyle='info' header='Rules'>
+          <ListGroup fill>
+            {rules.map((rule, index) => (
+              <ListGroupItem key={index}>{rule}</ListGroupItem>
+            ))}
+          </ListGroup>
+        </Panel>
+        </Col>
+      </Row>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    info: state.info,
+    title: state.title,
+    game: state.game,
+    name: state.name,
     rules: state.rules
   };
 };

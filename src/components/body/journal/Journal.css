@@ -2,12 +2,6 @@
   font-size: 24px;
 }
 
-#current-location {
-  max-width: 150px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .virtual-table .ReactVirtualized__Table__headerRow {
   border: 1px solid #ddd;
   border-radius: 4px 4px 0 0;

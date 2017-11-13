@@ -1,23 +1,28 @@
 import React from 'react';
-import { Modal, Panel, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Modal, Panel, Row, Col, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
 
 import pokedex from 'data/pokedex';
+import abilities from 'data/abilities';
 
 import normalize from 'utilities/normalize';
-import getPokemon from 'components/pokemon/getPokemon';
+import getPokemon from 'utilities/getPokemon';
+
 import PokeIcon from 'components/pokemon/PokeIcon';
 import PokeSprite from 'components/pokemon/PokeSprite';
-import RRForm from 'components/form/RRForm';
-import { RRFCombobox } from 'components/form/RRFControls';
-import { changeForm } from 'actions';
 
-class FormModal extends React.Component {
+import RRForm from 'components/form/RRForm';
+import RRFPokemon from 'components/form/RRFPokemon';
+import { RRFCombobox } from 'components/form/RRFControls';
+
+import { evolve } from 'actions';
+
+class EvolveModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemon: {},
+      pokemon: getPokemon(),
       forms: ['Normal']
     };
 
@@ -27,31 +32,17 @@ class FormModal extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const pokemon = getPokemon(nextProps.party[nextProps.index]);
-    let forms = ['Normal'];
-    const entry = pokedex.get(normalize(pokemon.species));
-    if (entry && entry.forms) {
-      forms = forms.concat(entry.forms);
-    }
-
-    this.setState({
-      pokemon,
-      forms
-    });
   }
 
   handleEnter() {
     this.dispatch(actions.focus('local.form'));
   }
 
-  handleChange(form) {
-    this.setState(({pokemon}) => ({
-      pokemon: {...pokemon, form}
-    }));
+  handleChange(species) {
   }
 
   handleSubmit(values) {
-    this.props.onChangeForm(this.props.index, values.form);
+    this.props.onEvolve(this.props.index, values.species, values.ability);
     this.props.onHide();
   }
 
@@ -61,19 +52,25 @@ class FormModal extends React.Component {
         onEnter={this.handleEnter} onHide={this.props.onHide}>
         <RRForm getDispatch={dispatch => this.dispatch = dispatch}
           onUpdate={this.handleUpdate} onSubmit={this.handleSubmit}>
-          <Modal.Header closeButton><h2>Change Form</h2></Modal.Header>
+          <Modal.Header closeButton><h2>Evolve</h2></Modal.Header>
           <Modal.Body>
             <p><PokeIcon pokemon={this.state.pokemon} /> {this.state.pokemon.name}</p>
             <PokeSprite pokemon={this.state.pokemon} />
-            <RRFCombobox model='.form' label='Form' placeholder='Normal'
-              onChange={this.handleChange}
-              defaultValue={this.state.pokemon.form}>
-              {this.state.forms}
-            </RRFCombobox>
+            <Row>
+              <Col sm={6}>
+                <RRFPokemon model='.species' label='Pokemon*' required
+                  onChange={this.handleChange} />
+              </Col>
+              <Col sm={6}>
+                <RRFCombobox model='.ability' label='Ability'>
+                  {abilities}
+                </RRFCombobox>
+              </Col>
+            </Row>
           </Modal.Body>
           <Modal.Footer>
-            <Button type='submit' bsStyle='warning' bsSize='large' block>
-              Change Form
+            <Button type='submit' bsStyle='success' bsSize='large' block>
+              Evolve
             </Button>
           </Modal.Footer>
         </RRForm>
@@ -90,10 +87,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onChangeForm: (index, form) => {
-        dispatch(changeForm(index, form));
+    onEvolve: (index, species, ability) => {
+      dispatch(evolve(index, species, ability));
     }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormModal);
+export default connect(mapStateToProps, mapDispatchToProps)(EvolveModal);
