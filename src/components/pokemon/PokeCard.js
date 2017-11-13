@@ -63,7 +63,7 @@ export default class PokeCard extends React.Component {
           <Table condensed>
             <tbody>
               <tr>
-                <th width={100}>Form:</th>
+                <th width={125}>Form:</th>
                 <td>{pokemon.form ? pokemon.form : 'Normal'}</td>
               </tr>
               <tr>
@@ -83,14 +83,22 @@ export default class PokeCard extends React.Component {
                   - {moves && pokemon.moves[3]}
                 </td>
               </tr>
-              <tr>
-                <th>Item:</th>
-                <td>{pokemon.item}</td>
-              </tr>
+              {!pokemon.cause && (
+                <tr>
+                  <th>Item:</th>
+                  <td>{pokemon.item}</td>
+                </tr>
+              )}
               <tr>
                 <th>{pokemon.method ? pokemon.method : 'Received at:'}</th>
                 <td>{pokemon.location}</td>
               </tr>
+              {pokemon.cause && (
+                <tr>
+                  <th>Cause of Death:</th>
+                  <td>{pokemon.cause}</td>
+                </tr>
+              )}
             </tbody>
           </Table>
           <OverlayTrigger trigger='click' placement='top' overlay={popover}

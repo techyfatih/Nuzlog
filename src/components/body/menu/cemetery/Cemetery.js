@@ -30,7 +30,7 @@ export default class Cemetery extends React.Component {
 
     return (
       <Panel id='cemetery'>
-        <div className='pull-left'>
+        <div id='cemetery-left' className='pull-left'>
           <ToggleButtonGroup id='cemetery-tabs' vertical
             type='radio'
             name='pc'

@@ -1,9 +1,7 @@
 import React from 'react';
-import { Modal, Panel, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
-
-import pokedex from 'data/pokedex';
 
 import normalize from 'utilities/normalize';
 import getPokemon from 'utilities/getPokemon';
@@ -18,24 +16,11 @@ import { RRFCombobox } from 'components/form/RRFControls';
 
 import { changeForm } from 'actions';
 
-const getForms = pokemon => {
-  let forms = ['Normal'];
-  if (pokemon) {
-    const entry = pokedex.get(normalize(pokemon.species));
-    if (entry && entry.forms) {
-      forms = forms.concat(entry.forms);
-    }
-  }
-  return forms;
-}
-
 class FormModal extends React.Component {
   constructor(props) {
     super(props);
-    const pokemon = getPokemon(props.party[props.index]);
     this.state = {
-      pokemon,
-      forms: getForms(pokemon)
+      pokemon: getPokemon(props.party[props.index])
     };
 
     this.handleEnter = this.handleEnter.bind(this);
@@ -44,10 +29,8 @@ class FormModal extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const pokemon = getPokemon(nextProps.party[nextProps.index]);
     this.setState({
-      pokemon,
-      forms: getForms(pokemon)
+      pokemon: getPokemon(nextProps.party[nextProps.index])
     });
   }
 

@@ -90,7 +90,7 @@ const logAction = (state, action) => {
 
       return {...state,
         party: [...party.slice(0, index), ...party.slice(index + 1)],
-        pc: pc.concat([{...state.party[index]}])
+        pc: pc.concat([{...party[index]}])
       };
     case types.DEATH:
       if (index < 0 || index > party.length)

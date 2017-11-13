@@ -9,7 +9,7 @@ import './Party.css';
 import PokeSlot from 'components/pokemon/PokeSlot';
 import PokeCard from 'components/pokemon/PokeCard';
 
-import PartyOptions from './PartyOptions'
+import PartyOptions from './options/PartyOptions'
 
 const six = [...Array(6).keys()];
 

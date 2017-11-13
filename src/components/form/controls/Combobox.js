@@ -114,7 +114,8 @@ export default class Combobox extends React.Component {
       case 40: //down
         this.setState(prevState => {
           let activeIndex = prevState.activeIndex + 1;
-          if (activeIndex >= prevState.filtered.length)
+          const length = prevState.filtered ? prevState.filtered.length : 0;
+          if (activeIndex >= length)
             activeIndex = -1;
           return {menuOpen: true, activeIndex};
         })
@@ -123,8 +124,9 @@ export default class Combobox extends React.Component {
       case 38: //up
         this.setState(prevState => {
           let activeIndex = prevState.activeIndex - 1;
+          const length = prevState.filtered ? prevState.filtered.length : 0;
           if (prevState.activeIndex < 0)
-            activeIndex = prevState.filtered.length - 1;
+            activeIndex = length - 1;
           return {menuOpen: true, activeIndex};
         })
         e.preventDefault();

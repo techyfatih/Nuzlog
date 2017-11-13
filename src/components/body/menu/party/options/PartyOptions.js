@@ -2,12 +2,12 @@ import React from 'react';
 import { ButtonGroup, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import LevelModal from './options/LevelModal';
-import FormModal from './options/FormModal';
-import MovesModal from './options/MovesModal';
-import ItemModal from './options/ItemModal';
-import EvolveModal from './options/EvolveModal';
-import DeathModal from './options/DeathModal';
+import LevelModal from './LevelModal';
+import FormModal from './FormModal';
+import MovesModal from './MovesModal';
+import ItemModal from './ItemModal';
+import EvolveModal from './EvolveModal';
+import DeathModal from './DeathModal';
 
 import { deposit } from 'actions';
 

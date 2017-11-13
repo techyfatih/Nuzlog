@@ -1,62 +1,65 @@
 import React from 'react';
-import { Modal, Panel,
-  FormGroup, InputGroup, FormControl, Button } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
 
-import PokeIcon from 'components/pokemon/PokeIcon';
-import RRForm from 'components/form/RRForm';
-import { RRFNumber } from 'components/form/RRFControls';
-import { levelUp } from 'actions';
+import getPokemon from 'utilities/getPokemon';
+import getFullname from 'utilities/getFullname';
 
-class LevelModal extends React.Component {
+import PokeIcon from 'components/pokemon/PokeIcon';
+
+import RRForm from 'components/form/RRForm';
+import { RRFText } from 'components/form/RRFControls';
+
+import { changeItem } from 'actions';
+
+class ItemModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {levels: 1};
+    this.state = {
+      pokemon: getPokemon(props.party[props.index])
+    };
     this.handleEnter = this.handleEnter.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      pokemon: getPokemon(nextProps.party[nextProps.index])
+    });
   }
 
   handleEnter() {
-    this.dispatch(actions.focus('local.levels'));
-  }
-
-  handleChange(levels) {
-    this.setState({levels})
+    this.dispatch(actions.focus('local.item'));
   }
 
   handleSubmit(values) {
-    this.props.onLevelUp(this.props.index, values.levels);
+    this.props.onChangeItem(this.props.index, values.item);
     this.props.onHide();
   }
 
   render() {
-    const pokemon = this.props.party[this.props.index];
-    const name = pokemon ? pokemon.name : '?';
-    const level = pokemon ? pokemon.level : 1;
-    const newLevel = level + this.state.levels;
+    const {pokemon} = this.state;
+    
     return (
-      <Modal show={this.props.show}
-        onEnter={this.handleEnter} onHide={this.props.onHide}>
-        <RRForm getDispatch={dispatch => this.dispatch = dispatch}
-          onUpdate={this.handleUpdate} onSubmit={this.handleSubmit}>
-          <Modal.Header closeButton><h2>Level Up</h2></Modal.Header>
+      <Modal
+        show={this.props.show}
+        onEnter={this.handleEnter}
+        onHide={this.props.onHide}>
+        <RRForm
+          getDispatch={dispatch => this.dispatch = dispatch}
+          onSubmit={this.handleSubmit}>
+          <Modal.Header closeButton><h2>Change Item</h2></Modal.Header>
           <Modal.Body>
-            <p><PokeIcon pokemon={pokemon} /> {name}</p>
-            <RRFNumber model='.levels' placeholder='1-100' required
-              onChange={this.handleChange}
-              defaultValue={1}>
-              <InputGroup.Addon>Level(s)</InputGroup.Addon>
-            </RRFNumber>
             <p>
-              From <strong>Level {level} </strong>
-              to <strong>Level {newLevel}</strong>
+              <PokeIcon pokemon={pokemon} />&nbsp;
+              {getFullname(pokemon)}
             </p>
+            <RRFText model='.item' label='Item' placeholder='Oran Berry' />
           </Modal.Body>
           <Modal.Footer>
-            <Button type='submit' bsStyle='primary' bsSize='large' block>
-              Level Up
+            <Button type='submit' bsStyle='warning' bsSize='large' block>
+              Change Item
             </Button>
           </Modal.Footer>
         </RRForm>
@@ -73,10 +76,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLevelUp: (index, number) => {
-        dispatch(levelUp(index, number));
+    onChangeItem: (index, item) => {
+        dispatch(changeItem(index, item));
     }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LevelModal);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemModal);
