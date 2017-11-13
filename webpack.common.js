@@ -23,7 +23,7 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /\.(png|svg|jpg|gif)$/, loader: 'file-loader?name=./img/[hash].[ext]' }
+      { test: /\.(png|svg|jpg|gif)$/, loader: 'file-loader?name=./img/[name].[ext]' }
     ]
   },
   plugins: [
