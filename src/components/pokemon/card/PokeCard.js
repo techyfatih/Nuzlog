@@ -13,17 +13,20 @@ import getFullname from 'utilities/getFullname';
 import PokeExport from '../PokeExport';
 import PokeIcon from '../PokeIcon';
 import PokeSprite from '../sprite/PokeSprite';
+
 import EditModal from '../EditModal';
+import DeathModal from'../DeathModal';
 
 export default class PokeCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       pokemon: getPokemon(props.pokemon),
-      edit: false
+      edit: false,
+      death: false,
     }
-    this.openEdit = this.openEdit.bind(this);
-    this.closeEdit = this.closeEdit.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,16 +35,16 @@ export default class PokeCard extends React.Component {
     });
   }
 
-  openEdit() {
-    this.setState({edit: true});
+  open(modal) {
+    this.setState({[modal]: true});
   }
 
-  closeEdit() {
-    this.setState({edit: false});
+  close(modal) {
+    this.setState({[modal]: false});
   }
 
   render() {
-    const {pokemon, edit} = this.state;
+    const {pokemon, edit, death} = this.state;
     const name = getFullname(pokemon);
     const moves = Array.isArray(pokemon.moves);
     
@@ -106,7 +109,9 @@ export default class PokeCard extends React.Component {
                     {pokemon.cause && (
                       <tr>
                         <th>Cause of Death:</th>
-                        <td>{pokemon.cause}</td>
+                        <td className='cause'>
+                          <div>{pokemon.cause}</div>
+                        </td>
                       </tr>
                     )}
                   </tbody>
@@ -116,17 +121,24 @@ export default class PokeCard extends React.Component {
               <PokeExport pokemon={pokemon} />
             </Tab>
           </Tabs>
-          <ButtonGroup justified>
-            <Button bsStyle='warning' href='#' onClick={this.openEdit}>
-              Edit Pokémon
-            </Button>
-            <Button bsStyle='danger' href='#' onClick={this.openEdit}>
-              Death
-            </Button>
-          </ButtonGroup>
+          {!pokemon.cause && (
+            <ButtonGroup justified>
+              <Button bsStyle='warning' href='#'
+                onClick={() => this.open('edit')}>
+                Edit Pokémon
+              </Button>
+              <Button bsStyle='danger' href='#'
+                onClick={() => this.open('death')}>
+                Death
+              </Button>
+            </ButtonGroup>
+          )}
         </div>
 
-        <EditModal pokemon={pokemon} show={edit} onHide={this.closeEdit} />
+        <EditModal pokemon={pokemon}
+          show={edit} onHide={() => this.close('edit')} />
+        <DeathModal pokemon={pokemon}
+          show={death} onHide={() => this.close('death')} />
       </Panel>
     );
   }

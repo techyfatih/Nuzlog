@@ -105,12 +105,15 @@ const logAction = (state, action) => {
       return {...state,
         pokemon: [
           ...pokemon.slice(0, action.index),
-          {..._pokemon, slot: {cemetery: cemetery.length}},
+          {..._pokemon,
+            cause: action.cause,
+            slot: {cemetery: cemetery.length
+          }},
           ...pokemon.slice(party[action.index] + 1)
         ],
         party: _party,
         pc: _pc,
-        cemetery: cemetery.push(action.index)
+        cemetery: cemetery.concat([action.index])
       };
     
     default:

@@ -3,7 +3,7 @@
   margin: auto;
 }
 
-.poke-card h4, .poke-card .sprite {
+.poke-card h4, .poke-card .sprite, .poke-card .table {
   margin: 0;
 }
 
@@ -37,5 +37,15 @@
 
 .poke-card .tab-pane:nth-child(2) {
   margin-top: 16px;
-  height: 420px;
+  height: 434px;
+}
+
+.poke-card .cause {
+  white-space: normal;
+  padding-bottom: 0;
+}
+
+.poke-card .cause div {
+  height: 59px;
+  overflow: hidden;
 }

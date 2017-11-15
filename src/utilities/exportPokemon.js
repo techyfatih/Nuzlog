@@ -11,6 +11,6 @@ export default pokemon => {
   for (let i in pokemon.moves)
     text += '\n-' + pokemon.moves[i];
   text += '\n' + pokemon.method + ' ' + pokemon.location;
-  if (pokemon.cause) text += 'Cause of Death: ' + pokemon.cause;
+  if (pokemon.cause) text += '\nCause of Death: ' + pokemon.cause;
   return text;
 }
