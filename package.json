@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/techyfatih/nuzlog#readme",
   "dependencies": {
-    "immutable": "^3.8.2",
     "prop-types": "^15.6.0",
     "react": "^16.1.0",
     "react-bootstrap": "^0.31.5",

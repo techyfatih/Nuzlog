@@ -1,0 +1,16 @@
+.switch .active {
+  background: #c1e3b5;;
+}
+
+.switch .active:hover {
+  background: #a2d590;
+}
+
+#move-pc {
+  height: 319px;
+  overflow-y: scroll;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 5px;
+}

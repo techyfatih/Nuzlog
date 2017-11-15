@@ -6,7 +6,10 @@ import './Boxes.css';
 
 import Party from './Party';
 import Box from './box/Box';
+
 import SummaryModal from 'components/pokemon/SummaryModal';
+import MoveModal from './move/MoveModal';
+
 import PokeCard from 'components/pokemon/card/PokeCard';
 
 class Boxes extends React.Component {
@@ -17,16 +20,16 @@ class Boxes extends React.Component {
       partyIndex: -1,
       pcIndex: -1,
       cemeteryIndex: -1,
-      summary: false
+      summary: false,
+      move: false
     };
-    this.openSummary = this.openSummary.bind(this);
-    this.closeSummary = this.closeSummary.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.pokemon);
     if (this.props != nextProps) {
       const {party, pc, cemetery} = this.props;
       this.setState(prevState => {
@@ -56,12 +59,12 @@ class Boxes extends React.Component {
     }
   }
 
-  openSummary() {
-    this.setState({summary: true});
+  open(modal) {
+    this.setState({[modal]: true});
   }
 
-  closeSummary() {
-    this.setState({summary: false});
+  close(modal) {
+    this.setState({[modal]: false});
   }
 
   handleSelect(box) {
@@ -77,7 +80,7 @@ class Boxes extends React.Component {
   render() {
     const {pokemon, party, pc, cemetery} = this.props;
     const {box, partyIndex, pcIndex, cemeteryIndex} = this.state;
-    const {summary} = this.state;
+    const {summary, move} = this.state;
 
     let cardPokemon = -1;
     if (box == 1) cardPokemon = pokemon[party[partyIndex]];
@@ -103,8 +106,11 @@ class Boxes extends React.Component {
             </Tab>
           </Tabs>
           <Button id='summary-button' bsStyle='primary' block
-            onClick={this.openSummary}>Summary</Button>
-          <Button bsStyle='info' block>Move</Button>
+            onClick={() => this.open('summary')}>Summary</Button>
+          <Button bsStyle='info' block onClick={() => this.open('move')}
+            disabled={party.length <= 0 && pc.length <= 0}>
+            Move Pokémon
+          </Button>
         </div>
         
         <div id='boxes-card' className='pull-right'>
@@ -114,7 +120,8 @@ class Boxes extends React.Component {
           } pokemon={cardPokemon} />
         </div>
     
-        <SummaryModal show={summary} onHide={this.closeSummary} />
+        <SummaryModal show={summary} onHide={() => this.close('summary')} />
+        <MoveModal show={move} onHide={() => this.close('move')} />
       </div>
     );
   }
