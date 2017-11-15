@@ -12,7 +12,7 @@
 }
 
 .poke-slot .name {
-  max-width: calc(100% - 10px);
+  max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -21,10 +21,4 @@
   position: relative;
   top: 5px;
   left: 5px;
-}
-
-@media (max-width: 600px) {
-  .poke-slot .info {
-    display: none;
-  }
 }

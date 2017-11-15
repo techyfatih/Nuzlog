@@ -25,6 +25,7 @@ class NewLocation extends React.Component {
       this.props.newLocation(location);
       this.setState({location: ''});
     }
+    this.input.focus();
     e.preventDefault();
   }
 
@@ -38,7 +39,8 @@ class NewLocation extends React.Component {
               <div id='current-location'>{this.props.location}</div>
             </InputGroup.Addon>
             <FormControl type='text' value={this.state.location}
-              onChange={this.handleChange} />
+              onChange={this.handleChange}
+              inputRef={ref => this.input = ref} />
             <InputGroup.Button>
               <Button type='submit' bsStyle='warning'>New Location</Button>
             </InputGroup.Button>

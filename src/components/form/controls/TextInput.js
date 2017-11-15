@@ -14,7 +14,7 @@ export default class TextInput extends React.Component {
           !this.props.required || this.props.pristine
           ? null : (this.props.valid ? 'success' : 'error')}>
         {this.props.label && <ControlLabel>{this.props.label}</ControlLabel>}
-        <FormControl type='text'
+        <FormControl type='text' spellCheck='false'
           placeholder={this.props.placeholder}
           value={this.props.value}
           onChange={this.props.onChange}

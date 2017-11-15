@@ -1,19 +1,16 @@
 #info {
-  font-weight: bold;
   padding-right: 0;
 }
 
-#info .panel-heading, #info h4 {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+#info .panel-title {
+  font-weight: bold;
 }
 
-#info .panel-heading, #rules .panel-heading {
+#info .panel-title, #rules .panel-title {
   font-size: 24px;
 }
 
-#info-game, #info-name {
+#info .panel-heading, #info h4 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -23,11 +20,11 @@
   padding-left: 0;
 }
 
-#rules .list-group-item {
-  padding: 5px 10px;
-}
-
 #rules .list-group {
   height: 98px;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+
+#rules .list-group-item {
+  padding: 5px 10px;
 }

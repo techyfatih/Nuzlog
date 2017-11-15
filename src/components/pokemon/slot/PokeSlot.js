@@ -9,7 +9,7 @@ import female from 'img/female-small.png';
 import getPokemon from 'utilities/getPokemon';
 import getFullname from 'utilities/getFullname';
 
-import PokeIcon from './PokeIcon';
+import PokeIcon from '../PokeIcon';
 
 export default class PokeSlot extends React.Component {
   constructor(props) {
@@ -43,7 +43,7 @@ export default class PokeSlot extends React.Component {
                   pokemon.gender == 'F' ? female : ''} />
             </div>
             <p className='pull-left'>
-              <span className={pokemon.level ? '' : 'invisible'}>
+              <span className={typeof pokemon.level == 'number' ? '' : 'invisible'}>
                 Level {pokemon.level}
               </span>
             </p>

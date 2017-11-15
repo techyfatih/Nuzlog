@@ -29,11 +29,11 @@ export default class Header extends React.Component {
       <Well bsSize='small'>
         <Grid>
           <h1 className='pull-left'>
-            Nuzlog <small>v.{this.props.version}</small>
+            Nuzlog <small><small>v.{this.props.version}</small></small>
           </h1>
           <div className='pull-right'><ThemeSwitcher/></div>
           
-          <ButtonGroup bsSize='large' justified>
+          <ButtonGroup bsSize='large' justified bsSize>
             <Button href='#' bsStyle='primary'
               onClick={() => this.open('newGame')}>
               New Game

@@ -1,6 +1,23 @@
-.spanel-heading h3 {
+.no-margin {
   margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+.row-no-padding > div:first-child {
+  padding-right: 0;
+}
+
+.row-no-padding > div:last-child {
+  padding-left: 0;
+}
+
+.tr-no-padding td:first-child {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+}
+
+.tr-no-padding td:last-child {
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 0;
 }

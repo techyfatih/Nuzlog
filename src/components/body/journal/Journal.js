@@ -11,7 +11,7 @@ import './Journal.css';
 import NewLocation from './newLocation/NewLocation';
 import PokeExport from 'components/pokemon/PokeExport';
 
-import { recordLog } from 'actions';
+import { types, recordLog } from 'actions';
 
 class LogForm extends React.Component {
   constructor() {
@@ -30,6 +30,7 @@ class LogForm extends React.Component {
       this.props.recordLog(this.state.value);
       this.setState({value: ''});
     }
+    this.input.focus();
     e.preventDefault();
   }
 
@@ -39,7 +40,8 @@ class LogForm extends React.Component {
         <FormGroup style={{margin:0}}>
           <InputGroup>
             <FormControl type='text' value={this.state.value}
-              onChange={this.handleChange} />
+              onChange={this.handleChange}
+              inputRef={ref => this.input = ref} />
             <InputGroup.Button>
               <Button type='submit' bsStyle='primary'>Log</Button>
               <Button bsStyle='danger'>Undo</Button>
@@ -88,27 +90,18 @@ class Journal extends React.Component {
     const log = this.props.log[rowIndex];
     let content = log.entry;
     switch (log.type) {
-      case 'Add':
+      case types.NEW_LOCATION:
+        content = content.location;
+        break;
+
+      case types.RECORD_LOG:
+        content = content.log;
+        break;
+        
+      case types.ADD_POKEMON:
         content = <PokeExport pokemon={content.pokemon} />
         break;
-      /*case 'Party':
-        content = (
-          <span>
-            {log.entry.name} has joined the party!<br/>
-            <br/>
-            {Pokemon.exportReact(log.entry)}
-          </span>
-        );
-        break;
-      case 'PC':
-        content = (
-          <span>
-            {log.entry.name} has was put in the PC.<br/>
-            <br/>
-            {Pokemon.exportReact(log.entry)}
-          </span>
-        );
-        break;*/
+      
       default:
         content = JSON.stringify(content);
         break;
@@ -129,42 +122,45 @@ class Journal extends React.Component {
 
   render() {
     return (
-      <Panel id='journal' bsStyle='warning' header='Journal'>
-        <NewLocation />
-        
-        <AutoSizer disableHeight>
-          {({width}) => {
-            return (
-              <Table
-                deferredMeasurementCache={this.cache}
-                className='virtual-table'
-                width={width}
-                height={423}
-                headerHeight={30}
-                rowHeight={this.cache.rowHeight}
-                rowCount={this.props.log.length}
-                rowGetter={({index}) => this.props.log[index]}
-                scrollToIndex={this.props.log.length - 1}>
-                <Column
-                  label='Time'
-                  dataKey='time'
-                  width={150}
-                  cellRenderer={this.timeCellRenderer} />
-                <Column
-                  label='Type'
-                  dataKey='type'
-                  width={150} />
-                <Column
-                  label='Entry'
-                  dataKey='entry'
-                  width={width - 130}
-                  cellRenderer={this.entryCellRenderer} />
-              </Table>
-            )
-          }}
-        </AutoSizer>
-        <LogForm recordLog={this.props.recordLog} />
-      </Panel>
+      <div id='journal'>
+        <Panel bsStyle='warning' header='Journal' collapsible
+          defaultExpanded={true}>
+          <NewLocation />
+          
+          <AutoSizer disableHeight>
+            {({width}) => {
+              return (
+                <Table
+                  deferredMeasurementCache={this.cache}
+                  className='virtual-table'
+                  width={width}
+                  height={400}
+                  headerHeight={30}
+                  rowHeight={this.cache.rowHeight}
+                  rowCount={this.props.log.length}
+                  rowGetter={({index}) => this.props.log[index]}
+                  scrollToIndex={this.props.log.length - 1}>
+                  <Column
+                    label='Time'
+                    dataKey='time'
+                    width={150}
+                    cellRenderer={this.timeCellRenderer} />
+                  <Column
+                    label='Type'
+                    dataKey='type'
+                    width={150} />
+                  <Column
+                    label='Entry'
+                    dataKey='entry'
+                    width={width - 130}
+                    cellRenderer={this.entryCellRenderer} />
+                </Table>
+              )
+            }}
+          </AutoSizer>
+          <LogForm recordLog={this.props.recordLog} />
+        </Panel>
+      </div>
     );
   }
 }

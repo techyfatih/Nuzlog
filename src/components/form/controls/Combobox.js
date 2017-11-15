@@ -95,6 +95,11 @@ export default class Combobox extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (this.props.children != nextProps.children) {
+      this.setState({
+        filtered: nextProps.children
+      });
+    }
     if (nextProps.focus)
       this.input.focus();
   }
@@ -199,7 +204,7 @@ export default class Combobox extends React.Component {
           ? null : (this.props.valid ? 'success' : 'error')}>
         {this.props.label && <ControlLabel>{this.props.label}</ControlLabel>}
         <InputGroup>
-          <FormControl type='text'
+          <FormControl type='text' spellCheck='false'
             placeholder={this.props.placeholder}
             value={this.props.value}
             onChange={this.handleChange}

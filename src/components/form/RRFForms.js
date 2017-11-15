@@ -53,19 +53,21 @@ export default class RRFForms extends React.Component {
         required={this.props.required}
         defaultValue={pokemon.form}>
         {[
-          <span value='Normal' key={0}><img src={normalIcon} /> Normal</span>,
-          ...(forms.map((form, key) => {
+          <span value='Normal' key={0} style={{whiteSpace: 'nowrap'}}>
+            <img src={normalIcon} /> Normal
+          </span>,
+          ...forms.map((form, key) => {
             let _form = '-' + normalize(form);
             
             let icon = icons[species + _form];
             if (!icon) icon = normalIcon;
 
             return (
-              <span value={form} key={key + 1}>
+              <span value={form} key={key + 1} style={{whiteSpace: 'nowrap'}}>
                 <img src={icon} /> {form}
               </span>
             )
-          }))
+          })
         ]}
       </RRFCombobox>
     )

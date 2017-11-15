@@ -1,0 +1,33 @@
+#boxes {
+  width: calc(100% - 310px);
+}
+
+.active #boxes-tabs-tab-1 {
+  background: #d9edf7;
+}
+
+.active #boxes-tabs-tab-2 {
+  background: #fcf8e3;
+}
+
+.active #boxes-tabs-tab-3 {
+  background: #f5f5f5;
+}
+
+#summary-button {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  #boxes {
+    width: 100%;
+  }
+
+  #boxes-card {
+    display: none;
+  }
+
+  #summary-button {
+    display: block;
+  }
+}

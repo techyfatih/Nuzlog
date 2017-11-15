@@ -21,20 +21,22 @@ export default class Moves extends React.Component {
   }
 
   render() {
+    const {label, required, pristine, valid, value, focus,
+      onFocus, onBlur} = this.props;
     return (
       <div>
-        <ControlLabel>Moves</ControlLabel>
+        {label && <ControlLabel>{label}</ControlLabel>}
         {sample.map((move, index) => (
-          <Combobox required={this.props.required}
+          <Combobox required={required}
             key={index}
-            pristine={this.props.pristine}
-            valid={this.props.valid}
+            pristine={pristine}
+            valid={valid}
             placeholder={move}
-            value={Array.isArray(this.props.value) ? this.props.value[index] : ''}
+            value={Array.isArray(value) ? value[index] : ''}
             onChange={move => this.handleChange(index, move)}
-            focus={index == 0 ? this.props.focus : null}
-            onFocus={index == 0 ? this.props.onFocus : null}
-            onBlur={index == 0 ? this.props.onBlur : null}>
+            focus={index == 0 ? focus : null}
+            onFocus={index == 0 ? onFocus : null}
+            onBlur={index == 0 ? onBlur : null}>
             {moves}
           </Combobox>
         ))}

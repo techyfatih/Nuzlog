@@ -2,7 +2,16 @@ import React from 'react';
 
 import icons from 'img/icons';
 
-import pokedex from 'data/pokedex.json'; //HAS TO BE JSON, NOT JS
+//HAS TO BE JSON, NOT JS
+const pokedex = require('data/pokedex.json').map((pokemon, index) => {
+  const name = pokemon[1].name;
+  return (
+    <span value={name} key={index} style={{whiteSpace: 'nowrap'}} >
+      <img src={icons[pokemon[0]]} />
+      {name}
+    </span>
+  )
+});
 
 import {RRFCombobox} from './RRFControls';
 
@@ -16,15 +25,7 @@ export default class RRFPokemon extends React.Component {
         rowHeight={40}
         onChange={this.props.onChange}
         required={this.props.required}>
-        {pokedex.map((pokemon, index) => {
-          const name = pokemon[1].name;
-          return (
-            <span value={name} key={index}>
-              <img src={icons[pokemon[0]]} />
-              {name}
-            </span>
-          )
-        })}
+        {pokedex}
       </RRFCombobox>
     )
   }

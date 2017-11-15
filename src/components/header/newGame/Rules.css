@@ -12,7 +12,7 @@
 
 #new-rules .list-group {
   height: 100px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .new-rule {

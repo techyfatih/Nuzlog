@@ -3,21 +3,57 @@ import { Modal, FormControl, ButtonGroup, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Control, actions } from 'react-redux-form';
 
-import { newGame, newLocation } from 'actions';
+import exportPokemon from 'utilities/exportPokemon';
+import { types, newGame, newLocation } from 'actions';
 
 class SaveLoadGameModal extends React.Component {
   constructor() {
     super();
     this.state = {save: ''};
+    this.reset = this.reset.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    let save = '';
+  reset(props) {
+    let save = props.title;
+    save += '\n' + props.game;
+    save += '\n' + props.name;
+
+    if (props.rules.length > 0) {
+      save += '\n\nRules:';
+      for (let i in props.rules)
+        save += '\n' + props.rules[i];
+    }
+    
+    if (props.log.length > 0) {
+      save += '\n';
+      for (let i in props.log) {
+        const {time, type, entry} = props.log[i];
+        save += '\n[' + time.toLocaleString() + ']';
+        save += ' ' + type + ': ';
+        switch (type) {
+          case types.NEW_LOCATION:
+            save += entry.location;
+            break;
+          case types.RECORD_LOG:
+            save += entry.log;
+            break;
+          case types.ADD_POKEMON:
+            save += exportPokemon(entry.pokemon);
+            break;
+          default:
+            save += JSON.stringify(entry)
+        }
+      }
+    }
 
     this.setState({save});
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.reset(nextProps);
   }
 
   handleEnter() {
@@ -46,11 +82,13 @@ class SaveLoadGameModal extends React.Component {
           </p>
           <p>
             <strong>To load your game, </strong>
-            either click "Upload File" below,
-            OR copy-paste your save file here and click "Load Game".
+            either click "Upload File" below OR copy-paste your save file here,
+            then click "Load Game".
           </p>
+          <Button block>Reset</Button>
           <FormControl componentClass='textarea' rows={15}
             style={{resize: 'none'}}
+            spellCheck='false'
             value={this.state.save}
             onChange={this.handleChange}
             inputRef={ref => this.input = ref} />
@@ -78,6 +116,10 @@ class SaveLoadGameModal extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    title: state.title,
+    game: state.game,
+    name: state.name,
+    rules: state.rules,
     log: state.log
   };
 };

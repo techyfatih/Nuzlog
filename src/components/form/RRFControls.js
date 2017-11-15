@@ -129,34 +129,11 @@ export class RRFSelect extends React.Component {
   }
 }
 
-export class RRFPokemon extends React.Component {
-  render() {
-    return (
-      <RRFCombobox
-        model={this.props.model}
-        label={this.props.label}
-        placeholder={this.props.placeholder}
-        rowHeight={40}
-        onChange={this.props.onChange}
-        required={this.props.required}>
-        {pokedex.map((pokemon, index) => {
-          const name = pokemon[1].name;
-          return (
-            <span value={name} key={index}>
-              <img src={icons[pokemon[0]]} />
-              {name}
-            </span>
-          )
-        })}
-      </RRFCombobox>
-    )
-  }
-}
-
 export class RRFMoves extends React.Component {
   render() {
     return (
       <Control model='.moves'
+        label={this.props.label}
         required={this.props.required}
         component={Moves}
         validators={{
