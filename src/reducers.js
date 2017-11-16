@@ -59,14 +59,15 @@ const logAction = (state, action) => {
       }
 
     case types.EDIT_POKEMON:
-      if (action.index < 0 || action.index >= pokemon.length)
+      if (!action.pokemon ||
+          action.pokemon.index < 0 || action.pokemon.index >= pokemon.length)
         return state;
 
       return {...state,
         pokemon: [
-          ...pokemon.slice(0, action.index),
-          {...pokemon[action.index], ...action.change},
-          ...pokemon.slice(action.index + 1)
+          ...pokemon.slice(0, action.pokemon.index),
+          {...pokemon[action.pokemon.index], ...action.change},
+          ...pokemon.slice(action.pokemon.index + 1)
         ]
       };
     
@@ -109,7 +110,7 @@ const logAction = (state, action) => {
             cause: action.cause,
             slot: {cemetery: cemetery.length
           }},
-          ...pokemon.slice(party[action.index] + 1)
+          ...pokemon.slice(action.index + 1)
         ],
         party: _party,
         pc: _pc,

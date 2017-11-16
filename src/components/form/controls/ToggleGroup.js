@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ControlLabel, ButtonToolbar,
-  ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
-
-import '../Controls.css';
+import { ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 
 class ToggleGroupButton extends React.Component {
   constructor() {
@@ -53,36 +50,30 @@ export default class ToggleGroup extends React.Component {
   }
 
   handleClick(e) {
-    if (e.target.value && e.target.value == this.props.value)
+    const value = e.target.value;
+    if (value && value == this.props.value)
       this.props.onChange('');
   }
 
   render() {
-    this.input = undefined;
     return (
-      <div>
-        {this.props.label && <ControlLabel>{this.props.label}</ControlLabel>}
-        <ButtonToolbar>
-          <ToggleButtonGroup type={this.props.type}
-            name={this.props.name}
-            vertical={this.props.vertical}
-            className={
-              !this.props.required || this.props.pristine
-              ? null : (this.props.valid ? 'has-success' : 'has-error')}
-            value={this.props.value}
-            onChange={this.props.onChange}>
-            {React.Children.map(this.props.children, (value, index) => (
-              <ToggleGroupButton ref={ref => {
-                  if (index == 0) this.input = ref;
-                }}
-                value={value.props.value}
-                onClick={this.handleClick}>
-                {value}
-              </ToggleGroupButton>
-            ))}
-          </ToggleButtonGroup>
-        </ButtonToolbar>
-      </div>
+      <ButtonToolbar>
+        <ToggleButtonGroup type={this.props.type}
+          name={this.props.name}
+          vertical={this.props.vertical}
+          value={this.props.value}
+          onChange={this.props.onChange}>
+          {React.Children.map(this.props.children, (value, index) => (
+            <ToggleGroupButton ref={ref => {
+                if (index == 0) this.input = ref;
+              }}
+              value={value.props.value}
+              onClick={this.handleClick}>
+              {value}
+            </ToggleGroupButton>
+          ))}
+        </ToggleButtonGroup>
+      </ButtonToolbar>
     )
   }
 }

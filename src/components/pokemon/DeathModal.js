@@ -1,23 +1,12 @@
 import React from 'react';
-import { Modal, Panel, Checkbox, Button, Row, Col, ControlLabel,
-  Form } from 'react-bootstrap';
-import { Control, actions } from 'react-redux-form';
+import { Modal, Button } from 'react-bootstrap';
+import { actions } from 'react-redux-form';
 import { connect } from 'react-redux';
 
-import natures from 'data/natures.json';
-import abilities from 'data/abilities.json';
-
-import male from 'img/male.png';
-import female from 'img/female.png';
-
 import PokeSlot from 'components/pokemon/slot/PokeSlot';
-import PokeSprite from 'components/pokemon/sprite/PokeSprite';
 
-import RRForm from 'components/form/RRForm';
-import RRFPokemon from 'components/form/RRFPokemon';
-import RRFForms from 'components/form/RRFForms';
-import { RRFText, RRFCombobox, RRFNumber, RRFToggle, RRFSelect,
-  RRFMoves } from 'components/form/RRFControls';
+import { RRForm, RRFControl } from 'components/form/RRF';
+
 import { death } from 'actions';
 
 class DeathModal extends React.Component {
@@ -56,7 +45,8 @@ class DeathModal extends React.Component {
 
           <Modal.Body>
             <PokeSlot pokemon={this.props.pokemon} />
-            <RRFText model='.cause' placeholder='Freaking crit' required />
+            <RRFControl model='.cause' id='cause-of-death' label='Cause of Death*'
+              placeholder='Freaking crit' required />
           </Modal.Body>
 
           <Modal.Footer>

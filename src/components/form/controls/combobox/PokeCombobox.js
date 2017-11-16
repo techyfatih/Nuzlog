@@ -13,20 +13,21 @@ const pokedex = require('data/pokedex.json').map((pokemon, index) => {
   )
 });
 
-import {RRFCombobox} from './RRFControls';
+import Combobox from './Combobox';
 
-export default class RRFPokemon extends React.Component {
+export default class PokeCombobox extends React.Component {
   render() {
     return (
-      <RRFCombobox
-        model={this.props.model}
-        label={this.props.label}
+      <Combobox id={this.props.id}
         placeholder={this.props.placeholder}
-        rowHeight={40}
+        value={this.props.value}
+        focus={this.props.focus}
         onChange={this.props.onChange}
-        required={this.props.required}>
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}
+        rowHeight={40}>
         {pokedex}
-      </RRFCombobox>
+      </Combobox>
     )
   }
 }

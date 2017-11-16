@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 
-import PokeCard from './card/PokeCard';
+import PokeCard from 'components/pokemon/card/PokeCard';
 
 export default class SummaryModal extends React.Component {
   render() {
@@ -12,7 +12,7 @@ export default class SummaryModal extends React.Component {
           <Modal.Title>Summary</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{padding: 10}}>
-          <PokeCard pokemon={{species: 'Kyogre'}} />
+          <PokeCard pokemon={this.props.pokemon} />
         </Modal.Body>
       </Modal>
     )

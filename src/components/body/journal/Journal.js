@@ -10,6 +10,9 @@ import './Journal.css';
 
 import NewLocation from './newLocation/NewLocation';
 import PokeExport from 'components/pokemon/PokeExport';
+import PokeDiff from 'components/pokemon/PokeDiff';
+
+import printDiff from 'utilities/printDiff';
 
 import { types, recordLog } from 'actions';
 
@@ -100,6 +103,10 @@ class Journal extends React.Component {
         
       case types.ADD_POKEMON:
         content = <PokeExport pokemon={content.pokemon} />
+        break;
+
+      case types.EDIT_POKEMON:
+        content = <PokeDiff pokemon={content.pokemon} change={content.change} />
         break;
       
       default:

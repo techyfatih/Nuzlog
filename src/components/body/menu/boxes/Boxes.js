@@ -7,7 +7,7 @@ import './Boxes.css';
 import Party from './Party';
 import Box from './box/Box';
 
-import SummaryModal from 'components/pokemon/SummaryModal';
+import SummaryModal from './SummaryModal';
 import MoveModal from './move/MoveModal';
 
 import PokeCard from 'components/pokemon/card/PokeCard';
@@ -82,10 +82,10 @@ class Boxes extends React.Component {
     const {box, partyIndex, pcIndex, cemeteryIndex} = this.state;
     const {summary, move} = this.state;
 
-    let cardPokemon = -1;
-    if (box == 1) cardPokemon = pokemon[party[partyIndex]];
-    else if (box == 2) cardPokemon = pokemon[pc[pcIndex]];
-    else if (box == 3) cardPokemon = pokemon[cemetery[cemeteryIndex]];
+    let selectedPokemon = null;
+    if (box == 1) selectedPokemon = pokemon[party[partyIndex]];
+    else if (box == 2) selectedPokemon = pokemon[pc[pcIndex]];
+    else if (box == 3) selectedPokemon = pokemon[cemetery[cemeteryIndex]];
     
     return (
       <div className='clearfix'>
@@ -106,7 +106,10 @@ class Boxes extends React.Component {
             </Tab>
           </Tabs>
           <Button id='summary-button' bsStyle='primary' block
-            onClick={() => this.open('summary')}>Summary</Button>
+            onClick={() => this.open('summary')}
+            disabled={!selectedPokemon}>
+            Summary
+          </Button>
           <Button bsStyle='info' block onClick={() => this.open('move')}
             disabled={party.length <= 0 && pc.length <= 0}>
             Move Pokémon
@@ -117,10 +120,11 @@ class Boxes extends React.Component {
           <PokeCard bsStyle={
             box == 1 ? 'info' :
             box == 2 ? 'warning' : 'default'
-          } pokemon={cardPokemon} />
+          } pokemon={selectedPokemon} />
         </div>
     
-        <SummaryModal show={summary} onHide={() => this.close('summary')} />
+        <SummaryModal show={summary} onHide={() => this.close('summary')}
+          pokemon={selectedPokemon} />
         <MoveModal show={move} onHide={() => this.close('move')} />
       </div>
     );

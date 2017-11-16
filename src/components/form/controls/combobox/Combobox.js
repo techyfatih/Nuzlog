@@ -1,11 +1,10 @@
 import React from 'react';
-import { FormGroup, ControlLabel, InputGroup, FormControl, Button, Glyphicon,
-  Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
-import { List, AutoSizer,
-  CellMeasurer, CellMeasurerCache } from 'react-virtualized';
+import PropTypes from 'prop-types';
+import { InputGroup, FormControl, Button, Glyphicon, Panel,
+  ListGroup, ListGroupItem } from 'react-bootstrap';
+import { List, AutoSizer } from 'react-virtualized';
 
 import './Combobox.css';
-import '../Controls.css';
 
 import normalize from 'utilities/normalize';
 
@@ -198,20 +197,17 @@ export default class Combobox extends React.Component {
 
   render() {
     return (
-      <FormGroup className='combobox' controlId={this.props.id}
-        validationState={
-          !this.props.required || this.props.pristine
-          ? null : (this.props.valid ? 'success' : 'error')}>
-        {this.props.label && <ControlLabel>{this.props.label}</ControlLabel>}
+      <div className='combobox'>
         <InputGroup>
-          <FormControl type='text' spellCheck='false'
+          <FormControl spellCheck='false' id={this.props.id}
             placeholder={this.props.placeholder}
-            value={this.props.value}
+            value={this.props.value ? this.props.value : ''}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             inputRef={ref => this.input = ref} />
+          
           <InputGroup.Button>
             <Button tabIndex={-1}
               onMouseDown={this.handleMouseDown}
@@ -221,6 +217,7 @@ export default class Combobox extends React.Component {
             </Button>
           </InputGroup.Button>
         </InputGroup>
+
         {this.state.menuOpen &&
         <ComboboxMenu
           rowHeight={this.props.rowHeight}
@@ -229,7 +226,16 @@ export default class Combobox extends React.Component {
           onSelect={this.handleSelect}>
           {this.state.filtered}
         </ComboboxMenu>}
-      </FormGroup>
+      </div>
     );
   }
 }
+
+Combobox.propTypes = {
+  id: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  children: PropTypes.array
+};

@@ -5,8 +5,7 @@ import { actions } from 'react-redux-form';
 
 import games from 'data/games.json';
 
-import RRForm from 'components/form/RRForm';
-import { RRFText, RRFCombobox } from 'components/form/RRFControls';
+import { RRForm, RRFControl } from 'components/form/RRF';
 import { newGame, newLocation } from 'actions';
 import Rules from './Rules';
 
@@ -36,11 +35,12 @@ class NewGameModal extends React.Component {
   }
   
   removeRule(index) {
-    if (this.state.rules[index]) {
-      this.setState(({rules}) => ({
-        rules: rules.filter((rule, _index) => index != _index)
-      }));
-    }
+    this.setState(({rules}) => ({
+      rules: [
+        ...rules.slice(0, index),
+        ...rules.slice(index + 1)
+      ]
+    }));
   }
 
   handleSubmit(values) {
@@ -60,30 +60,29 @@ class NewGameModal extends React.Component {
 
   render() {
     return (
-      <Modal
-        show={this.props.show}
-        onEnter={this.handleEnter}
+      <Modal show={this.props.show} onEnter={this.handleEnter}
         onHide={this.props.onHide}>
-        <RRForm
-          getDispatch={dispatch => this.dispatch = dispatch}
+        <RRForm getDispatch={dispatch => this.dispatch = dispatch}
           onSubmit={this.handleSubmit}>
 
-          <Modal.Header closeButton><h2>New Game</h2></Modal.Header>
+          <Modal.Header closeButton>
+            <Modal.Title>New Game</Modal.Title>
+          </Modal.Header>
 
           <Modal.Body>
-            <RRFText model='.title' label='Title*'
+            <RRFControl model='.title' id='new-title' label='Title*'
               placeholder='The Great Nuzlocke Challenge' required/>
-
-            <RRFCombobox model='.game' label='Game*'
-              placeholder='Pokémon Ruby' required>
+            
+            <RRFControl model='.game' component='combobox' id='new-game'
+              label='Game*' placeholder='Pokémon Ruby' required>
               {games}
-            </RRFCombobox>
+            </RRFControl>
 
-            <RRFText model='.name' label='Name*'
+            <RRFControl model='.name' id='new-name' label='Name*'
               placeholder='Ruby' required/>
               
-            <RRFText model='.location' label='Initial Location'
-              placeholder='Littleroot Town'/>
+            <RRFControl model='.location' id='new-locaiton'
+              label='Initial Location' placeholder='Littleroot Town'/>
 
             <Rules rules={this.state.rules}
               addRule={this.addRule} removeRule={this.removeRule}/>

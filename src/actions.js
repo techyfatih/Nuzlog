@@ -1,7 +1,7 @@
 export const types = {
   NEW_GAME: 'New Game',
-  RECORD_LOG: 'Log',
   NEW_LOCATION: 'Location',
+  RECORD_LOG: 'Log',
   ADD_POKEMON: 'Add',
   EDIT_POKEMON: 'Edit',
   MOVE_POKEMON: 'Move',
@@ -38,8 +38,8 @@ export const addPokemon = pokemon => {
   return recordAction(types.ADD_POKEMON, {pokemon});
 };
 
-export const editPokemon = (index, change) => {
-  return recordAction(types.EDIT_POKEMON, {index, change});
+export const editPokemon = (pokemon, change) => {
+  return recordAction(types.EDIT_POKEMON, {pokemon, change});
 }
 
 export const movePokemon = (party, pc) => {
