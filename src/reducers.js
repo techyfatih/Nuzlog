@@ -32,7 +32,10 @@ const logAction = (state, action) => {
 
   switch (action.type) {
     case types.NEW_LOCATION:
-      return {...state, location: action.location};
+      return {...state,
+        location: action.location,
+        old: {location: state.location}
+      };
     
     case types.RECORD_LOG:
       return {...state};
@@ -45,7 +48,8 @@ const logAction = (state, action) => {
             index: pokemon.length,
             slot
           }],
-          party: [...party, pokemon.length]
+          party: [...party, pokemon.length],
+          old: {pokemon, party}
         };
       } else {
         const slot = {pc: pc.length};
@@ -54,21 +58,22 @@ const logAction = (state, action) => {
             index: pokemon.length,
             slot
           }],
-          pc: [...pc, pokemon.length]
+          pc: [...pc, pokemon.length],
+          old: {pokemon, pc}
         };
       }
 
     case types.EDIT_POKEMON:
-      if (!action.pokemon ||
-          action.pokemon.index < 0 || action.pokemon.index >= pokemon.length)
+      if (action.index < 0 || action.index >= pokemon.length)
         return state;
 
       return {...state,
         pokemon: [
-          ...pokemon.slice(0, action.pokemon.index),
-          {...pokemon[action.pokemon.index], ...action.change},
-          ...pokemon.slice(action.pokemon.index + 1)
-        ]
+          ...pokemon.slice(0, action.index),
+          {...pokemon[action.index], ...action.change},
+          ...pokemon.slice(action.index + 1)
+        ],
+        old: {pokemon}
       };
     
     case types.MOVE_POKEMON:
@@ -78,7 +83,8 @@ const logAction = (state, action) => {
       return {...state,
         pokemon: changeIndices(pokemon, action.party, action.pc),
         party: action.party,
-        pc: action.pc
+        pc: action.pc,
+        old: {pokemon, party, pc}
       };
     
     case types.DEATH:
@@ -114,13 +120,23 @@ const logAction = (state, action) => {
         ],
         party: _party,
         pc: _pc,
-        cemetery: cemetery.concat([action.index])
+        cemetery: cemetery.concat([action.index]),
+        old: {pokemon, party, pc, cemetery}
       };
     
     default:
       return state;
   }
 };
+
+const undo = (state) => {
+  const {log} = state;
+  if (log.length == 0) return state;
+
+  const {old} = log[log.length - 1];
+
+  return {...state, ...old, log: log.splice(0, log.length - 1)};
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -129,7 +145,7 @@ export default (state = initialState, action) => {
         title: action.title,
         game: action.game,
         name: action.name,
-        rules: action.rules,
+        rules: Array.isArray(action.rules) ? action.rules : [],
         location: '',
         pokemon: [],
         party: [],
@@ -137,6 +153,8 @@ export default (state = initialState, action) => {
         cemetery: [],
         log: []
       };
+    case types.UNDO:
+      return undo(state);
     default:
       const _state = logAction(state, action);
       if (_state == state) return state;
@@ -145,8 +163,10 @@ export default (state = initialState, action) => {
       _state.log = [...state.log, {
         time,
         type,
-        entry: _action
+        entry: _action,
+        old: _state.old
       }];
+      delete _state.old;
       return _state;
   }
 };

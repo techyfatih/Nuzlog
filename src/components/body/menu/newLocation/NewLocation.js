@@ -1,6 +1,5 @@
 import React from 'react';
-import { FormGroup, ControlLabel, InputGroup, FormControl,
-  Button } from 'react-bootstrap';
+import { FormGroup, ControlLabel, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import './NewLocation.css';
@@ -33,7 +32,7 @@ class NewLocation extends React.Component {
     return (
       <form onSubmit={this.handleSubmit} autoComplete='off' noValidate>
         <FormGroup controlId='location'>
-          <ControlLabel>Current Location</ControlLabel>
+          <ControlLabel>Current Location:</ControlLabel>
           <InputGroup>
             <InputGroup.Addon>
               <div id='current-location'>{this.props.location}</div>

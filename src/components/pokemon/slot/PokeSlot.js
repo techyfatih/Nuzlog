@@ -45,22 +45,6 @@ export default class PokeSlot extends React.Component {
           </div>
         </div>
       </div>
-      /*<Media className='poke-slot'>
-        <Media.Left align='middle'>
-          <PokeIcon pokemon={pokemon} />
-        </Media.Left>
-        <Media.Body className={this.props.pokemon ? '' : 'invisible'}>
-          <p className='clearfix'>
-            <span className='name'>{getFullname(pokemon)}</span>
-            <img className='gender pull-right' src={
-              pokemon.gender == 'M' ? male :
-              pokemon.gender == 'F' ? female : ''} />
-          </p>
-          <p className={pokemon.level ? '' : 'invisible'}>
-            Level {pokemon.level}
-          </p>
-        </Media.Body>
-      </Media>*/
     );
   }
 }

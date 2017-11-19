@@ -8,11 +8,9 @@ export default class SummaryModal extends React.Component {
     const {show, onHide} = this.props;
     return (
       <Modal show={show} onHide={onHide}>
-        <Modal.Header closeButton>
-          <Modal.Title>Summary</Modal.Title>
-        </Modal.Header>
+        <Modal.Header closeButton><h2>Summary</h2></Modal.Header>
         <Modal.Body style={{padding: 10}}>
-          <PokeCard pokemon={this.props.pokemon} />
+          <PokeCard bsStyle={this.props.bsStyle} pokemon={this.props.pokemon} />
         </Modal.Body>
       </Modal>
     )

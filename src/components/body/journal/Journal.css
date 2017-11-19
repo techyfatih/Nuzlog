@@ -2,6 +2,20 @@
   font-size: 24px;
 }
 
+#info {
+  white-space: nowrap;
+}
+
+#info * {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#rules {
+  height: 100px;
+  overflow-y: auto;
+}
+
 .virtual-table .ReactVirtualized__Table__headerRow {
   border: 1px solid #ddd;
   border-radius: 4px 4px 0 0;
@@ -14,4 +28,10 @@
 
 .virtual-table .ReactVirtualized__Table__row {
   border-bottom: 1px solid #ddd;
+}
+
+#text {
+  height: 578px;
+  margin: 0;
+  overflow-y: auto;
 }

@@ -33,7 +33,7 @@ export default class MovesList extends React.Component {
           <Combobox key={index}
             id={index == 0 ? this.props.id : null}
             placeholder={move}
-            value={_moves[index] ? _moves[index] : ''}
+            value={_moves[index]}
             onChange={move => this.handleChange(index, move)}
             focus={index == 0 ? focus : null}
             onFocus={index == 0 ? onFocus : null}

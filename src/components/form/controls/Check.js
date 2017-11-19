@@ -14,7 +14,8 @@ export default class Check extends React.Component {
 
   render() {
     return (
-      <Checkbox value={this.props.value} onChange={this.handleChange}>
+      <Checkbox checked={this.props.value ? true : false}
+        onChange={this.handleChange}>
         {this.props.children}
       </Checkbox>
     );

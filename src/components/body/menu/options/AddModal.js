@@ -18,14 +18,21 @@ import { addPokemon } from 'actions';
 class AddModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {pokemon: null};
+    this.state = {
+      pokemon: null,
+      open: false
+    };
     this.handleEnter = this.handleEnter.bind(this);
     this.updatePokemon = this.updatePokemon.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleHide = this.handleHide.bind(this);
   }
   
   handleEnter() {
-    this.setState({pokemon: null});
+    this.setState({
+      pokemon: null,
+      open: false
+    });
     this.dispatch(actions.change('local.location', this.props.location));
     this.dispatch(actions.setPristine('local'));
     this.dispatch(actions.focus('local.species'));
@@ -58,19 +65,24 @@ class AddModal extends React.Component {
       item: values.item,
       method: values.method
     });
+    this.handleHide();
+  }
+
+  handleHide() {
+    this.setState({
+      open: false
+    });
     this.props.onHide();
   }
 
   render() {
     return (
       <Modal show={this.props.show} onEnter={this.handleEnter}
-        onHide={this.props.onHide}>
+        onHide={this.handleHide}>
         <RRForm getDispatch={dispatch => this.dispatch = dispatch}
           onSubmit={this.handleSubmit}>
 
-          <Modal.Header closeButton>
-            <Modal.Title>Add Pokémon</Modal.Title>
-          </Modal.Header>
+          <Modal.Header closeButton><h2>Add Pokémon</h2></Modal.Header>
 
           <Modal.Body>
             <PokeSlot pokemon={this.state.pokemon} />
@@ -102,7 +114,10 @@ class AddModal extends React.Component {
               </Col>
             </Row>
 
-            <Button onClick={() => this.setState(({open}) => ({open: !open}))} block>More Details</Button>
+            <Button onClick={() => this.setState(({open}) => ({open: !open}))}
+              block>
+              More Details
+            </Button>
             <Panel collapsible expanded={this.state.open} className='no-margin'>
               <Row>
                 <Col sm={6} xs={12}>
@@ -121,7 +136,7 @@ class AddModal extends React.Component {
                 </Col>
                 <Col xs={2}>
                   <RRFControl model='.shiny' component='check'
-                    onChange={e => this.updatePokemon({shiny: e.target.checked})}>
+                    onChange={shiny => this.updatePokemon({shiny})}>
                     Shiny
                   </RRFControl>
                 </Col>

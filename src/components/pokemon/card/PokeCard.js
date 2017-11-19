@@ -1,16 +1,13 @@
 import React from 'react';
-import { Media, Panel, Table, ButtonGroup, Button,
-  Tabs, Tab } from 'react-bootstrap';
+import { Media, Panel, Table, ButtonGroup, Button } from 'react-bootstrap';
 
 import './PokeCard.css';
 
 import male from 'img/male.png';
 import female from 'img/female.png';
 
-import getPokemon from 'utilities/getPokemon';
 import getFullname from 'utilities/getFullname';
 
-import PokeExport from '../PokeExport';
 import PokeIcon from '../PokeIcon';
 import PokeSprite from '../sprite/PokeSprite';
 
@@ -21,7 +18,7 @@ export default class PokeCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pokemon: getPokemon(props.pokemon),
+      pokemon: props.pokemon,
       edit: false,
       death: false,
     }
@@ -31,7 +28,7 @@ export default class PokeCard extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      pokemon: getPokemon(nextProps.pokemon)
+      pokemon: nextProps.pokemon
     });
   }
 
@@ -44,7 +41,8 @@ export default class PokeCard extends React.Component {
   }
 
   render() {
-    const {pokemon, edit, death} = this.state;
+    let {pokemon, edit, death} = this.state;
+    if (!pokemon) pokemon = {};
     const name = getFullname(pokemon);
     const moves = Array.isArray(pokemon.moves);
     
@@ -74,53 +72,46 @@ export default class PokeCard extends React.Component {
         </Media>
       }>
         <div className={this.props.pokemon ? '' : 'invisible'}>
-          <Tabs defaultActiveKey={1} justified id='poke-card-tabs'>
-            <Tab eventKey={1} title='Stats'>
-              <PokeSprite pokemon={pokemon} />
-                <Table condensed>
-                  <tbody>
-                    <tr>
-                      <th width={125}>Form:</th>
-                      <td>{pokemon.form ? pokemon.form : 'Normal'}</td>
-                    </tr>
-                    <tr>
-                      <th>Nature:</th>
-                      <td>{pokemon.nature}</td>
-                    </tr>
-                    <tr>
-                      <th>Ability:</th>
-                      <td>{pokemon.ability}</td>
-                    </tr>
-                    <tr>
-                      <th>Moves:</th>
-                      <td>
-                        - {moves && pokemon.moves[0]} <br/>
-                        - {moves && pokemon.moves[1]} <br/>
-                        - {moves && pokemon.moves[2]} <br/>
-                        - {moves && pokemon.moves[3]}
-                      </td>
-                    </tr>
-                    {!pokemon.cause && (
-                      <tr>
-                        <th>Item:</th>
-                        <td>{pokemon.item}</td>
-                      </tr>
-                    )}
-                    {pokemon.cause && (
-                      <tr>
-                        <th>Cause of Death:</th>
-                        <td className='cause'>
-                          <div>{pokemon.cause}</div>
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </Table>
-            </Tab>
-            <Tab eventKey={2} title='Export'>
-              <PokeExport pokemon={pokemon} />
-            </Tab>
-          </Tabs>
+          <PokeSprite pokemon={pokemon} />
+            <Table condensed>
+              <tbody>
+                <tr>
+                  <th width={125}>Form:</th>
+                  <td>{pokemon.form ? pokemon.form : 'Normal'}</td>
+                </tr>
+                <tr>
+                  <th>Nature:</th>
+                  <td>{pokemon.nature}</td>
+                </tr>
+                <tr>
+                  <th>Ability:</th>
+                  <td>{pokemon.ability}</td>
+                </tr>
+                <tr>
+                  <th>Moves:</th>
+                  <td>
+                    - {moves && pokemon.moves[0]} <br/>
+                    - {moves && pokemon.moves[1]} <br/>
+                    - {moves && pokemon.moves[2]} <br/>
+                    - {moves && pokemon.moves[3]}
+                  </td>
+                </tr>
+                {!pokemon.cause && (
+                  <tr>
+                    <th>Item:</th>
+                    <td>{pokemon.item}</td>
+                  </tr>
+                )}
+                {pokemon.cause && (
+                  <tr>
+                    <th>Cause of Death:</th>
+                    <td className='cause'>
+                      <div>{pokemon.cause}</div>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </Table>
           {!pokemon.cause && (
             <ButtonGroup justified>
               <Button bsStyle='warning' href='#'

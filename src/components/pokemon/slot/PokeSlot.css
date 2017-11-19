@@ -9,6 +9,7 @@
 .poke-slot .info {
   margin-left: 10px;
   width: calc(100% - 50px);
+  overflow: hidden;
 }
 
 .poke-slot .name {

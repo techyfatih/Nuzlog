@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import './MoveModal.css';
 
+import equals from 'utilities/equals';
+
 import PokeSlot from 'components/pokemon/slot/PokeSlot';
 import { movePokemon } from 'actions';
 
@@ -163,11 +165,12 @@ class MoveModal extends React.Component {
 
     return (
       <Modal show={show} onHide={onHide}>
-        <Modal.Header><Modal.Title>Move Pokémon</Modal.Title></Modal.Header>
+        <Modal.Header closeButton><h2>Move Pokémon</h2></Modal.Header>
 
         <Modal.Body>
           <Row>
             <Col xs={6}>
+              <h4>Party</h4>
               <ToggleButtonGroup vertical block type='radio' name='move-party'
                 value={partyIndex}
                 onChange={index => this.handleChange(1, index)}
@@ -191,6 +194,7 @@ class MoveModal extends React.Component {
               </ButtonGroup>
             </Col>
             <Col xs={6}>
+              <h4>PC</h4>
               <ToggleButtonGroup id='move-pc' vertical type='radio'
                 name='move-pc' value={pcIndex}
                 onChange={index => this.handleChange(2, index)}
@@ -219,7 +223,7 @@ class MoveModal extends React.Component {
         
         <Modal.Footer>
           <Button bsStyle='info' bsSize='large' block
-            disabled={party == this.props.party && pc == this.props.pc}
+            disabled={equals(party, this.props.party) && equals(pc, this.props.pc)}
             onClick={this.handleMove}>
             Move Pokémon
           </Button>

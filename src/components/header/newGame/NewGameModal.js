@@ -5,6 +5,8 @@ import { actions } from 'react-redux-form';
 
 import games from 'data/games.json';
 
+import ConfirmModal from 'components/other/ConfirmModal';
+
 import { RRForm, RRFControl } from 'components/form/RRF';
 import { newGame, newLocation } from 'actions';
 import Rules from './Rules';
@@ -13,12 +15,15 @@ class NewGameModal extends React.Component {
   constructor() {
     super();
     this.state = {
-      rules: []
+      rules: [],
+      confirm: false,
+      values: null
     };
     this.handleEnter = this.handleEnter.bind(this);
     this.addRule = this.addRule.bind(this);
     this.removeRule = this.removeRule.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.confirm = this.confirm.bind(this);
   }
 
   handleEnter() {
@@ -44,6 +49,26 @@ class NewGameModal extends React.Component {
   }
 
   handleSubmit(values) {
+    if (!this.props.gameOpen) {
+      this.props.onNewGame(
+        values.title,
+        values.game,
+        values.name,
+        values.location,
+        this.state.rules
+      );
+      this.props.onOpenGame();
+      this.props.onHide();
+    } else {
+      this.setState({
+        confirm: true,
+        values
+      });
+    }
+  }
+
+  confirm() {
+    const {values} = this.state;
     this.props.onNewGame(
       values.title,
       values.game,
@@ -51,11 +76,12 @@ class NewGameModal extends React.Component {
       values.location,
       this.state.rules
     );
-
-    const cover = document.getElementById('cover');
-    if (cover != null) cover.remove();
-
+    this.props.onOpenGame();
     this.props.onHide();
+    this.setState({
+      confirm: false,
+      values: null
+    })
   }
 
   render() {
@@ -65,9 +91,7 @@ class NewGameModal extends React.Component {
         <RRForm getDispatch={dispatch => this.dispatch = dispatch}
           onSubmit={this.handleSubmit}>
 
-          <Modal.Header closeButton>
-            <Modal.Title>New Game</Modal.Title>
-          </Modal.Header>
+          <Modal.Header closeButton><h2>New Game</h2></Modal.Header>
 
           <Modal.Body>
             <RRFControl model='.title' id='new-title' label='Title*'
@@ -94,6 +118,12 @@ class NewGameModal extends React.Component {
             </Button>
           </Modal.Footer>
         </RRForm>
+
+        <ConfirmModal show={this.state.confirm} onConfirm={this.confirm}
+          onHide={() => this.setState({confirm: false})}>
+          Are you sure you want to start a new game? All unsaved progress
+          will be lost.
+        </ConfirmModal>
       </Modal>
     );
   }

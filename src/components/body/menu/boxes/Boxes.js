@@ -38,10 +38,19 @@ class Boxes extends React.Component {
         let pcIndex = prevState.pcIndex;
         let cemeteryIndex = prevState.cemeteryIndex;
 
-        if (nextProps.party.length > party.length) {
+        const switchParty = party[partyIndex] != nextProps.party[partyIndex];
+        const switchPC = pc[pcIndex] != nextProps.pc[pcIndex];
+        const move = switchParty || switchPC;
+
+        if (partyIndex >= nextProps.party.length || switchParty)
+            partyIndex = -1;
+        if (pcIndex >= nextProps.pc.length || switchPC)
+          pcIndex = -1;
+
+        if (nextProps.party.length > party.length && !move) {
           box = 1;
           partyIndex = party.length;
-        } else if (nextProps.pc.length > pc.length) {
+        } else if (nextProps.pc.length > pc.length && !move) {
           box = 2;
           pcIndex = pc.length;
         } else if (nextProps.cemetery.length > cemetery.length) {
@@ -82,6 +91,8 @@ class Boxes extends React.Component {
     const {box, partyIndex, pcIndex, cemeteryIndex} = this.state;
     const {summary, move} = this.state;
 
+    const bsStyle =  box == 1 ? 'info' : box == 2 ? 'warning' : 'default';
+
     let selectedPokemon = null;
     if (box == 1) selectedPokemon = pokemon[party[partyIndex]];
     else if (box == 2) selectedPokemon = pokemon[pc[pcIndex]];
@@ -90,7 +101,7 @@ class Boxes extends React.Component {
     return (
       <div className='clearfix'>
         <div id='boxes' className='pull-left'>
-          <Tabs activeKey={box} id='boxes-tabs' justified animation={false}
+          <Tabs activeKey={box} id='boxes-tabs' animation={false}
             onSelect={this.handleSelect}>
             <Tab eventKey={1} title='Party'>
               <Party index={partyIndex}
@@ -110,20 +121,18 @@ class Boxes extends React.Component {
             disabled={!selectedPokemon}>
             Summary
           </Button>
-          <Button bsStyle='info' block onClick={() => this.open('move')}
+          <Button bsStyle='primary' block onClick={() => this.open('move')}
             disabled={party.length <= 0 && pc.length <= 0}>
             Move Pokémon
           </Button>
         </div>
         
         <div id='boxes-card' className='pull-right'>
-          <PokeCard bsStyle={
-            box == 1 ? 'info' :
-            box == 2 ? 'warning' : 'default'
-          } pokemon={selectedPokemon} />
+          <PokeCard bsStyle={bsStyle} pokemon={selectedPokemon} />
         </div>
     
-        <SummaryModal show={summary} onHide={() => this.close('summary')}
+        <SummaryModal bsStyle={bsStyle} show={summary}
+          onHide={() => this.close('summary')}
           pokemon={selectedPokemon} />
         <MoveModal show={move} onHide={() => this.close('move')} />
       </div>

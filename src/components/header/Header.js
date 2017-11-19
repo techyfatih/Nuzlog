@@ -33,7 +33,7 @@ export default class Header extends React.Component {
           </h1>
           <div className='pull-right'><ThemeSwitcher/></div>
           
-          <ButtonGroup bsSize='large' justified bsSize>
+          <ButtonGroup bsSize='large' justified>
             <Button href='#' bsStyle='primary'
               onClick={() => this.open('newGame')}>
               New Game
@@ -46,9 +46,13 @@ export default class Header extends React.Component {
         </Grid>
 
         <NewGameModal show={this.state.newGame}
-          onHide={() => this.close('newGame')} />
+          onHide={() => this.close('newGame')}
+          gameOpen={this.props.gameOpen}
+          onOpenGame={this.props.onOpenGame} />
         <SaveLoadGameModal show={this.state.saveLoadGame}
-          onHide={() => this.close('saveLoadGame')} />
+          onHide={() => this.close('saveLoadGame')}
+          gameOpen={this.props.gameOpen}
+          onOpenGame={this.props.onOpenGame} />
       </Well>
     );
   }

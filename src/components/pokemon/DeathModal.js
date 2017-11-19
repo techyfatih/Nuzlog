@@ -39,9 +39,7 @@ class DeathModal extends React.Component {
         <RRForm
           getDispatch={dispatch => this.dispatch = dispatch}
           onSubmit={this.handleSubmit}>
-          <Modal.Header closeButton>
-            <Modal.Title>Death</Modal.Title>
-          </Modal.Header>
+          <Modal.Header closeButton><h2>Death</h2></Modal.Header>
 
           <Modal.Body>
             <PokeSlot pokemon={this.props.pokemon} />

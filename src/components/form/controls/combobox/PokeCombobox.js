@@ -7,8 +7,7 @@ const pokedex = require('data/pokedex.json').map((pokemon, index) => {
   const name = pokemon[1].name;
   return (
     <span value={name} key={index} style={{whiteSpace: 'nowrap'}} >
-      <img src={icons[pokemon[0]]} />
-      {name}
+      <img src={icons[pokemon[0]]} /> {name}
     </span>
   )
 });
