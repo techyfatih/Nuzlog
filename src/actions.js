@@ -6,7 +6,9 @@ export const types = {
   EDIT_POKEMON: 'Edit',
   MOVE_POKEMON: 'Move',
   DEATH: 'Death',
-  UNDO: 'Undo'
+  UNDO: 'Undo',
+  SWITCH_BOX: 'Switch Box',
+  SWITCH_SLOT: 'Switch Slot'
 };
 
 export const newGame = (title, game, name, rules) => {
@@ -54,4 +56,12 @@ export const death = (index, cause, time) => {
 
 export const undo = () => {
   return {type: types.UNDO};
+};
+
+export const switchBox = box => {
+  return {type: types.SWITCH_BOX, box};
+};
+
+export const switchSlot = (box, slot) => {
+  return {type: types.SWITCH_SLOT, box, slot};
 };

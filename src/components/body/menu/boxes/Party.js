@@ -4,6 +4,7 @@ import { Panel, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import { connect } from 'react-redux'
 
 import PokeSlot from 'components/pokemon/slot/PokeSlot';
+import { switchSlot } from 'actions';
 
 const six = [0, 1, 2, 3, 4, 5];
 
@@ -15,23 +16,24 @@ class Party extends React.Component {
   }
 
   handleChange(index) {
-    this.props.onChange(index);
+    this.props.switchSlot(index);
   }
 
   handleClick(e) {
-    if (e.target.value && e.target.value == this.props.index)
-      this.props.onChange(-1);
+    const {value} = e.target;
+    if (value && value == this.props.slot)
+      this.props.switchSlot(-1);
   }
 
   render() {
-    const {pokemon, party, index} = this.props;
+    const {pokemon, party, slot} = this.props;
 
     return (
       <Panel>
         <ToggleButtonGroup vertical block
           type='radio'
           name='party'
-          value={index}
+          value={slot}
           onChange={this.handleChange}>
           {six.map(key => (
             <ToggleButton value={key} key={key}
@@ -46,16 +48,20 @@ class Party extends React.Component {
   }
 };
 
-Party.propTypes = {
-  index: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired
-};
-
 const mapStateToProps = state => {
   return {
     pokemon: state.pokemon,
-    party: state.party
+    party: state.party,
+    slot: state.partySlot
   };
 };
 
-export default connect(mapStateToProps)(Party);
+const mapDispatchToProps = dispatch => {
+  return {
+    switchSlot: slot => {
+      dispatch(switchSlot(1, slot));
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Party);

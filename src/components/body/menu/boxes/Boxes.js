@@ -12,91 +12,39 @@ import MoveModal from './move/MoveModal';
 
 import PokeCard from 'components/pokemon/card/PokeCard';
 
+import { switchBox, switchSlot } from 'actions';
+
 class Boxes extends React.Component {
   constructor() {
     super();
     this.state = {
-      box: 1,
-      partyIndex: -1,
-      pcIndex: -1,
-      cemeteryIndex: -1,
       summary: false,
       move: false
     };
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props != nextProps) {
-      const {party, pc, cemetery} = this.props;
-      this.setState(prevState => {
-        let box = prevState.box;
-        let partyIndex = prevState.partyIndex;
-        let pcIndex = prevState.pcIndex;
-        let cemeteryIndex = prevState.cemeteryIndex;
-
-        const switchParty = party[partyIndex] != nextProps.party[partyIndex];
-        const switchPC = pc[pcIndex] != nextProps.pc[pcIndex];
-        const move = switchParty || switchPC;
-
-        if (partyIndex >= nextProps.party.length || switchParty)
-            partyIndex = -1;
-        if (pcIndex >= nextProps.pc.length || switchPC)
-          pcIndex = -1;
-
-        if (nextProps.party.length > party.length && !move) {
-          box = 1;
-          partyIndex = party.length;
-        } else if (nextProps.pc.length > pc.length && !move) {
-          box = 2;
-          pcIndex = pc.length;
-        } else if (nextProps.cemetery.length > cemetery.length) {
-          box = 3;
-          cemeteryIndex = cemetery.length;
-        }
-
-        return {
-          box,
-          partyIndex,
-          pcIndex,
-          cemeteryIndex
-        }
-      });
-    }
-  }
-
-  open(modal) {
-    this.setState({[modal]: true});
-  }
-
-  close(modal) {
-    this.setState({[modal]: false});
-  }
-
   handleSelect(box) {
-    this.setState({box});
+    this.props.switchBox(box);
   }
 
   handleChange(box, index) {
-    if (box == 1) this.setState({partyIndex: index});
-    else if (box == 2) this.setState({pcIndex: index});
-    else if (box == 3) this.setState({cemeteryIndex: index});
+    this.props.switchBox(box);
+    this.props.switchSlot(box, index);
   }
 
   render() {
     const {pokemon, party, pc, cemetery} = this.props;
-    const {box, partyIndex, pcIndex, cemeteryIndex} = this.state;
+    const {box, partySlot, pcSlot, cemeterySlot} = this.props;
     const {summary, move} = this.state;
 
     const bsStyle =  box == 1 ? 'info' : box == 2 ? 'warning' : 'default';
 
     let selectedPokemon = null;
-    if (box == 1) selectedPokemon = pokemon[party[partyIndex]];
-    else if (box == 2) selectedPokemon = pokemon[pc[pcIndex]];
-    else if (box == 3) selectedPokemon = pokemon[cemetery[cemeteryIndex]];
+    if (box == 1) selectedPokemon = pokemon[party[partySlot]];
+    else if (box == 2) selectedPokemon = pokemon[pc[pcSlot]];
+    else if (box == 3) selectedPokemon = pokemon[cemetery[cemeterySlot]];
     
     return (
       <div className='clearfix'>
@@ -104,24 +52,24 @@ class Boxes extends React.Component {
           <Tabs activeKey={box} id='boxes-tabs' animation={false}
             onSelect={this.handleSelect}>
             <Tab eventKey={1} title='Party'>
-              <Party index={partyIndex}
-                onChange={index => this.handleChange(1, index)} />
+              <Party />
             </Tab>
             <Tab eventKey={2} title='PC'>
-              <Box box={pc} index={pcIndex}
-                onChange={index => this.handleChange(2, index)} />
+              <Box box={pc} slot={pcSlot}
+                onChange={slot => this.handleChange(2, slot)} />
             </Tab>
             <Tab eventKey={3} title='Cemetery'>
-              <Box box={cemetery} index={cemeteryIndex}
-                onChange={index => this.handleChange(3, index)} />
+              <Box box={cemetery} slot={cemeterySlot}
+                onChange={slot => this.handleChange(3, slot)} />
             </Tab>
           </Tabs>
           <Button id='summary-button' bsStyle='primary' block
-            onClick={() => this.open('summary')}
+            onClick={() => this.setState({summary: true})}
             disabled={!selectedPokemon}>
             Summary
           </Button>
-          <Button bsStyle='primary' block onClick={() => this.open('move')}
+          <Button bsStyle='primary' block
+            onClick={() => this.setState({move: true})}
             disabled={party.length <= 0 && pc.length <= 0}>
             Move Pokémon
           </Button>
@@ -132,9 +80,9 @@ class Boxes extends React.Component {
         </div>
     
         <SummaryModal bsStyle={bsStyle} show={summary}
-          onHide={() => this.close('summary')}
+          onHide={() => this.setState({summary: false})}
           pokemon={selectedPokemon} />
-        <MoveModal show={move} onHide={() => this.close('move')} />
+        <MoveModal show={move} onHide={() => this.setState({move: false})} />
       </div>
     );
   }
@@ -145,8 +93,23 @@ const mapStateToProps = state => {
     pokemon: state.pokemon,
     party: state.party,
     pc: state.pc,
-    cemetery: state.cemetery
+    cemetery: state.cemetery,
+    box: state.box,
+    partySlot: state.partySlot,
+    pcSlot: state.pcSlot,
+    cemeterySlot: state.cemeterySlot
   };
 };
 
-export default connect(mapStateToProps)(Boxes);
+const mapDispatchToProps = dispatch => {
+  return {
+    switchBox: box => {
+      dispatch(switchBox(box));
+    },
+    switchSlot: (box, slot) => {
+      dispatch(switchSlot(box, slot));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Boxes);

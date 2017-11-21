@@ -14,6 +14,11 @@ const initialState = {
   pc: [],
   cemetery: [],
 
+  box: 1,
+  partySlot: -1,
+  pcSlot: -1,
+  cemeterySlot: -1,
+
   log: [],
 };
 
@@ -50,6 +55,8 @@ const logAction = (state, action) => {
             slot
           }],
           party: [...party, pokemon.length],
+          box: 1,
+          partySlot: party.length,
           old: {pokemon, party}
         };
       } else {
@@ -60,6 +67,8 @@ const logAction = (state, action) => {
             slot
           }],
           pc: [...pc, pokemon.length],
+          box: 2,
+          pcSlot: pc.length,
           old: {pokemon, pc}
         };
       }
@@ -85,6 +94,8 @@ const logAction = (state, action) => {
         pokemon: changeIndices(pokemon, action.party, action.pc),
         party: action.party,
         pc: action.pc,
+        partySlot: -1,
+        pcSlot: -1,
         old: {pokemon, party, pc}
       };
     
@@ -122,6 +133,8 @@ const logAction = (state, action) => {
         party: _party,
         pc: _pc,
         cemetery: cemetery.concat([action.index]),
+        box: 3,
+        cemeterySlot: cemetery.length,
         old: {pokemon, party, pc, cemetery}
       };
     
@@ -136,7 +149,12 @@ const undo = (state) => {
 
   const {old} = log[log.length - 1];
 
-  return {...state, ...old, log: log.splice(0, log.length - 1)};
+  return {...state, ...old,
+    partySlot: -1,
+    pcSlot: -1,
+    cemeterySlot: -1,
+    log: log.splice(0, log.length - 1)
+  };
 }
 
 export default (state = initialState, action) => {
@@ -153,10 +171,23 @@ export default (state = initialState, action) => {
         party: [],
         pc: [],
         cemetery: [],
+        box: 1,
+        partySlot: -1,
+        pcSlot: -1,
+        cemeterySlot: -1,
         log: []
       };
     case types.UNDO:
       return undo(state);
+    case types.SWITCH_BOX:
+      return {...state, box: action.box};
+    case types.SWITCH_SLOT:
+      return {...state,
+        box: action.box,
+        partySlot: action.box == 1 ? action.slot : state.partySlot,
+        pcSlot: action.box == 2 ? action.slot : state.pcSlot,
+        cemeterySlot: action.box == 3 ? action.slot : state.cemeterySlot
+      };
     default:
       const _state = logAction(state, action);
       if (_state == state) return state;

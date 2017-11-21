@@ -11,8 +11,8 @@ import getFullname from 'utilities/getFullname';
 import PokeIcon from '../PokeIcon';
 import PokeSprite from '../sprite/PokeSprite';
 
-import EditModal from '../EditModal';
-import DeathModal from'../DeathModal';
+import EditModal from './EditModal';
+import DeathModal from'./DeathModal';
 
 export default class PokeCard extends React.Component {
   constructor(props) {

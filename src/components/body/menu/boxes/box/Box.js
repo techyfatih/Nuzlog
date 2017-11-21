@@ -31,31 +31,32 @@ class Box extends React.Component {
     }
   }
 
-  handleChange(index) {
-    this.props.onChange(index);
+  handleChange(slot) {
+    this.props.onChange(slot);
   }
 
   handleClick(e) {
-    if (e.target.value && e.target.value == this.props.index)
+    const {value} = e.target;
+    if (value && value == this.props.slot)
       this.props.onChange(-1);
   }
 
   render() {
-    const {pokemon, box, index} = this.props;
+    const {pokemon, box, slot} = this.props;
 
     return (
       <Panel>
         <ToggleButtonGroup className='box' vertical
           type='radio'
           name='box'
-          value={index}
+          value={slot}
           onChange={this.handleChange}
           ref={ref => this.box = ReactDOM.findDOMNode(ref)}>
           {box.map((val, key) => (
             <ToggleButton value={key} key={key}
               onClick={this.handleClick}
               ref={ref => {
-                if (key == index) this.active = ReactDOM.findDOMNode(ref);
+                if (key == slot) this.active = ReactDOM.findDOMNode(ref);
               }}>
               <PokeSlot pokemon={pokemon[box[key]]} />
             </ToggleButton>
@@ -68,7 +69,7 @@ class Box extends React.Component {
 
 Box.propTypes = {
   box: PropTypes.array.isRequired,
-  index: PropTypes.number.isRequired,
+  slot: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired
 }
 

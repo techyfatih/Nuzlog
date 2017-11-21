@@ -1,25 +1,4 @@
-.poke-slot, .poke-slot p {
+.poke-slot {
+  text-align: left;
   margin: 0;
-}
-
-.poke-slot .icon {
-  margin-top: 5px;
-}
-
-.poke-slot .info {
-  margin-left: 10px;
-  width: calc(100% - 50px);
-  overflow: hidden;
-}
-
-.poke-slot .name {
-  max-width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.poke-slot .gender {
-  position: relative;
-  top: 5px;
-  left: 5px;
 }
