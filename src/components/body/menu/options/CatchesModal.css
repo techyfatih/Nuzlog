@@ -1,0 +1,10 @@
+#catches {
+  border: 1px solid #ddd;
+  height: 400px;
+  overflow-y: auto;
+  word-wrap: break-word;
+}
+
+#catches table {
+  table-layout: fixed;
+}

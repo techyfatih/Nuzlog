@@ -3,6 +3,7 @@ export const types = {
   NEW_LOCATION: 'Location',
   RECORD_LOG: 'Log',
   ADD_POKEMON: 'Add',
+  FAIL_CATCH: 'Fail Catch',
   EDIT_POKEMON: 'Edit',
   MOVE_POKEMON: 'Move',
   DEATH: 'Death',
@@ -41,6 +42,10 @@ export const recordLog = (log, time) => {
 export const addPokemon = (pokemon, time) => {
   return recordAction(types.ADD_POKEMON, {pokemon}, time);
 };
+
+export const failCatch = (location, time) => {
+  return recordAction(types.FAIL_CATCH, {location}, time);
+}
 
 export const editPokemon = (index, change, time) => {
   return recordAction(types.EDIT_POKEMON, {index, change}, time);

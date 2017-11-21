@@ -20,20 +20,36 @@ class AddModal extends React.Component {
     super(props);
     this.state = {
       pokemon: null,
+      locations: {},
+      validLocation: false,
       open: false
     };
     this.handleEnter = this.handleEnter.bind(this);
     this.updatePokemon = this.updatePokemon.bind(this);
+    this.checkLocation = this.checkLocation.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleHide = this.handleHide.bind(this);
   }
   
+  componentWillReceiveProps(nextProps) {
+    const {pokemon} = nextProps;
+    if (this.props.pokemon != pokemon) {
+      const locations = {};
+      for (let i in pokemon)
+        locations[pokemon[i].location] = true;
+      
+      this.setState({locations});
+    }
+  }
+  
   handleEnter() {
+    const {location} = this.props;
     this.setState({
       pokemon: null,
       open: false
     });
-    this.dispatch(actions.change('local.location', this.props.location));
+    this.dispatch(actions.change('local.location', location));
+    this.checkLocation(location);
     this.dispatch(actions.setPristine('local'));
     this.dispatch(actions.focus('local.species'));
   }
@@ -44,6 +60,12 @@ class AddModal extends React.Component {
         pokemon: {...prevState.pokemon, ...pokemon}
       };
     });
+  }
+
+  checkLocation(location) {
+    this.setState(({locations}) => ({
+      validLocation: !locations[location]}
+    ));
   }
 
   handleSubmit(values) {
@@ -76,6 +98,8 @@ class AddModal extends React.Component {
   }
 
   render() {
+    const {pokemon, validLocation} = this.state;
+
     return (
       <Modal show={this.props.show} onEnter={this.handleEnter}
         onHide={this.handleHide}>
@@ -85,8 +109,8 @@ class AddModal extends React.Component {
           <Modal.Header closeButton><h2>Add Pokémon</h2></Modal.Header>
 
           <Modal.Body>
-            <PokeSlot pokemon={this.state.pokemon} />
-            <PokeSprite pokemon={this.state.pokemon} />
+            <PokeSlot pokemon={pokemon} />
+            <PokeSprite pokemon={pokemon} />
 
             <Row className='row-no-padding'>
               <Col xs={6}>
@@ -101,6 +125,11 @@ class AddModal extends React.Component {
             </Row>
 
             <ControlLabel>Location*</ControlLabel>
+            {validLocation ? (
+              <em> (No catches here yet)</em>
+            ) : (
+              <em className='text-danger'> (You already reported this location!)</em>
+            )}
             <Row className='row-no-padding'>
               <Col xs={6}>
                 <RRFControl model='.method' componentClass='select'>
@@ -110,7 +139,7 @@ class AddModal extends React.Component {
               </Col>
               <Col xs={6}>
                 <RRFControl model='.location' placeholder='Pallet Town'
-                  required />
+                  onChange={this.checkLocation} required />
               </Col>
             </Row>
 
@@ -177,7 +206,8 @@ class AddModal extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    location: state.location
+    location: state.location,
+    pokemon: state.pokemon
   }
 };
 

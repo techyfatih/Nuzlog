@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import PokeIcon from 'components/pokemon/PokeIcon';
 
-class LUL extends React.Component {
+class DeathModal extends React.Component {
   constructor() {
     super();
   }
@@ -14,16 +14,12 @@ class LUL extends React.Component {
     return (
       <Modal show={this.props.show}
         onEnter={this.handleEnter} onHide={this.props.onHide}>
-        <form
-          onSubmit={this.handleSubmit}>
-          <Modal.Header closeButton><h2>LOL YOU THOUGHT THIS WAS IMPLEMENTED, SIKE</h2></Modal.Header>
-          <Modal.Body>
-            get dunked onnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn0
-          </Modal.Body>
-          <Modal.Footer>
-            (i'll do this one day)
-          </Modal.Footer>
-        </form>
+        <Modal.Header closeButton><h2>Battle</h2></Modal.Header>
+        <Modal.Body>
+          hmmm looks like there's nothing here<br/>
+          why don't you record your own battles<br/>
+          (i'll do this one day)
+        </Modal.Body>
       </Modal>
     );
   }
@@ -43,4 +39,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LUL);
+export default connect(mapStateToProps, mapDispatchToProps)(DeathModal);

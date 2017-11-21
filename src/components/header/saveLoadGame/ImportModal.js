@@ -215,7 +215,7 @@ export default class ImportModal extends React.Component {
             style={{resize: 'none'}}
             value={save}
             onChange={this.handleChange} />
-          {error && <span style={{color: 'red'}}>Error: {error}</span>}
+          {error && <span className='text-danger'>Error: {error}</span>}
         </Modal.Body>
         <Modal.Footer>
           <Button bsSize='large' bsStyle='info' block

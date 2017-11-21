@@ -14,6 +14,8 @@ const initialState = {
   pc: [],
   cemetery: [],
 
+  bag: [],
+
   box: 1,
   partySlot: -1,
   pcSlot: -1,
@@ -72,6 +74,9 @@ const logAction = (state, action) => {
           old: {pokemon, pc}
         };
       }
+
+    case types.FAIL_CATCH:
+      return {...state, pokemon: [...pokemon, {location: action.location}]}
 
     case types.EDIT_POKEMON:
       if (action.index < 0 || action.index >= pokemon.length)
@@ -160,22 +165,12 @@ const undo = (state) => {
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.NEW_GAME:
-      return {...state,
+      return {...initialState,
         gameOpen: true,
         title: action.title,
         game: action.game,
         name: action.name,
-        rules: Array.isArray(action.rules) ? action.rules : [],
-        location: '',
-        pokemon: [],
-        party: [],
-        pc: [],
-        cemetery: [],
-        box: 1,
-        partySlot: -1,
-        pcSlot: -1,
-        cemeterySlot: -1,
-        log: []
+        rules: Array.isArray(action.rules) ? action.rules : []
       };
     case types.UNDO:
       return undo(state);

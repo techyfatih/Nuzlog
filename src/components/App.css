@@ -2,6 +2,14 @@
   margin: 0;
 }
 
+.row-no-padding > div:first-child {
+  padding-right: 0;
+}
+
+.row-no-padding > div:last-child {
+  padding-left: 0;
+}
+
 .modal-2nd {
   z-index: 1050;
 }

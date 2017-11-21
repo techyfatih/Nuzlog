@@ -3,9 +3,7 @@ import { Modal, Panel,
   FormGroup, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import PokeIcon from 'components/pokemon/PokeIcon';
-
-class Catches extends React.Component {
+class BagModal extends React.Component {
   constructor() {
     super();
   }
@@ -14,18 +12,9 @@ class Catches extends React.Component {
     return (
       <Modal show={this.props.show}
         onEnter={this.handleEnter} onHide={this.props.onHide}>
-        <form
-          onSubmit={this.handleSubmit}>
-          <Modal.Header closeButton>
-            <Modal.Title>Catches</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            
-          </Modal.Body>
-          <Modal.Footer>
-            (i'll do this one day)
-          </Modal.Footer>
-        </form>
+        <Modal.Header closeButton><h2>Bag</h2></Modal.Header>
+        <Modal.Body>
+        </Modal.Body>
       </Modal>
     );
   }
@@ -45,4 +34,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LUL);
+export default connect(mapStateToProps, mapDispatchToProps)(BagModal);

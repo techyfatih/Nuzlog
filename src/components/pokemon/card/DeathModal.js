@@ -48,7 +48,7 @@ class DeathModal extends React.Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <h4 style={{color: 'red'}}>
+            <h4 className='text-danger'>
               WARNING: Once a Pokémon dies, you cannot bring it back to life!
             </h4>
             <Button type='submit' bsStyle='danger' bsSize='large' block>

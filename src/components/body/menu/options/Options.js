@@ -2,47 +2,47 @@ import React from 'react';
 import { ButtonGroup, Button } from 'react-bootstrap';
 
 import AddModal from './AddModal';
-import LUL from './LUL';
+import CatchesModal from './CatchesModal';
+import BagModal from './BagModal';
+import BattleModal from './BattleModal';
 
 export default class Options extends React.Component {
   constructor() {
     super();
     this.state = {
       add: false,
-      lul: false
+      catches: false,
+      bag: false,
+      battle: false
     };
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
-  }
-
-  open(modal) {
-    this.setState({[modal]: true});
-  }
-
-  close(modal) {
-    this.setState({[modal]: false});
   }
 
   render() {
-    const {add, lul, summary} = this.state;
+    const {add, catches, bag, battle} = this.state;
 
     return (
       <ButtonGroup justified style={{marginBottom: '10px'}} >
-        <Button bsStyle='success' href='#' onClick={() => this.open('add')}>
+        <Button bsStyle='success' href='#'
+          onClick={() => this.setState({add: true})}>
           Add <span className='hidden-xs'>Pokémon</span>
         </Button>
-        <Button bsStyle='info' href='#' onClick={() => this.open('lul')}>
+        <Button bsStyle='info' href='#'
+          onClick={() => this.setState({catches: true})}>
           Catches
         </Button>
-        <Button bsStyle='warning' href='#' onClick={() => this.open('lul')}>
+        <Button bsStyle='warning' href='#'
+          onClick={() => this.setState({bag: true})}>
           Bag
         </Button>
-        <Button bsStyle='danger' href='#' onClick={() => this.open('lul')}>
+        <Button bsStyle='danger' href='#'
+          onClick={() => this.setState({battle: true})}>
           Battle
         </Button>
       
-        <AddModal show={add} onHide={() => this.close('add')} />
-        <LUL show={lul} onHide={() => this.close('lul')} />
+        <AddModal show={add} onHide={() => this.setState({add: false})} />
+        <CatchesModal show={catches} onHide={() => this.setState({catches: false})} />
+        <BagModal show={bag} onHide={() => this.setState({bag: false})} />
+        <BattleModal show={battle} onHide={() => this.setState({battle: false})} />
       </ButtonGroup>
     );
   }

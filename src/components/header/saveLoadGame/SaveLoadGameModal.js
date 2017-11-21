@@ -153,7 +153,7 @@ class SaveLoadGameModal extends React.Component {
             spellCheck='false'
             value={save}
             onChange={this.handleChange} />
-          {error && <span style={{color: 'red'}}>Error: {error}</span>}
+          {error && <span className='text-danger'>Error: {error}</span>}
         </Modal.Body>
         <Modal.Footer>
           <ButtonGroup justified>
@@ -165,11 +165,11 @@ class SaveLoadGameModal extends React.Component {
               Upload File
             </Button>
             <Button bsStyle='primary' href='#' onClick={this.handleLoad}
-              disabled={!save}>
+              disabled={!save || save == this.save}>
               Load Game
             </Button>
           </ButtonGroup>
-          <input type='file' style={{display: 'none'}}
+          <input type='file' className='hidden'
             accept='.json'
             onChange={this.handleUpload}
             ref={ref => this.input = ref} />
