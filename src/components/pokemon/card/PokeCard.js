@@ -63,7 +63,8 @@ export default class PokeCard extends React.Component {
               <span className={pokemon.level ? '' : 'invisible'}>
                 Level {pokemon.level}
               </span><br />
-              <a role='button' className={pokemon.method ? '' : 'invisible'}>
+              <a role='button'
+                className={'location ' + (pokemon.method ? '' : 'invisible')}>
                 {pokemon.method ? pokemon.method : '?'} {pokemon.location}
               </a>
             </span>

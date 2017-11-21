@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Control, actions } from 'react-redux-form';
 import {saveAs} from 'file-saver';
 
+import ImportModal from './ImportModal';
 import ConfirmModal from 'components/other/ConfirmModal';
 
 import { types, newGame, newLocation, recordLog, addPokemon, editPokemon,
@@ -12,45 +13,44 @@ import { types, newGame, newLocation, recordLog, addPokemon, editPokemon,
 class SaveLoadGameModal extends React.Component {
   constructor() {
     super();
+    this.save = '';
     this.state = {
-      save: '',
+      save: this.save,
       error: '',
       confirm: false,
       state: null
     };
+
     this.reset = this.reset.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleUpload = this.handleUpload.bind(this);
     this.handleLoad = this.handleLoad.bind(this);
-    this.confirm = this.confirm.bind(this);
+    this.handleConfirm = this.handleConfirm.bind(this);
   }
 
-  reset(props) {
-    const save = !this.props.gameOpen ? '' : JSON.stringify({
-      title: props.title,
-      game: props.game,
-      name: props.name,
-      rules: props.rules,
-      log: props.log.map(log => {
-        const {pokemon, ..._log} = log;
-        return _log;
-      })
-    });
+  reset() {
     this.setState({
-      save,
+      save: this.save,
       error: ''
     });
   }
 
   componentWillReceiveProps(nextProps) {
-    this.reset(nextProps);
+    const {gameOpen, title, game, name, rules, log} = nextProps;
+    this.save = !gameOpen ? '' : JSON.stringify({
+      title, game, name, rules,
+      log: log.map(log => {
+        const {old, ..._log} = log;
+        return _log;
+      })
+    });
+    this.reset();
   }
 
   handleEnter() {
-    this.reset(this.props);
-    this.input.focus();
+    this.reset();
   }
 
   handleChange(e) {
@@ -95,7 +95,6 @@ class SaveLoadGameModal extends React.Component {
       if (!this.props.gameOpen) {
         this.props.onLoadGame(state);
         this.props.onHide();
-        this.props.onOpenGame();
       } else {
         this.setState({
           confirm: true,
@@ -104,18 +103,15 @@ class SaveLoadGameModal extends React.Component {
         });
       }
     } catch (e) {
-      const error = e.message ? e.message : e;
-      this.setState({error});
+      console.error(e);
+      this.setState({error: e.message ? e.message : e});
     }
   }
 
-  confirm() {
+  handleConfirm() {
     this.props.onLoadGame(this.state.state);
     this.props.onHide();
-    this.setState({
-      confirm: false,
-      state: null
-    });
+    this.setState({state: null});
   }
 
   render() {
@@ -125,6 +121,7 @@ class SaveLoadGameModal extends React.Component {
       <Modal show={this.props.show}
         onEnter={this.handleEnter} onHide={this.props.onHide}>
         <Modal.Header closeButton><h2>Save/Load Game</h2></Modal.Header>
+
         <Modal.Body>
           <p>Here is the current save of your game.</p>
           <p>
@@ -137,17 +134,29 @@ class SaveLoadGameModal extends React.Component {
             either click "Upload File" below OR copy-paste your save file here,
             then click "Load Game".
           </p>
-          <Button onClick={() => this.reset(this.props)} block>Reset</Button>
-          <FormControl componentClass='textarea' rows={15}
+
+          <ButtonGroup justified>
+            <Button href='#' bsStyle='info' onClick={this.reset}>
+              Reset
+            </Button>
+            <Button href='#' bsStyle='info'
+              onClick={() => this.setState({import: true})}>
+              Import v1
+            </Button>
+            <ImportModal show={this.state.import}
+              onHide={() => this.setState({import: false})}
+              onImport={save => this.setState({import: false, save})} />
+          </ButtonGroup>
+
+          <FormControl componentClass='textarea' rows={10}
             style={{resize: 'none'}}
             spellCheck='false'
             value={save}
-            onChange={this.handleChange}
-            inputRef={ref => this.input = ref} />
+            onChange={this.handleChange} />
           {error && <span style={{color: 'red'}}>Error: {error}</span>}
         </Modal.Body>
         <Modal.Footer>
-          <ButtonGroup justified bsSize='large'>
+          <ButtonGroup justified>
             <Button bsStyle='primary' href='#' onClick={this.handleSave}>
               Save File
             </Button>
@@ -155,18 +164,20 @@ class SaveLoadGameModal extends React.Component {
               onClick={() => this.input.click()}>
               Upload File
             </Button>
-            <Button bsStyle='primary' href='#' onClick={this.handleLoad}>
+            <Button bsStyle='primary' href='#' onClick={this.handleLoad}
+              disabled={!save}>
               Load Game
             </Button>
           </ButtonGroup>
           <input type='file' style={{display: 'none'}}
+            accept='.json'
             onChange={this.handleUpload}
             ref={ref => this.input = ref} />
         </Modal.Footer>
 
         <ConfirmModal show={confirm}
           onHide={() => this.setState({confirm: false})}
-          onConfirm={this.confirm}>
+          onConfirm={this.handleConfirm}>
           Are you sure you want to load a new game? All unsaved progress
           will be lost.
         </ConfirmModal>
@@ -177,6 +188,7 @@ class SaveLoadGameModal extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    gameOpen: state.gameOpen,
     title: state.title,
     game: state.game,
     name: state.name,
@@ -209,6 +221,7 @@ const mapDispatchToProps = dispatch => {
             break;
           default:
             dispatch(recordLog(entry.log ? entry.log : entry, time));
+            break;
         }
       }
     }

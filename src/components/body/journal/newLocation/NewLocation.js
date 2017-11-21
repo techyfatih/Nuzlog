@@ -29,6 +29,8 @@ class NewLocation extends React.Component {
   }
 
   render() {
+    const {location} = this.state;
+
     return (
       <form onSubmit={this.handleSubmit} autoComplete='off' noValidate>
         <FormGroup controlId='location'>
@@ -37,11 +39,14 @@ class NewLocation extends React.Component {
             <InputGroup.Addon>
               <div id='current-location'>{this.props.location}</div>
             </InputGroup.Addon>
-            <FormControl type='text' value={this.state.location}
+            <FormControl type='text' value={location}
               onChange={this.handleChange}
               inputRef={ref => this.input = ref} />
             <InputGroup.Button>
-              <Button type='submit' bsStyle='warning'>New Location</Button>
+              <Button type='submit' bsStyle='warning'
+                disabled={!location}>
+                New Location
+              </Button>
             </InputGroup.Button>
           </InputGroup>
         </FormGroup>

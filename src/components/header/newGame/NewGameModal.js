@@ -23,12 +23,13 @@ class NewGameModal extends React.Component {
     this.addRule = this.addRule.bind(this);
     this.removeRule = this.removeRule.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.confirm = this.confirm.bind(this);
+    this.handleConfirm = this.handleConfirm.bind(this);
   }
 
   handleEnter() {
     this.setState({
-      rules: []
+      rules: [],
+      values: null
     });
     this.dispatch(actions.focus('local.title'));
   }
@@ -57,7 +58,6 @@ class NewGameModal extends React.Component {
         values.location,
         this.state.rules
       );
-      this.props.onOpenGame();
       this.props.onHide();
     } else {
       this.setState({
@@ -67,7 +67,7 @@ class NewGameModal extends React.Component {
     }
   }
 
-  confirm() {
+  handleConfirm() {
     const {values} = this.state;
     this.props.onNewGame(
       values.title,
@@ -76,12 +76,8 @@ class NewGameModal extends React.Component {
       values.location,
       this.state.rules
     );
-    this.props.onOpenGame();
     this.props.onHide();
-    this.setState({
-      confirm: false,
-      values: null
-    })
+    this.setState({values: null});
   }
 
   render() {
@@ -119,7 +115,7 @@ class NewGameModal extends React.Component {
           </Modal.Footer>
         </RRForm>
 
-        <ConfirmModal show={this.state.confirm} onConfirm={this.confirm}
+        <ConfirmModal show={this.state.confirm} onConfirm={this.handleConfirm}
           onHide={() => this.setState({confirm: false})}>
           Are you sure you want to start a new game? All unsaved progress
           will be lost.
@@ -128,6 +124,12 @@ class NewGameModal extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    gameOpen: state.gameOpen
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -139,4 +141,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(NewGameModal);
+export default connect(mapStateToProps, mapDispatchToProps)(NewGameModal);

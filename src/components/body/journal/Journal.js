@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Panel, Button, Tabs, Tab, Row, Col, ListGroup, ListGroupItem,
+import { Panel, Button, Row, Col, ListGroup, ListGroupItem, Modal,
   FormGroup, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { AutoSizer, Table, Column,
   CellMeasurerCache, CellMeasurer } from 'react-virtualized';
 import 'react-virtualized/styles.css';
-import {saveAs} from 'file-saver';
 
 import './Journal.css';
 
+import NewLocation from './newLocation/NewLocation';
 import ConfirmModal from 'components/other/ConfirmModal';
 
 import exportPokemon from 'utilities/exportPokemon';
@@ -63,8 +63,6 @@ class Journal extends React.Component {
     this.entryCellRenderer = this.entryCellRenderer.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.undo = this.undo.bind(this);
-    this.save = this.save.bind(this);
   }
 
   resize() {
@@ -72,26 +70,29 @@ class Journal extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {title, game, name, rules, log} = nextProps;
-    let journal = title;
-    journal += '\r\n' + game;
-    journal += '\r\n' + name;
-
-    if (rules.length > 0) {
-      journal += '\r\n\r\nRules:';
-      for (let i in rules) journal += '\r\n-' + rules[i];
+    if (this.props != nextProps) {
+      const {title, game, name, rules, log} = nextProps;
+      let journal = title;
+      journal += '\r\n' + game;
+      journal += '\r\n' + name;
+  
+      if (rules.length > 0) {
+        journal += '\r\n\r\nRules:';
+        for (let i in rules) journal += '\r\n-' + rules[i];
+      }
+      journal += '\r\n';
+  
+      for (let i in log) {
+        const {time, type, entry, pokemon} = log[i];
+        journal += '\r\n[' + time.toLocaleString() + '] ' + type + ':';
+        let content = parseEntry(log[i]);
+        if (type == types.MOVE_POKEMON) journal += '\r\n' + content;
+        else journal += ' ' + content;
+      }
+      this.setState({journal});
+      if (log.length > 0 && this.props.log != nextProps.log)
+        this.resize();
     }
-    journal += '\r\n';
-
-    for (let i in log) {
-      const {time, type, entry, pokemon} = log[i];
-      journal += '\r\n[' + time.toLocaleString() + '] ' + type + ':';
-      let content = parseEntry(log[i]);
-      if (type == types.MOVE_POKEMON) journal += '\r\n' + content;
-      else journal += ' ' + content;
-    }
-    this.setState({journal});
-    this.resize();
   }
 
   componentDidMount() {
@@ -101,11 +102,12 @@ class Journal extends React.Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.resize);
   }
-  
-  componentDidUpdate() {
-    this.text.scrollTop = this.text.scrollHeight;
-  }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.log != this.props.log)
+      this.table.scrollToRow(this.props.log.length - 1);
+  }
+  
   timeCellRenderer({cellData}) {
     return (
       <span>
@@ -144,20 +146,6 @@ class Journal extends React.Component {
     e.preventDefault();
   }
 
-  undo() {
-    this.props.undo();
-    this.setState({confirm: false});
-  }
-
-  save() {
-    const blob = new Blob(
-      [this.state.journal],
-      {type: 'text/plain;charset=utf-8'}
-    );
-    const title = this.props.title ? this.props.title : "Untitled";
-    saveAs(blob, title + '.txt');
-  }
-
   render() {
     const {title, game, name, rules, log} = this.props;
 
@@ -165,64 +153,55 @@ class Journal extends React.Component {
       <div id='journal'>
         <Panel bsStyle='info' header='Journal' collapsible
           defaultExpanded={true}>
-          <Tabs defaultActiveKey={1} id='journal-tabs'>
-            <Tab eventKey={1} title='Main'>
-              <Row>
-                <Col id='info' xs={7}>
-                  <h2>{title}</h2>
-                  <h4>{game}</h4>
-                  <h4>{name}</h4>
-                </Col>
-                <Col xs={5}>
-                  <Panel header='Rules'>
-                    <ListGroup id='rules' fill>
-                      {rules.length == 0 ?
-                      <ListGroupItem>No Rules</ListGroupItem> :
-                      rules.map((rule, index) => (
-                        <ListGroupItem key={index}>{rule}</ListGroupItem>
-                      ))}
-                    </ListGroup>
-                  </Panel>
-                </Col>
-              </Row>
-              <AutoSizer disableHeight>
-                {({width}) => {
-                  return (
-                    <Table
-                      deferredMeasurementCache={this.cache}
-                      className='virtual-table'
-                      width={width}
-                      height={415}
-                      headerHeight={30}
-                      rowHeight={this.cache.rowHeight}
-                      rowCount={this.props.log.length}
-                      rowGetter={({index}) => this.props.log[index]}
-                      scrollToIndex={this.props.log.length - 1}>
-                      <Column
-                        label='Time'
-                        dataKey='time'
-                        width={150}
-                        cellRenderer={this.timeCellRenderer} />
-                      <Column
-                        label='Type'
-                        dataKey='type'
-                        width={150} />
-                      <Column
-                        label='Entry'
-                        dataKey='entry'
-                        width={width - 130}
-                        cellRenderer={this.entryCellRenderer} />
-                    </Table>
-                  )
-                }}
-              </AutoSizer>
-            </Tab>
-            <Tab eventKey={2} title='Text'>
-              <Panel id='text' ref={ref => this.text = ReactDOM.findDOMNode(ref)}>
-                {toReact(this.state.journal)}
+          <Row>
+            <Col id='info' xs={7}>
+              <h2>{title}</h2>
+              <h4>{game}</h4>
+              <h4>{name}</h4>
+            </Col>
+            <Col xs={5}>
+              <Panel header='Rules' className='no-margin'>
+                <ListGroup id='rules' fill>
+                  {rules.length == 0 ?
+                  <ListGroupItem>No Rules</ListGroupItem> :
+                  rules.map((rule, index) => (
+                    <ListGroupItem key={index}>{rule}</ListGroupItem>
+                  ))}
+                </ListGroup>
               </Panel>
-            </Tab>
-          </Tabs>
+            </Col>
+          </Row>
+          <NewLocation />
+          <AutoSizer disableHeight>
+            {({width}) => {
+              return (
+                <Table ref={ref => this.table = ref}
+                  deferredMeasurementCache={this.cache}
+                  className='virtual-table'
+                  width={width}
+                  height={335}
+                  headerHeight={30}
+                  rowHeight={this.cache.rowHeight}
+                  rowCount={this.props.log.length}
+                  rowGetter={({index}) => this.props.log[index]}>
+                  <Column
+                    label='Time'
+                    dataKey='time'
+                    width={150}
+                    cellRenderer={this.timeCellRenderer} />
+                  <Column
+                    label='Type'
+                    dataKey='type'
+                    width={150} />
+                  <Column
+                    label='Entry'
+                    dataKey='entry'
+                    width={width - 130}
+                    cellRenderer={this.entryCellRenderer} />
+                </Table>
+              )
+            }}
+          </AutoSizer>
 
           <form onSubmit={this.handleSubmit}>
             <FormGroup className='no-margin'>
@@ -231,7 +210,10 @@ class Journal extends React.Component {
                   onChange={this.handleChange}
                   inputRef={ref => this.input = ref} />
                 <InputGroup.Button>
-                  <Button type='submit' bsStyle='primary'>Log</Button>
+                  <Button type='submit' bsStyle='primary'
+                    disabled={!this.state.log}>
+                    Log
+                  </Button>
                   <Button bsStyle='danger'
                     onClick={() => this.setState({confirm: true})}
                     disabled={log.length == 0}>
@@ -241,12 +223,28 @@ class Journal extends React.Component {
               </InputGroup>
             </FormGroup>
           </form>
-          <Button bsStyle='info' block onClick={this.save}>Save</Button>
+          <Button bsStyle='info' block
+            onClick={() => this.setState({export: true})}>Export</Button>
+          <Modal show={this.state.export}
+            onHide={() => this.setState({export: false})}>
+            <Modal.Header closeButton><h2>Export Journal</h2></Modal.Header>
+            <Modal.Body>
+              <p>
+                You can copy-paste this somewhere to export your journal in a
+                human-readable format.<br/>
+                NOTE: This is not your save file! Click "Save/Load Game" to
+                save your game.
+              </p>
+              <FormControl id='export' componentClass='textarea' rows={20}
+                spellCheck={false} value={this.state.journal}
+                onChange={() => null} />
+            </Modal.Body>
+          </Modal>
         </Panel>
 
         <ConfirmModal show={this.state.confirm}
           onHide={() => this.setState({confirm: false})}
-          onConfirm={this.undo}>
+          onConfirm={() => this.props.undo()}>
           Undo last log? You cannot redo it.
         </ConfirmModal>
       </div>

@@ -1,6 +1,7 @@
 import { types } from './actions';
 
 const initialState = {
+  gameOpen: false,
   title: 'Title',
   game: 'Game',
   name: 'Name',
@@ -142,6 +143,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case types.NEW_GAME:
       return {...state,
+        gameOpen: true,
         title: action.title,
         game: action.game,
         name: action.name,

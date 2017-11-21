@@ -1,32 +1,35 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal, ButtonGroup, Button } from 'react-bootstrap';
-
-import './ConfirmModal.css';
 
 export default class ConfirmModal extends React.Component {
   constructor() {
     super();
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleConfirm = this.handleConfirm.bind(this);
   }
 
   handleKeyDown(e) {
-    if (e.keyCode == 13) this.props.onConfirm();
+    if (e.keyCode == 13) this.handleConfirm();
+  }
+
+  handleConfirm() {
+    this.props.onHide();
+    this.props.onConfirm();
   }
 
   render() {
     return (
-      <Modal backdropClassName='confirm' show={this.props.show}
+      <Modal backdropClassName='modal-2nd' show={this.props.show}
         onHide={this.props.onHide}
         onKeyDown={this.handleKeyDown}>
-        <Modal.Header>
-          <Modal.Title>{this.props.children}</Modal.Title>
-        </Modal.Header>
+        <Modal.Header closeButton><h2>{this.props.children}</h2></Modal.Header>
         <Modal.Footer>
-          <ButtonGroup justified bsSize='large'>
-            <Button bsStyle='primary' href='#' onClick={this.props.onConfirm}>
+          <ButtonGroup justified>
+            <Button bsStyle='success' href='#' onClick={this.handleConfirm}>
               Yes
             </Button>
-            <Button bsStyle='primary' href='#' onClick={this.props.onHide}>
+            <Button bsStyle='danger' href='#' onClick={this.props.onHide}>
               No
             </Button>
           </ButtonGroup>

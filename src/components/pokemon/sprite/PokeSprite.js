@@ -26,6 +26,15 @@ const getSprite = pokemon => {
         case 'nidoranm':
           species = 'nidoran_m';
           break;
+        case 'jangmoo':
+          species = 'jangmo-o';
+          break;
+        case 'hakamoo':
+          species = 'hakamo-o';
+          break;
+        case 'kommoo':
+          species = 'kommo-o';
+          break;
       }
       if (_pokemon.forms) {
         for (let i = 0; i < _pokemon.forms.length; i++) {

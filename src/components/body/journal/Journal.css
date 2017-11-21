@@ -30,8 +30,6 @@
   border-bottom: 1px solid #ddd;
 }
 
-#text {
-  height: 578px;
-  margin: 0;
-  overflow-y: auto;
+#export {
+  resize: none;
 }

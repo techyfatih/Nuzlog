@@ -23,7 +23,8 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /\.(png|svg|jpg|gif)$/, loader: 'file-loader?name=./img/[name].[ext]' }
+      { test: /\.(png|svg|jpg|gif)$/,
+        loader: 'file-loader?name=./img/[name].[hash].[ext]' }
     ]
   },
   plugins: [
@@ -41,6 +42,9 @@ module.exports = {
           href: 'bootstrap/css/bootstrap.min.css',
           rel: 'stylesheet'
         }
+      ],
+      meta: [
+        {name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
       ]
     }),
     new CopyWebpackPlugin([
