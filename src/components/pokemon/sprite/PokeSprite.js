@@ -48,10 +48,38 @@ const getSprite = pokemon => {
         species += '-f';
 
       sprite = 'https://www.pkparaiso.com/imagenes/';
-      if (form != 'alola' && _pokemon.num <= 721)
-        sprite += 'xy/sprites/animados';
-      else
-        sprite += 'sol-luna/sprites/animados';
+      switch (species) {
+        case 'altaria-mega':
+        case 'audino-mega':
+        case 'beedrill-mega':
+        case 'camerupt-mega':
+        case 'diancie-mega':
+        case 'gallade-mega':
+        case 'glalie-mega':
+        case 'groudon-primal':
+        case 'hoopa-unbound':
+        case 'kyogre-primal':
+        case 'lopunny-mega':
+        case 'metagross-mega':
+        case 'pidgeot-mega':
+        case 'pikachu-cosplay':
+        case 'rayquaza-mega':
+        case 'sableye-mega':
+        case 'salamence-mega':
+        case 'sceptile-mega':
+        case 'sharpedo-mega':
+        case 'slowbro-mega':
+        case 'steelix-mega':
+        case 'swampert-mega':
+          sprite += 'rubi-omega-zafiro-alfa/sprites/animados';
+          break;
+        default:
+          if (species.indexOf('-alola') == -1 && _pokemon.num <= 721)
+            sprite += 'xy/sprites/animados';
+          else sprite += 'sol-luna/sprites/animados';
+          break;
+      }
+
       if (shiny) sprite += '-shiny';
       sprite += '/' + species + '.gif';
     }
