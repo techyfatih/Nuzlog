@@ -48,7 +48,9 @@ module.exports = {
       ]
     }),
     new CopyWebpackPlugin([
-      { from: './src/bootstrap', to: 'bootstrap'}
+      { from: './src/bootstrap', to: 'bootstrap'},
+      { from: './README.md' },
+      { from: './CHANGELOG.md' }
     ]),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
