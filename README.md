@@ -1,7 +1,13 @@
-# Nuzlog v. 1.0.6
-This tool is a graphical interface to help Pokémon Nuzlockers document their adventures in detail. You can also save a text file of your log which can be loaded later through the tool.
+# Nuzlog v. 2.0.0
 
-https://techyfatih.github.io/Nuzlog/
+Nuzlog is a graphical tool designed to help Pokemon players document their Nuzlocke adventures in detail.
 
-Thread (list any feedback here):
-http://s7.zetaboards.com/Nuzlocke_Forum/topic/11009490/1/
+Check out Nuzlog here: https://techyfatih.github.io/Nuzlog/
+
+Changelog: https://github.com/techyfatih/Nuzlog/blob/master/CHANGELOG.md
+
+If you don't know what a Nuzlocke is, check this out: http://www.nuzlocke.com/challenge.php
+
+Found a bug? Have some feedback?<br>
+Either leave it in the Issues tab: https://github.com/techyfatih/Nuzlog/issues<br>
+or in this thread: http://s7.zetaboards.com/Nuzlocke_Forum/topic/11009490/1/

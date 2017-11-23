@@ -1,0 +1,378 @@
+.no-margin {
+  margin: 0;
+}
+
+.row-no-padding > div:first-child {
+  padding-right: 0;
+}
+
+.row-no-padding > div:last-child {
+  padding-left: 0;
+}
+
+.modal-2nd {
+  z-index: 1050;
+}.combobox {
+  position: relative;
+}
+
+.combobox .input-group {
+  width: 100%;
+}
+
+.combobox-dropdown {
+  position: absolute;
+  width: 100%;
+  z-index: 9001;
+}
+
+.combobox-dropdown .list-group-item {
+  padding: 5px;
+}.btn {
+  transition:
+    color ease-in-out .15s,
+    border-color ease-in-out .15s,
+    background-color ease-in-out .15s,
+    box-shadow ease-in-out .15s;
+}
+
+.has-error .btn {
+  color: #a94442;
+  border-color: #a94442;
+  background-color: #f2dede;
+}
+
+.has-error .btn:hover {
+  background-color: #e8caca;
+}
+
+.has-error .btn:active {
+  background-color: #d8a6a6;
+}
+
+.has-success .btn {
+  color: #3c763d;
+  border-color: #3c763d;
+  background-color: #dff0d8;
+}
+
+.has-success .btn:hover {
+  background-color: #c1e3b5;
+}
+
+.has-success .btn:active {
+  background-color: #a2d590;
+}#new-rules {
+  margin: 0;
+}
+
+#new-rules .panel-heading {
+  font-weight: bold
+}
+
+#new-rules .panel-heading, #new-rules .list-group-item {
+  padding: 5px 10px;
+}
+
+#new-rules .list-group {
+  height: 100px;
+  overflow-y: auto;
+}
+
+.new-rule {
+  width: calc(100% - 15px);
+}#main {
+  position: relative;
+}
+
+#cover {
+  position: absolute;
+  width: 100%;
+  top: -20px;
+  bottom: 0;
+  background: black;
+  opacity: 0.5;
+  z-index: 100;
+}/* Collection default theme */
+
+.ReactVirtualized__Collection {
+}
+
+.ReactVirtualized__Collection__innerScrollContainer {
+}
+
+/* Grid default theme */
+
+.ReactVirtualized__Grid {
+}
+
+.ReactVirtualized__Grid__innerScrollContainer {
+}
+
+/* Table default theme */
+
+.ReactVirtualized__Table {
+}
+
+.ReactVirtualized__Table__Grid {
+}
+
+.ReactVirtualized__Table__headerRow {
+  font-weight: 700;
+  text-transform: uppercase;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.ReactVirtualized__Table__row {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.ReactVirtualized__Table__headerTruncatedText {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.ReactVirtualized__Table__headerColumn,
+.ReactVirtualized__Table__rowColumn {
+  margin-right: 10px;
+  min-width: 0px;
+}
+.ReactVirtualized__Table__rowColumn {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ReactVirtualized__Table__headerColumn:first-of-type,
+.ReactVirtualized__Table__rowColumn:first-of-type {
+  margin-left: 10px;
+}
+.ReactVirtualized__Table__sortableHeaderColumn {
+  cursor: pointer;
+}
+
+.ReactVirtualized__Table__sortableHeaderIconContainer {
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.ReactVirtualized__Table__sortableHeaderIcon {
+  -webkit-flex: 0 0 24px;
+     -moz-box-flex: 0;
+      -ms-flex: 0 0 24px;
+          flex: 0 0 24px;
+  height: 1em;
+  width: 1em;
+  fill: currentColor;
+}
+
+/* List default theme */
+
+.ReactVirtualized__List {
+}
+#journal .panel-title {
+  font-size: 24px;
+}
+
+#info {
+  white-space: nowrap;
+}
+
+#info * {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#rules {
+  height: 100px;
+  overflow-y: auto;
+}
+
+.virtual-table .ReactVirtualized__Table__headerRow {
+  border: 1px solid #ddd;
+  border-radius: 4px 4px 0 0;
+}
+
+.virtual-table .ReactVirtualized__Table__Grid {
+  border: 1px solid #ddd;
+  border-radius: 0 0 4px 4px;
+}
+
+.virtual-table .ReactVirtualized__Table__row {
+  border-bottom: 1px solid #ddd;
+}
+
+#export {
+  resize: none;
+}#current-location {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}#menu > .panel > .panel-heading > .panel-title {
+  font-size: 24px;
+}.poke-slot {
+  text-align: left;
+  margin: 0;
+}.sprite .panel-body {
+  text-align: center;
+  height: 200px;
+}
+
+.sprite .helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.sprite img {
+  vertical-align: middle
+}#catches {
+  border: 1px solid #ddd;
+  height: 400px;
+  overflow-y: auto;
+  word-wrap: break-word;
+}
+
+#catches table {
+  table-layout: fixed;
+}#boxes {
+  width: calc(100% - 310px);
+}
+
+/*.active #boxes-tabs-tab-1 {
+  background: #d9edf7;
+}
+
+.active #boxes-tabs-tab-2 {
+  background: #fcf8e3;
+}
+
+.active #boxes-tabs-tab-3 {
+  background: #f5f5f5;
+}*/
+
+#summary-button {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  #boxes {
+    width: 100%;
+  }
+
+  #boxes-card {
+    display: none;
+  }
+
+  #summary-button {
+    display: block;
+  }
+}.box {
+  height: 319px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+}.poke-card {
+  width: 300px;
+  margin: auto;
+}
+
+.poke-card h4, .poke-card .sprite, .poke-card .table {
+  margin: 0;
+}
+
+.poke-card tr:first-child th, .poke-card tr:first-child td {
+  border-top: 0;
+}
+
+.poke-card .name, .poke-card .location {
+  white-space: nowrap;
+  max-width: 200px;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.poke-card .gender {
+  position: relative;
+  top: -5px;
+}
+
+.poke-card .shiny {
+  color: red;
+}
+
+.poke-card td {
+  white-space: nowrap;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.poke-card .tab-pane:nth-child(2) {
+  margin-top: 16px;
+  height: 434px;
+}
+
+.poke-card .cause {
+  white-space: normal;
+  padding-bottom: 0;
+}
+
+.poke-card .cause div {
+  height: 59px;
+  overflow: hidden;
+}#change .panel-body {
+  height: 100px;
+  overflow-y: auto;
+}.switch .active {
+  background: #c1e3b5;;
+}
+
+.switch .active:hover {
+  background: #a2d590;
+}
+
+#move-pc {
+  height: 319px;
+  overflow-y: scroll;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 5px;
+}#footer {
+  margin: 0;
+  font-size: 12px;
+  word-wrap: break-word;
+}
