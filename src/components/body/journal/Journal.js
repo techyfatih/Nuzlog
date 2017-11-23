@@ -93,8 +93,12 @@ class Journal extends React.Component {
         else journal += ' ' + content;
       }
       this.setState({journal});
-      if (log.length > 0 && this.props.log != nextProps.log)
-        this.resize();
+      for (let i = 0; i < this.props.log.length && i < log.length; i++) {
+        if (this.props.log[i] != log[i]) {
+          this.resize();
+          break;
+        }
+      }
     }
   }
 
@@ -106,11 +110,6 @@ class Journal extends React.Component {
     window.removeEventListener('resize', this.resize);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.log != this.props.log)
-      this.table.scrollToRow(this.props.log.length - 1);
-  }
-  
   timeCellRenderer({cellData}) {
     return (
       <span>
@@ -186,7 +185,8 @@ class Journal extends React.Component {
                   headerHeight={30}
                   rowHeight={this.cache.rowHeight}
                   rowCount={this.props.log.length}
-                  rowGetter={({index}) => this.props.log[index]}>
+                  rowGetter={({index}) => this.props.log[index]}
+                  scrollToIndex={this.props.log.length - 1}>
                   <Column
                     label='Time'
                     dataKey='time'

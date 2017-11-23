@@ -43,6 +43,10 @@ module.exports = {
           rel: 'stylesheet'
         }
       ],
+      googleAnalytics: {
+        trackingId: 'UA-88281978-1',
+        pageViewOnLoad: true
+      },
       meta: [
         {name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
       ]
