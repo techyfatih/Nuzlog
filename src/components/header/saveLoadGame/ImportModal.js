@@ -48,8 +48,29 @@ export default class ImportModal extends React.Component {
 
         const log = {};
         const bracket = line.indexOf(']');
-        log.time = new Date(line.substring(1, bracket));
-        if (isNaN(log.time)) throw 'Invalid time at line ' + i;
+        const timeStr = line.substring(1, bracket);
+        let time = new Date(timeStr);
+        if (isNaN(time)) {
+          const _time = timeStr.split(',');
+          const ddmmyy = _time[0].split('/');
+          const day = !isNaN(ddmmyy[0]) ? parseInt(ddmmyy[0]) : null;
+          const month = !isNaN(ddmmyy[1]) ? parseInt(ddmmyy[1]) : null;
+          const year = !isNaN(ddmmyy[2]) ? parseInt(ddmmyy[2]) : null;
+          
+          const hhmmss = _time[1].split(':');
+          const ampm = hhmmss[hhmmss.length - 1].split(' ');
+          let hour = !isNaN(hhmmss[0]) ? parseInt(hhmmss[0]) : null;
+          if (hour && ampm[1].toLowerCase() == 'pm')
+            hour += 12;
+          let minute = !isNaN(hhmmss[1]) ? parseInt(hhmmss[1]) : null;
+          let second = !isNaN(hhmmss[2]) ? parseInt(hhmmss[2]) : null;
+          if (!minute) minute = !isNaN(ampm[0]) ? parseInt(ampm[0]) : null;
+          else if (!second) second = !isNaN(ampm[0]) ? parseInt(ampm[0]) : null;
+          
+          time = new Date(year, month, day, hour, minute, second);
+          if (isNaN(time)) throw 'Invalid time at line ' + i;
+        }
+        log.time = time;
         
         const colon = line.indexOf(':', bracket);
         if (colon == -1) throw 'Cannot read log type at line ' + i;

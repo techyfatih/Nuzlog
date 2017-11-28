@@ -1,16 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Panel, Button, Row, Col, ListGroup, ListGroupItem, Modal,
   FormGroup, InputGroup, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { AutoSizer, Table, Column,
-  CellMeasurerCache, CellMeasurer } from 'react-virtualized';
-import 'react-virtualized/styles.css';
 
 import './Journal.css';
 
 import NewLocation from './newLocation/NewLocation';
 import ConfirmModal from 'components/other/ConfirmModal';
+import StickyTable from 'components/other/StickyTable';
 
 import exportPokemon from 'utilities/exportPokemon';
 import exportDiff from 'utilities/exportDiff';
@@ -49,27 +46,97 @@ const parseEntry = log => {
   }
 }
 
-class Journal extends React.Component {
+class LogForm extends React.Component {
   constructor() {
     super();
-    this.state = {
-      journal: '',
-      log: '',
-      confirm: false
-    };
-    this.cache = new CellMeasurerCache({
-      fixedWidth: true,
-      minHeight: 40
-    });
-    this.resize = this.resize.bind(this);
-    this.timeCellRenderer = this.timeCellRenderer.bind(this);
-    this.entryCellRenderer = this.entryCellRenderer.bind(this);
+    this.state = {log: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  resize() {
-    this.cache.clearAll();
+  handleChange(e) {
+    this.setState({log: e.target.value});
+  }
+
+  handleSubmit(e) {
+    const {log} = this.state;
+    if (log) {
+      this.props.onLog(log);
+      this.setState({log: ''});
+    }
+    this.input.focus();
+    e.preventDefault();
+  }
+
+  render() {
+    const {log} = this.state;
+
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <FormGroup className='no-margin'>
+          <InputGroup>
+            <FormControl value={log}
+              onChange={this.handleChange}
+              inputRef={ref => this.input = ref} />
+            <InputGroup.Button>
+              <Button type='submit' bsStyle='primary'
+                disabled={!log}>
+                Log
+              </Button>
+              <Button bsStyle='danger'
+                onClick={() => this.setState({confirm: true})}
+                disabled={this.props.log.length == 0}>
+                Undo
+              </Button>
+            </InputGroup.Button>
+          </InputGroup>
+        </FormGroup>
+
+        <ConfirmModal show={this.state.confirm}
+          onHide={() => this.setState({confirm: false})}
+          onConfirm={() => this.props.onUndo()}>
+          Undo last log? You cannot redo it.
+        </ConfirmModal>
+      </form>
+    )
+  }
+}
+
+class ExportModal extends React.Component {
+  constructor() {
+    super();
+    this.state = {export: false};
+  }
+  
+  render() {
+    return (
+      <div>
+        <Button bsStyle='info' block
+          onClick={() => this.setState({export: true})}>Export</Button>
+        <Modal show={this.state.export}
+          onHide={() => this.setState({export: false})}>
+          <Modal.Header closeButton><h2>Export Journal</h2></Modal.Header>
+          <Modal.Body>
+            <p>
+              You can copy-paste this somewhere to export your journal in a
+              human-readable format.<br/>
+              NOTE: This is not your save file! Click "Save/Load Game" to
+              save your game.
+            </p>
+            <FormControl id='export' componentClass='textarea' rows={20}
+              spellCheck={false} value={this.props.journal}
+              onChange={() => null} />
+          </Modal.Body>
+        </Modal>
+      </div>
+    )
+  }
+}
+
+class Journal extends React.Component {
+  constructor() {
+    super();
+    this.state = {journal: ''};
   }
 
   componentWillReceiveProps(nextProps) {
@@ -93,59 +160,7 @@ class Journal extends React.Component {
         else journal += ' ' + content;
       }
       this.setState({journal});
-      for (let i = 0; i < this.props.log.length && i < log.length; i++) {
-        if (this.props.log[i] != log[i]) {
-          this.resize();
-          break;
-        }
-      }
     }
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.resize);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.resize);
-  }
-
-  timeCellRenderer({cellData}) {
-    return (
-      <span>
-        {cellData.toLocaleDateString()}<br/>
-        {cellData.toLocaleTimeString()}
-      </span>
-    )
-  }
-
-  entryCellRenderer({dataKey, parent, rowIndex}) {
-    return (
-      <CellMeasurer
-        cache={this.cache}
-        columnIndex={0}
-        key={dataKey}
-        parent={parent}
-        rowIndex={rowIndex}>
-        <div style={{whiteSpace: 'normal', wordWrap: 'break-word'}}>
-          {toReact(parseEntry(this.props.log[rowIndex]))}
-        </div>
-      </CellMeasurer>
-    )
-  }
-
-  handleChange(e) {
-    this.setState({log: e.target.value});
-  }
-
-  handleSubmit(e) {
-    const {log} = this.state;
-    if (log) {
-      this.props.recordLog(log);
-      this.setState({log: ''});
-    }
-    this.input.focus();
-    e.preventDefault();
   }
 
   render() {
@@ -173,83 +188,34 @@ class Journal extends React.Component {
               </Panel>
             </Col>
           </Row>
+          
           <NewLocation />
-          <AutoSizer disableHeight>
-            {({width}) => {
-              return (
-                <Table ref={ref => this.table = ref}
-                  deferredMeasurementCache={this.cache}
-                  className='virtual-table'
-                  width={width}
-                  height={335}
-                  headerHeight={30}
-                  rowHeight={this.cache.rowHeight}
-                  rowCount={this.props.log.length}
-                  rowGetter={({index}) => this.props.log[index]}
-                  scrollToIndex={this.props.log.length - 1}>
-                  <Column
-                    label='Time'
-                    dataKey='time'
-                    width={150}
-                    cellRenderer={this.timeCellRenderer} />
-                  <Column
-                    label='Type'
-                    dataKey='type'
-                    width={150} />
-                  <Column
-                    label='Entry'
-                    dataKey='entry'
-                    width={width - 130}
-                    cellRenderer={this.entryCellRenderer} />
-                </Table>
-              )
-            }}
-          </AutoSizer>
 
-          <form onSubmit={this.handleSubmit}>
-            <FormGroup className='no-margin'>
-              <InputGroup>
-                <FormControl value={this.state.log}
-                  onChange={this.handleChange}
-                  inputRef={ref => this.input = ref} />
-                <InputGroup.Button>
-                  <Button type='submit' bsStyle='primary'
-                    disabled={!this.state.log}>
-                    Log
-                  </Button>
-                  <Button bsStyle='danger'
-                    onClick={() => this.setState({confirm: true})}
-                    disabled={log.length == 0}>
-                    Undo
-                  </Button>
-                </InputGroup.Button>
-              </InputGroup>
-            </FormGroup>
-          </form>
-          <Button bsStyle='info' block
-            onClick={() => this.setState({export: true})}>Export</Button>
-          <Modal show={this.state.export}
-            onHide={() => this.setState({export: false})}>
-            <Modal.Header closeButton><h2>Export Journal</h2></Modal.Header>
-            <Modal.Body>
-              <p>
-                You can copy-paste this somewhere to export your journal in a
-                human-readable format.<br/>
-                NOTE: This is not your save file! Click "Save/Load Game" to
-                save your game.
-              </p>
-              <FormControl id='export' componentClass='textarea' rows={20}
-                spellCheck={false} value={this.state.journal}
-                onChange={() => null} />
-            </Modal.Body>
-          </Modal>
+          <StickyTable>
+            <StickyTable.THead>
+              <tr>
+                <th width='20%'>Time</th>
+                <th width='80px'>Type</th>
+                <th width='calc(80% - 80px)'>Entry</th>
+              </tr>
+            </StickyTable.THead>
+            <StickyTable.TBody height='300px'>
+              {log.map((logEntry, index) => (
+                <tr key={index}>
+                  <td width='20%'>{logEntry.time.toLocaleString()}</td>
+                  <td width='80px'>{logEntry.type}</td>
+                  <td width='calc(80% - 80px)'>
+                    {toReact(parseEntry(logEntry))}
+                  </td>
+                </tr>
+              ))}
+            </StickyTable.TBody>
+          </StickyTable>
+          
+          <LogForm log={log} onLog={log => this.props.recordLog(log)}
+            onUndo={() => this.props.undo()} />
+          <ExportModal journal={this.state.journal} />
         </Panel>
-
-        <ConfirmModal show={this.state.confirm}
-          onHide={() => this.setState({confirm: false})}
-          onConfirm={() => this.props.undo()}>
-          Undo last log? You cannot redo it.
-        </ConfirmModal>
       </div>
     );
   }
