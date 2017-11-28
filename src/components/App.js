@@ -9,7 +9,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <Header version='2.0.0' />
+        <Header version='2.0.1' />
         <Body />
         <Footer />
       </div>
