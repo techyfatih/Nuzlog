@@ -1,9 +1,9 @@
 import React from 'react';
-import { Modal, Table, Button,
+import { Modal, Button,
   FormGroup, InputGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import './CatchesModal.css';
+import StickyTable from 'components/other/StickyTable';
 
 import PokeSlot from 'components/pokemon/slot/PokeSlot';
 import { switchBox, switchSlot, failCatch } from 'actions';
@@ -40,6 +40,7 @@ class CatchesModal extends React.Component {
 
   handleSubmit(e) {
     this.props.onFailCatch(this.state.location);
+    this.setState({location: ''});
     e.preventDefault();
   }
   
@@ -51,40 +52,39 @@ class CatchesModal extends React.Component {
         onEnter={this.handleEnter} onHide={this.props.onHide}>
         <Modal.Header closeButton><h2>Catches</h2></Modal.Header>
         <Modal.Body>
-          <Table className='no-margin'>
-            <thead>
+          <StickyTable>
+            <StickyTable.THead>
               <tr>
                 <th width='50%'>Location</th>
                 <th width='50%'>Catch</th>
               </tr>
-            </thead>
-          </Table>
-          <div id='catches'>
-            <Table>
-              <tbody>
-                {this.props.pokemon.map((pokemon, index) => {
-                  const slot = pokemon.slot;
-                  return (
-                    <tr key={index}>
-                      <td width='50%'>{pokemon.location}</td>
-                      <td width='50%'>
-                        {pokemon.species ? (
-                          <Button onClick={() => this.handleClick(slot)}>
-                            <PokeSlot pokemon={pokemon} />
-                            {slot ? (
-                              slot.party >= 0 ? 'Party: ' + slot.party :
-                              slot.pc >= 0 ? 'PC: ' + slot.pc :
-                              slot.cemetery >= 0 ? 'Cemetery: ' + slot.cemetery : ''
-                            ) : ''}
-                          </Button>
-                        ) : <span>Failed catch</span>}
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
-            </Table>
-          </div>
+            </StickyTable.THead>
+            <StickyTable.TBody height='400px'>
+              {this.props.pokemon.map((pokemon, index) => {
+                const slot = pokemon.slot;
+                return (
+                  <tr key={index}>
+                    <td width='50%'>{pokemon.location}</td>
+                    <td width='50%'>
+                      {pokemon.species ? (
+                        <Button onClick={() => this.handleClick(slot)}>
+                          <PokeSlot pokemon={pokemon} />
+                          {slot ? (
+                            slot.party >= 0 ?
+                              'Party: ' + (parseInt(slot.party) + 1) :
+                            slot.pc >= 0 ?
+                              'PC: ' + (parseInt(slot.pc) + 1) :
+                            slot.cemetery >= 0 ?
+                              'Cemetery: ' + (parseInt(slot.cemetery) + 1) : ''
+                          ) : ''}
+                        </Button>
+                      ) : <span>Failed catch</span>}
+                    </td>
+                  </tr>
+                )
+              })}
+            </StickyTable.TBody>
+          </StickyTable>
           <br />
           <form onSubmit={this.handleSubmit}>
             <FormGroup>

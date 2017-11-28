@@ -1,5 +1,6 @@
 import React from 'react';
 import { Media, Panel, Table, ButtonGroup, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import './PokeCard.css';
 
@@ -13,6 +14,28 @@ import PokeSprite from '../sprite/PokeSprite';
 
 import EditModal from './EditModal';
 import DeathModal from'./DeathModal';
+
+import { editPokemon } from 'actions';
+
+const LevelUp = connect(null, dispatch => {
+  return {
+    onLevelUp: (index, level) => {
+      dispatch(editPokemon(index, {level}));
+    }
+  };
+})(class extends React.Component {
+  render() {
+    let {index, level, cause} = this.props.pokemon;
+    level = parseInt(level) + 1;
+    
+    if (!cause) {
+      return (
+        <Button bsStyle='primary' bsSize='xs'
+          onClick={() => this.props.onLevelUp(index, level)}>Level Up</Button>
+      );
+    } else return '';
+  }
+});
 
 export default class PokeCard extends React.Component {
   constructor(props) {
@@ -59,14 +82,12 @@ export default class PokeCard extends React.Component {
                 pokemon.gender == 'M' ? male :
                 pokemon.gender == 'F' ? female : ''} />
             </Media.Heading>
-            <span>
-              <span className={pokemon.level ? '' : 'invisible'}>
-                Level {pokemon.level}
-              </span><br />
-              <a role='button'
-                className={'location ' + (pokemon.method ? '' : 'invisible')}>
-                {pokemon.method ? pokemon.method : '?'} {pokemon.location}
-              </a>
+            <span className={pokemon.level ? '' : 'invisible'}>
+              Level {pokemon.level}&nbsp;<LevelUp pokemon={pokemon} />
+            </span>
+            <br />
+            <span className={'location ' + (pokemon.method ? '' : 'invisible')}>
+              {pokemon.method ? pokemon.method : '?'} {pokemon.location}
             </span>
           </Media.Body>
           {pokemon.shiny && <Media.Right className='shiny'>*</Media.Right>}

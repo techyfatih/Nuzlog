@@ -27,10 +27,10 @@ const initialState = {
 const changeIndices = (pokemon, party, pc) => {
   const _pokemon = pokemon.slice();
   for (let i in party)
-    pokemon[party[i]].slot = {party: i};
+    pokemon[party[i]].slot = {party: parseInt(i)};
   
   for (let i in pc)
-    pokemon[pc[i]].slot = {pc: i};
+    pokemon[pc[i]].slot = {pc: parseInt(i)};
 
   return pokemon;
 }
@@ -76,7 +76,10 @@ const logAction = (state, action) => {
       }
 
     case types.FAIL_CATCH:
-      return {...state, pokemon: [...pokemon, {location: action.location}]}
+      return {...state,
+        pokemon: [...pokemon, {location: action.location}],
+        old: {pokemon}
+      };
 
     case types.EDIT_POKEMON:
       if (action.index < 0 || action.index >= pokemon.length)

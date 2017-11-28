@@ -4,9 +4,11 @@ import equals from './equals';
 export default (pokemon, change) => {
   if (!pokemon || !change) return '';
 
-  let text = pokemon.nickname ? pokemon.nickname : pokemon.species;
+  const name = pokemon.nickname ? pokemon.nickname : pokemon.species;
+  let text = name;
 
-  if (change.level != null) text += '\r\nGrew to Level: ' + change.level;
+  if (change.level != null) text += ' grew to Level ' + change.level + '!';
+  if (change.species != null) text += '\r\n' + name + ' evolved into ' + change.species + '!';
   if (change.form != null) text += '\r\nChanged Form: ' + change.form;
 
   if (Array.isArray(change.moves)) {
@@ -18,7 +20,6 @@ export default (pokemon, change) => {
 
   if (change.item != null) text += '\r\nChanged Item: ' + change.item;
 
-  if (change.species != null) text += '\r\nEvolved to ' + change.species;
   if (change.ability != null) text += '\r\nNew Ability: ' + change.ability;
 
   if (change.nickname != null) text += '\r\nChanged Nickname: ' + change.nickname;

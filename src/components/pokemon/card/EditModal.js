@@ -87,7 +87,7 @@ class EditModal extends React.Component {
             {toReact(exportDiff(prev, change))}
           </Panel>
 
-          <Tabs defaultActiveKey={1} id='edit-tabs'>
+          <Tabs defaultActiveKey={1} id='edit-tabs' animation={false}>
             <Tab eventKey={1} title='Level'>
               <Panel bsStyle='info'>
                 <p><em>Previous Level: </em>{prev.level}</p>
