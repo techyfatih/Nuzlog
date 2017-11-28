@@ -1,5 +1,13 @@
 # Changelog
 
+## v. 2.0.1 (November 28, 2017)
+-Fixed journal scrolling bugs
+-Fixed Undo not properly undoing failed catches
+-Fixed issue with erasing party after sending Pokemon to cemetery
+-Added 'Level Up' button for quick +1 leveling
+-Fixed sprite issues with Mime Jr. and Mr. Mime
+-Minor performance optimizations
+
 ## v. 2.0.0 (November 22, 2017)
 -Completely redesigned user interface
 	-Dark theme available!

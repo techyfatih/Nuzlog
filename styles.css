@@ -93,114 +93,7 @@
   background: black;
   opacity: 0.5;
   z-index: 100;
-}/* Collection default theme */
-
-.ReactVirtualized__Collection {
-}
-
-.ReactVirtualized__Collection__innerScrollContainer {
-}
-
-/* Grid default theme */
-
-.ReactVirtualized__Grid {
-}
-
-.ReactVirtualized__Grid__innerScrollContainer {
-}
-
-/* Table default theme */
-
-.ReactVirtualized__Table {
-}
-
-.ReactVirtualized__Table__Grid {
-}
-
-.ReactVirtualized__Table__headerRow {
-  font-weight: 700;
-  text-transform: uppercase;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-     -moz-box-orient: horizontal;
-     -moz-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-align-items: center;
-     -moz-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.ReactVirtualized__Table__row {
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-     -moz-box-orient: horizontal;
-     -moz-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-align-items: center;
-     -moz-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.ReactVirtualized__Table__headerTruncatedText {
-  display: inline-block;
-  max-width: 100%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.ReactVirtualized__Table__headerColumn,
-.ReactVirtualized__Table__rowColumn {
-  margin-right: 10px;
-  min-width: 0px;
-}
-.ReactVirtualized__Table__rowColumn {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.ReactVirtualized__Table__headerColumn:first-of-type,
-.ReactVirtualized__Table__rowColumn:first-of-type {
-  margin-left: 10px;
-}
-.ReactVirtualized__Table__sortableHeaderColumn {
-  cursor: pointer;
-}
-
-.ReactVirtualized__Table__sortableHeaderIconContainer {
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-     -moz-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.ReactVirtualized__Table__sortableHeaderIcon {
-  -webkit-flex: 0 0 24px;
-     -moz-box-flex: 0;
-      -ms-flex: 0 0 24px;
-          flex: 0 0 24px;
-  height: 1em;
-  width: 1em;
-  fill: currentColor;
-}
-
-/* List default theme */
-
-.ReactVirtualized__List {
-}
-#journal .panel-title {
+}#journal .panel-title {
   font-size: 24px;
 }
 
@@ -238,6 +131,54 @@
   max-width: 150px;
   overflow: hidden;
   text-overflow: ellipsis;
+}/* Sticky Table */
+
+.sticky-table {
+  margin: 0;
+}
+
+.sticky-table table {
+  table-layout: fixed;
+}
+
+.sticky-table > thead > tr > th, .sticky-table > tbody > tr > td {
+  padding: 0;
+}
+
+/* Sticky thead */
+
+.sticky-thead {
+  width: calc(100% - 18px);
+  margin: 0;
+  border: 0;
+}
+
+table.table.sticky-thead {
+  background-color: unset;
+}
+
+.sticky-thead > thead > tr > th {
+  border-bottom: 0;
+}
+
+.sticky-thead th:first-child, .sticky-tbody td:first-child {
+  border-left: 0;
+}
+
+.sticky-thead th:last-child {
+  border-right: 0;
+}
+
+/* Sticky tbody */
+
+.sticky-tbody {
+  overflow-y: scroll;
+  word-wrap: break-word;
+}
+
+.sticky-tbody > table {
+  border: 0;
+  margin: 0;
 }#menu > .panel > .panel-heading > .panel-title {
   font-size: 24px;
 }.poke-slot {
@@ -256,15 +197,6 @@
 
 .sprite img {
   vertical-align: middle
-}#catches {
-  border: 1px solid #ddd;
-  height: 400px;
-  overflow-y: auto;
-  word-wrap: break-word;
-}
-
-#catches table {
-  table-layout: fixed;
 }#boxes {
   width: calc(100% - 310px);
 }
