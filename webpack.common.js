@@ -30,7 +30,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['./dist']),
     new HtmlWebpackPlugin({
-      title: 'Nuzlog',
+      title: 'Nuzlog - The Pokémon Nuzlocking Journal',
       inject: false,
       template: require('html-webpack-template'),
 
