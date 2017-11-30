@@ -1,9 +1,16 @@
 # Changelog
 
+## v. 2.0.2 (November 30, 2017)
+-Fixed issue with loading saves after last update
+-Modified log entry texts to sound more natural
+-Added item icon to display if a Pokémon has an item
+-Changed undo to not deselect Pokémon in menu
+-Minor graphical changes
+
 ## v. 2.0.1 (November 28, 2017)
 -Fixed journal scrolling bugs
 -Fixed Undo not properly undoing failed catches
--Fixed issue with erasing party after sending Pokemon to cemetery
+-Fixed issue with erasing party after sending Pokémon to cemetery
 -Added 'Level Up' button for quick +1 leveling
 -Fixed sprite issues with Mime Jr. and Mr. Mime
 -Minor performance optimizations

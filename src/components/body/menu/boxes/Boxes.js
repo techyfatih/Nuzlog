@@ -49,13 +49,13 @@ class Boxes extends React.Component {
     return (
       <div className='clearfix'>
         <div id='boxes' className='pull-left'>
-          <Tabs activeKey={box} id='boxes-tabs' animation={false}
+          <Tabs activeKey={box} id='boxes-tabs' animation={false} justified
             onSelect={this.handleSelect}>
             <Tab eventKey={1} title='Party'>
               <Party />
             </Tab>
             <Tab eventKey={2} title='PC'>
-              <Box box={pc} slot={pcSlot}
+              <Box box={pc} slot={pcSlot} bsStyle='warning'
                 onChange={slot => this.handleChange(2, slot)} />
             </Tab>
             <Tab eventKey={3} title='Cemetery'>

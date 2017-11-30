@@ -7,8 +7,8 @@ import {saveAs} from 'file-saver';
 import ImportModal from './ImportModal';
 import ConfirmModal from 'components/other/ConfirmModal';
 
-import { types, newGame, newLocation, recordLog, addPokemon, editPokemon,
-  movePokemon, death } from 'actions';
+import { types, newGame, newLocation, recordLog, addPokemon, failCatch,
+  editPokemon, movePokemon, death } from 'actions';
 
 class SaveLoadGameModal extends React.Component {
   constructor() {
@@ -209,6 +209,9 @@ const mapDispatchToProps = dispatch => {
             break;
           case types.ADD_POKEMON:
             dispatch(addPokemon(entry.pokemon, time));
+            break;
+          case types.FAIL_CATCH:
+            dispatch(failCatch(entry.location, time));
             break;
           case types.EDIT_POKEMON:
             dispatch(editPokemon(entry.index, entry.change, time));

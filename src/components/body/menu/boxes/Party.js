@@ -30,19 +30,21 @@ class Party extends React.Component {
 
     return (
       <Panel>
-        <ToggleButtonGroup vertical block
-          type='radio'
-          name='party'
-          value={slot}
-          onChange={this.handleChange}>
-          {six.map(key => (
-            <ToggleButton value={key} key={key}
-              disabled={party[key] == null}
-              onClick={this.handleClick}>
-              <PokeSlot pokemon={pokemon[party[key]]} />
-            </ToggleButton>
-          ))}
-        </ToggleButtonGroup>
+        <Panel className='no-margin' bsStyle='info'>
+          <ToggleButtonGroup vertical block fill
+            type='radio'
+            name='party'
+            value={slot}
+            onChange={this.handleChange}>
+            {six.map(key => (
+              <ToggleButton value={key} key={key}
+                disabled={party[key] == null}
+                onClick={this.handleClick}>
+                <PokeSlot pokemon={pokemon[party[key]]} />
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </Panel>
       </Panel>
     );
   }

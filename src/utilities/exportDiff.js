@@ -4,31 +4,39 @@ import equals from './equals';
 export default (pokemon, change) => {
   if (!pokemon || !change) return '';
 
+  const {level, species, form, moves, item, ability, nickname, gender, nature,
+    method, location, shiny} = change;
+
   const name = pokemon.nickname ? pokemon.nickname : pokemon.species;
-  let text = name;
+  let text = '';
 
-  if (change.level != null) text += ' grew to Level ' + change.level + '!';
-  if (change.species != null) text += '\r\n' + name + ' evolved into ' + change.species + '!';
-  if (change.form != null) text += '\r\nChanged Form: ' + change.form;
+  if (level != null) text = '\r\n' + name + ' grew to Level ' + level + '!';
+  if (species != null) text += '\r\n' + name + ' evolved into ' + species + '!';
+  if (ability != null) text += '\r\n' + name + '\'s new ability: ' + ability;
+  if (form != null) text += '\r\n' + name + ' transformed to ' + form + ' form.';
 
-  if (Array.isArray(change.moves)) {
-    text += '\r\nChanged Moves:';
-    const _moves = change.moves.filter(move => move);
+  if (Array.isArray(moves)) {
+    text += '\r\n' + name + '\'s Moves:';
+    const _moves = moves.filter(move => move);
     for (let i in _moves)
       text += '\r\n-' + _moves[i];
   }
 
-  if (change.item != null) text += '\r\nChanged Item: ' + change.item;
+  if (item != null){
+    if (!item) text += '\r\nTook ' + name + '\'s ' + pokemon.item + '.';
+    else text += '\r\nGave ' + item + ' to ' + name + '.';
+  }
 
-  if (change.ability != null) text += '\r\nNew Ability: ' + change.ability;
+  if (nickname != null) text += '\r\n' + name + '\'s new nickname: ' + nickname;
+  if (gender != null) text += '\r\n' + name + '\'s new gender: ' + gender;
+  if (nature != null) text += '\r\n' + name + '\'s new nature: ' + nature;
+  if (method || location != null)
+    text += '\r\n' + name + ' was ' + method.toLowerCase() + ' ' + location;
+  if (shiny != null) {
+    text += '\r\n' + name + ' is ';
+    if (shiny) text += 'now shiny.';
+    else text += 'is no longer shiny.';
+  }
 
-  if (change.nickname != null) text += '\r\nChanged Nickname: ' + change.nickname;
-  if (change.gender != null) text += '\r\nChanged Gender: ' + change.gender;
-  if (change.nature != null) text += '\r\nChanged Nature: ' + change.nature;
-  if (change.method || change.location != null)
-    text += '\r\n' + change.method + ' ' + change.location;
-  if (change.shiny != null)
-    text += '\r\nChanged Shiny: ' + (change.shiny ? 'Yes' : 'No');
-
-  return text;
+  return text.substring(2);
 }

@@ -30,7 +30,7 @@ const parseEntry = log => {
       return exportPokemon(entry.pokemon);
       break;
     case types.FAIL_CATCH:
-      return entry.location
+      return entry.location;
       break;
     case types.EDIT_POKEMON:
       return exportDiff(old.pokemon[entry.index], entry.change);

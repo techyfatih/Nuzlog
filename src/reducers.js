@@ -133,6 +133,7 @@ const logAction = (state, action) => {
         pokemon: [
           ...pokemon.slice(0, action.index),
           {..._pokemon,
+            item: '',
             cause: action.cause,
             slot: {cemetery: cemetery.length
           }},
@@ -155,12 +156,19 @@ const undo = (state) => {
   const {log} = state;
   if (log.length == 0) return state;
 
-  const {old} = log[log.length - 1];
+  const {type, old} = log[log.length - 1];
+  let partySlot = state.partySlot;
+  let pcSlot = state.pcSlot;
+  let cemeterySlot = state.cemeterySlot;
+  if (old.party && partySlot >= old.party.length)
+    partySlot = -1;
+  if (type == types.MOVE_POKEMON) {
+    partySlot = -1;
+    pcSlot = -1;
+    cemeterySlot = -1;
+  }
 
-  return {...state, ...old,
-    partySlot: -1,
-    pcSlot: -1,
-    cemeterySlot: -1,
+  return {...state, ...old, partySlot, pcSlot, cemeterySlot,
     log: log.splice(0, log.length - 1)
   };
 }

@@ -2,21 +2,29 @@ import getFullname from './getFullname';
 
 export default pokemon => {
   if (!pokemon) return '';
-  let text = pokemon.species;
-  if (pokemon.nickname) text += '\r\nNickname: ' + pokemon.nickname;
-  if (pokemon.level != null) text += '\r\nLevel: ' + pokemon.level;
-  if (pokemon.form) text += '\r\nForm: ' + pokemon.form;
-  if (pokemon.gender) text += '\r\nGender: ' + pokemon.gender;
-  if (pokemon.ability) text += '\r\nAbility: ' + pokemon.ability;
-  if (pokemon.nature) text += '\r\nNature: ' + pokemon.nature;
-  if (pokemon.moves) {
-    text += '\r\nMoves:'
-    for (let i in pokemon.moves)
-      text += '\r\n-' + pokemon.moves[i];
+
+  const {species, nickname, level, form, gender, ability, nature, moves, item,
+    shiny, method, location, cause} = pokemon;
+
+  const name = nickname ? nickname : species;
+  let text = name + ' has joined the team!';
+
+  let fullname = species;
+  if (form) fullname += '-' + form;
+  if (nickname) fullname = nickname + ' (' + fullname + ')';
+  if (gender) fullname += ' (' + gender + ')';
+  if (item) fullname += ' @ ' + item;
+  text += '\r\n' + fullname;
+
+  if (ability) text += '\r\nAbility: ' + ability;
+  if (level != null) text += '\r\nLevel: ' + level;
+  if (shiny) text += '\r\nShiny: ' + (shiny ? 'Yes' : 'No');
+  if (nature) text += '\r\n' + nature + ' Nature';
+  if (Array.isArray(moves)) {
+    for (let i in moves)
+      text += '\r\n-' + moves[i];
   }
-  if (pokemon.item) text += '\r\nItem: ' + pokemon.item;
-  text += '\r\n' + pokemon.method + ' ' + pokemon.location;
-  if (pokemon.shiny) text += '\r\nShiny: ' + (pokemon.shiny ? 'Yes' : 'No');
-  if (pokemon.cause) text += '\r\nCause of Death: ' + pokemon.cause;
+  text += '\r\n' + method + ' ' + location;
+  if (cause) text += '\r\nCause of Death: ' + cause;
   return text;
 }

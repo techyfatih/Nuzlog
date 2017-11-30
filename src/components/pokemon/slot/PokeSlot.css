@@ -2,3 +2,13 @@
   text-align: left;
   margin: 0;
 }
+
+.poke-slot .media-left {
+  position: relative;
+}
+
+.slot-item {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+}

@@ -222,7 +222,7 @@ class EditModal extends React.Component {
           <Button type='submit' bsStyle='warning' bsSize='large' block
             onClick={this.handleEdit}
             disabled={!species || !location
-              || Object.values(change).length == 0}>
+              || Object.keys(change).length == 0}>
             Edit Pokémon
           </Button>
         </Modal.Footer>
