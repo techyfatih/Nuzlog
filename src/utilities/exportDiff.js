@@ -4,7 +4,7 @@ import equals from './equals';
 export default (pokemon, change) => {
   if (!pokemon || !change) return '';
 
-  const {level, species, form, moves, item, ability, nickname, gender, nature,
+  let {level, species, form, moves, item, ability, nickname, gender, nature,
     method, location, shiny} = change;
 
   const name = pokemon.nickname ? pokemon.nickname : pokemon.species;
@@ -30,8 +30,14 @@ export default (pokemon, change) => {
   if (nickname != null) text += '\r\n' + name + '\'s new nickname: ' + nickname;
   if (gender != null) text += '\r\n' + name + '\'s new gender: ' + gender;
   if (nature != null) text += '\r\n' + name + '\'s new nature: ' + nature;
-  if (method || location != null)
+
+  if (method != null && location == null)
+    location = pokemon.location;
+  if (location != null && method == null)
+    method = pokemon.method;
+  if (method != null && location != null)
     text += '\r\n' + name + ' was ' + method.toLowerCase() + ' ' + location;
+
   if (shiny != null) {
     text += '\r\n' + name + ' is ';
     if (shiny) text += 'now shiny.';
