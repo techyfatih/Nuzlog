@@ -1,5 +1,10 @@
 # Changelog
 
+## v. 2.0.3 (December 18, 2017)
+* Fixed issue with erasing party after sending Pokémon to cemetery...again
+	* Because of this, navigating to Pokémon from Catches has been temporarily disabled
+* Fixed minor issue with images in some browsers
+
 ## v. 2.0.2 (November 30, 2017)
 * Fixed issue with loading saves after last update
 * Modified log entry texts to sound more natural

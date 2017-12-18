@@ -50,24 +50,16 @@ const logAction = (state, action) => {
       
     case types.ADD_POKEMON:
       if (party.length < 6) {
-        const slot = {party: party.length};
         return {...state,
-          pokemon: [...pokemon, {...action.pokemon,
-            index: pokemon.length,
-            slot
-          }],
+          pokemon: [...pokemon, {...action.pokemon, index: pokemon.length}],
           party: [...party, pokemon.length],
           box: 1,
           partySlot: party.length,
           old: {pokemon, party}
         };
       } else {
-        const slot = {pc: pc.length};
         return {...state,
-          pokemon: [...pokemon, {...action.pokemon,
-            index: pokemon.length,
-            slot
-          }],
+          pokemon: [...pokemon, {...action.pokemon, index: pokemon.length}],
           pc: [...pc, pokemon.length],
           box: 2,
           pcSlot: pc.length,
@@ -99,48 +91,53 @@ const logAction = (state, action) => {
         return state;
 
       return {...state,
-        pokemon: changeIndices(pokemon, action.party, action.pc),
         party: action.party,
         pc: action.pc,
         partySlot: -1,
         pcSlot: -1,
-        old: {pokemon, party, pc}
+        old: {party, pc}
       };
     
     case types.DEATH:
       if (action.index < 0 || action.index >= pokemon.length)
         return state;
 
-      const _pokemon = pokemon[action.index];
-      if (_pokemon.slot.cemetery >= 0)
-        return state;
-      
       let _party = party;
+      let _partySlot = state.partySlot;
       let _pc = pc;
-      if (_pokemon.slot.party >= 0) {
-        _party = [
-          ...party.slice(0, _pokemon.slot.party),
-          ...party.slice(_pokemon.slot.party + 1)
-        ];
-      } else if (_pokemon.slot.pc >= 0) {
-        _pc = [
-          ...pc.slice(0, _pokemon.slot.pc),
-          ...pc.slice(_pokemon.slot.pc + 1)
-        ];
+      let _pcSlot = state.pcSlot;
+
+      for (let i = 0; i < party.length; i++) {
+        if (party[i] == action.index) {
+          _party = [...party.slice(0, i), ...party.slice(i + 1)];
+          _partySlot = -1;
+          break;
+        }
       }
+
+      for (let i = 0; i < pc.length; i++) {
+        if (pc[i] == action.index) {
+          _pc = [...pc.slice(0, i), ...pc.slice(i + 1)];
+          _pcSlot = -1;
+          break;
+        }
+      }
+
+      if (_party == pc && _pc == pc) return state;
 
       return {...state,
         pokemon: [
           ...pokemon.slice(0, action.index),
-          {..._pokemon,
+          {...pokemon[action.index],
             item: '',
-            cause: action.cause,
-            slot: {cemetery: cemetery.length
-          }},
+            cause: action.cause
+          },
           ...pokemon.slice(action.index + 1)
         ],
         party: _party,
         pc: _pc,
+        partySlot: _partySlot,
+        pcSlot: _pcSlot,
         cemetery: cemetery.concat([action.index]),
         box: 3,
         cemeterySlot: cemetery.length,

@@ -78,9 +78,10 @@ export default class PokeCard extends React.Component {
           <Media.Body>
             <Media.Heading>
               <span className='name'>{name ? name : 'No Pokémon'}</span>&nbsp;
-              <img className='gender' src={
-                pokemon.gender == 'M' ? male :
-                pokemon.gender == 'F' ? female : ''} />
+              { pokemon.gender == 'M' ? <img className='gender' src={male} /> :
+                pokemon.gender == 'F' ? <img className='gender' src={female} />:
+                ''
+              }
             </Media.Heading>
             <span className={pokemon.level ? '' : 'invisible'}>
               Level {pokemon.level}&nbsp;<LevelUp pokemon={pokemon} />

@@ -32,9 +32,9 @@ export default class PokeSlot extends React.Component {
           {pokemon && pokemon.item && <img className='slot-item' src={item}/>}
         </Media.Left>
         <Media.Body className={pokemon ? '' : 'invisible'}>
-          {name ? name : '?'} <img src={pokemon ?
-            pokemon.gender == 'M' ? male :
-            pokemon.gender == 'F' ? female : '' : ''}/>
+          {name ? name : '?'} {pokemon ?
+            pokemon.gender == 'M' ? <img src={male} /> :
+            pokemon.gender == 'F' ? <img src={female} /> : '' : ''}
             <br />
             <span className={pokemon && pokemon.level ? '' : 'invisible'}>
               Level {pokemon ? pokemon.level : ''}

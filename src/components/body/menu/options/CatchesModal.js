@@ -19,6 +19,7 @@ class CatchesModal extends React.Component {
 
   handleEnter() {
     this.setState({location: ''});
+    this.input.focus();
   }
 
   handleClick(slot) {
@@ -61,15 +62,15 @@ class CatchesModal extends React.Component {
             </StickyTable.THead>
             <StickyTable.TBody height='400px'>
               {this.props.pokemon.map((pokemon, index) => {
-                const slot = pokemon.slot;
+                //const slot = pokemon.slot;
                 return (
                   <tr key={index}>
                     <td width='50%'>{pokemon.location}</td>
                     <td width='50%'>
-                      {pokemon.species ? (
-                        <Button onClick={() => this.handleClick(slot)}>
+                      {pokemon.species ? /*(
+                        <Button onClick={() => this.handleClick(slot)}>*/
                           <PokeSlot pokemon={pokemon} />
-                          {slot ? (
+                          /*{slot ? (
                             slot.party >= 0 ?
                               'Party: ' + (parseInt(slot.party) + 1) :
                             slot.pc >= 0 ?
@@ -78,7 +79,7 @@ class CatchesModal extends React.Component {
                               'Cemetery: ' + (parseInt(slot.cemetery) + 1) : ''
                           ) : ''}
                         </Button>
-                      ) : <span>Failed catch</span>}
+                      )*/ : <span>Failed catch</span>}
                     </td>
                   </tr>
                 )
@@ -91,7 +92,8 @@ class CatchesModal extends React.Component {
               <ControlLabel>Record Failed Catch:</ControlLabel>
               <InputGroup>
                 <FormControl placeholder='Enter location' value={location}
-                  onChange={e => this.setState({location: e.target.value})} />
+                  onChange={e => this.setState({location: e.target.value})}
+                  inputRef={ref => this.input = ref} />
                 <InputGroup.Button>
                   <Button type='submit' bsStyle='danger' disabled={!location}>
                     Record
