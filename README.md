@@ -1,4 +1,4 @@
-# Nuzlog v. 2.0.2
+# Nuzlog v. 2.0.3
 
 Nuzlog is a graphical tool designed to help Pokemon players document their Nuzlocke adventures in detail.
 
