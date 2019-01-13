@@ -2,36 +2,22 @@
   [
     "bulbasaur",
     {
-      "name": "Bulbasaur",
-      "num": 1,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Bulbasaur"
     }
   ],
   [
     "ivysaur",
     {
-      "name": "Ivysaur",
-      "num": 2,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Ivysaur"
     }
   ],
   [
     "venusaur",
     {
       "name": "Venusaur",
-      "num": 3,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -39,35 +25,21 @@
   [
     "charmander",
     {
-      "name": "Charmander",
-      "num": 4,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Charmander"
     }
   ],
   [
     "charmeleon",
     {
-      "name": "Charmeleon",
-      "num": 5,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Charmeleon"
     }
   ],
   [
     "charizard",
     {
       "name": "Charizard",
-      "num": 6,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega X",
         "Mega Y"
       ]
@@ -76,35 +48,21 @@
   [
     "squirtle",
     {
-      "name": "Squirtle",
-      "num": 7,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Squirtle"
     }
   ],
   [
     "wartortle",
     {
-      "name": "Wartortle",
-      "num": 8,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Wartortle"
     }
   ],
   [
     "blastoise",
     {
       "name": "Blastoise",
-      "num": 9,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -112,69 +70,40 @@
   [
     "caterpie",
     {
-      "name": "Caterpie",
-      "num": 10,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Caterpie"
     }
   ],
   [
     "metapod",
     {
-      "name": "Metapod",
-      "num": 11,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Metapod"
     }
   ],
   [
     "butterfree",
     {
       "name": "Butterfree",
-      "num": 12,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "weedle",
     {
-      "name": "Weedle",
-      "num": 13,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Weedle"
     }
   ],
   [
     "kakuna",
     {
-      "name": "Kakuna",
-      "num": 14,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Kakuna"
     }
   ],
   [
     "beedrill",
     {
       "name": "Beedrill",
-      "num": 15,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -182,35 +111,21 @@
   [
     "pidgey",
     {
-      "name": "Pidgey",
-      "num": 16,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pidgey"
     }
   ],
   [
     "pidgeotto",
     {
-      "name": "Pidgeotto",
-      "num": 17,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pidgeotto"
     }
   ],
   [
     "pidgeot",
     {
       "name": "Pidgeot",
-      "num": 18,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -219,13 +134,9 @@
     "rattata",
     {
       "name": "Rattata",
-      "num": 19,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -234,70 +145,41 @@
     "raticate",
     {
       "name": "Raticate",
-      "num": 20,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
-        "Alola"
+        "Alola",
+        "Alolatotem"
       ]
     }
   ],
   [
     "spearow",
     {
-      "name": "Spearow",
-      "num": 21,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Spearow"
     }
   ],
   [
     "fearow",
     {
-      "name": "Fearow",
-      "num": 22,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Fearow"
     }
   ],
   [
     "ekans",
     {
-      "name": "Ekans",
-      "num": 23,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Ekans"
     }
   ],
   [
     "arbok",
     {
-      "name": "Arbok",
-      "num": 24,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Arbok"
     }
   ],
   [
     "pikachu",
     {
       "name": "Pikachu",
-      "num": 25,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
         "Cosplay",
@@ -311,7 +193,8 @@
         "Sinnoh",
         "Unova",
         "Kalos",
-        "Alola"
+        "Alola",
+        "Partner"
       ]
     }
   ],
@@ -319,13 +202,9 @@
     "raichu",
     {
       "name": "Raichu",
-      "num": 26,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -334,12 +213,8 @@
     "sandshrew",
     {
       "name": "Sandshrew",
-      "num": 27,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -348,12 +223,8 @@
     "sandslash",
     {
       "name": "Sandslash",
-      "num": 28,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -361,95 +232,57 @@
   [
     "nidoranf",
     {
-      "name": "Nidoran♀",
-      "num": 29,
-      "gender": [
-        "F"
-      ]
+      "name": "Nidoran♀"
     }
   ],
   [
     "nidorina",
     {
-      "name": "Nidorina",
-      "num": 30,
-      "gender": [
-        "F"
-      ]
+      "name": "Nidorina"
     }
   ],
   [
     "nidoqueen",
     {
-      "name": "Nidoqueen",
-      "num": 31,
-      "gender": [
-        "F"
-      ]
+      "name": "Nidoqueen"
     }
   ],
   [
     "nidoranm",
     {
-      "name": "Nidoran♂",
-      "num": 32,
-      "gender": [
-        "M"
-      ]
+      "name": "Nidoran♂"
     }
   ],
   [
     "nidorino",
     {
-      "name": "Nidorino",
-      "num": 33,
-      "gender": [
-        "M"
-      ]
+      "name": "Nidorino"
     }
   ],
   [
     "nidoking",
     {
-      "name": "Nidoking",
-      "num": 34,
-      "gender": [
-        "M"
-      ]
+      "name": "Nidoking"
     }
   ],
   [
     "clefairy",
     {
-      "name": "Clefairy",
-      "num": 35,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Clefairy"
     }
   ],
   [
     "clefable",
     {
-      "name": "Clefable",
-      "num": 36,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Clefable"
     }
   ],
   [
     "vulpix",
     {
       "name": "Vulpix",
-      "num": 37,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -458,12 +291,8 @@
     "ninetales",
     {
       "name": "Ninetales",
-      "num": 38,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -471,68 +300,38 @@
   [
     "jigglypuff",
     {
-      "name": "Jigglypuff",
-      "num": 39,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Jigglypuff"
     }
   ],
   [
     "wigglytuff",
     {
-      "name": "Wigglytuff",
-      "num": 40,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Wigglytuff"
     }
   ],
   [
     "zubat",
     {
-      "name": "Zubat",
-      "num": 41,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Zubat"
     }
   ],
   [
     "golbat",
     {
       "name": "Golbat",
-      "num": 42,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "oddish",
     {
-      "name": "Oddish",
-      "num": 43,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Oddish"
     }
   ],
   [
     "gloom",
     {
       "name": "Gloom",
-      "num": 44,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -540,68 +339,39 @@
     "vileplume",
     {
       "name": "Vileplume",
-      "num": 45,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "paras",
     {
-      "name": "Paras",
-      "num": 46,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Paras"
     }
   ],
   [
     "parasect",
     {
-      "name": "Parasect",
-      "num": 47,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Parasect"
     }
   ],
   [
     "venonat",
     {
-      "name": "Venonat",
-      "num": 48,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Venonat"
     }
   ],
   [
     "venomoth",
     {
-      "name": "Venomoth",
-      "num": 49,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Venomoth"
     }
   ],
   [
     "diglett",
     {
       "name": "Diglett",
-      "num": 50,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -610,12 +380,8 @@
     "dugtrio",
     {
       "name": "Dugtrio",
-      "num": 51,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -624,12 +390,8 @@
     "meowth",
     {
       "name": "Meowth",
-      "num": 52,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -638,12 +400,8 @@
     "persian",
     {
       "name": "Persian",
-      "num": 53,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -651,122 +409,67 @@
   [
     "psyduck",
     {
-      "name": "Psyduck",
-      "num": 54,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Psyduck"
     }
   ],
   [
     "golduck",
     {
-      "name": "Golduck",
-      "num": 55,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Golduck"
     }
   ],
   [
     "mankey",
     {
-      "name": "Mankey",
-      "num": 56,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mankey"
     }
   ],
   [
     "primeape",
     {
-      "name": "Primeape",
-      "num": 57,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Primeape"
     }
   ],
   [
     "growlithe",
     {
-      "name": "Growlithe",
-      "num": 58,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Growlithe"
     }
   ],
   [
     "arcanine",
     {
-      "name": "Arcanine",
-      "num": 59,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Arcanine"
     }
   ],
   [
     "poliwag",
     {
-      "name": "Poliwag",
-      "num": 60,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Poliwag"
     }
   ],
   [
     "poliwhirl",
     {
-      "name": "Poliwhirl",
-      "num": 61,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Poliwhirl"
     }
   ],
   [
     "poliwrath",
     {
-      "name": "Poliwrath",
-      "num": 62,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Poliwrath"
     }
   ],
   [
     "abra",
     {
-      "name": "Abra",
-      "num": 63,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Abra"
     }
   ],
   [
     "kadabra",
     {
       "name": "Kadabra",
-      "num": 64,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -774,12 +477,8 @@
     "alakazam",
     {
       "name": "Alakazam",
-      "num": 65,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -787,101 +486,57 @@
   [
     "machop",
     {
-      "name": "Machop",
-      "num": 66,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Machop"
     }
   ],
   [
     "machoke",
     {
-      "name": "Machoke",
-      "num": 67,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Machoke"
     }
   ],
   [
     "machamp",
     {
-      "name": "Machamp",
-      "num": 68,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Machamp"
     }
   ],
   [
     "bellsprout",
     {
-      "name": "Bellsprout",
-      "num": 69,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Bellsprout"
     }
   ],
   [
     "weepinbell",
     {
-      "name": "Weepinbell",
-      "num": 70,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Weepinbell"
     }
   ],
   [
     "victreebel",
     {
-      "name": "Victreebel",
-      "num": 71,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Victreebel"
     }
   ],
   [
     "tentacool",
     {
-      "name": "Tentacool",
-      "num": 72,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Tentacool"
     }
   ],
   [
     "tentacruel",
     {
-      "name": "Tentacruel",
-      "num": 73,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Tentacruel"
     }
   ],
   [
     "geodude",
     {
       "name": "Geodude",
-      "num": 74,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -890,12 +545,8 @@
     "graveler",
     {
       "name": "Graveler",
-      "num": 75,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -904,12 +555,8 @@
     "golem",
     {
       "name": "Golem",
-      "num": 76,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -917,46 +564,27 @@
   [
     "ponyta",
     {
-      "name": "Ponyta",
-      "num": 77,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Ponyta"
     }
   ],
   [
     "rapidash",
     {
-      "name": "Rapidash",
-      "num": 78,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Rapidash"
     }
   ],
   [
     "slowpoke",
     {
-      "name": "Slowpoke",
-      "num": 79,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Slowpoke"
     }
   ],
   [
     "slowbro",
     {
       "name": "Slowbro",
-      "num": 80,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -964,43 +592,25 @@
   [
     "magnemite",
     {
-      "name": "Magnemite",
-      "num": 81,
-      "gender": [
-        "N"
-      ]
+      "name": "Magnemite"
     }
   ],
   [
     "magneton",
     {
-      "name": "Magneton",
-      "num": 82,
-      "gender": [
-        "N"
-      ]
+      "name": "Magneton"
     }
   ],
   [
     "farfetchd",
     {
-      "name": "Farfetch'd",
-      "num": 83,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Farfetch'd"
     }
   ],
   [
     "doduo",
     {
       "name": "Doduo",
-      "num": 84,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -1008,46 +618,27 @@
     "dodrio",
     {
       "name": "Dodrio",
-      "num": 85,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "seel",
     {
-      "name": "Seel",
-      "num": 86,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Seel"
     }
   ],
   [
     "dewgong",
     {
-      "name": "Dewgong",
-      "num": 87,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Dewgong"
     }
   ],
   [
     "grimer",
     {
       "name": "Grimer",
-      "num": 88,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -1056,12 +647,8 @@
     "muk",
     {
       "name": "Muk",
-      "num": 89,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -1069,57 +656,33 @@
   [
     "shellder",
     {
-      "name": "Shellder",
-      "num": 90,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Shellder"
     }
   ],
   [
     "cloyster",
     {
-      "name": "Cloyster",
-      "num": 91,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cloyster"
     }
   ],
   [
     "gastly",
     {
-      "name": "Gastly",
-      "num": 92,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Gastly"
     }
   ],
   [
     "haunter",
     {
-      "name": "Haunter",
-      "num": 93,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Haunter"
     }
   ],
   [
     "gengar",
     {
       "name": "Gengar",
-      "num": 94,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -1127,100 +690,58 @@
   [
     "onix",
     {
-      "name": "Onix",
-      "num": 95,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Onix"
     }
   ],
   [
     "drowzee",
     {
-      "name": "Drowzee",
-      "num": 96,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Drowzee"
     }
   ],
   [
     "hypno",
     {
       "name": "Hypno",
-      "num": 97,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "krabby",
     {
-      "name": "Krabby",
-      "num": 98,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Krabby"
     }
   ],
   [
     "kingler",
     {
-      "name": "Kingler",
-      "num": 99,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Kingler"
     }
   ],
   [
     "voltorb",
     {
-      "name": "Voltorb",
-      "num": 100,
-      "gender": [
-        "N"
-      ]
+      "name": "Voltorb"
     }
   ],
   [
     "electrode",
     {
-      "name": "Electrode",
-      "num": 101,
-      "gender": [
-        "N"
-      ]
+      "name": "Electrode"
     }
   ],
   [
     "exeggcute",
     {
-      "name": "Exeggcute",
-      "num": 102,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Exeggcute"
     }
   ],
   [
     "exeggutor",
     {
       "name": "Exeggutor",
-      "num": 103,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Alola"
       ]
     }
@@ -1228,90 +749,53 @@
   [
     "cubone",
     {
-      "name": "Cubone",
-      "num": 104,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cubone"
     }
   ],
   [
     "marowak",
     {
       "name": "Marowak",
-      "num": 105,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
-        "Alola"
+        "Alola",
+        "Alolatotem"
       ]
     }
   ],
   [
     "hitmonlee",
     {
-      "name": "Hitmonlee",
-      "num": 106,
-      "gender": [
-        "M"
-      ]
+      "name": "Hitmonlee"
     }
   ],
   [
     "hitmonchan",
     {
-      "name": "Hitmonchan",
-      "num": 107,
-      "gender": [
-        "M"
-      ]
+      "name": "Hitmonchan"
     }
   ],
   [
     "lickitung",
     {
-      "name": "Lickitung",
-      "num": 108,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Lickitung"
     }
   ],
   [
     "koffing",
     {
-      "name": "Koffing",
-      "num": 109,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Koffing"
     }
   ],
   [
     "weezing",
     {
-      "name": "Weezing",
-      "num": 110,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Weezing"
     }
   ],
   [
     "rhyhorn",
     {
       "name": "Rhyhorn",
-      "num": 111,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -1319,44 +803,27 @@
     "rhydon",
     {
       "name": "Rhydon",
-      "num": 112,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "chansey",
     {
-      "name": "Chansey",
-      "num": 113,
-      "gender": [
-        "F"
-      ]
+      "name": "Chansey"
     }
   ],
   [
     "tangela",
     {
-      "name": "Tangela",
-      "num": 114,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Tangela"
     }
   ],
   [
     "kangaskhan",
     {
       "name": "Kangaskhan",
-      "num": 115,
-      "gender": [
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -1364,34 +831,19 @@
   [
     "horsea",
     {
-      "name": "Horsea",
-      "num": 116,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Horsea"
     }
   ],
   [
     "seadra",
     {
-      "name": "Seadra",
-      "num": 117,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Seadra"
     }
   ],
   [
     "goldeen",
     {
       "name": "Goldeen",
-      "num": 118,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -1399,99 +851,58 @@
     "seaking",
     {
       "name": "Seaking",
-      "num": 119,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "staryu",
     {
-      "name": "Staryu",
-      "num": 120,
-      "gender": [
-        "N"
-      ]
+      "name": "Staryu"
     }
   ],
   [
     "starmie",
     {
-      "name": "Starmie",
-      "num": 121,
-      "gender": [
-        "N"
-      ]
+      "name": "Starmie"
     }
   ],
   [
     "mrmime",
     {
-      "name": "Mr. Mime",
-      "num": 122,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mr. Mime"
     }
   ],
   [
     "scyther",
     {
       "name": "Scyther",
-      "num": 123,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "jynx",
     {
-      "name": "Jynx",
-      "num": 124,
-      "gender": [
-        "F"
-      ]
+      "name": "Jynx"
     }
   ],
   [
     "electabuzz",
     {
-      "name": "Electabuzz",
-      "num": 125,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Electabuzz"
     }
   ],
   [
     "magmar",
     {
-      "name": "Magmar",
-      "num": 126,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Magmar"
     }
   ],
   [
     "pinsir",
     {
       "name": "Pinsir",
-      "num": 127,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -1499,22 +910,13 @@
   [
     "tauros",
     {
-      "name": "Tauros",
-      "num": 128,
-      "gender": [
-        "M"
-      ]
+      "name": "Tauros"
     }
   ],
   [
     "magikarp",
     {
       "name": "Magikarp",
-      "num": 129,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -1522,13 +924,9 @@
     "gyarados",
     {
       "name": "Gyarados",
-      "num": 130,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -1536,132 +934,75 @@
   [
     "lapras",
     {
-      "name": "Lapras",
-      "num": 131,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Lapras"
     }
   ],
   [
     "ditto",
     {
-      "name": "Ditto",
-      "num": 132,
-      "gender": [
-        "N"
-      ]
+      "name": "Ditto"
     }
   ],
   [
     "eevee",
     {
-      "name": "Eevee",
-      "num": 133,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Eevee"
     }
   ],
   [
     "vaporeon",
     {
-      "name": "Vaporeon",
-      "num": 134,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Vaporeon"
     }
   ],
   [
     "jolteon",
     {
-      "name": "Jolteon",
-      "num": 135,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Jolteon"
     }
   ],
   [
     "flareon",
     {
-      "name": "Flareon",
-      "num": 136,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Flareon"
     }
   ],
   [
     "porygon",
     {
-      "name": "Porygon",
-      "num": 137,
-      "gender": [
-        "N"
-      ]
+      "name": "Porygon"
     }
   ],
   [
     "omanyte",
     {
-      "name": "Omanyte",
-      "num": 138,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Omanyte"
     }
   ],
   [
     "omastar",
     {
-      "name": "Omastar",
-      "num": 139,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Omastar"
     }
   ],
   [
     "kabuto",
     {
-      "name": "Kabuto",
-      "num": 140,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Kabuto"
     }
   ],
   [
     "kabutops",
     {
-      "name": "Kabutops",
-      "num": 141,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Kabutops"
     }
   ],
   [
     "aerodactyl",
     {
       "name": "Aerodactyl",
-      "num": 142,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -1669,86 +1010,51 @@
   [
     "snorlax",
     {
-      "name": "Snorlax",
-      "num": 143,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Snorlax"
     }
   ],
   [
     "articuno",
     {
-      "name": "Articuno",
-      "num": 144,
-      "gender": [
-        "N"
-      ]
+      "name": "Articuno"
     }
   ],
   [
     "zapdos",
     {
-      "name": "Zapdos",
-      "num": 145,
-      "gender": [
-        "N"
-      ]
+      "name": "Zapdos"
     }
   ],
   [
     "moltres",
     {
-      "name": "Moltres",
-      "num": 146,
-      "gender": [
-        "N"
-      ]
+      "name": "Moltres"
     }
   ],
   [
     "dratini",
     {
-      "name": "Dratini",
-      "num": 147,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Dratini"
     }
   ],
   [
     "dragonair",
     {
-      "name": "Dragonair",
-      "num": 148,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Dragonair"
     }
   ],
   [
     "dragonite",
     {
-      "name": "Dragonite",
-      "num": 149,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Dragonite"
     }
   ],
   [
     "mewtwo",
     {
       "name": "Mewtwo",
-      "num": 150,
-      "gender": [
-        "N"
-      ],
       "forms": [
+        "Normal",
         "Mega X",
         "Mega Y"
       ]
@@ -1757,166 +1063,92 @@
   [
     "mew",
     {
-      "name": "Mew",
-      "num": 151,
-      "gender": [
-        "N"
-      ]
+      "name": "Mew"
     }
   ],
   [
     "chikorita",
     {
-      "name": "Chikorita",
-      "num": 152,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Chikorita"
     }
   ],
   [
     "bayleef",
     {
-      "name": "Bayleef",
-      "num": 153,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Bayleef"
     }
   ],
   [
     "meganium",
     {
       "name": "Meganium",
-      "num": 154,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "cyndaquil",
     {
-      "name": "Cyndaquil",
-      "num": 155,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cyndaquil"
     }
   ],
   [
     "quilava",
     {
-      "name": "Quilava",
-      "num": 156,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Quilava"
     }
   ],
   [
     "typhlosion",
     {
-      "name": "Typhlosion",
-      "num": 157,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Typhlosion"
     }
   ],
   [
     "totodile",
     {
-      "name": "Totodile",
-      "num": 158,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Totodile"
     }
   ],
   [
     "croconaw",
     {
-      "name": "Croconaw",
-      "num": 159,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Croconaw"
     }
   ],
   [
     "feraligatr",
     {
-      "name": "Feraligatr",
-      "num": 160,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Feraligatr"
     }
   ],
   [
     "sentret",
     {
-      "name": "Sentret",
-      "num": 161,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Sentret"
     }
   ],
   [
     "furret",
     {
-      "name": "Furret",
-      "num": 162,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Furret"
     }
   ],
   [
     "hoothoot",
     {
-      "name": "Hoothoot",
-      "num": 163,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Hoothoot"
     }
   ],
   [
     "noctowl",
     {
-      "name": "Noctowl",
-      "num": 164,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Noctowl"
     }
   ],
   [
     "ledyba",
     {
       "name": "Ledyba",
-      "num": 165,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -1924,79 +1156,45 @@
     "ledian",
     {
       "name": "Ledian",
-      "num": 166,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "spinarak",
     {
-      "name": "Spinarak",
-      "num": 167,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Spinarak"
     }
   ],
   [
     "ariados",
     {
-      "name": "Ariados",
-      "num": 168,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Ariados"
     }
   ],
   [
     "crobat",
     {
-      "name": "Crobat",
-      "num": 169,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Crobat"
     }
   ],
   [
     "chinchou",
     {
-      "name": "Chinchou",
-      "num": 170,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Chinchou"
     }
   ],
   [
     "lanturn",
     {
-      "name": "Lanturn",
-      "num": 171,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Lanturn"
     }
   ],
   [
     "pichu",
     {
       "name": "Pichu",
-      "num": 172,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Spikyeared"
       ]
     }
@@ -2004,102 +1202,58 @@
   [
     "cleffa",
     {
-      "name": "Cleffa",
-      "num": 173,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cleffa"
     }
   ],
   [
     "igglybuff",
     {
-      "name": "Igglybuff",
-      "num": 174,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Igglybuff"
     }
   ],
   [
     "togepi",
     {
-      "name": "Togepi",
-      "num": 175,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Togepi"
     }
   ],
   [
     "togetic",
     {
-      "name": "Togetic",
-      "num": 176,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Togetic"
     }
   ],
   [
     "natu",
     {
-      "name": "Natu",
-      "num": 177,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Natu"
     }
   ],
   [
     "xatu",
     {
       "name": "Xatu",
-      "num": 178,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "mareep",
     {
-      "name": "Mareep",
-      "num": 179,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mareep"
     }
   ],
   [
     "flaaffy",
     {
-      "name": "Flaaffy",
-      "num": 180,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Flaaffy"
     }
   ],
   [
     "ampharos",
     {
       "name": "Ampharos",
-      "num": 181,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -2107,45 +1261,25 @@
   [
     "bellossom",
     {
-      "name": "Bellossom",
-      "num": 182,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Bellossom"
     }
   ],
   [
     "marill",
     {
-      "name": "Marill",
-      "num": 183,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Marill"
     }
   ],
   [
     "azumarill",
     {
-      "name": "Azumarill",
-      "num": 184,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Azumarill"
     }
   ],
   [
     "sudowoodo",
     {
       "name": "Sudowoodo",
-      "num": 185,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -2153,101 +1287,56 @@
     "politoed",
     {
       "name": "Politoed",
-      "num": 186,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "hoppip",
     {
-      "name": "Hoppip",
-      "num": 187,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Hoppip"
     }
   ],
   [
     "skiploom",
     {
-      "name": "Skiploom",
-      "num": 188,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Skiploom"
     }
   ],
   [
     "jumpluff",
     {
-      "name": "Jumpluff",
-      "num": 189,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Jumpluff"
     }
   ],
   [
     "aipom",
     {
       "name": "Aipom",
-      "num": 190,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "sunkern",
     {
-      "name": "Sunkern",
-      "num": 191,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Sunkern"
     }
   ],
   [
     "sunflora",
     {
-      "name": "Sunflora",
-      "num": 192,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Sunflora"
     }
   ],
   [
     "yanma",
     {
-      "name": "Yanma",
-      "num": 193,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Yanma"
     }
   ],
   [
     "wooper",
     {
       "name": "Wooper",
-      "num": 194,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -2255,145 +1344,111 @@
     "quagsire",
     {
       "name": "Quagsire",
-      "num": 195,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "espeon",
     {
-      "name": "Espeon",
-      "num": 196,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Espeon"
     }
   ],
   [
     "umbreon",
     {
-      "name": "Umbreon",
-      "num": 197,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Umbreon"
     }
   ],
   [
     "murkrow",
     {
       "name": "Murkrow",
-      "num": 198,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "slowking",
     {
-      "name": "Slowking",
-      "num": 199,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Slowking"
     }
   ],
   [
     "misdreavus",
     {
-      "name": "Misdreavus",
-      "num": 200,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Misdreavus"
     }
   ],
   [
     "unown",
     {
       "name": "Unown",
-      "num": 201,
-      "gender": [
-        "N"
+      "forms": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+        "!",
+        "?"
       ]
     }
   ],
   [
     "wobbuffet",
     {
-      "name": "Wobbuffet",
-      "num": 202,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Wobbuffet"
     }
   ],
   [
     "girafarig",
     {
       "name": "Girafarig",
-      "num": 203,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "pineco",
     {
-      "name": "Pineco",
-      "num": 204,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pineco"
     }
   ],
   [
     "forretress",
     {
-      "name": "Forretress",
-      "num": 205,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Forretress"
     }
   ],
   [
     "dunsparce",
     {
-      "name": "Dunsparce",
-      "num": 206,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Dunsparce"
     }
   ],
   [
     "gligar",
     {
       "name": "Gligar",
-      "num": 207,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -2401,13 +1456,9 @@
     "steelix",
     {
       "name": "Steelix",
-      "num": 208,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -2415,47 +1466,28 @@
   [
     "snubbull",
     {
-      "name": "Snubbull",
-      "num": 209,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Snubbull"
     }
   ],
   [
     "granbull",
     {
-      "name": "Granbull",
-      "num": 210,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Granbull"
     }
   ],
   [
     "qwilfish",
     {
-      "name": "Qwilfish",
-      "num": 211,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Qwilfish"
     }
   ],
   [
     "scizor",
     {
       "name": "Scizor",
-      "num": 212,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -2463,25 +1495,16 @@
   [
     "shuckle",
     {
-      "name": "Shuckle",
-      "num": 213,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Shuckle"
     }
   ],
   [
     "heracross",
     {
       "name": "Heracross",
-      "num": 214,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -2490,171 +1513,97 @@
     "sneasel",
     {
       "name": "Sneasel",
-      "num": 215,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "teddiursa",
     {
-      "name": "Teddiursa",
-      "num": 216,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Teddiursa"
     }
   ],
   [
     "ursaring",
     {
       "name": "Ursaring",
-      "num": 217,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "slugma",
     {
-      "name": "Slugma",
-      "num": 218,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Slugma"
     }
   ],
   [
     "magcargo",
     {
-      "name": "Magcargo",
-      "num": 219,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Magcargo"
     }
   ],
   [
     "swinub",
     {
-      "name": "Swinub",
-      "num": 220,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Swinub"
     }
   ],
   [
     "piloswine",
     {
       "name": "Piloswine",
-      "num": 221,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "corsola",
     {
-      "name": "Corsola",
-      "num": 222,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Corsola"
     }
   ],
   [
     "remoraid",
     {
-      "name": "Remoraid",
-      "num": 223,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Remoraid"
     }
   ],
   [
     "octillery",
     {
       "name": "Octillery",
-      "num": 224,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "delibird",
     {
-      "name": "Delibird",
-      "num": 225,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Delibird"
     }
   ],
   [
     "mantine",
     {
-      "name": "Mantine",
-      "num": 226,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mantine"
     }
   ],
   [
     "skarmory",
     {
-      "name": "Skarmory",
-      "num": 227,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Skarmory"
     }
   ],
   [
     "houndour",
     {
-      "name": "Houndour",
-      "num": 228,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Houndour"
     }
   ],
   [
     "houndoom",
     {
       "name": "Houndoom",
-      "num": 229,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -2662,68 +1611,40 @@
   [
     "kingdra",
     {
-      "name": "Kingdra",
-      "num": 230,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Kingdra"
     }
   ],
   [
     "phanpy",
     {
-      "name": "Phanpy",
-      "num": 231,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Phanpy"
     }
   ],
   [
     "donphan",
     {
       "name": "Donphan",
-      "num": 232,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "porygon2",
     {
-      "name": "Porygon2",
-      "num": 233,
-      "gender": [
-        "N"
-      ]
+      "name": "Porygon2"
     }
   ],
   [
     "stantler",
     {
-      "name": "Stantler",
-      "num": 234,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Stantler"
     }
   ],
   [
     "smeargle",
     {
       "name": "Smeargle",
-      "num": 235,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Pokestar"
       ]
     }
@@ -2731,137 +1652,81 @@
   [
     "tyrogue",
     {
-      "name": "Tyrogue",
-      "num": 236,
-      "gender": [
-        "M"
-      ]
+      "name": "Tyrogue"
     }
   ],
   [
     "hitmontop",
     {
-      "name": "Hitmontop",
-      "num": 237,
-      "gender": [
-        "M"
-      ]
+      "name": "Hitmontop"
     }
   ],
   [
     "smoochum",
     {
-      "name": "Smoochum",
-      "num": 238,
-      "gender": [
-        "F"
-      ]
+      "name": "Smoochum"
     }
   ],
   [
     "elekid",
     {
-      "name": "Elekid",
-      "num": 239,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Elekid"
     }
   ],
   [
     "magby",
     {
-      "name": "Magby",
-      "num": 240,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Magby"
     }
   ],
   [
     "miltank",
     {
-      "name": "Miltank",
-      "num": 241,
-      "gender": [
-        "F"
-      ]
+      "name": "Miltank"
     }
   ],
   [
     "blissey",
     {
-      "name": "Blissey",
-      "num": 242,
-      "gender": [
-        "F"
-      ]
+      "name": "Blissey"
     }
   ],
   [
     "raikou",
     {
-      "name": "Raikou",
-      "num": 243,
-      "gender": [
-        "N"
-      ]
+      "name": "Raikou"
     }
   ],
   [
     "entei",
     {
-      "name": "Entei",
-      "num": 244,
-      "gender": [
-        "N"
-      ]
+      "name": "Entei"
     }
   ],
   [
     "suicune",
     {
-      "name": "Suicune",
-      "num": 245,
-      "gender": [
-        "N"
-      ]
+      "name": "Suicune"
     }
   ],
   [
     "larvitar",
     {
-      "name": "Larvitar",
-      "num": 246,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Larvitar"
     }
   ],
   [
     "pupitar",
     {
-      "name": "Pupitar",
-      "num": 247,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pupitar"
     }
   ],
   [
     "tyranitar",
     {
       "name": "Tyranitar",
-      "num": 248,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -2869,65 +1734,39 @@
   [
     "lugia",
     {
-      "name": "Lugia",
-      "num": 249,
-      "gender": [
-        "N"
-      ]
+      "name": "Lugia"
     }
   ],
   [
     "hooh",
     {
-      "name": "Ho-Oh",
-      "num": 250,
-      "gender": [
-        "N"
-      ]
+      "name": "Ho-Oh"
     }
   ],
   [
     "celebi",
     {
-      "name": "Celebi",
-      "num": 251,
-      "gender": [
-        "N"
-      ]
+      "name": "Celebi"
     }
   ],
   [
     "treecko",
     {
-      "name": "Treecko",
-      "num": 252,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Treecko"
     }
   ],
   [
     "grovyle",
     {
-      "name": "Grovyle",
-      "num": 253,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Grovyle"
     }
   ],
   [
     "sceptile",
     {
       "name": "Sceptile",
-      "num": 254,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -2936,11 +1775,6 @@
     "torchic",
     {
       "name": "Torchic",
-      "num": 255,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -2948,11 +1782,6 @@
     "combusken",
     {
       "name": "Combusken",
-      "num": 256,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -2960,13 +1789,9 @@
     "blaziken",
     {
       "name": "Blaziken",
-      "num": 257,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -2974,35 +1799,21 @@
   [
     "mudkip",
     {
-      "name": "Mudkip",
-      "num": 258,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mudkip"
     }
   ],
   [
     "marshtomp",
     {
-      "name": "Marshtomp",
-      "num": 259,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Marshtomp"
     }
   ],
   [
     "swampert",
     {
       "name": "Swampert",
-      "num": 260,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -3010,158 +1821,88 @@
   [
     "poochyena",
     {
-      "name": "Poochyena",
-      "num": 261,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Poochyena"
     }
   ],
   [
     "mightyena",
     {
-      "name": "Mightyena",
-      "num": 262,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mightyena"
     }
   ],
   [
     "zigzagoon",
     {
-      "name": "Zigzagoon",
-      "num": 263,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Zigzagoon"
     }
   ],
   [
     "linoone",
     {
-      "name": "Linoone",
-      "num": 264,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Linoone"
     }
   ],
   [
     "wurmple",
     {
-      "name": "Wurmple",
-      "num": 265,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Wurmple"
     }
   ],
   [
     "silcoon",
     {
-      "name": "Silcoon",
-      "num": 266,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Silcoon"
     }
   ],
   [
     "beautifly",
     {
       "name": "Beautifly",
-      "num": 267,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "cascoon",
     {
-      "name": "Cascoon",
-      "num": 268,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cascoon"
     }
   ],
   [
     "dustox",
     {
       "name": "Dustox",
-      "num": 269,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "lotad",
     {
-      "name": "Lotad",
-      "num": 270,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Lotad"
     }
   ],
   [
     "lombre",
     {
-      "name": "Lombre",
-      "num": 271,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Lombre"
     }
   ],
   [
     "ludicolo",
     {
       "name": "Ludicolo",
-      "num": 272,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "seedot",
     {
-      "name": "Seedot",
-      "num": 273,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Seedot"
     }
   ],
   [
     "nuzleaf",
     {
       "name": "Nuzleaf",
-      "num": 274,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -3169,90 +1910,51 @@
     "shiftry",
     {
       "name": "Shiftry",
-      "num": 275,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "taillow",
     {
-      "name": "Taillow",
-      "num": 276,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Taillow"
     }
   ],
   [
     "swellow",
     {
-      "name": "Swellow",
-      "num": 277,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Swellow"
     }
   ],
   [
     "wingull",
     {
-      "name": "Wingull",
-      "num": 278,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Wingull"
     }
   ],
   [
     "pelipper",
     {
-      "name": "Pelipper",
-      "num": 279,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pelipper"
     }
   ],
   [
     "ralts",
     {
-      "name": "Ralts",
-      "num": 280,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Ralts"
     }
   ],
   [
     "kirlia",
     {
-      "name": "Kirlia",
-      "num": 281,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Kirlia"
     }
   ],
   [
     "gardevoir",
     {
       "name": "Gardevoir",
-      "num": 282,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -3260,221 +1962,123 @@
   [
     "surskit",
     {
-      "name": "Surskit",
-      "num": 283,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Surskit"
     }
   ],
   [
     "masquerain",
     {
-      "name": "Masquerain",
-      "num": 284,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Masquerain"
     }
   ],
   [
     "shroomish",
     {
-      "name": "Shroomish",
-      "num": 285,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Shroomish"
     }
   ],
   [
     "breloom",
     {
-      "name": "Breloom",
-      "num": 286,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Breloom"
     }
   ],
   [
     "slakoth",
     {
-      "name": "Slakoth",
-      "num": 287,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Slakoth"
     }
   ],
   [
     "vigoroth",
     {
-      "name": "Vigoroth",
-      "num": 288,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Vigoroth"
     }
   ],
   [
     "slaking",
     {
-      "name": "Slaking",
-      "num": 289,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Slaking"
     }
   ],
   [
     "nincada",
     {
-      "name": "Nincada",
-      "num": 290,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Nincada"
     }
   ],
   [
     "ninjask",
     {
-      "name": "Ninjask",
-      "num": 291,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Ninjask"
     }
   ],
   [
     "shedinja",
     {
-      "name": "Shedinja",
-      "num": 292,
-      "gender": [
-        "N"
-      ]
+      "name": "Shedinja"
     }
   ],
   [
     "whismur",
     {
-      "name": "Whismur",
-      "num": 293,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Whismur"
     }
   ],
   [
     "loudred",
     {
-      "name": "Loudred",
-      "num": 294,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Loudred"
     }
   ],
   [
     "exploud",
     {
-      "name": "Exploud",
-      "num": 295,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Exploud"
     }
   ],
   [
     "makuhita",
     {
-      "name": "Makuhita",
-      "num": 296,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Makuhita"
     }
   ],
   [
     "hariyama",
     {
-      "name": "Hariyama",
-      "num": 297,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Hariyama"
     }
   ],
   [
     "azurill",
     {
-      "name": "Azurill",
-      "num": 298,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Azurill"
     }
   ],
   [
     "nosepass",
     {
-      "name": "Nosepass",
-      "num": 299,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Nosepass"
     }
   ],
   [
     "skitty",
     {
-      "name": "Skitty",
-      "num": 300,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Skitty"
     }
   ],
   [
     "delcatty",
     {
-      "name": "Delcatty",
-      "num": 301,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Delcatty"
     }
   ],
   [
     "sableye",
     {
       "name": "Sableye",
-      "num": 302,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -3483,12 +2087,8 @@
     "mawile",
     {
       "name": "Mawile",
-      "num": 303,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -3496,35 +2096,21 @@
   [
     "aron",
     {
-      "name": "Aron",
-      "num": 304,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Aron"
     }
   ],
   [
     "lairon",
     {
-      "name": "Lairon",
-      "num": 305,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Lairon"
     }
   ],
   [
     "aggron",
     {
       "name": "Aggron",
-      "num": 306,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -3533,11 +2119,6 @@
     "meditite",
     {
       "name": "Meditite",
-      "num": 307,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -3545,13 +2126,9 @@
     "medicham",
     {
       "name": "Medicham",
-      "num": 308,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -3559,24 +2136,15 @@
   [
     "electrike",
     {
-      "name": "Electrike",
-      "num": 309,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Electrike"
     }
   ],
   [
     "manectric",
     {
       "name": "Manectric",
-      "num": 310,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -3584,54 +2152,31 @@
   [
     "plusle",
     {
-      "name": "Plusle",
-      "num": 311,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Plusle"
     }
   ],
   [
     "minun",
     {
-      "name": "Minun",
-      "num": 312,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Minun"
     }
   ],
   [
     "volbeat",
     {
-      "name": "Volbeat",
-      "num": 313,
-      "gender": [
-        "M"
-      ]
+      "name": "Volbeat"
     }
   ],
   [
     "illumise",
     {
-      "name": "Illumise",
-      "num": 314,
-      "gender": [
-        "F"
-      ]
+      "name": "Illumise"
     }
   ],
   [
     "roselia",
     {
       "name": "Roselia",
-      "num": 315,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -3639,11 +2184,6 @@
     "gulpin",
     {
       "name": "Gulpin",
-      "num": 316,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -3651,35 +2191,21 @@
     "swalot",
     {
       "name": "Swalot",
-      "num": 317,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "carvanha",
     {
-      "name": "Carvanha",
-      "num": 318,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Carvanha"
     }
   ],
   [
     "sharpedo",
     {
       "name": "Sharpedo",
-      "num": 319,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -3687,34 +2213,19 @@
   [
     "wailmer",
     {
-      "name": "Wailmer",
-      "num": 320,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Wailmer"
     }
   ],
   [
     "wailord",
     {
-      "name": "Wailord",
-      "num": 321,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Wailord"
     }
   ],
   [
     "numel",
     {
       "name": "Numel",
-      "num": 322,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -3722,13 +2233,9 @@
     "camerupt",
     {
       "name": "Camerupt",
-      "num": 323,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -3736,124 +2243,70 @@
   [
     "torkoal",
     {
-      "name": "Torkoal",
-      "num": 324,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Torkoal"
     }
   ],
   [
     "spoink",
     {
-      "name": "Spoink",
-      "num": 325,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Spoink"
     }
   ],
   [
     "grumpig",
     {
-      "name": "Grumpig",
-      "num": 326,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Grumpig"
     }
   ],
   [
     "spinda",
     {
-      "name": "Spinda",
-      "num": 327,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Spinda"
     }
   ],
   [
     "trapinch",
     {
-      "name": "Trapinch",
-      "num": 328,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Trapinch"
     }
   ],
   [
     "vibrava",
     {
-      "name": "Vibrava",
-      "num": 329,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Vibrava"
     }
   ],
   [
     "flygon",
     {
-      "name": "Flygon",
-      "num": 330,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Flygon"
     }
   ],
   [
     "cacnea",
     {
-      "name": "Cacnea",
-      "num": 331,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cacnea"
     }
   ],
   [
     "cacturne",
     {
       "name": "Cacturne",
-      "num": 332,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "swablu",
     {
-      "name": "Swablu",
-      "num": 333,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Swablu"
     }
   ],
   [
     "altaria",
     {
       "name": "Altaria",
-      "num": 334,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -3861,173 +2314,97 @@
   [
     "zangoose",
     {
-      "name": "Zangoose",
-      "num": 335,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Zangoose"
     }
   ],
   [
     "seviper",
     {
-      "name": "Seviper",
-      "num": 336,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Seviper"
     }
   ],
   [
     "lunatone",
     {
-      "name": "Lunatone",
-      "num": 337,
-      "gender": [
-        "N"
-      ]
+      "name": "Lunatone"
     }
   ],
   [
     "solrock",
     {
-      "name": "Solrock",
-      "num": 338,
-      "gender": [
-        "N"
-      ]
+      "name": "Solrock"
     }
   ],
   [
     "barboach",
     {
-      "name": "Barboach",
-      "num": 339,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Barboach"
     }
   ],
   [
     "whiscash",
     {
-      "name": "Whiscash",
-      "num": 340,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Whiscash"
     }
   ],
   [
     "corphish",
     {
-      "name": "Corphish",
-      "num": 341,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Corphish"
     }
   ],
   [
     "crawdaunt",
     {
-      "name": "Crawdaunt",
-      "num": 342,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Crawdaunt"
     }
   ],
   [
     "baltoy",
     {
-      "name": "Baltoy",
-      "num": 343,
-      "gender": [
-        "N"
-      ]
+      "name": "Baltoy"
     }
   ],
   [
     "claydol",
     {
-      "name": "Claydol",
-      "num": 344,
-      "gender": [
-        "N"
-      ]
+      "name": "Claydol"
     }
   ],
   [
     "lileep",
     {
-      "name": "Lileep",
-      "num": 345,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Lileep"
     }
   ],
   [
     "cradily",
     {
-      "name": "Cradily",
-      "num": 346,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cradily"
     }
   ],
   [
     "anorith",
     {
-      "name": "Anorith",
-      "num": 347,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Anorith"
     }
   ],
   [
     "armaldo",
     {
-      "name": "Armaldo",
-      "num": 348,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Armaldo"
     }
   ],
   [
     "feebas",
     {
-      "name": "Feebas",
-      "num": 349,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Feebas"
     }
   ],
   [
     "milotic",
     {
       "name": "Milotic",
-      "num": 350,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -4035,11 +2412,6 @@
     "castform",
     {
       "name": "Castform",
-      "num": 351,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
         "Sunny",
         "Rainy",
@@ -4050,35 +2422,21 @@
   [
     "kecleon",
     {
-      "name": "Kecleon",
-      "num": 352,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Kecleon"
     }
   ],
   [
     "shuppet",
     {
-      "name": "Shuppet",
-      "num": 353,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Shuppet"
     }
   ],
   [
     "banette",
     {
       "name": "Banette",
-      "num": 354,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -4086,57 +2444,33 @@
   [
     "duskull",
     {
-      "name": "Duskull",
-      "num": 355,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Duskull"
     }
   ],
   [
     "dusclops",
     {
-      "name": "Dusclops",
-      "num": 356,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Dusclops"
     }
   ],
   [
     "tropius",
     {
-      "name": "Tropius",
-      "num": 357,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Tropius"
     }
   ],
   [
     "chimecho",
     {
-      "name": "Chimecho",
-      "num": 358,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Chimecho"
     }
   ],
   [
     "absol",
     {
       "name": "Absol",
-      "num": 359,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -4144,35 +2478,21 @@
   [
     "wynaut",
     {
-      "name": "Wynaut",
-      "num": 360,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Wynaut"
     }
   ],
   [
     "snorunt",
     {
-      "name": "Snorunt",
-      "num": 361,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Snorunt"
     }
   ],
   [
     "glalie",
     {
       "name": "Glalie",
-      "num": 362,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -4180,124 +2500,70 @@
   [
     "spheal",
     {
-      "name": "Spheal",
-      "num": 363,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Spheal"
     }
   ],
   [
     "sealeo",
     {
-      "name": "Sealeo",
-      "num": 364,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Sealeo"
     }
   ],
   [
     "walrein",
     {
-      "name": "Walrein",
-      "num": 365,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Walrein"
     }
   ],
   [
     "clamperl",
     {
-      "name": "Clamperl",
-      "num": 366,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Clamperl"
     }
   ],
   [
     "huntail",
     {
-      "name": "Huntail",
-      "num": 367,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Huntail"
     }
   ],
   [
     "gorebyss",
     {
-      "name": "Gorebyss",
-      "num": 368,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Gorebyss"
     }
   ],
   [
     "relicanth",
     {
       "name": "Relicanth",
-      "num": 369,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "luvdisc",
     {
-      "name": "Luvdisc",
-      "num": 370,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Luvdisc"
     }
   ],
   [
     "bagon",
     {
-      "name": "Bagon",
-      "num": 371,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Bagon"
     }
   ],
   [
     "shelgon",
     {
-      "name": "Shelgon",
-      "num": 372,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Shelgon"
     }
   ],
   [
     "salamence",
     {
       "name": "Salamence",
-      "num": 373,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -4305,32 +2571,21 @@
   [
     "beldum",
     {
-      "name": "Beldum",
-      "num": 374,
-      "gender": [
-        "N"
-      ]
+      "name": "Beldum"
     }
   ],
   [
     "metang",
     {
-      "name": "Metang",
-      "num": 375,
-      "gender": [
-        "N"
-      ]
+      "name": "Metang"
     }
   ],
   [
     "metagross",
     {
       "name": "Metagross",
-      "num": 376,
-      "gender": [
-        "N"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -4338,42 +2593,27 @@
   [
     "regirock",
     {
-      "name": "Regirock",
-      "num": 377,
-      "gender": [
-        "N"
-      ]
+      "name": "Regirock"
     }
   ],
   [
     "regice",
     {
-      "name": "Regice",
-      "num": 378,
-      "gender": [
-        "N"
-      ]
+      "name": "Regice"
     }
   ],
   [
     "registeel",
     {
-      "name": "Registeel",
-      "num": 379,
-      "gender": [
-        "N"
-      ]
+      "name": "Registeel"
     }
   ],
   [
     "latias",
     {
       "name": "Latias",
-      "num": 380,
-      "gender": [
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -4382,11 +2622,8 @@
     "latios",
     {
       "name": "Latios",
-      "num": 381,
-      "gender": [
-        "M"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -4395,11 +2632,8 @@
     "kyogre",
     {
       "name": "Kyogre",
-      "num": 382,
-      "gender": [
-        "N"
-      ],
       "forms": [
+        "Normal",
         "Primal"
       ]
     }
@@ -4408,11 +2642,8 @@
     "groudon",
     {
       "name": "Groudon",
-      "num": 383,
-      "gender": [
-        "N"
-      ],
       "forms": [
+        "Normal",
         "Primal"
       ]
     }
@@ -4421,11 +2652,8 @@
     "rayquaza",
     {
       "name": "Rayquaza",
-      "num": 384,
-      "gender": [
-        "N"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -4433,21 +2661,13 @@
   [
     "jirachi",
     {
-      "name": "Jirachi",
-      "num": 385,
-      "gender": [
-        "N"
-      ]
+      "name": "Jirachi"
     }
   ],
   [
     "deoxys",
     {
       "name": "Deoxys",
-      "num": 386,
-      "gender": [
-        "N"
-      ],
       "forms": [
         "Attack",
         "Defense",
@@ -4458,111 +2678,61 @@
   [
     "turtwig",
     {
-      "name": "Turtwig",
-      "num": 387,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Turtwig"
     }
   ],
   [
     "grotle",
     {
-      "name": "Grotle",
-      "num": 388,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Grotle"
     }
   ],
   [
     "torterra",
     {
-      "name": "Torterra",
-      "num": 389,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Torterra"
     }
   ],
   [
     "chimchar",
     {
-      "name": "Chimchar",
-      "num": 390,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Chimchar"
     }
   ],
   [
     "monferno",
     {
-      "name": "Monferno",
-      "num": 391,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Monferno"
     }
   ],
   [
     "infernape",
     {
-      "name": "Infernape",
-      "num": 392,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Infernape"
     }
   ],
   [
     "piplup",
     {
-      "name": "Piplup",
-      "num": 393,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Piplup"
     }
   ],
   [
     "prinplup",
     {
-      "name": "Prinplup",
-      "num": 394,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Prinplup"
     }
   ],
   [
     "empoleon",
     {
-      "name": "Empoleon",
-      "num": 395,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Empoleon"
     }
   ],
   [
     "starly",
     {
       "name": "Starly",
-      "num": 396,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -4570,11 +2740,6 @@
     "staravia",
     {
       "name": "Staravia",
-      "num": 397,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -4582,11 +2747,6 @@
     "staraptor",
     {
       "name": "Staraptor",
-      "num": 398,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -4594,11 +2754,6 @@
     "bidoof",
     {
       "name": "Bidoof",
-      "num": 399,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -4606,45 +2761,25 @@
     "bibarel",
     {
       "name": "Bibarel",
-      "num": 400,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "kricketot",
     {
-      "name": "Kricketot",
-      "num": 401,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Kricketot"
     }
   ],
   [
     "kricketune",
     {
-      "name": "Kricketune",
-      "num": 402,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Kricketune"
     }
   ],
   [
     "shinx",
     {
       "name": "Shinx",
-      "num": 403,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -4652,11 +2787,6 @@
     "luxio",
     {
       "name": "Luxio",
-      "num": 404,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -4664,100 +2794,56 @@
     "luxray",
     {
       "name": "Luxray",
-      "num": 405,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "budew",
     {
-      "name": "Budew",
-      "num": 406,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Budew"
     }
   ],
   [
     "roserade",
     {
       "name": "Roserade",
-      "num": 407,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "cranidos",
     {
-      "name": "Cranidos",
-      "num": 408,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cranidos"
     }
   ],
   [
     "rampardos",
     {
-      "name": "Rampardos",
-      "num": 409,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Rampardos"
     }
   ],
   [
     "shieldon",
     {
-      "name": "Shieldon",
-      "num": 410,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Shieldon"
     }
   ],
   [
     "bastiodon",
     {
-      "name": "Bastiodon",
-      "num": 411,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Bastiodon"
     }
   ],
   [
     "burmy",
     {
-      "name": "Burmy",
-      "num": 412,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Burmy"
     }
   ],
   [
     "wormadam",
     {
       "name": "Wormadam",
-      "num": 413,
-      "gender": [
-        "F"
-      ],
       "forms": [
         "Sandy",
         "Trash"
@@ -4767,44 +2853,26 @@
   [
     "mothim",
     {
-      "name": "Mothim",
-      "num": 414,
-      "gender": [
-        "M"
-      ]
+      "name": "Mothim"
     }
   ],
   [
     "combee",
     {
       "name": "Combee",
-      "num": 415,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "vespiquen",
     {
-      "name": "Vespiquen",
-      "num": 416,
-      "gender": [
-        "F"
-      ]
+      "name": "Vespiquen"
     }
   ],
   [
     "pachirisu",
     {
       "name": "Pachirisu",
-      "num": 417,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -4812,11 +2880,6 @@
     "buizel",
     {
       "name": "Buizel",
-      "num": 418,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -4824,35 +2887,21 @@
     "floatzel",
     {
       "name": "Floatzel",
-      "num": 419,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "cherubi",
     {
-      "name": "Cherubi",
-      "num": 420,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cherubi"
     }
   ],
   [
     "cherrim",
     {
       "name": "Cherrim",
-      "num": 421,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Sunshine"
       ]
     }
@@ -4860,80 +2909,46 @@
   [
     "shellos",
     {
-      "name": "Shellos",
-      "num": 422,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Shellos"
     }
   ],
   [
     "gastrodon",
     {
-      "name": "Gastrodon",
-      "num": 423,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Gastrodon"
     }
   ],
   [
     "ambipom",
     {
       "name": "Ambipom",
-      "num": 424,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "drifloon",
     {
-      "name": "Drifloon",
-      "num": 425,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Drifloon"
     }
   ],
   [
     "drifblim",
     {
-      "name": "Drifblim",
-      "num": 426,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Drifblim"
     }
   ],
   [
     "buneary",
     {
-      "name": "Buneary",
-      "num": 427,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Buneary"
     }
   ],
   [
     "lopunny",
     {
       "name": "Lopunny",
-      "num": 428,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -4941,163 +2956,91 @@
   [
     "mismagius",
     {
-      "name": "Mismagius",
-      "num": 429,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mismagius"
     }
   ],
   [
     "honchkrow",
     {
-      "name": "Honchkrow",
-      "num": 430,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Honchkrow"
     }
   ],
   [
     "glameow",
     {
-      "name": "Glameow",
-      "num": 431,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Glameow"
     }
   ],
   [
     "purugly",
     {
-      "name": "Purugly",
-      "num": 432,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Purugly"
     }
   ],
   [
     "chingling",
     {
-      "name": "Chingling",
-      "num": 433,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Chingling"
     }
   ],
   [
     "stunky",
     {
-      "name": "Stunky",
-      "num": 434,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Stunky"
     }
   ],
   [
     "skuntank",
     {
-      "name": "Skuntank",
-      "num": 435,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Skuntank"
     }
   ],
   [
     "bronzor",
     {
-      "name": "Bronzor",
-      "num": 436,
-      "gender": [
-        "N"
-      ]
+      "name": "Bronzor"
     }
   ],
   [
     "bronzong",
     {
-      "name": "Bronzong",
-      "num": 437,
-      "gender": [
-        "N"
-      ]
+      "name": "Bronzong"
     }
   ],
   [
     "bonsly",
     {
-      "name": "Bonsly",
-      "num": 438,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Bonsly"
     }
   ],
   [
     "mimejr",
     {
-      "name": "Mime Jr.",
-      "num": 439,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mime Jr."
     }
   ],
   [
     "happiny",
     {
-      "name": "Happiny",
-      "num": 440,
-      "gender": [
-        "F"
-      ]
+      "name": "Happiny"
     }
   ],
   [
     "chatot",
     {
-      "name": "Chatot",
-      "num": 441,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Chatot"
     }
   ],
   [
     "spiritomb",
     {
-      "name": "Spiritomb",
-      "num": 442,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Spiritomb"
     }
   ],
   [
     "gible",
     {
       "name": "Gible",
-      "num": 443,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -5105,11 +3048,6 @@
     "gabite",
     {
       "name": "Gabite",
-      "num": 444,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -5117,13 +3055,9 @@
     "garchomp",
     {
       "name": "Garchomp",
-      "num": 445,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -5131,35 +3065,21 @@
   [
     "munchlax",
     {
-      "name": "Munchlax",
-      "num": 446,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Munchlax"
     }
   ],
   [
     "riolu",
     {
-      "name": "Riolu",
-      "num": 447,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Riolu"
     }
   ],
   [
     "lucario",
     {
       "name": "Lucario",
-      "num": 448,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -5168,11 +3088,6 @@
     "hippopotas",
     {
       "name": "Hippopotas",
-      "num": 449,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -5180,45 +3095,25 @@
     "hippowdon",
     {
       "name": "Hippowdon",
-      "num": 450,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "skorupi",
     {
-      "name": "Skorupi",
-      "num": 451,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Skorupi"
     }
   ],
   [
     "drapion",
     {
-      "name": "Drapion",
-      "num": 452,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Drapion"
     }
   ],
   [
     "croagunk",
     {
       "name": "Croagunk",
-      "num": 453,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -5226,34 +3121,19 @@
     "toxicroak",
     {
       "name": "Toxicroak",
-      "num": 454,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "carnivine",
     {
-      "name": "Carnivine",
-      "num": 455,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Carnivine"
     }
   ],
   [
     "finneon",
     {
       "name": "Finneon",
-      "num": 456,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -5261,34 +3141,19 @@
     "lumineon",
     {
       "name": "Lumineon",
-      "num": 457,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "mantyke",
     {
-      "name": "Mantyke",
-      "num": 458,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mantyke"
     }
   ],
   [
     "snover",
     {
       "name": "Snover",
-      "num": 459,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -5296,13 +3161,9 @@
     "abomasnow",
     {
       "name": "Abomasnow",
-      "num": 460,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -5311,44 +3172,25 @@
     "weavile",
     {
       "name": "Weavile",
-      "num": 461,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "magnezone",
     {
-      "name": "Magnezone",
-      "num": 462,
-      "gender": [
-        "N"
-      ]
+      "name": "Magnezone"
     }
   ],
   [
     "lickilicky",
     {
-      "name": "Lickilicky",
-      "num": 463,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Lickilicky"
     }
   ],
   [
     "rhyperior",
     {
       "name": "Rhyperior",
-      "num": 464,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -5356,122 +3198,70 @@
     "tangrowth",
     {
       "name": "Tangrowth",
-      "num": 465,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "electivire",
     {
-      "name": "Electivire",
-      "num": 466,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Electivire"
     }
   ],
   [
     "magmortar",
     {
-      "name": "Magmortar",
-      "num": 467,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Magmortar"
     }
   ],
   [
     "togekiss",
     {
-      "name": "Togekiss",
-      "num": 468,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Togekiss"
     }
   ],
   [
     "yanmega",
     {
-      "name": "Yanmega",
-      "num": 469,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Yanmega"
     }
   ],
   [
     "leafeon",
     {
-      "name": "Leafeon",
-      "num": 470,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Leafeon"
     }
   ],
   [
     "glaceon",
     {
-      "name": "Glaceon",
-      "num": 471,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Glaceon"
     }
   ],
   [
     "gliscor",
     {
-      "name": "Gliscor",
-      "num": 472,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Gliscor"
     }
   ],
   [
     "mamoswine",
     {
       "name": "Mamoswine",
-      "num": 473,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "porygonz",
     {
-      "name": "Porygon-Z",
-      "num": 474,
-      "gender": [
-        "N"
-      ]
+      "name": "Porygon-Z"
     }
   ],
   [
     "gallade",
     {
       "name": "Gallade",
-      "num": 475,
-      "gender": [
-        "M"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -5479,43 +3269,25 @@
   [
     "probopass",
     {
-      "name": "Probopass",
-      "num": 476,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Probopass"
     }
   ],
   [
     "dusknoir",
     {
-      "name": "Dusknoir",
-      "num": 477,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Dusknoir"
     }
   ],
   [
     "froslass",
     {
-      "name": "Froslass",
-      "num": 478,
-      "gender": [
-        "F"
-      ]
+      "name": "Froslass"
     }
   ],
   [
     "rotom",
     {
       "name": "Rotom",
-      "num": 479,
-      "gender": [
-        "N"
-      ],
       "forms": [
         "Heat",
         "Wash",
@@ -5528,83 +3300,51 @@
   [
     "uxie",
     {
-      "name": "Uxie",
-      "num": 480,
-      "gender": [
-        "N"
-      ]
+      "name": "Uxie"
     }
   ],
   [
     "mesprit",
     {
-      "name": "Mesprit",
-      "num": 481,
-      "gender": [
-        "N"
-      ]
+      "name": "Mesprit"
     }
   ],
   [
     "azelf",
     {
-      "name": "Azelf",
-      "num": 482,
-      "gender": [
-        "N"
-      ]
+      "name": "Azelf"
     }
   ],
   [
     "dialga",
     {
-      "name": "Dialga",
-      "num": 483,
-      "gender": [
-        "N"
-      ]
+      "name": "Dialga"
     }
   ],
   [
     "palkia",
     {
-      "name": "Palkia",
-      "num": 484,
-      "gender": [
-        "N"
-      ]
+      "name": "Palkia"
     }
   ],
   [
     "heatran",
     {
-      "name": "Heatran",
-      "num": 485,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Heatran"
     }
   ],
   [
     "regigigas",
     {
-      "name": "Regigigas",
-      "num": 486,
-      "gender": [
-        "N"
-      ]
+      "name": "Regigigas"
     }
   ],
   [
     "giratina",
     {
       "name": "Giratina",
-      "num": 487,
-      "gender": [
-        "N"
-      ],
       "forms": [
+        "Normal",
         "Origin"
       ]
     }
@@ -5612,52 +3352,33 @@
   [
     "cresselia",
     {
-      "name": "Cresselia",
-      "num": 488,
-      "gender": [
-        "F"
-      ]
+      "name": "Cresselia"
     }
   ],
   [
     "phione",
     {
-      "name": "Phione",
-      "num": 489,
-      "gender": [
-        "N"
-      ]
+      "name": "Phione"
     }
   ],
   [
     "manaphy",
     {
-      "name": "Manaphy",
-      "num": 490,
-      "gender": [
-        "N"
-      ]
+      "name": "Manaphy"
     }
   ],
   [
     "darkrai",
     {
-      "name": "Darkrai",
-      "num": 491,
-      "gender": [
-        "N"
-      ]
+      "name": "Darkrai"
     }
   ],
   [
     "shaymin",
     {
       "name": "Shaymin",
-      "num": 492,
-      "gender": [
-        "N"
-      ],
       "forms": [
+        "Normal",
         "Sky"
       ]
     }
@@ -5666,10 +3387,6 @@
     "arceus",
     {
       "name": "Arceus",
-      "num": 493,
-      "gender": [
-        "N"
-      ],
       "forms": [
         "Bug",
         "Dark",
@@ -5694,420 +3411,232 @@
   [
     "victini",
     {
-      "name": "Victini",
-      "num": 494,
-      "gender": [
-        "N"
-      ]
+      "name": "Victini"
     }
   ],
   [
     "snivy",
     {
-      "name": "Snivy",
-      "num": 495,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Snivy"
     }
   ],
   [
     "servine",
     {
-      "name": "Servine",
-      "num": 496,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Servine"
     }
   ],
   [
     "serperior",
     {
-      "name": "Serperior",
-      "num": 497,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Serperior"
     }
   ],
   [
     "tepig",
     {
-      "name": "Tepig",
-      "num": 498,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Tepig"
     }
   ],
   [
     "pignite",
     {
-      "name": "Pignite",
-      "num": 499,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pignite"
     }
   ],
   [
     "emboar",
     {
-      "name": "Emboar",
-      "num": 500,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Emboar"
     }
   ],
   [
     "oshawott",
     {
-      "name": "Oshawott",
-      "num": 501,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Oshawott"
     }
   ],
   [
     "dewott",
     {
-      "name": "Dewott",
-      "num": 502,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Dewott"
     }
   ],
   [
     "samurott",
     {
-      "name": "Samurott",
-      "num": 503,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Samurott"
     }
   ],
   [
     "patrat",
     {
-      "name": "Patrat",
-      "num": 504,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Patrat"
     }
   ],
   [
     "watchog",
     {
-      "name": "Watchog",
-      "num": 505,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Watchog"
     }
   ],
   [
     "lillipup",
     {
-      "name": "Lillipup",
-      "num": 506,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Lillipup"
     }
   ],
   [
     "herdier",
     {
-      "name": "Herdier",
-      "num": 507,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Herdier"
     }
   ],
   [
     "stoutland",
     {
-      "name": "Stoutland",
-      "num": 508,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Stoutland"
     }
   ],
   [
     "purrloin",
     {
-      "name": "Purrloin",
-      "num": 509,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Purrloin"
     }
   ],
   [
     "liepard",
     {
-      "name": "Liepard",
-      "num": 510,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Liepard"
     }
   ],
   [
     "pansage",
     {
-      "name": "Pansage",
-      "num": 511,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pansage"
     }
   ],
   [
     "simisage",
     {
-      "name": "Simisage",
-      "num": 512,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Simisage"
     }
   ],
   [
     "pansear",
     {
-      "name": "Pansear",
-      "num": 513,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pansear"
     }
   ],
   [
     "simisear",
     {
-      "name": "Simisear",
-      "num": 514,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Simisear"
     }
   ],
   [
     "panpour",
     {
-      "name": "Panpour",
-      "num": 515,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Panpour"
     }
   ],
   [
     "simipour",
     {
-      "name": "Simipour",
-      "num": 516,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Simipour"
     }
   ],
   [
     "munna",
     {
-      "name": "Munna",
-      "num": 517,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Munna"
     }
   ],
   [
     "musharna",
     {
-      "name": "Musharna",
-      "num": 518,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Musharna"
     }
   ],
   [
     "pidove",
     {
-      "name": "Pidove",
-      "num": 519,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pidove"
     }
   ],
   [
     "tranquill",
     {
-      "name": "Tranquill",
-      "num": 520,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Tranquill"
     }
   ],
   [
     "unfezant",
     {
       "name": "Unfezant",
-      "num": 521,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "blitzle",
     {
-      "name": "Blitzle",
-      "num": 522,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Blitzle"
     }
   ],
   [
     "zebstrika",
     {
-      "name": "Zebstrika",
-      "num": 523,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Zebstrika"
     }
   ],
   [
     "roggenrola",
     {
-      "name": "Roggenrola",
-      "num": 524,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Roggenrola"
     }
   ],
   [
     "boldore",
     {
-      "name": "Boldore",
-      "num": 525,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Boldore"
     }
   ],
   [
     "gigalith",
     {
-      "name": "Gigalith",
-      "num": 526,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Gigalith"
     }
   ],
   [
     "woobat",
     {
-      "name": "Woobat",
-      "num": 527,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Woobat"
     }
   ],
   [
     "swoobat",
     {
-      "name": "Swoobat",
-      "num": 528,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Swoobat"
     }
   ],
   [
     "drilbur",
     {
-      "name": "Drilbur",
-      "num": 529,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Drilbur"
     }
   ],
   [
     "excadrill",
     {
-      "name": "Excadrill",
-      "num": 530,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Excadrill"
     }
   ],
   [
     "audino",
     {
       "name": "Audino",
-      "num": 531,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -6115,207 +3644,117 @@
   [
     "timburr",
     {
-      "name": "Timburr",
-      "num": 532,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Timburr"
     }
   ],
   [
     "gurdurr",
     {
-      "name": "Gurdurr",
-      "num": 533,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Gurdurr"
     }
   ],
   [
     "conkeldurr",
     {
-      "name": "Conkeldurr",
-      "num": 534,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Conkeldurr"
     }
   ],
   [
     "tympole",
     {
-      "name": "Tympole",
-      "num": 535,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Tympole"
     }
   ],
   [
     "palpitoad",
     {
-      "name": "Palpitoad",
-      "num": 536,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Palpitoad"
     }
   ],
   [
     "seismitoad",
     {
-      "name": "Seismitoad",
-      "num": 537,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Seismitoad"
     }
   ],
   [
     "throh",
     {
-      "name": "Throh",
-      "num": 538,
-      "gender": [
-        "M"
-      ]
+      "name": "Throh"
     }
   ],
   [
     "sawk",
     {
-      "name": "Sawk",
-      "num": 539,
-      "gender": [
-        "M"
-      ]
+      "name": "Sawk"
     }
   ],
   [
     "sewaddle",
     {
-      "name": "Sewaddle",
-      "num": 540,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Sewaddle"
     }
   ],
   [
     "swadloon",
     {
-      "name": "Swadloon",
-      "num": 541,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Swadloon"
     }
   ],
   [
     "leavanny",
     {
-      "name": "Leavanny",
-      "num": 542,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Leavanny"
     }
   ],
   [
     "venipede",
     {
-      "name": "Venipede",
-      "num": 543,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Venipede"
     }
   ],
   [
     "whirlipede",
     {
-      "name": "Whirlipede",
-      "num": 544,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Whirlipede"
     }
   ],
   [
     "scolipede",
     {
-      "name": "Scolipede",
-      "num": 545,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Scolipede"
     }
   ],
   [
     "cottonee",
     {
-      "name": "Cottonee",
-      "num": 546,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cottonee"
     }
   ],
   [
     "whimsicott",
     {
-      "name": "Whimsicott",
-      "num": 547,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Whimsicott"
     }
   ],
   [
     "petilil",
     {
-      "name": "Petilil",
-      "num": 548,
-      "gender": [
-        "F"
-      ]
+      "name": "Petilil"
     }
   ],
   [
     "lilligant",
     {
-      "name": "Lilligant",
-      "num": 549,
-      "gender": [
-        "F"
-      ]
+      "name": "Lilligant"
     }
   ],
   [
     "basculin",
     {
       "name": "Basculin",
-      "num": 550,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Bluestriped"
       ]
     }
@@ -6323,57 +3762,33 @@
   [
     "sandile",
     {
-      "name": "Sandile",
-      "num": 551,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Sandile"
     }
   ],
   [
     "krokorok",
     {
-      "name": "Krokorok",
-      "num": 552,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Krokorok"
     }
   ],
   [
     "krookodile",
     {
-      "name": "Krookodile",
-      "num": 553,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Krookodile"
     }
   ],
   [
     "darumaka",
     {
-      "name": "Darumaka",
-      "num": 554,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Darumaka"
     }
   ],
   [
     "darmanitan",
     {
       "name": "Darmanitan",
-      "num": 555,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Zen"
       ]
     }
@@ -6381,408 +3796,223 @@
   [
     "maractus",
     {
-      "name": "Maractus",
-      "num": 556,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Maractus"
     }
   ],
   [
     "dwebble",
     {
-      "name": "Dwebble",
-      "num": 557,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Dwebble"
     }
   ],
   [
     "crustle",
     {
-      "name": "Crustle",
-      "num": 558,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Crustle"
     }
   ],
   [
     "scraggy",
     {
-      "name": "Scraggy",
-      "num": 559,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Scraggy"
     }
   ],
   [
     "scrafty",
     {
-      "name": "Scrafty",
-      "num": 560,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Scrafty"
     }
   ],
   [
     "sigilyph",
     {
-      "name": "Sigilyph",
-      "num": 561,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Sigilyph"
     }
   ],
   [
     "yamask",
     {
-      "name": "Yamask",
-      "num": 562,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Yamask"
     }
   ],
   [
     "cofagrigus",
     {
-      "name": "Cofagrigus",
-      "num": 563,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cofagrigus"
     }
   ],
   [
     "tirtouga",
     {
-      "name": "Tirtouga",
-      "num": 564,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Tirtouga"
     }
   ],
   [
     "carracosta",
     {
-      "name": "Carracosta",
-      "num": 565,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Carracosta"
     }
   ],
   [
     "archen",
     {
-      "name": "Archen",
-      "num": 566,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Archen"
     }
   ],
   [
     "archeops",
     {
-      "name": "Archeops",
-      "num": 567,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Archeops"
     }
   ],
   [
     "trubbish",
     {
-      "name": "Trubbish",
-      "num": 568,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Trubbish"
     }
   ],
   [
     "garbodor",
     {
-      "name": "Garbodor",
-      "num": 569,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Garbodor"
     }
   ],
   [
     "zorua",
     {
-      "name": "Zorua",
-      "num": 570,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Zorua"
     }
   ],
   [
     "zoroark",
     {
-      "name": "Zoroark",
-      "num": 571,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Zoroark"
     }
   ],
   [
     "minccino",
     {
-      "name": "Minccino",
-      "num": 572,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Minccino"
     }
   ],
   [
     "cinccino",
     {
-      "name": "Cinccino",
-      "num": 573,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cinccino"
     }
   ],
   [
     "gothita",
     {
-      "name": "Gothita",
-      "num": 574,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Gothita"
     }
   ],
   [
     "gothorita",
     {
-      "name": "Gothorita",
-      "num": 575,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Gothorita"
     }
   ],
   [
     "gothitelle",
     {
-      "name": "Gothitelle",
-      "num": 576,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Gothitelle"
     }
   ],
   [
     "solosis",
     {
-      "name": "Solosis",
-      "num": 577,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Solosis"
     }
   ],
   [
     "duosion",
     {
-      "name": "Duosion",
-      "num": 578,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Duosion"
     }
   ],
   [
     "reuniclus",
     {
-      "name": "Reuniclus",
-      "num": 579,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Reuniclus"
     }
   ],
   [
     "ducklett",
     {
-      "name": "Ducklett",
-      "num": 580,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Ducklett"
     }
   ],
   [
     "swanna",
     {
-      "name": "Swanna",
-      "num": 581,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Swanna"
     }
   ],
   [
     "vanillite",
     {
-      "name": "Vanillite",
-      "num": 582,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Vanillite"
     }
   ],
   [
     "vanillish",
     {
-      "name": "Vanillish",
-      "num": 583,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Vanillish"
     }
   ],
   [
     "vanilluxe",
     {
-      "name": "Vanilluxe",
-      "num": 584,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Vanilluxe"
     }
   ],
   [
     "deerling",
     {
-      "name": "Deerling",
-      "num": 585,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Deerling"
     }
   ],
   [
     "sawsbuck",
     {
-      "name": "Sawsbuck",
-      "num": 586,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Sawsbuck"
     }
   ],
   [
     "emolga",
     {
-      "name": "Emolga",
-      "num": 587,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Emolga"
     }
   ],
   [
     "karrablast",
     {
-      "name": "Karrablast",
-      "num": 588,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Karrablast"
     }
   ],
   [
     "escavalier",
     {
-      "name": "Escavalier",
-      "num": 589,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Escavalier"
     }
   ],
   [
     "foongus",
     {
-      "name": "Foongus",
-      "num": 590,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Foongus"
     }
   ],
   [
     "amoonguss",
     {
-      "name": "Amoonguss",
-      "num": 591,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Amoonguss"
     }
   ],
   [
     "frillish",
     {
       "name": "Frillish",
-      "num": 592,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
@@ -6790,527 +4020,297 @@
     "jellicent",
     {
       "name": "Jellicent",
-      "num": 593,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "alomomola",
     {
-      "name": "Alomomola",
-      "num": 594,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Alomomola"
     }
   ],
   [
     "joltik",
     {
-      "name": "Joltik",
-      "num": 595,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Joltik"
     }
   ],
   [
     "galvantula",
     {
-      "name": "Galvantula",
-      "num": 596,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Galvantula"
     }
   ],
   [
     "ferroseed",
     {
-      "name": "Ferroseed",
-      "num": 597,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Ferroseed"
     }
   ],
   [
     "ferrothorn",
     {
-      "name": "Ferrothorn",
-      "num": 598,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Ferrothorn"
     }
   ],
   [
     "klink",
     {
-      "name": "Klink",
-      "num": 599,
-      "gender": [
-        "N"
-      ]
+      "name": "Klink"
     }
   ],
   [
     "klang",
     {
-      "name": "Klang",
-      "num": 600,
-      "gender": [
-        "N"
-      ]
+      "name": "Klang"
     }
   ],
   [
     "klinklang",
     {
-      "name": "Klinklang",
-      "num": 601,
-      "gender": [
-        "N"
-      ]
+      "name": "Klinklang"
     }
   ],
   [
     "tynamo",
     {
-      "name": "Tynamo",
-      "num": 602,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Tynamo"
     }
   ],
   [
     "eelektrik",
     {
-      "name": "Eelektrik",
-      "num": 603,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Eelektrik"
     }
   ],
   [
     "eelektross",
     {
-      "name": "Eelektross",
-      "num": 604,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Eelektross"
     }
   ],
   [
     "elgyem",
     {
-      "name": "Elgyem",
-      "num": 605,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Elgyem"
     }
   ],
   [
     "beheeyem",
     {
-      "name": "Beheeyem",
-      "num": 606,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Beheeyem"
     }
   ],
   [
     "litwick",
     {
-      "name": "Litwick",
-      "num": 607,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Litwick"
     }
   ],
   [
     "lampent",
     {
-      "name": "Lampent",
-      "num": 608,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Lampent"
     }
   ],
   [
     "chandelure",
     {
-      "name": "Chandelure",
-      "num": 609,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Chandelure"
     }
   ],
   [
     "axew",
     {
-      "name": "Axew",
-      "num": 610,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Axew"
     }
   ],
   [
     "fraxure",
     {
-      "name": "Fraxure",
-      "num": 611,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Fraxure"
     }
   ],
   [
     "haxorus",
     {
-      "name": "Haxorus",
-      "num": 612,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Haxorus"
     }
   ],
   [
     "cubchoo",
     {
-      "name": "Cubchoo",
-      "num": 613,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cubchoo"
     }
   ],
   [
     "beartic",
     {
-      "name": "Beartic",
-      "num": 614,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Beartic"
     }
   ],
   [
     "cryogonal",
     {
-      "name": "Cryogonal",
-      "num": 615,
-      "gender": [
-        "N"
-      ]
+      "name": "Cryogonal"
     }
   ],
   [
     "shelmet",
     {
-      "name": "Shelmet",
-      "num": 616,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Shelmet"
     }
   ],
   [
     "accelgor",
     {
-      "name": "Accelgor",
-      "num": 617,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Accelgor"
     }
   ],
   [
     "stunfisk",
     {
-      "name": "Stunfisk",
-      "num": 618,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Stunfisk"
     }
   ],
   [
     "mienfoo",
     {
-      "name": "Mienfoo",
-      "num": 619,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mienfoo"
     }
   ],
   [
     "mienshao",
     {
-      "name": "Mienshao",
-      "num": 620,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mienshao"
     }
   ],
   [
     "druddigon",
     {
-      "name": "Druddigon",
-      "num": 621,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Druddigon"
     }
   ],
   [
     "golett",
     {
-      "name": "Golett",
-      "num": 622,
-      "gender": [
-        "N"
-      ]
+      "name": "Golett"
     }
   ],
   [
     "golurk",
     {
-      "name": "Golurk",
-      "num": 623,
-      "gender": [
-        "N"
-      ]
+      "name": "Golurk"
     }
   ],
   [
     "pawniard",
     {
-      "name": "Pawniard",
-      "num": 624,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pawniard"
     }
   ],
   [
     "bisharp",
     {
-      "name": "Bisharp",
-      "num": 625,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Bisharp"
     }
   ],
   [
     "bouffalant",
     {
-      "name": "Bouffalant",
-      "num": 626,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Bouffalant"
     }
   ],
   [
     "rufflet",
     {
-      "name": "Rufflet",
-      "num": 627,
-      "gender": [
-        "M"
-      ]
+      "name": "Rufflet"
     }
   ],
   [
     "braviary",
     {
-      "name": "Braviary",
-      "num": 628,
-      "gender": [
-        "M"
-      ]
+      "name": "Braviary"
     }
   ],
   [
     "vullaby",
     {
-      "name": "Vullaby",
-      "num": 629,
-      "gender": [
-        "F"
-      ]
+      "name": "Vullaby"
     }
   ],
   [
     "mandibuzz",
     {
-      "name": "Mandibuzz",
-      "num": 630,
-      "gender": [
-        "F"
-      ]
+      "name": "Mandibuzz"
     }
   ],
   [
     "heatmor",
     {
-      "name": "Heatmor",
-      "num": 631,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Heatmor"
     }
   ],
   [
     "durant",
     {
-      "name": "Durant",
-      "num": 632,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Durant"
     }
   ],
   [
     "deino",
     {
-      "name": "Deino",
-      "num": 633,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Deino"
     }
   ],
   [
     "zweilous",
     {
-      "name": "Zweilous",
-      "num": 634,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Zweilous"
     }
   ],
   [
     "hydreigon",
     {
-      "name": "Hydreigon",
-      "num": 635,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Hydreigon"
     }
   ],
   [
     "larvesta",
     {
-      "name": "Larvesta",
-      "num": 636,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Larvesta"
     }
   ],
   [
     "volcarona",
     {
-      "name": "Volcarona",
-      "num": 637,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Volcarona"
     }
   ],
   [
     "cobalion",
     {
-      "name": "Cobalion",
-      "num": 638,
-      "gender": [
-        "N"
-      ]
+      "name": "Cobalion"
     }
   ],
   [
     "terrakion",
     {
-      "name": "Terrakion",
-      "num": 639,
-      "gender": [
-        "N"
-      ]
+      "name": "Terrakion"
     }
   ],
   [
     "virizion",
     {
-      "name": "Virizion",
-      "num": 640,
-      "gender": [
-        "N"
-      ]
+      "name": "Virizion"
     }
   ],
   [
     "tornadus",
     {
       "name": "Tornadus",
-      "num": 641,
-      "gender": [
-        "M"
-      ],
       "forms": [
+        "Normal",
         "Therian"
       ]
     }
@@ -7319,11 +4319,8 @@
     "thundurus",
     {
       "name": "Thundurus",
-      "num": 642,
-      "gender": [
-        "M"
-      ],
       "forms": [
+        "Normal",
         "Therian"
       ]
     }
@@ -7331,32 +4328,21 @@
   [
     "reshiram",
     {
-      "name": "Reshiram",
-      "num": 643,
-      "gender": [
-        "N"
-      ]
+      "name": "Reshiram"
     }
   ],
   [
     "zekrom",
     {
-      "name": "Zekrom",
-      "num": 644,
-      "gender": [
-        "N"
-      ]
+      "name": "Zekrom"
     }
   ],
   [
     "landorus",
     {
       "name": "Landorus",
-      "num": 645,
-      "gender": [
-        "M"
-      ],
       "forms": [
+        "Normal",
         "Therian"
       ]
     }
@@ -7365,10 +4351,6 @@
     "kyurem",
     {
       "name": "Kyurem",
-      "num": 646,
-      "gender": [
-        "N"
-      ],
       "forms": [
         "Black",
         "White"
@@ -7379,11 +4361,8 @@
     "keldeo",
     {
       "name": "Keldeo",
-      "num": 647,
-      "gender": [
-        "N"
-      ],
       "forms": [
+        "Normal",
         "Resolute"
       ]
     }
@@ -7392,11 +4371,8 @@
     "meloetta",
     {
       "name": "Meloetta",
-      "num": 648,
-      "gender": [
-        "N"
-      ],
       "forms": [
+        "Normal",
         "Pirouette"
       ]
     }
@@ -7405,10 +4381,6 @@
     "genesect",
     {
       "name": "Genesect",
-      "num": 649,
-      "gender": [
-        "N"
-      ],
       "forms": [
         "Douse",
         "Shock",
@@ -7420,101 +4392,57 @@
   [
     "chespin",
     {
-      "name": "Chespin",
-      "num": 650,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Chespin"
     }
   ],
   [
     "quilladin",
     {
-      "name": "Quilladin",
-      "num": 651,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Quilladin"
     }
   ],
   [
     "chesnaught",
     {
-      "name": "Chesnaught",
-      "num": 652,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Chesnaught"
     }
   ],
   [
     "fennekin",
     {
-      "name": "Fennekin",
-      "num": 653,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Fennekin"
     }
   ],
   [
     "braixen",
     {
-      "name": "Braixen",
-      "num": 654,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Braixen"
     }
   ],
   [
     "delphox",
     {
-      "name": "Delphox",
-      "num": 655,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Delphox"
     }
   ],
   [
     "froakie",
     {
-      "name": "Froakie",
-      "num": 656,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Froakie"
     }
   ],
   [
     "frogadier",
     {
-      "name": "Frogadier",
-      "num": 657,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Frogadier"
     }
   ],
   [
     "greninja",
     {
       "name": "Greninja",
-      "num": 658,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Ash"
       ]
     }
@@ -7522,89 +4450,49 @@
   [
     "bunnelby",
     {
-      "name": "Bunnelby",
-      "num": 659,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Bunnelby"
     }
   ],
   [
     "diggersby",
     {
-      "name": "Diggersby",
-      "num": 660,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Diggersby"
     }
   ],
   [
     "fletchling",
     {
-      "name": "Fletchling",
-      "num": 661,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Fletchling"
     }
   ],
   [
     "fletchinder",
     {
-      "name": "Fletchinder",
-      "num": 662,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Fletchinder"
     }
   ],
   [
     "talonflame",
     {
-      "name": "Talonflame",
-      "num": 663,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Talonflame"
     }
   ],
   [
     "scatterbug",
     {
-      "name": "Scatterbug",
-      "num": 664,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Scatterbug"
     }
   ],
   [
     "spewpa",
     {
-      "name": "Spewpa",
-      "num": 665,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Spewpa"
     }
   ],
   [
     "vivillon",
     {
       "name": "Vivillon",
-      "num": 666,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
         "Fancy",
         "Pokeball"
@@ -7614,45 +4502,28 @@
   [
     "litleo",
     {
-      "name": "Litleo",
-      "num": 667,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Litleo"
     }
   ],
   [
     "pyroar",
     {
       "name": "Pyroar",
-      "num": 668,
-      "gender": [
-        "M",
-        "F"
-      ],
       "femaleForm": true
     }
   ],
   [
     "flabebe",
     {
-      "name": "Flabébé",
-      "num": 669,
-      "gender": [
-        "F"
-      ]
+      "name": "Flabébé"
     }
   ],
   [
     "floette",
     {
       "name": "Floette",
-      "num": 670,
-      "gender": [
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Eternal"
       ]
     }
@@ -7660,89 +4531,52 @@
   [
     "florges",
     {
-      "name": "Florges",
-      "num": 671,
-      "gender": [
-        "F"
-      ]
+      "name": "Florges"
     }
   ],
   [
     "skiddo",
     {
-      "name": "Skiddo",
-      "num": 672,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Skiddo"
     }
   ],
   [
     "gogoat",
     {
-      "name": "Gogoat",
-      "num": 673,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Gogoat"
     }
   ],
   [
     "pancham",
     {
-      "name": "Pancham",
-      "num": 674,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pancham"
     }
   ],
   [
     "pangoro",
     {
-      "name": "Pangoro",
-      "num": 675,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pangoro"
     }
   ],
   [
     "furfrou",
     {
-      "name": "Furfrou",
-      "num": 676,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Furfrou"
     }
   ],
   [
     "espurr",
     {
-      "name": "Espurr",
-      "num": 677,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Espurr"
     }
   ],
   [
     "meowstic",
     {
       "name": "Meowstic",
-      "num": 678,
-      "gender": [
-        "M"
-      ],
       "femaleForm": true,
       "forms": [
+        "Normal",
         "F"
       ]
     }
@@ -7750,35 +4584,21 @@
   [
     "honedge",
     {
-      "name": "Honedge",
-      "num": 679,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Honedge"
     }
   ],
   [
     "doublade",
     {
-      "name": "Doublade",
-      "num": 680,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Doublade"
     }
   ],
   [
     "aegislash",
     {
       "name": "Aegislash",
-      "num": 681,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "Blade"
       ]
     }
@@ -7786,319 +4606,175 @@
   [
     "spritzee",
     {
-      "name": "Spritzee",
-      "num": 682,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Spritzee"
     }
   ],
   [
     "aromatisse",
     {
-      "name": "Aromatisse",
-      "num": 683,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Aromatisse"
     }
   ],
   [
     "swirlix",
     {
-      "name": "Swirlix",
-      "num": 684,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Swirlix"
     }
   ],
   [
     "slurpuff",
     {
-      "name": "Slurpuff",
-      "num": 685,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Slurpuff"
     }
   ],
   [
     "inkay",
     {
-      "name": "Inkay",
-      "num": 686,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Inkay"
     }
   ],
   [
     "malamar",
     {
-      "name": "Malamar",
-      "num": 687,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Malamar"
     }
   ],
   [
     "binacle",
     {
-      "name": "Binacle",
-      "num": 688,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Binacle"
     }
   ],
   [
     "barbaracle",
     {
-      "name": "Barbaracle",
-      "num": 689,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Barbaracle"
     }
   ],
   [
     "skrelp",
     {
-      "name": "Skrelp",
-      "num": 690,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Skrelp"
     }
   ],
   [
     "dragalge",
     {
-      "name": "Dragalge",
-      "num": 691,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Dragalge"
     }
   ],
   [
     "clauncher",
     {
-      "name": "Clauncher",
-      "num": 692,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Clauncher"
     }
   ],
   [
     "clawitzer",
     {
-      "name": "Clawitzer",
-      "num": 693,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Clawitzer"
     }
   ],
   [
     "helioptile",
     {
-      "name": "Helioptile",
-      "num": 694,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Helioptile"
     }
   ],
   [
     "heliolisk",
     {
-      "name": "Heliolisk",
-      "num": 695,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Heliolisk"
     }
   ],
   [
     "tyrunt",
     {
-      "name": "Tyrunt",
-      "num": 696,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Tyrunt"
     }
   ],
   [
     "tyrantrum",
     {
-      "name": "Tyrantrum",
-      "num": 697,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Tyrantrum"
     }
   ],
   [
     "amaura",
     {
-      "name": "Amaura",
-      "num": 698,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Amaura"
     }
   ],
   [
     "aurorus",
     {
-      "name": "Aurorus",
-      "num": 699,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Aurorus"
     }
   ],
   [
     "sylveon",
     {
-      "name": "Sylveon",
-      "num": 700,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Sylveon"
     }
   ],
   [
     "hawlucha",
     {
-      "name": "Hawlucha",
-      "num": 701,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Hawlucha"
     }
   ],
   [
     "dedenne",
     {
-      "name": "Dedenne",
-      "num": 702,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Dedenne"
     }
   ],
   [
     "carbink",
     {
-      "name": "Carbink",
-      "num": 703,
-      "gender": [
-        "N"
-      ]
+      "name": "Carbink"
     }
   ],
   [
     "goomy",
     {
-      "name": "Goomy",
-      "num": 704,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Goomy"
     }
   ],
   [
     "sliggoo",
     {
-      "name": "Sliggoo",
-      "num": 705,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Sliggoo"
     }
   ],
   [
     "goodra",
     {
-      "name": "Goodra",
-      "num": 706,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Goodra"
     }
   ],
   [
     "klefki",
     {
-      "name": "Klefki",
-      "num": 707,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Klefki"
     }
   ],
   [
     "phantump",
     {
-      "name": "Phantump",
-      "num": 708,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Phantump"
     }
   ],
   [
     "trevenant",
     {
-      "name": "Trevenant",
-      "num": 709,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Trevenant"
     }
   ],
   [
     "pumpkaboo",
     {
       "name": "Pumpkaboo",
-      "num": 710,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
         "Small",
         "Large",
@@ -8110,11 +4786,6 @@
     "gourgeist",
     {
       "name": "Gourgeist",
-      "num": 711,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
         "Small",
         "Large",
@@ -8125,75 +4796,43 @@
   [
     "bergmite",
     {
-      "name": "Bergmite",
-      "num": 712,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Bergmite"
     }
   ],
   [
     "avalugg",
     {
-      "name": "Avalugg",
-      "num": 713,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Avalugg"
     }
   ],
   [
     "noibat",
     {
-      "name": "Noibat",
-      "num": 714,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Noibat"
     }
   ],
   [
     "noivern",
     {
-      "name": "Noivern",
-      "num": 715,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Noivern"
     }
   ],
   [
     "xerneas",
     {
-      "name": "Xerneas",
-      "num": 716,
-      "gender": [
-        "N"
-      ]
+      "name": "Xerneas"
     }
   ],
   [
     "yveltal",
     {
-      "name": "Yveltal",
-      "num": 717,
-      "gender": [
-        "N"
-      ]
+      "name": "Yveltal"
     }
   ],
   [
     "zygarde",
     {
       "name": "Zygarde",
-      "num": 718,
-      "gender": [
-        "N"
-      ],
       "forms": [
         "10",
         "Complete"
@@ -8204,11 +4843,8 @@
     "diancie",
     {
       "name": "Diancie",
-      "num": 719,
-      "gender": [
-        "N"
-      ],
       "forms": [
+        "Normal",
         "Mega"
       ]
     }
@@ -8217,11 +4853,8 @@
     "hoopa",
     {
       "name": "Hoopa",
-      "num": 720,
-      "gender": [
-        "N"
-      ],
       "forms": [
+        "Normal",
         "Unbound"
       ]
     }
@@ -8229,231 +4862,135 @@
   [
     "volcanion",
     {
-      "name": "Volcanion",
-      "num": 721,
-      "gender": [
-        "N"
-      ]
+      "name": "Volcanion"
     }
   ],
   [
     "rowlet",
     {
-      "name": "Rowlet",
-      "num": 722,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Rowlet"
     }
   ],
   [
     "dartrix",
     {
-      "name": "Dartrix",
-      "num": 723,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Dartrix"
     }
   ],
   [
     "decidueye",
     {
-      "name": "Decidueye",
-      "num": 724,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Decidueye"
     }
   ],
   [
     "litten",
     {
-      "name": "Litten",
-      "num": 725,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Litten"
     }
   ],
   [
     "torracat",
     {
-      "name": "Torracat",
-      "num": 726,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Torracat"
     }
   ],
   [
     "incineroar",
     {
-      "name": "Incineroar",
-      "num": 727,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Incineroar"
     }
   ],
   [
     "popplio",
     {
-      "name": "Popplio",
-      "num": 728,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Popplio"
     }
   ],
   [
     "brionne",
     {
-      "name": "Brionne",
-      "num": 729,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Brionne"
     }
   ],
   [
     "primarina",
     {
-      "name": "Primarina",
-      "num": 730,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Primarina"
     }
   ],
   [
     "pikipek",
     {
-      "name": "Pikipek",
-      "num": 731,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pikipek"
     }
   ],
   [
     "trumbeak",
     {
-      "name": "Trumbeak",
-      "num": 732,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Trumbeak"
     }
   ],
   [
     "toucannon",
     {
-      "name": "Toucannon",
-      "num": 733,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Toucannon"
     }
   ],
   [
     "yungoos",
     {
-      "name": "Yungoos",
-      "num": 734,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Yungoos"
     }
   ],
   [
     "gumshoos",
     {
       "name": "Gumshoos",
-      "num": 735,
-      "gender": [
-        "M",
-        "F"
+      "forms": [
+        "Normal",
+        "Totem"
       ]
     }
   ],
   [
     "grubbin",
     {
-      "name": "Grubbin",
-      "num": 736,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Grubbin"
     }
   ],
   [
     "charjabug",
     {
-      "name": "Charjabug",
-      "num": 737,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Charjabug"
     }
   ],
   [
     "vikavolt",
     {
       "name": "Vikavolt",
-      "num": 738,
-      "gender": [
-        "M",
-        "F"
+      "forms": [
+        "Normal",
+        "Totem"
       ]
     }
   ],
   [
     "crabrawler",
     {
-      "name": "Crabrawler",
-      "num": 739,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Crabrawler"
     }
   ],
   [
     "crabominable",
     {
-      "name": "Crabominable",
-      "num": 740,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Crabominable"
     }
   ],
   [
     "oricorio",
     {
       "name": "Oricorio",
-      "num": 741,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
         "Pompom",
         "Pau",
@@ -8464,47 +5001,32 @@
   [
     "cutiefly",
     {
-      "name": "Cutiefly",
-      "num": 742,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Cutiefly"
     }
   ],
   [
     "ribombee",
     {
       "name": "Ribombee",
-      "num": 743,
-      "gender": [
-        "M",
-        "F"
+      "forms": [
+        "Normal",
+        "Totem"
       ]
     }
   ],
   [
     "rockruff",
     {
-      "name": "Rockruff",
-      "num": 744,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Rockruff"
     }
   ],
   [
     "lycanroc",
     {
       "name": "Lycanroc",
-      "num": 745,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
-        "Midnight"
+        "Midnight",
+        "Dusk"
       ]
     }
   ],
@@ -8512,12 +5034,8 @@
     "wishiwashi",
     {
       "name": "Wishiwashi",
-      "num": 746,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
+        "Normal",
         "School"
       ]
     }
@@ -8525,292 +5043,175 @@
   [
     "mareanie",
     {
-      "name": "Mareanie",
-      "num": 747,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mareanie"
     }
   ],
   [
     "toxapex",
     {
-      "name": "Toxapex",
-      "num": 748,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Toxapex"
     }
   ],
   [
     "mudbray",
     {
-      "name": "Mudbray",
-      "num": 749,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mudbray"
     }
   ],
   [
     "mudsdale",
     {
-      "name": "Mudsdale",
-      "num": 750,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Mudsdale"
     }
   ],
   [
     "dewpider",
     {
-      "name": "Dewpider",
-      "num": 751,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Dewpider"
     }
   ],
   [
     "araquanid",
     {
       "name": "Araquanid",
-      "num": 752,
-      "gender": [
-        "M",
-        "F"
+      "forms": [
+        "Normal",
+        "Totem"
       ]
     }
   ],
   [
     "fomantis",
     {
-      "name": "Fomantis",
-      "num": 753,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Fomantis"
     }
   ],
   [
     "lurantis",
     {
       "name": "Lurantis",
-      "num": 754,
-      "gender": [
-        "M",
-        "F"
+      "forms": [
+        "Normal",
+        "Totem"
       ]
     }
   ],
   [
     "morelull",
     {
-      "name": "Morelull",
-      "num": 755,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Morelull"
     }
   ],
   [
     "shiinotic",
     {
-      "name": "Shiinotic",
-      "num": 756,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Shiinotic"
     }
   ],
   [
     "salandit",
     {
-      "name": "Salandit",
-      "num": 757,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Salandit"
     }
   ],
   [
     "salazzle",
     {
       "name": "Salazzle",
-      "num": 758,
-      "gender": [
-        "F"
+      "forms": [
+        "Normal",
+        "Totem"
       ]
     }
   ],
   [
     "stufful",
     {
-      "name": "Stufful",
-      "num": 759,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Stufful"
     }
   ],
   [
     "bewear",
     {
-      "name": "Bewear",
-      "num": 760,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Bewear"
     }
   ],
   [
     "bounsweet",
     {
-      "name": "Bounsweet",
-      "num": 761,
-      "gender": [
-        "F"
-      ]
+      "name": "Bounsweet"
     }
   ],
   [
     "steenee",
     {
-      "name": "Steenee",
-      "num": 762,
-      "gender": [
-        "F"
-      ]
+      "name": "Steenee"
     }
   ],
   [
     "tsareena",
     {
-      "name": "Tsareena",
-      "num": 763,
-      "gender": [
-        "F"
-      ]
+      "name": "Tsareena"
     }
   ],
   [
     "comfey",
     {
-      "name": "Comfey",
-      "num": 764,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Comfey"
     }
   ],
   [
     "oranguru",
     {
-      "name": "Oranguru",
-      "num": 765,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Oranguru"
     }
   ],
   [
     "passimian",
     {
-      "name": "Passimian",
-      "num": 766,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Passimian"
     }
   ],
   [
     "wimpod",
     {
-      "name": "Wimpod",
-      "num": 767,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Wimpod"
     }
   ],
   [
     "golisopod",
     {
-      "name": "Golisopod",
-      "num": 768,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Golisopod"
     }
   ],
   [
     "sandygast",
     {
-      "name": "Sandygast",
-      "num": 769,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Sandygast"
     }
   ],
   [
     "palossand",
     {
-      "name": "Palossand",
-      "num": 770,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Palossand"
     }
   ],
   [
     "pyukumuku",
     {
-      "name": "Pyukumuku",
-      "num": 771,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Pyukumuku"
     }
   ],
   [
     "typenull",
     {
-      "name": "Type: Null",
-      "num": 772,
-      "gender": [
-        "N"
-      ]
+      "name": "Type: Null"
     }
   ],
   [
     "silvally",
     {
       "name": "Silvally",
-      "num": 773,
-      "gender": [
-        "N"
-      ],
       "forms": [
         "Bug",
         "Dark",
@@ -8836,11 +5237,8 @@
     "minior",
     {
       "name": "Minior",
-      "num": 774,
-      "gender": [
-        "N"
-      ],
       "forms": [
+        "Normal",
         "Meteor"
       ]
     }
@@ -8848,33 +5246,22 @@
   [
     "komala",
     {
-      "name": "Komala",
-      "num": 775,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Komala"
     }
   ],
   [
     "turtonator",
     {
-      "name": "Turtonator",
-      "num": 776,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Turtonator"
     }
   ],
   [
     "togedemaru",
     {
       "name": "Togedemaru",
-      "num": 777,
-      "gender": [
-        "M",
-        "F"
+      "forms": [
+        "Normal",
+        "Totem"
       ]
     }
   ],
@@ -8882,238 +5269,152 @@
     "mimikyu",
     {
       "name": "Mimikyu",
-      "num": 778,
-      "gender": [
-        "M",
-        "F"
-      ],
       "forms": [
-        "Busted"
+        "Normal",
+        "Busted",
+        "Totem"
       ]
     }
   ],
   [
     "bruxish",
     {
-      "name": "Bruxish",
-      "num": 779,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Bruxish"
     }
   ],
   [
     "drampa",
     {
-      "name": "Drampa",
-      "num": 780,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Drampa"
     }
   ],
   [
     "dhelmise",
     {
-      "name": "Dhelmise",
-      "num": 781,
-      "gender": [
-        "N"
-      ]
+      "name": "Dhelmise"
     }
   ],
   [
     "jangmoo",
     {
-      "name": "Jangmo-o",
-      "num": 782,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Jangmo-o"
     }
   ],
   [
     "hakamoo",
     {
-      "name": "Hakamo-o",
-      "num": 783,
-      "gender": [
-        "M",
-        "F"
-      ]
+      "name": "Hakamo-o"
     }
   ],
   [
     "kommoo",
     {
       "name": "Kommo-o",
-      "num": 784,
-      "gender": [
-        "M",
-        "F"
+      "forms": [
+        "Normal",
+        "Totem"
       ]
     }
   ],
   [
     "tapukoko",
     {
-      "name": "Tapu Koko",
-      "num": 785,
-      "gender": [
-        "N"
-      ]
+      "name": "Tapu Koko"
     }
   ],
   [
     "tapulele",
     {
-      "name": "Tapu Lele",
-      "num": 786,
-      "gender": [
-        "N"
-      ]
+      "name": "Tapu Lele"
     }
   ],
   [
     "tapubulu",
     {
-      "name": "Tapu Bulu",
-      "num": 787,
-      "gender": [
-        "N"
-      ]
+      "name": "Tapu Bulu"
     }
   ],
   [
     "tapufini",
     {
-      "name": "Tapu Fini",
-      "num": 788,
-      "gender": [
-        "N"
-      ]
+      "name": "Tapu Fini"
     }
   ],
   [
     "cosmog",
     {
-      "name": "Cosmog",
-      "num": 789,
-      "gender": [
-        "N"
-      ]
+      "name": "Cosmog"
     }
   ],
   [
     "cosmoem",
     {
-      "name": "Cosmoem",
-      "num": 790,
-      "gender": [
-        "N"
-      ]
+      "name": "Cosmoem"
     }
   ],
   [
     "solgaleo",
     {
-      "name": "Solgaleo",
-      "num": 791,
-      "gender": [
-        "N"
-      ]
+      "name": "Solgaleo"
     }
   ],
   [
     "lunala",
     {
-      "name": "Lunala",
-      "num": 792,
-      "gender": [
-        "N"
-      ]
+      "name": "Lunala"
     }
   ],
   [
     "nihilego",
     {
-      "name": "Nihilego",
-      "num": 793,
-      "gender": [
-        "N"
-      ]
+      "name": "Nihilego"
     }
   ],
   [
     "buzzwole",
     {
-      "name": "Buzzwole",
-      "num": 794,
-      "gender": [
-        "N"
-      ]
+      "name": "Buzzwole"
     }
   ],
   [
     "pheromosa",
     {
-      "name": "Pheromosa",
-      "num": 795,
-      "gender": [
-        "N"
-      ]
+      "name": "Pheromosa"
     }
   ],
   [
     "xurkitree",
     {
-      "name": "Xurkitree",
-      "num": 796,
-      "gender": [
-        "N"
-      ]
+      "name": "Xurkitree"
     }
   ],
   [
     "celesteela",
     {
-      "name": "Celesteela",
-      "num": 797,
-      "gender": [
-        "N"
-      ]
+      "name": "Celesteela"
     }
   ],
   [
     "kartana",
     {
-      "name": "Kartana",
-      "num": 798,
-      "gender": [
-        "N"
-      ]
+      "name": "Kartana"
     }
   ],
   [
     "guzzlord",
     {
-      "name": "Guzzlord",
-      "num": 799,
-      "gender": [
-        "N"
-      ]
+      "name": "Guzzlord"
     }
   ],
   [
     "necrozma",
     {
       "name": "Necrozma",
-      "num": 800,
-      "gender": [
-        "N"
+      "forms": [
+        "Normal",
+        "Duskmane",
+        "Dawnwings",
+        "Ultra"
       ]
     }
   ],
@@ -9121,11 +5422,8 @@
     "magearna",
     {
       "name": "Magearna",
-      "num": 801,
-      "gender": [
-        "N"
-      ],
       "forms": [
+        "Normal",
         "Original"
       ]
     }
@@ -9133,11 +5431,37 @@
   [
     "marshadow",
     {
-      "name": "Marshadow",
-      "num": 802,
-      "gender": [
-        "N"
-      ]
+      "name": "Marshadow"
+    }
+  ],
+  [
+    "poipole",
+    {
+      "name": "Poipole"
+    }
+  ],
+  [
+    "naganadel",
+    {
+      "name": "Naganadel"
+    }
+  ],
+  [
+    "stakataka",
+    {
+      "name": "Stakataka"
+    }
+  ],
+  [
+    "blacephalon",
+    {
+      "name": "Blacephalon"
+    }
+  ],
+  [
+    "zeraora",
+    {
+      "name": "Zeraora"
     }
   ]
 ]

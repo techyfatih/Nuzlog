@@ -86,6 +86,93 @@ const getSprite = pokemon => {
           break;
       }
 
+      switch (species) {
+        case 'unown-b':
+          species = 'unown-bravo'
+          break;
+        case 'unown-c':
+          species = 'unown-charlie'
+          break;
+        case 'unown-d':
+          species = 'unown-delta'
+          break;
+        case 'unown-e':
+          species = 'unown-echo'
+          break;
+        case 'unown-f':
+          species = 'unown-foxtrot'
+          break;
+        case 'unown-g':
+          species = 'unown-golf'
+          break;
+        case 'unown-h':
+          species = 'unown-hotel'
+          break;
+        case 'unown-i':
+          species = 'unown-india'
+          break;
+        case 'unown-j':
+          species = 'unown-juliet'
+          break;
+        case 'unown-k':
+          species = 'unown-kilo'
+          break;
+        case 'unown-l':
+          species = 'unown-lima'
+          break;
+        case 'unown-m':
+          species = 'unown-mike'
+          break;
+        case 'unown-n':
+          species = 'unown-november'
+          break;
+        case 'unown-o':
+          species = 'unown-oscar'
+          break;
+        case 'unown-p':
+          species = 'unown-papa'
+          break;
+        case 'unown-q':
+          species = 'unown-quebec'
+          break;
+        case 'unown-r':
+          species = 'unown-romeo'
+          break;
+        case 'unown-s':
+          species = 'unown-sierra'
+          break;
+        case 'unown-t':
+          species = 'unown-tango'
+          break;
+        case 'unown-u':
+          species = 'unown-uniform'
+          break;
+        case 'unown-v':
+          species = 'unown-victor'
+          break;
+        case 'unown-w':
+          species = 'unown-whiskey'
+          break;
+        case 'unown-x':
+          species = 'unown-xray'
+          break;
+        case 'unown-y':
+          species = 'unown-yankee'
+          break;
+        case 'unown-z':
+          species = 'unown-zulu'
+          break;
+        case 'unown-!':
+          species = 'unown-exclamation'
+          break;
+        case 'unown-?':
+          species = 'unown-interrogation'
+          break;
+        case 'mimikyu-busted':
+          species = 'mimikyu-2';
+          break;
+      }
+
       if (shiny) sprite += '-shiny';
       sprite += '/' + species + '.gif';
     }
