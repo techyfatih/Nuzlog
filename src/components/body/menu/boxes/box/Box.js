@@ -1,12 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import { Panel, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-import './Box.css'
+import "./Box.css";
 
-import PokeSlot from 'components/pokemon/slot/PokeSlot';
+import PokeSlot from "components/pokemon/slot/PokeSlot";
 
 class Box extends React.Component {
   constructor() {
@@ -16,7 +15,7 @@ class Box extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const {box, active} = this;
+    const { box, active } = this;
     if (active) {
       const top = active.offsetTop;
       const scrollTop = box.scrollTop;
@@ -24,8 +23,7 @@ class Box extends React.Component {
 
       if (top > scrollTop + height) {
         box.scrollTop = top - height + active.offsetHeight;
-      }
-      else if (top < scrollTop) {
+      } else if (top < scrollTop) {
         box.scrollTop = top;
       }
     }
@@ -36,29 +34,34 @@ class Box extends React.Component {
   }
 
   handleClick(e) {
-    const {value} = e.target;
-    if (value && value == this.props.slot)
-      this.props.onChange(-1);
+    const { value } = e.target;
+    if (value && value == this.props.slot) this.props.onChange(-1);
   }
 
   render() {
-    const {bsStyle, pokemon, box, slot} = this.props;
+    const { bsStyle, pokemon, box, slot } = this.props;
 
     return (
       <Panel>
-        <Panel className='box' bsStyle={bsStyle}>
-          <ToggleButtonGroup fill vertical
-            type='radio'
-            name='box'
+        <Panel className="box" bsStyle={bsStyle}>
+          <ToggleButtonGroup
+            fill
+            vertical
+            type="radio"
+            name="box"
             value={slot}
             onChange={this.handleChange}
-            ref={ref => this.box = ReactDOM.findDOMNode(ref)}>
+            ref={ref => (this.box = ReactDOM.findDOMNode(ref))}
+          >
             {box.map((val, key) => (
-              <ToggleButton value={key} key={key}
+              <ToggleButton
+                value={key}
+                key={key}
                 onClick={this.handleClick}
                 ref={ref => {
                   if (key == slot) this.active = ReactDOM.findDOMNode(ref);
-                }}>
+                }}
+              >
                 <PokeSlot pokemon={pokemon[box[key]]} />
               </ToggleButton>
             ))}
@@ -73,11 +76,11 @@ Box.propTypes = {
   box: PropTypes.array.isRequired,
   slot: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = state => {
   return {
-    pokemon: state.pokemon,
+    pokemon: state.pokemon
   };
 };
 

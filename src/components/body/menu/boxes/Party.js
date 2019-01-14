@@ -1,10 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Panel, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
-import { connect } from 'react-redux'
+import React from "react";
+import { connect } from "react-redux";
 
-import PokeSlot from 'components/pokemon/slot/PokeSlot';
-import { switchSlot } from 'actions';
+import PokeSlot from "components/pokemon/slot/PokeSlot";
+import { switchSlot } from "actions";
 
 const six = [0, 1, 2, 3, 4, 5];
 
@@ -20,26 +18,32 @@ class Party extends React.Component {
   }
 
   handleClick(e) {
-    const {value} = e.target;
-    if (value && value == this.props.slot)
-      this.props.switchSlot(-1);
+    const { value } = e.target;
+    if (value && value == this.props.slot) this.props.switchSlot(-1);
   }
 
   render() {
-    const {pokemon, party, slot} = this.props;
+    const { pokemon, party, slot } = this.props;
 
     return (
       <Panel>
-        <Panel className='no-margin' bsStyle='info'>
-          <ToggleButtonGroup vertical block fill
-            type='radio'
-            name='party'
+        <Panel className="no-margin" bsStyle="info">
+          <ToggleButtonGroup
+            vertical
+            block
+            fill
+            type="radio"
+            name="party"
             value={slot}
-            onChange={this.handleChange}>
+            onChange={this.handleChange}
+          >
             {six.map(key => (
-              <ToggleButton value={key} key={key}
+              <ToggleButton
+                value={key}
+                key={key}
                 disabled={party[key] == null}
-                onClick={this.handleClick}>
+                onClick={this.handleClick}
+              >
                 <PokeSlot pokemon={pokemon[party[key]]} />
               </ToggleButton>
             ))}
@@ -48,7 +52,7 @@ class Party extends React.Component {
       </Panel>
     );
   }
-};
+}
 
 const mapStateToProps = state => {
   return {
@@ -63,7 +67,10 @@ const mapDispatchToProps = dispatch => {
     switchSlot: slot => {
       dispatch(switchSlot(1, slot));
     }
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Party);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Party);

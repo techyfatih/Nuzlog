@@ -1,8 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Table } from 'react-bootstrap';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import './StickyTable.css';
+import "./StickyTable.css";
 
 class StickyTHead extends React.Component {
   render() {
@@ -10,10 +9,8 @@ class StickyTHead extends React.Component {
       <thead>
         <tr>
           <th>
-            <Table bordered condensed className='sticky-thead'>
-              <thead>
-                {this.props.children}
-              </thead>
+            <Table bordered condensed className="sticky-thead">
+              <thead>{this.props.children}</thead>
             </Table>
           </th>
         </tr>
@@ -28,36 +25,37 @@ class StickyTBody extends React.Component {
   }
 
   render() {
-    const {height} = this.props;
+    const { height } = this.props;
 
     return (
       <tbody>
         <tr>
           <td>
-            <div className='sticky-tbody' style={height ? {height} : {}}
-              ref={ref => this.body = ReactDOM.findDOMNode(ref)}>
+            <div
+              className="sticky-tbody"
+              style={height ? { height } : {}}
+              ref={ref => (this.body = ReactDOM.findDOMNode(ref))}
+            >
               <Table bordered condensed striped>
-                <tbody>
-                  {this.props.children}
-                </tbody>
+                <tbody>{this.props.children}</tbody>
               </Table>
             </div>
           </td>
         </tr>
       </tbody>
-    )
+    );
   }
 }
 
 export default class StickyTable extends React.Component {
   render() {
     return (
-      <Table bordered condensed className='sticky-table'>
+      <Table bordered condensed className="sticky-table">
         {this.props.children}
       </Table>
     );
   }
-};
+}
 
 StickyTable.THead = StickyTHead;
 StickyTable.TBody = StickyTBody;

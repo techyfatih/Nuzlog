@@ -1,13 +1,11 @@
-import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
-import { actions } from 'react-redux-form';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import PokeSlot from 'components/pokemon/slot/PokeSlot';
+import PokeSlot from "components/pokemon/slot/PokeSlot";
 
-import { RRForm, RRFControl } from 'components/form/RRF';
+import { RRForm, RRFControl } from "components/form/RRF";
 
-import { death } from 'actions';
+import { death } from "actions";
 
 class DeathModal extends React.Component {
   constructor(props) {
@@ -17,13 +15,13 @@ class DeathModal extends React.Component {
   }
 
   handleEnter() {
-    this.dispatch(actions.change('local.cause', ''));
-    this.dispatch(actions.focus('local.cause'));
-    this.dispatch(actions.setPristine('local'));
+    this.dispatch(actions.change("local.cause", ""));
+    this.dispatch(actions.focus("local.cause"));
+    this.dispatch(actions.setPristine("local"));
   }
 
   handleSubmit(values) {
-    const {pokemon} = this.props;
+    const { pokemon } = this.props;
     if (pokemon) {
       this.props.onDeath(pokemon.index, values.cause);
       this.props.onHide();
@@ -35,23 +33,32 @@ class DeathModal extends React.Component {
       <Modal
         show={this.props.show}
         onEnter={this.handleEnter}
-        onHide={this.props.onHide}>
+        onHide={this.props.onHide}
+      >
         <RRForm
-          getDispatch={dispatch => this.dispatch = dispatch}
-          onSubmit={this.handleSubmit}>
-          <Modal.Header closeButton><h2>Death</h2></Modal.Header>
+          getDispatch={dispatch => (this.dispatch = dispatch)}
+          onSubmit={this.handleSubmit}
+        >
+          <Modal.Header closeButton>
+            <h2>Death</h2>
+          </Modal.Header>
 
           <Modal.Body>
             <PokeSlot pokemon={this.props.pokemon} />
-            <RRFControl model='.cause' id='cause-of-death' label='Cause of Death*'
-              placeholder='Freaking crit' required />
+            <RRFControl
+              model=".cause"
+              id="cause-of-death"
+              label="Cause of Death*"
+              placeholder="Freaking crit"
+              required
+            />
           </Modal.Body>
 
           <Modal.Footer>
-            <h4 className='text-danger'>
+            <h4 className="text-danger">
               WARNING: Once a Pokémon dies, you cannot bring it back to life!
             </h4>
-            <Button type='submit' bsStyle='danger' bsSize='large' block>
+            <Button type="submit" bsStyle="danger" bsSize="large" block>
               Death
             </Button>
           </Modal.Footer>
@@ -68,4 +75,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(DeathModal);
+export default connect(
+  null,
+  mapDispatchToProps
+)(DeathModal);

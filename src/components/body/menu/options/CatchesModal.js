@@ -1,29 +1,27 @@
-import React from 'react';
-import { Modal, Button,
-  FormGroup, InputGroup, FormControl, ControlLabel } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import StickyTable from 'components/other/StickyTable';
+import StickyTable from "components/other/StickyTable";
 
-import PokeSlot from 'components/pokemon/slot/PokeSlot';
-import { switchBox, switchSlot, failCatch } from 'actions';
+import PokeSlot from "components/pokemon/slot/PokeSlot";
+import { switchBox, switchSlot, failCatch } from "actions";
 
 class CatchesModal extends React.Component {
   constructor() {
     super();
-    this.state = {location: ''};
+    this.state = { location: "" };
     this.handleEnter = this.handleEnter.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleEnter() {
-    this.setState({location: ''});
+    this.setState({ location: "" });
     this.input.focus();
   }
 
   handleClick(slot) {
-    const {onHide, onSwitchBox, onSwitchSlot} = this.props;
+    const { onHide, onSwitchBox, onSwitchSlot } = this.props;
     if (slot.party >= 0) {
       onHide();
       onSwitchBox(1);
@@ -41,36 +39,42 @@ class CatchesModal extends React.Component {
 
   handleSubmit(e) {
     this.props.onFailCatch(this.state.location);
-    this.setState({location: ''});
+    this.setState({ location: "" });
     e.preventDefault();
   }
-  
+
   render() {
-    const {location} = this.state;
+    const { location } = this.state;
 
     return (
-      <Modal show={this.props.show}
-        onEnter={this.handleEnter} onHide={this.props.onHide}>
-        <Modal.Header closeButton><h2>Catches</h2></Modal.Header>
+      <Modal
+        show={this.props.show}
+        onEnter={this.handleEnter}
+        onHide={this.props.onHide}
+      >
+        <Modal.Header closeButton>
+          <h2>Catches</h2>
+        </Modal.Header>
         <Modal.Body>
           <StickyTable>
             <StickyTable.THead>
               <tr>
-                <th width='50%'>Location</th>
-                <th width='50%'>Catch</th>
+                <th width="50%">Location</th>
+                <th width="50%">Catch</th>
               </tr>
             </StickyTable.THead>
-            <StickyTable.TBody height='400px'>
+            <StickyTable.TBody height="400px">
               {this.props.pokemon.map((pokemon, index) => {
                 //const slot = pokemon.slot;
                 return (
                   <tr key={index}>
-                    <td width='50%'>{pokemon.location}</td>
-                    <td width='50%'>
-                      {pokemon.species ? /*(
-                        <Button onClick={() => this.handleClick(slot)}>*/
-                          <PokeSlot pokemon={pokemon} />
-                          /*{slot ? (
+                    <td width="50%">{pokemon.location}</td>
+                    <td width="50%">
+                      {pokemon.species /*(
+                        <Button onClick={() => this.handleClick(slot)}>*/ ? (
+                        <PokeSlot pokemon={pokemon} />
+                      ) : (
+                        /*{slot ? (
                             slot.party >= 0 ?
                               'Party: ' + (parseInt(slot.party) + 1) :
                             slot.pc >= 0 ?
@@ -79,10 +83,13 @@ class CatchesModal extends React.Component {
                               'Cemetery: ' + (parseInt(slot.cemetery) + 1) : ''
                           ) : ''}
                         </Button>
-                      )*/ : <span>Failed catch</span>}
+                      )*/ <span>
+                          Failed catch
+                        </span>
+                      )}
                     </td>
                   </tr>
-                )
+                );
               })}
             </StickyTable.TBody>
           </StickyTable>
@@ -91,11 +98,14 @@ class CatchesModal extends React.Component {
             <FormGroup>
               <ControlLabel>Record Failed Catch:</ControlLabel>
               <InputGroup>
-                <FormControl placeholder='Enter location' value={location}
-                  onChange={e => this.setState({location: e.target.value})}
-                  inputRef={ref => this.input = ref} />
+                <FormControl
+                  placeholder="Enter location"
+                  value={location}
+                  onChange={e => this.setState({ location: e.target.value })}
+                  inputRef={ref => (this.input = ref)}
+                />
                 <InputGroup.Button>
-                  <Button type='submit' bsStyle='danger' disabled={!location}>
+                  <Button type="submit" bsStyle="danger" disabled={!location}>
                     Record
                   </Button>
                 </InputGroup.Button>
@@ -122,4 +132,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CatchesModal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CatchesModal);

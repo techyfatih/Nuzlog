@@ -1,7 +1,5 @@
-import React from 'react';
-import { Modal, Panel,
-  FormGroup, InputGroup, FormControl, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
 class BagModal extends React.Component {
   constructor() {
@@ -10,11 +8,15 @@ class BagModal extends React.Component {
 
   render() {
     return (
-      <Modal show={this.props.show}
-        onEnter={this.handleEnter} onHide={this.props.onHide}>
-        <Modal.Header closeButton><h2>Bag</h2></Modal.Header>
-        <Modal.Body>
-        </Modal.Body>
+      <Modal
+        show={this.props.show}
+        onEnter={this.handleEnter}
+        onHide={this.props.onHide}
+      >
+        <Modal.Header closeButton>
+          <h2>Bag</h2>
+        </Modal.Header>
+        <Modal.Body />
       </Modal>
     );
   }
@@ -29,9 +31,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onLevelUp: (index, number) => {
-        dispatch(levelUp(index, number));
+      dispatch(levelUp(index, number));
     }
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(BagModal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BagModal);

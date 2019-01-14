@@ -1,11 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import React from "react";
+import ReactDOM from "react-dom";
 
 class ToggleGroupButton extends React.Component {
   constructor() {
     super();
-    this.state = {focus: false};
+    this.state = { focus: false };
     this.handleFocus = this.handleFocus.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
   }
@@ -15,23 +14,25 @@ class ToggleGroupButton extends React.Component {
   }
 
   handleFocus() {
-    this.setState({focus: true});
+    this.setState({ focus: true });
   }
 
   handleBlur() {
-    this.setState({focus: false});
+    this.setState({ focus: false });
   }
 
   render() {
     return (
-      <ToggleButton {...this.props}
-        ref={ref=>this.input = ReactDOM.findDOMNode(ref)}
-        className={this.state.focus ? 'focus' : ''}
+      <ToggleButton
+        {...this.props}
+        ref={ref => (this.input = ReactDOM.findDOMNode(ref))}
+        className={this.state.focus ? "focus" : ""}
         onFocus={this.handleFocus}
-        onBlur={this.handleBlur}>
+        onBlur={this.handleBlur}
+      >
         {this.props.children}
       </ToggleButton>
-    )
+    );
   }
 }
 
@@ -44,36 +45,38 @@ export default class ToggleGroup extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.focus && this.input) {
       this.input.focus();
-      if (typeof this.props.onBlur == 'function')
-        this.props.onBlur();
+      if (typeof this.props.onBlur == "function") this.props.onBlur();
     }
   }
 
   handleClick(e) {
     const value = e.target.value;
-    if (value && value == this.props.value)
-      this.props.onChange('');
+    if (value && value == this.props.value) this.props.onChange("");
   }
 
   render() {
     return (
       <ButtonToolbar>
-        <ToggleButtonGroup type={this.props.type}
+        <ToggleButtonGroup
+          type={this.props.type}
           name={this.props.name}
           vertical={this.props.vertical}
           value={this.props.value}
-          onChange={this.props.onChange}>
+          onChange={this.props.onChange}
+        >
           {React.Children.map(this.props.children, (value, index) => (
-            <ToggleGroupButton ref={ref => {
+            <ToggleGroupButton
+              ref={ref => {
                 if (index == 0) this.input = ref;
               }}
               value={value.props.value}
-              onClick={this.handleClick}>
+              onClick={this.handleClick}
+            >
               {value}
             </ToggleGroupButton>
           ))}
         </ToggleButtonGroup>
       </ButtonToolbar>
-    )
+    );
   }
 }

@@ -1,5 +1,4 @@
-import React from 'react';
-import { Checkbox } from 'react-bootstrap';
+import React from "react";
 
 export default class Check extends React.Component {
   constructor() {
@@ -8,14 +7,16 @@ export default class Check extends React.Component {
   }
 
   handleChange(e) {
-    if (typeof this.props.onChange == 'function')
+    if (typeof this.props.onChange == "function")
       this.props.onChange(e.target.checked);
   }
 
   render() {
     return (
-      <Checkbox checked={this.props.value ? true : false}
-        onChange={this.handleChange}>
+      <Checkbox
+        checked={this.props.value ? true : false}
+        onChange={this.handleChange}
+      >
         {this.props.children}
       </Checkbox>
     );

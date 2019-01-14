@@ -1,33 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import { AppContainer } from "react-hot-loader";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap";
 
-import nuzlog from './reducers';
-import App from './components/App';
+import nuzlog from "./reducers";
+import App from "./components/App";
 
 let store = createStore(
   nuzlog,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-const root = document.getElementById('root');
-const render = Component => (
+const root = document.getElementById("root");
+const render = Component =>
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
         <Component />
       </Provider>
-    </AppContainer>, root
-  )
-)
+    </AppContainer>,
+    root
+  );
 
 render(App);
 
 if (module.hot) {
-  module.hot.accept('./components/App', () => {
-    const NewApp = require('./components/App').default;
+  module.hot.accept("./components/App", () => {
+    const NewApp = require("./components/App").default;
     render(NewApp);
   });
 }

@@ -1,6 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Modal, ButtonGroup, Button } from 'react-bootstrap';
+import React from "react";
+import PropTypes from "prop-types";
 
 export default class ConfirmModal extends React.Component {
   constructor() {
@@ -20,21 +19,26 @@ export default class ConfirmModal extends React.Component {
 
   render() {
     return (
-      <Modal backdropClassName='modal-2nd' show={this.props.show}
+      <Modal
+        backdropClassName="modal-2nd"
+        show={this.props.show}
         onHide={this.props.onHide}
-        onKeyDown={this.handleKeyDown}>
-        <Modal.Header closeButton><h2>{this.props.children}</h2></Modal.Header>
+        onKeyDown={this.handleKeyDown}
+      >
+        <Modal.Header closeButton>
+          <h2>{this.props.children}</h2>
+        </Modal.Header>
         <Modal.Footer>
           <ButtonGroup justified>
-            <Button bsStyle='success' href='#' onClick={this.handleConfirm}>
+            <Button bsStyle="success" href="#" onClick={this.handleConfirm}>
               Yes
             </Button>
-            <Button bsStyle='danger' href='#' onClick={this.props.onHide}>
+            <Button bsStyle="danger" href="#" onClick={this.props.onHide}>
               No
             </Button>
           </ButtonGroup>
         </Modal.Footer>
       </Modal>
-    )
+    );
   }
 }

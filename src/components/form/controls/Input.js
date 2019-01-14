@@ -1,6 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { FormControl } from 'react-bootstrap';
+import React from "react";
+import PropTypes from "prop-types";
 
 export default class Input extends React.Component {
   constructor() {
@@ -9,26 +8,27 @@ export default class Input extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.focus)
-      this.input.focus();
+    if (nextProps.focus) this.input.focus();
   }
-  
+
   handleChange(e) {
-    if (this.props.onChange)
-      this.props.onChange(e.target.value);
+    if (this.props.onChange) this.props.onChange(e.target.value);
   }
 
   render() {
     return (
-      <FormControl type={this.props.type} spellCheck='false'
+      <FormControl
+        type={this.props.type}
+        spellCheck="false"
         componentClass={this.props.componentClass}
         id={this.props.id}
         placeholder={this.props.placeholder}
-        value={this.props.value ? this.props.value : ''}
+        value={this.props.value ? this.props.value : ""}
         onChange={this.handleChange}
         onFocus={this.props.onFocus}
         onBlur={this.props.onBlur}
-        inputRef={ref => this.input = ref}>
+        inputRef={ref => (this.input = ref)}
+      >
         {this.props.children}
       </FormControl>
     );
@@ -45,4 +45,4 @@ Input.propTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func
-}
+};

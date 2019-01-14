@@ -1,10 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { LocalForm, actions, Control } from 'react-redux-form';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { Input, Combobox, PokeCombobox, FormsCombobox, ToggleGroup, MovesList,
-  Check } from './controls/Controls'
-import validate from './controls/validate';
+import {
+  Input,
+  Combobox,
+  PokeCombobox,
+  FormsCombobox,
+  ToggleGroup,
+  MovesList,
+  Check
+} from "./controls/Controls";
+import validate from "./controls/validate";
 
 export class RRForm extends React.Component {
   constructor() {
@@ -15,15 +21,14 @@ export class RRForm extends React.Component {
 
   getDispatch(dispatch) {
     this.dispatch = dispatch;
-    if (this.props.getDispatch)
-      this.props.getDispatch(dispatch);
+    if (this.props.getDispatch) this.props.getDispatch(dispatch);
   }
 
   handleSubmitFailed(form) {
-    this.dispatch(actions.setDirty('local'));
+    this.dispatch(actions.setDirty("local"));
     let toFocus;
     for (let i in form) {
-      let model = 'local.' + i;
+      let model = "local." + i;
       let valid = form[i].valid;
       if (valid == null) {
         valid = form[i].$form.valid;
@@ -37,16 +42,19 @@ export class RRForm extends React.Component {
 
   render() {
     return (
-      <LocalForm autoComplete='off' hideNativeErrors
+      <LocalForm
+        autoComplete="off"
+        hideNativeErrors
         getDispatch={this.getDispatch}
         onUpdate={this.props.onUpdate}
         onSubmitFailed={this.handleSubmitFailed}
-        onSubmit={this.props.onSubmit}>
+        onSubmit={this.props.onSubmit}
+      >
         {this.props.children}
       </LocalForm>
     );
   }
-};
+}
 
 RRForm.propTypes = {
   getDispatch: PropTypes.func,
@@ -58,22 +66,22 @@ export class RRFControl extends React.Component {
   constructor(props) {
     super(props);
     switch (props.component) {
-      case 'combobox':
+      case "combobox":
         this.component = validate(Combobox);
         break;
-      case 'pokemon':
+      case "pokemon":
         this.component = validate(PokeCombobox);
         break;
-      case 'forms':
+      case "forms":
         this.component = validate(FormsCombobox);
         break;
-      case 'moves':
+      case "moves":
         this.component = validate(MovesList);
         break;
-      case 'check':
+      case "check":
         this.component = validate(Check);
         break;
-      case 'toggle':
+      case "toggle":
         this.component = validate(ToggleGroup);
         break;
       default:
@@ -83,7 +91,8 @@ export class RRFControl extends React.Component {
 
   render() {
     return (
-      <Control model={this.props.model}
+      <Control
+        model={this.props.model}
         component={this.component}
         type={this.props.type}
         componentClass={this.props.componentClass}
@@ -93,18 +102,22 @@ export class RRFControl extends React.Component {
         required={this.props.required}
         pokemon={this.props.pokemon}
         validators={{
-          required: (val) => !this.props.required || val && val.trim().length
+          required: val => !this.props.required || (val && val.trim().length)
         }}
         mapProps={{
-          pristine: ({fieldValue}) => fieldValue.pristine,
-          valid: ({fieldValue}) => fieldValue.valid,
-          focus: ({fieldValue}) => fieldValue.focus
+          pristine: ({ fieldValue }) => fieldValue.pristine,
+          valid: ({ fieldValue }) => fieldValue.valid,
+          focus: ({ fieldValue }) => fieldValue.focus
         }}
-        defaultValue={this.props.componentClass == 'select' ?
-          this.props.children[0].props.value : undefined}
-        onChange={this.props.onChange}>
+        defaultValue={
+          this.props.componentClass == "select"
+            ? this.props.children[0].props.value
+            : undefined
+        }
+        onChange={this.props.onChange}
+      >
         {this.props.children}
       </Control>
-    )
+    );
   }
-};
+}

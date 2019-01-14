@@ -1,18 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import './App.css';
-import Header from './header/Header';
-import Body from './body/Body';
-import Footer from './footer/Footer';
+import "./App.css";
+import Header from "./header/Header";
+import Body from "./body/Body";
+import Footer from "./footer/Footer";
 
 export default class App extends React.Component {
   render() {
-    return (
-      <div>
-        <Header version='2.0.3' />
-        <Body />
-        <Footer />
-      </div>
-    );
+    return <div />;
   }
 }

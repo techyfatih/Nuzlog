@@ -1,18 +1,17 @@
-import React from 'react';
-import { Panel, ButtonGroup, Button, Tabs, Tab } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import './Boxes.css';
+import "./Boxes.css";
 
-import Party from './Party';
-import Box from './box/Box';
+import Party from "./Party";
+import Box from "./box/Box";
 
-import SummaryModal from './SummaryModal';
-import MoveModal from './move/MoveModal';
+import SummaryModal from "./SummaryModal";
+import MoveModal from "./move/MoveModal";
 
-import PokeCard from 'components/pokemon/card/PokeCard';
+import PokeCard from "components/pokemon/card/PokeCard";
 
-import { switchBox, switchSlot } from 'actions';
+import { switchBox, switchSlot } from "actions";
 
 class Boxes extends React.Component {
   constructor() {
@@ -35,54 +34,76 @@ class Boxes extends React.Component {
   }
 
   render() {
-    const {pokemon, party, pc, cemetery} = this.props;
-    const {box, partySlot, pcSlot, cemeterySlot} = this.props;
-    const {summary, move} = this.state;
+    const { pokemon, party, pc, cemetery } = this.props;
+    const { box, partySlot, pcSlot, cemeterySlot } = this.props;
+    const { summary, move } = this.state;
 
-    const bsStyle =  box == 1 ? 'info' : box == 2 ? 'warning' : 'default';
+    const bsStyle = box == 1 ? "info" : box == 2 ? "warning" : "default";
 
     let selectedPokemon = null;
     if (box == 1) selectedPokemon = pokemon[party[partySlot]];
     else if (box == 2) selectedPokemon = pokemon[pc[pcSlot]];
     else if (box == 3) selectedPokemon = pokemon[cemetery[cemeterySlot]];
-    
+
     return (
-      <div className='clearfix'>
-        <div id='boxes' className='pull-left'>
-          <Tabs activeKey={box} id='boxes-tabs' animation={false} justified
-            onSelect={this.handleSelect}>
-            <Tab eventKey={1} title='Party'>
+      <div className="clearfix">
+        <div id="boxes" className="pull-left">
+          <Tabs
+            activeKey={box}
+            id="boxes-tabs"
+            animation={false}
+            justified
+            onSelect={this.handleSelect}
+          >
+            <Tab eventKey={1} title="Party">
               <Party />
             </Tab>
-            <Tab eventKey={2} title='PC'>
-              <Box box={pc} slot={pcSlot} bsStyle='warning'
-                onChange={slot => this.handleChange(2, slot)} />
+            <Tab eventKey={2} title="PC">
+              <Box
+                box={pc}
+                slot={pcSlot}
+                bsStyle="warning"
+                onChange={slot => this.handleChange(2, slot)}
+              />
             </Tab>
-            <Tab eventKey={3} title='Cemetery'>
-              <Box box={cemetery} slot={cemeterySlot}
-                onChange={slot => this.handleChange(3, slot)} />
+            <Tab eventKey={3} title="Cemetery">
+              <Box
+                box={cemetery}
+                slot={cemeterySlot}
+                onChange={slot => this.handleChange(3, slot)}
+              />
             </Tab>
           </Tabs>
-          <Button id='summary-button' bsStyle='primary' block
-            onClick={() => this.setState({summary: true})}
-            disabled={!selectedPokemon}>
+          <Button
+            id="summary-button"
+            bsStyle="primary"
+            block
+            onClick={() => this.setState({ summary: true })}
+            disabled={!selectedPokemon}
+          >
             Summary
           </Button>
-          <Button bsStyle='primary' block
-            onClick={() => this.setState({move: true})}
-            disabled={party.length <= 0 && pc.length <= 0}>
+          <Button
+            bsStyle="primary"
+            block
+            onClick={() => this.setState({ move: true })}
+            disabled={party.length <= 0 && pc.length <= 0}
+          >
             Move Pokémon
           </Button>
         </div>
-        
-        <div id='boxes-card' className='pull-right'>
+
+        <div id="boxes-card" className="pull-right">
           <PokeCard bsStyle={bsStyle} pokemon={selectedPokemon} />
         </div>
-    
-        <SummaryModal bsStyle={bsStyle} show={summary}
-          onHide={() => this.setState({summary: false})}
-          pokemon={selectedPokemon} />
-        <MoveModal show={move} onHide={() => this.setState({move: false})} />
+
+        <SummaryModal
+          bsStyle={bsStyle}
+          show={summary}
+          onHide={() => this.setState({ summary: false })}
+          pokemon={selectedPokemon}
+        />
+        <MoveModal show={move} onHide={() => this.setState({ move: false })} />
       </div>
     );
   }
@@ -112,4 +133,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Boxes);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Boxes);
